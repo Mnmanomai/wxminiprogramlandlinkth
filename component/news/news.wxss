@@ -1,0 +1,40 @@
+/* component/news/news.wxss */
+
+.MainCardGrid {
+  
+  margin-top: 40rpx;
+}
+
+.textHeader {
+  margin-bottom: 10px;
+  padding-left: 0px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e0e0e048;
+  margin: 16rpx 0;
+}
+
+.my-4 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.van-grid,
+.van-grid__item {
+  border: none !important;
+}
+
+.van-grid {
+  border: none !important;
+}
+
+.linelimit{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;   /* จำนวนบรรทัดที่ต้องการ */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

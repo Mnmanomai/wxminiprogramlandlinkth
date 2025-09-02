@@ -1,0 +1,17 @@
+/* pages/activities/activities.wxss */
+.tabs-wrapper {
+  position: fixed;
+  top: 0;          /* ติดด้านบน */
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: #fff; /* ป้องกัน content เห็นด้านหลัง */
+}
+
+
+.van-tabs--line{
+  position: fixed;
+  top: 88px;
+  width: 100%;
+}
+

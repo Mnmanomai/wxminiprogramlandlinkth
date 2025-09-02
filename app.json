@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/filtersearch/filtersearch",
+    "pages/activities/activities",
+    "pages/search/search",
+    "pages/assetdetail/assetdetail",
+    "pages/province/province",
+    "pages/district/district",
+    "pages/searchdetail/searchdetail",
+    "pages/nearlocation/nearlocation",
+    "pages/chat/chat",
+    "pages/seachasset/searchasset",
+    "pages/investmentmarket/investmentmarket",
+    "pages/guide/index",
+    "pages/guideall/index",
+    "component/contentall/index"
+  ],
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/activities/activities",
+        "text": "活动"
+      },
+      {
+        "pagePath": "pages/investmentmarket/investmentmarket",
+        "text": "按摩"
+      },
+      {
+        "pagePath": "pages/chat/chat",
+        "text": "按摩"
+      }
+    ]
+  },
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

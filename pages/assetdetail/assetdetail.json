@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/component/navigation-bar/navigation-bar",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "cardlistasset" : "/component/cardListAsset/cardListAsset"
+  }
+}

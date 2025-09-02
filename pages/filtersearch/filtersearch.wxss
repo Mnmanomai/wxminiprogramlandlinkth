@@ -1,0 +1,10 @@
+/* pages/filtersearch/filtersearch.wxss */
+.tag {
+  padding: 2px 6px;
+  margin: 0px 2px;
+  background-color: royalblue;
+  color: white;
+  font-size: 10px;
+  border-radius: 6px;
+  
+}

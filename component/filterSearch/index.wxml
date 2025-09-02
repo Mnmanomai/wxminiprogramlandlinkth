@@ -1,0 +1,10 @@
+<!--components/filterSearch/index.wxml-->
+<view class="" style="margin-top: 20rpx;margin-bottom: 20rpx;">
+  <view class="mainSlideBuyRent">
+    <view class="subSlideBuyRent">
+      <block wx:for="{{list}}" wx:key="listselectbuyrent">
+        <view class="SlideBuyRent {{SellType === item.id ? 'active' : ''}} " data-index='{{item.id}}' bind:tap="ChangeSlide">{{item.name}}</view>        
+      </block>
+    </view>
+  </view>
+</view>

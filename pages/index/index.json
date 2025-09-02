@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/component/navigation-bar/navigation-bar",
+    "tabBar" : "/component/tabBar/tabBar",
+    "van-search": "@vant/weapp/search/index",
+    "news":"/component/news/news",
+    "assetlatest":"/component/AssetLatest/assetlatest",
+    "minimenu" : "/component/minimenu/index",
+    "youlike" : "/component/youlikeindex/index"
+  }
+}

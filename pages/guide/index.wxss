@@ -1,0 +1,4 @@
+/* pages/guide/index.wxss */
+.text-muted{
+  color: rgba(0, 0, 0, 0.8);
+}

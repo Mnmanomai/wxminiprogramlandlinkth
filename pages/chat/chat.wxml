@@ -1,0 +1,10 @@
+<!--pages/chat/chat.wxml-->
+<view class="page-container">
+    <view class="" style="height: 100vh;">
+        
+    </view>
+   
+</view>
+<!-- chat -->
+<navigation-bar title="聊天" back="{{false}}" color="black" background="#FFF" />
+<tabBar current="0" />

@@ -1,0 +1,31 @@
+<!--components/cardListAsset/cardListAsset.wxml-->
+<block wx:for="{{list}}" wx:key="id">
+    <view class="" style="padding-left:10px;padding-right:10px;" bind:tap="goToDetail" data-id="{{item._id}}">
+        <view class="cardProd">
+            <image class="cardProdImage" src="{{item.no_images_asset}}" mode="aspectFill" lazy-load />
+            <view class="cardDetail">
+                <text class="font-medium limit2" style="font-style: 18px;">{{"#"+item._id}} {{item.NameAsset}}</text>
+                <text class="text-md">{{item.Province}}, {{item.District}}</text>
+                <view class="flex text-md">
+                    <view>{{ item.price }}</view> / {{item.ColorOfLand}}
+                </view>
+                <text class="text-md">{{item.timeago}} {{item.farfromlaem}}</text>
+                <view class="cardtagandprice">
+                    <view class="flex flex-row gap-3" style="width:100%;">
+                        <text class="tagdetail">{{item.TypeSell}}</text>
+                        <text class="tagdetail">{{item.TypeAsset}}</text>
+                        <text class="tagdetail">{{item.IndusZone}}</text>
+                    </view>
+                    <view class="" style="width:100%;text-align: end;">
+                        <view class="text-xl" wx:if="{{ item.typeselln === '2' }}">
+                            ฿{{ item.RentCostPerMonthBath }} / 月.
+                        </view>
+                        <view wx:else>
+                            ฿ {{ item.SalePriceBath }}
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</block>

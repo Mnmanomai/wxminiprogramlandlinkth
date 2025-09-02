@@ -1,0 +1,20 @@
+<!--component/youlikeindex/index.wxml-->
+
+<view class="" wx:if="{{MainDataFev.length > 0}}" style="background-color:none;">
+  <view class="" style="padding:0px 10px;font-weight: 600;">您喜欢的商品</view>
+  <scroll-view scroll-x="true" style="white-space: nowrap; width:100%;">
+    <block wx:for="{{MainDataFev}}" wx:key="cardMini">
+      <view style="display:inline-block; width: 220px;height: auto; margin: 10px 5px; border-radius: 8px; overflow:hidden; box-shadow: 1px 1px 5px 1px rgb(0,0,0,0.25);background-color: white;" bind:tap="gotodetail" data-id="{{item._id}}">
+        <image src="{{item.no_images_asset}}" mode="cover" style="width: 100%; height: 170px;" />
+        <view style="padding: 5px 8px;background-color: white;">
+          <view class="limit2">#{{item._id}} {{item.NameAsset}}</view>
+          <view>{{item.District}}, {{item.Province}}</view>
+          <view style="text-align: end; font-size: 14px; font-weight: 600; color: rgb(0, 62, 177);">
+            <view wx:if="{{item.typeselln == 1 || item.typeselln == 3}}">{{item.SalePriceBath}}</view>
+            <view wx:if="{{item.typeselln == 2}}">{{item.RentCostPerMonthBath}} / 月.</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

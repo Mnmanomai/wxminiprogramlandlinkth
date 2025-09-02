@@ -1,0 +1,21 @@
+<!--pages/guide/index.wxml-->
+<view class="page-container">
+  <!-- <block wx:for="{{contentData}}" wx:key="main"> -->
+  <!-- <view class="">{{item.title}}</view> -->
+  <image src="{{contentData.main_pic}}" mode="cover" style="width: 100%;"/>
+  <view class="" style="margin: 10px 0px;padding: 0px 10px;font-weight: 600;font-size: 18px;">{{contentData.title}}</view>
+  <view class="text-muted" style="margin: 10px 0px;padding: 0px 10px;">{{contentData.overview}}</view>
+
+  <view class="" style="padding: 0px 10px;padding-bottom: 60px;">
+    <block wx:for="{{contentData.text_detail}}" wx:key="detail">
+      <view class="" wx:if="{{item.url}}">
+        <image src="{{item.url}}" mode="cover" style="width: 100%;margin: 10px 0px;" />
+      </view>
+      <view class="text-muted" wx:else="">{{item}}</view>
+    </block>
+  </view>
+
+
+  <!-- </block> -->
+</view>
+<navigation-bar title="指南/新闻" back="{{true}}" color="black" background="#FFF" />

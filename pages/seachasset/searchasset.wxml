@@ -1,0 +1,22 @@
+<!--pages/seachasset/searchasset.wxml-->
+<view class="page-container">
+  <view class="" style="min-height: 100vh;">
+    <van-search value="{{ value }}" placeholder="#no or asset name" use-action-slot bind:change="onChange">
+      <view slot="action" bind:tap="onclicksearch">搜索</view>
+    </van-search>
+    <view class="" wx:if="{{loading}}">
+      <view class="" style="display: flex;justify-content: center;min-height: 30vh;align-items: center;">
+        <van-loading type="spinner" />
+      </view>
+    </view>
+    <view class="" wx:else="">
+      <van-cell-group>
+        <block wx:for="{{fetchData}}" wx:key="fetch">
+          <van-cell icon="search" title="{{item.assetName}}" is-link link-type="navigateTo" url="/pages/assetdetail/assetdetail?id={{item.assetId}}" />
+        </block>
+      </van-cell-group>
+    </view>
+  </view>
+</view>
+<!-- search asset -->
+<navigation-bar title="资产搜索" back="{{true}}" color="black" background="#FFF" />

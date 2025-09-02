@@ -1,0 +1,34 @@
+<!--pages/activities/activities.wxml-->
+<view class="page-container">
+    <van-tabs active="{{ active }}" offset-top="88" swipeable>
+    
+    
+    <!-- {{language == "en" ? "Flavorite List" : "收藏列表"}} -->
+        <van-tab title="收藏列表">
+            <view class="" style="min-height: 100vh;height: auto;padding:40px 0px;padding-bottom: 100px;">
+                <view wx:if="{{FlavoriteList .length > 0}}">
+                    <cardlistasset list="{{FlavoriteList}}" />
+                </view>
+                <view wx:else="">
+                    <van-empty image="search" description="没有符合您搜索条件的产品。" />
+                </view>
+            </view>
+        </van-tab>
+        
+        <!-- {{language == "en" ? "Hidden List" : "隐藏列表"}} -->
+        <van-tab title="隐藏列表">
+            <view class="" style="min-height: 100vh;height: auto;padding:40px 0px;padding-bottom: 100px;">
+                <view wx:if="{{HiddenList.length > 0}}">
+                    <cardlistasset list="{{HiddenList}}" />
+                </view>
+                <view wx:else="">
+                    <van-empty image="search" description="没有符合您搜索条件的产品。" />
+                </view>
+            </view>
+        </van-tab>
+    </van-tabs>
+</view>
+
+<!-- Activities -->
+<navigation-bar title="活动" back="{{false}}" color="black" background="#FFF" />
+<tabBar current="1" />

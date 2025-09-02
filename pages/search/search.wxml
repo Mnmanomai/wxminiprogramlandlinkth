@@ -1,0 +1,8 @@
+<!--pages/search/search.wxml-->
+<view class="page-container">
+  <scroll-view scroll-y="true" style="height: calc(100vh - 100px);" bindscrolltolower="onReachBottom" scroll-top="{{scrollTop}}" lower-threshold="50">
+    <cardlistasset list="{{fetchData}}" />
+  </scroll-view>
+</view>
+<!-- search -->
+<navigation-bar title="搜索" back="{{true}}" color="black" background="#FFF" />

@@ -1,0 +1,12 @@
+<!--component/assetlatest/assetlatest.wxml-->
+<view class="MainCardGrid">
+    <text class="textHeader"> 最新资产</text>
+    <van-grid border="{{false}}" square column-num="2" gutter="" >
+        <block wx:for="{{list}}" wx:key="id">
+            <van-grid-item use-slot bind:tap="nexttoasset" data-id="{{item._id}}">
+                <image style="width: 100%; height: 260rpx;" src="{{item.no_images_asset}}" />
+                <text class="linelimit">{{"#"+item._id}} {{item.NameAsset}}</text>   
+            </van-grid-item>
+        </block>
+    </van-grid>
+</view>

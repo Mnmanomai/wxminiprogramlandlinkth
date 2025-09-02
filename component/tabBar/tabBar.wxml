@@ -1,0 +1,16 @@
+<!--components/tabBar/tabBar.wxml-->
+<van-tabbar
+  active="{{ active }}"
+  bind:change="onChange"
+  active-color="#354ccf"
+  inactive-color="#999"
+>
+  <!-- Home / 首页 -->
+  <van-tabbar-item icon="home-o"></van-tabbar-item>
+  <!-- Activities / 活动 -->
+  <van-tabbar-item icon="list-switching"></van-tabbar-item>
+  <!-- Investment / 急投意向 -->
+  <van-tabbar-item icon="bullhorn-o"></van-tabbar-item>
+  <!-- Massage / 按摩 -->
+  <van-tabbar-item icon="chat-o"></van-tabbar-item>
+</van-tabbar>

@@ -1,0 +1,15 @@
+<!--pages/province/province.wxml-->
+<view class="page-container">
+  <view class="" style="position: sticky;top:88px;z-index: 99;">
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" id="provinceSearch" bind:change="filterProvince" />
+  </view>
+  <view class="" wx:if="{{DisplayProvince}}" style="padding-bottom: 80px;">
+    <van-cell-group>
+      <block wx:for="{{DisplayProvince}}" wx:key="id">
+        <van-cell icon="guide-o" title="{{item.province_name}}" data-id="{{item.province_id}}" data-name="{{item.province_name}}" bind:tap="NextToDistrict" />
+      </block>
+    </van-cell-group>
+  </view>
+</view>
+<!-- Province -->
+<navigation-bar title="省份" back="{{true}}" color="black" background="#FFF" />

@@ -1,0 +1,19 @@
+/**app.wxss**/
+/* page {
+  background-color: #ffffff;
+
+} */
+
+.page-container {
+  /* ป้องกัน content ทับ navbar */
+  /* padding-top: calc(var(--height) + env(safe-area-inset-top)); */
+  /* background-color: rgb(49, 34, 34); */
+  padding-top: 100px;
+  /* max-height: auto; */
+  /* max-height: max-content; */
+}
+
+.tablistFilter{
+  height: 70vh;
+}
+

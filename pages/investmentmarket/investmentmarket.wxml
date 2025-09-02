@@ -1,0 +1,10 @@
+<!--pages/investmentmarket/investmentmarket.wxml-->
+<view class="" style="min-height: 100vh;">
+  <view class="page-container">
+    <cardInvestment list="{{dataInvest}}"/>
+  </view>
+
+  <!-- Investment market -->
+  <navigation-bar title="投资市场" back="{{false}}" color="black" background="#FFF" />
+  <tabBar current="0" />
+</view>

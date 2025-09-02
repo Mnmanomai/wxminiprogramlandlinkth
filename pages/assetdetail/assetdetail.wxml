@@ -1,0 +1,130 @@
+<!--pages/assetdetail/assetdetail.wxml-->
+<view class="page-container">
+  <view scroll-y="true" style="height: calc(100vh - 100px);">
+    <view class="carousel-container">
+      <swiper class="carousel" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
+        <swiper-item wx:for="{{predata.no_images_asset}}" wx:key="index">
+          <image class="carousel-image" src="{{item}}" mode="aspectFill" lazy-load />
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="" style="padding: 0 25rpx;padding-bottom: 100px;">
+      <view class="" style="margin-top: 20rpx;margin-bottom: 20rpx;">
+        <view class="" style="display: flex;gap: 4px;margin:4px 0px">
+          <view class="tagHeading">{{predata.TypeSell}}</view>
+          <view class="tagHeading">{{predata.TypeAsset}}</view>
+        </view>
+
+        <view class="font-medium text-4xl" style="width: 100%;word-break: break-word; overflow-wrap: break-word;font-size: 18px;font-weight: 400;">#{{predata._id}} {{predata.NameAsset}} </view>
+        <view class="text-muted">{{predata.District}}, {{predata.Province}} </view>
+        <view class="" wx:if="{{predata.RentCostPerMonthBath != '0'}}">
+          <view class="font-medium text-xl flex gap-2">
+            ฿{{predata.RentCostPerMonthBath}} / mo
+            <label class="tagBath">Baht</label>
+          </view>
+        </view>
+        <view class="" wx:if="{{predata.SalePriceBath != '0'}}">
+          <view class="font-medium text-xl flex gap-2" style="align-items: flex-end;">
+            ฿{{predata.SalePriceBath}}
+            <label class="tagBath">Baht</label>
+          </view>
+        </view>
+      </view>
+
+      <view class="mainGroupFunc" style="display: flex;gap: 1px;">
+        <view class="subGroupFunc">
+          <button style="width: auto;background: none;font-size: 12px;font-weight: 400;" bind:tap="likefunc">
+            <van-icon name="like{{!likeActive ? '-o' : ''}}" size="18" class="icongroupfunc" color="{{likeActive ? 'red' : ''}}" />
+            <view class=""> {{language == "en" ? "Like" : "点赞"}}</view>
+          </button>
+        </view>
+        <view class="subGroupFunc">
+          <button bind:tap="hidefunc" style="width: auto;background: none;font-size: 12px;font-weight: 400;">
+            <van-icon name="closed-eye" size="18" class="icongroupfunc" />
+            <view class=""> {{language == "en" ? "Hide" : "隐藏"}}</view>
+          </button>
+        </view>
+        <view class="subGroupFunc">
+          <button style="width: auto;background: none;font-size: 12px;font-weight: 400;" bind:tap="showPopup">
+            <van-icon name="chat-o" size="18" class="icongroupfunc" />
+            <view class=""> {{language == "en" ? "Massage" : "按摩"}}</view>
+          </button>
+        </view>
+        <view class="subGroupFunc">
+          <button open-type="share" style="width: auto;background: none;font-size: 12px;font-weight: 400;">
+            <van-icon name="share-o" size="18" class="icongroupfunc" />
+            <view class=""> {{language == "en" ? "Share" : "分享"}}</view>
+          </button>
+        </view>
+      </view>
+
+      <view class="section" wx:if="{{predata.Description}}">
+        <view class="Header">{{language == "en" ? "Description" : "描述"}} </view>
+        <view class="text-muted text-md">{{predata.Description}}</view>
+      </view>
+
+      <view class="section">
+        <view class="Header"> {{language == "en" ? "Property Overview" : "物业概况"}} </view>
+        <view class="SubHeader"> {{language == "en" ? "Main Location" : "主要位置"}}</view>
+        <view wx:for="{{distance}}" wx:key="distance" class="">
+          <view class="flex gap-3 items-center text-muted text-md">
+            <view class="text-md"> {{item.name}} : {{item.distance}} Km.</view>
+          </view>
+        </view>
+
+        <view class="divider"></view>
+        <view class="SubHeader">{{language == "en" ? "Land area" : "土地面积"}}</view>
+        <view class="text-xl font-w-400">{{predata.LandSizeRai}} {{language == "en" ? "rai" : "莱"}} {{predata.LandSizeNgan}} {{language == "en" ? "ngan" : "颜"}} {{predata.LandSizeSQW}} sqw ({{predata.AreaSizeSqw}} m²)</view>
+        <view class="text-muted text-md"> {{language == "en" ? "Land Dimension" : "土地尺寸"}} : {{predata.LandWidthMeter}} x {{predata.LandLengthMeter}} {{language == "en" ? "m." : "米"}} </view>
+        <view class="text-muted text-md"> {{language == "en" ? "Soil Improvement" : "土壤改良"}} : {{predata.SoilImprovement}} </view>
+
+        <view class="divider"></view>
+        <view class="SubHeader"> {{language == "en" ? "Building area" : "建筑面积"}}</view>
+        <view class="text-xl font-w-400"> {{predata.WHSizeSQM}} m²</view>
+        <view class="text-muted text-md"> {{language == "en" ? "Building Floor" : "地面"}}  : {{predata.LandWidthMeter}} x {{predata.LandLengthMeter}} {{language == "en" ? "m." : "米"}}</view>
+        <view class="text-muted text-md"> {{language == "en" ? "Building Dimention" : "建筑尺寸"}} : {{predata.BuildingWidth}} x {{predata.BuildingLong}} x {{predata.BuildingHeight}} {{language == "en" ? "m." : "米"}}</view>
+        <view class="text-muted text-md"> {{language == "en" ? "Building Load capacity" : "建筑承载能力"}} : {{predata.BuildingLoad}} {{language == "en" ? "tons/m²" : "吨/平方米"}} </view>
+        <view class="text-muted text-md"> {{language == "en" ? "Build Year" : "建成年份"}} : {{predata.BuildingYear == '0' ? 'None' : predata.BuildingYear}} </view>
+
+        <view class="divider"></view>
+        <view class="SubHeader"> {{language == "en" ? "Parking area" : "停车场"}} </view>
+        <view class="text-xl">{{predata.ParkingSize}} m²</view>
+        <view class="text-muted text-md"> {{language == "en" ? "Parking Dimension" : "停车位尺寸"}} : {{predata.ParkingWidth}} x {{predata.ParkingLong}} {{language == "en" ? "m." : "米"}}</view>
+        <view class="text-muted text-md"> {{language == "en" ? "Trailer Truck Parking" : "拖车停车场" }} : {{predata.ParkingTruck}}</view>
+        <view class="text-muted text-md"> {{language == "en" ? "Cars Parking" : "汽车停车场"}} : {{predata.ParkingCars}}</view>
+
+        <view class="divider"></view>
+        <view class="SubHeader"> {{language == "en" ? "Location Area" : "定位区域"}} </view>
+        <view class="text-muted text-md">{{language == "en" ? "Industrial Zone" : "工业区"}} : {{predata.IndusZone}} </view>
+        <view class="text-muted text-md">{{language == "en" ? "Free Zone" : "保税区"}} : {{predata.FreeZone}} </view>
+
+        <view class="divider"></view>
+        <view class="SubHeader"> {{language == "en" ? "Property Detail" : "物业详情"}} </view>
+        <view class="text-muted text-md">{{language == "en" ? "Property Type" : "物业类型"}} : {{predata.TypeAsset}} </view>
+        <view class="text-muted text-md">{{language == "en" ? "Property Color" : "属性颜色"}} : {{predata.ColorOfLand}} </view>
+      </view>
+
+      <view class="section" id="section_map">
+        <view class="Header"> {{language == "en" ? "Maps": "地图"}}</view>
+        <map id="map" latitude="{{lat}}" longitude="{{long}}" scale="14" style="width: 100%; height: 300px;" markers="{{markers}}" />
+      </view>
+
+      <van-popup show="{{show}}" bind:close="onClose" position="bottom" round>
+        <view style="padding: 20px;">
+          <button class="option-item" style="width: 100%;" bindtap="toCustomMessage">
+            <van-icon name="chat-o" /> {{language == "en" ? "Chat With Agent" : "与客服聊天"}}
+          </button>
+          <button class="option-item" style="width: 100%;" bindtap="chattolandlink" open-type="contact">
+            <van-icon name="chat-o" /> {{language == "en" ? "Chat With Landlink" : "与 Landlink 聊天"}}
+          </button>
+          <button class="option-item" style="width: 100%;" bindtap="callSupport">
+            <van-icon name="phone-o" /> {{language == "en" ? "Call With Landlink" : "与 Landlink 通话"}}
+          </button>
+          <button class="option-item" style="width: 100%;" bindtap="onClose">{{language == "en" ? "Cancle" : "取消"}}</button>
+        </view>
+      </van-popup>
+    </view>
+  </view>
+</view>
+<!-- asset detail -->
+<navigation-bar title="#{{id}}" back="{{true}}" color="black" background="#FFF" />

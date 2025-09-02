@@ -1,0 +1,34 @@
+/* components/filterSearch/index.wxss */
+.mainSlideBuyRent {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  place-items: center;
+
+}
+
+.subSlideBuyRent {
+  display: flex;
+  width: 50%;
+  background-color: rgba(169, 169, 169, 0.219);
+  padding: 5px;
+  border-radius: 10px;
+  gap: 10rpx;
+  height: 60rpx;
+}
+
+.SlideBuyRent {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SlideBuyRent.active {
+  background-color: rgb(37, 37, 37);
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+}
+

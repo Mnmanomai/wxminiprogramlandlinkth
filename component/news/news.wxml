@@ -1,0 +1,15 @@
+<!--component/news/news.wxml-->
+<view class="MainCardGrid">
+  <view class="" style="display: flex;justify-content: space-between;padding: 0px 10px;align-items: end;">
+    <text class="textHeader"> 消息 </text>
+    <view class="" bind:tap="nexttoguide" style="font-size: 12px;font-weight: 400;">全部</view>
+  </view>
+  <van-grid border="{{false}}" clickable column-num="2">
+    <block wx:for="{{news}}" wx:key="id">
+      <van-grid-item use-slot link-type="navigateTo" url="/pages/guide/index?id={{item.ID}}" style="background-color: darkgreen;">
+        <image style="width: 100%; height: 260rpx;" src="{{item.main_pic}}" />
+        <text class="linelimit">{{item.title}}</text>
+      </van-grid-item>
+    </block>
+  </van-grid>
+</view>

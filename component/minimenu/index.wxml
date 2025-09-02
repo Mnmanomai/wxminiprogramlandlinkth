@@ -1,0 +1,11 @@
+<!--component/minimenu/index.wxml-->
+<view class="">
+  <view class="" style="margin: 10px 2px;">
+    <van-grid column-num="4" border="{{false}}" gutter="{{ 10 }}" style="background-color: none;">
+      <van-grid-item use-slot wx:for="{{ menulist }}" wx:key="menulist" link-type="navigateTo" url="{{item.url}}" >
+          <image src="{{item.icon}}" mode="aspectFill" style="width: 42px;height: 42px;" />
+          <text style="font-size: 12px;margin-top: 10px;color: rgba(65, 65, 65, 0.959);font-weight: 500;">{{item.name}}</text>
+      </van-grid-item>
+    </van-grid>
+  </view>
+</view>
