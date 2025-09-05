@@ -1,4 +1,7 @@
 /* pages/searchdetail/searchdetail.wxss */
+.page-container {
+  background-color: white;
+}
 .inpage {
   padding: 0px 8px;
 }

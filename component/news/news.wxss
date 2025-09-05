@@ -1,12 +1,14 @@
 /* component/news/news.wxss */
 
 .MainCardGrid {
-  
-  margin-top: 40rpx;
+  padding: 0px 6px;
+  margin: 0px 10px;
+  /* border-radius: 20px; */
+  /* background-color: white; */
 }
 
 .textHeader {
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   padding-left: 0px;
   font-size: 16px;
   font-weight: 700;
@@ -23,18 +25,31 @@
   margin-bottom: 8px;
 }
 
-.van-grid,
-.van-grid__item {
-  border: none !important;
-}
-
-.van-grid {
-  border: none !important;
-}
 
 .linelimit{
   display: -webkit-box;
-  -webkit-line-clamp: 2;   /* จำนวนบรรทัดที่ต้องการ */
+  -webkit-line-clamp: 3;   /* จำนวนบรรทัดที่ต้องการ */
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  padding: 10px 0px;
+  gap: 10px;
+}
+
+.gridchild {
+  grid-column: span 6 / span 6;
+  background-color: white;
+  font-size: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 4px;
+  box-shadow: 0.25px 0.5px 4px 0.25px rgb(0,0,0,0.25);
+}
+
+.imgchild{
+  border-radius: 8px;
 }

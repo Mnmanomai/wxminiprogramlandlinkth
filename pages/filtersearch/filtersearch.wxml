@@ -22,17 +22,17 @@
                 <view slot="title" wx:if="{{item.type == 'provinceanddistrict'}}">
                   <view class="van-cell-text">{{item.province_name}}, {{item.distric_name}}</view>
                   <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
-                  <van-tag type="danger" class="tag">Province district</van-tag>
+                  <van-tag type="danger" class="tag">省、区</van-tag>
                 </view>
                 <view slot="title" wx:if="{{item.type == 'seachondetail'}}">
-                  <view class="van-cell-text">{{item.PropertyTypeName}}, {{"IEAT "+item.IEATText}}, {{"Color "+item.ColorText}}</view>
+                  <view class="van-cell-text">{{item.PropertyTypeName}}, {{"IEAT "+item.IEATText}}, {{"属性颜色 "+item.ColorText}}</view>
                   <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
-                  <van-tag type="danger" class="tag">Search on detail</van-tag>
+                  <van-tag type="danger" class="tag">按信息搜索</van-tag>
                 </view>
                 <view slot="title" wx:if="{{item.type == 'nearlocation'}}">
                   <view class="van-cell-text">{{item.selecttext}}</view>
                   <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
-                  <van-tag type="danger" class="tag">near location</van-tag>
+                  <van-tag type="danger" class="tag">附近地区</van-tag>
                 </view>
               </van-cell>
             </block>
@@ -49,9 +49,9 @@
             <block class="" wx:for="{{BookmarkDisplay}}" wx:key="Bookmark">
               <van-cell icon="guide-o" bind:tap="NextToSearchBookmark" data-index="{{index}}">
                 <view slot="title">
-                  <view class="van-cell-text">{{item.PropertyTypeName}}, IEAT {{item.IEATText}}, Color {{item.ColorText}}</view>
+                  <view class="van-cell-text">{{item.PropertyTypeName}}, IEAT {{item.IEATText}}, 属性颜色 {{item.ColorText}}</view>
                   <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
-                  <van-tag type="danger" class="tag">Search on detail</van-tag>
+                  <van-tag type="danger" class="tag">按信息搜索</van-tag>
                 </view>
               </van-cell>
             </block>

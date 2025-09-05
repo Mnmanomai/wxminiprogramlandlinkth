@@ -3,25 +3,35 @@ Component({
     list: {
       type: Array,
       value: []
+    },
+    data: {
+      type: Boolean,
+      value: false
     }
   },
 
   data: {
     localList: [],
-    show:false,
-    supportPhone : "0627324174"
   },
 
   observers: {
     'list': function (newList) {
-      this.setData({ localList: newList })
+      this.setData({
+        localList: newList
+      })
       this.checkOverflow()
     },
   },
-  
+
 
   methods: {
-    
+
+    opencontact() {
+      this.triggerEvent('sendData', {
+        data: true
+      })
+    },
+
     toggleComment(e) {
       const id = e.currentTarget.dataset.id
       let newList = this.data.localList.map(item => {
@@ -30,7 +40,9 @@ Component({
         }
         return item
       })
-      this.setData({ localList: newList })
+      this.setData({
+        localList: newList
+      })
     },
     checkOverflow() {
       const query = this.createSelectorQuery()
@@ -44,37 +56,11 @@ Component({
           return item
         })
 
-        this.setData({ localList: newList })
+        this.setData({
+          localList: newList
+        })
       }).exec()
-
-      // console.log("pass check overflow")
     },
 
-    showPopup() {
-      this.setData({
-        show: true
-      });
-    },
-    onClose() {
-      this.setData({
-        show: false
-      });
-    },
-  
-    toCustomMessage() {
-  
-    },
-  
-    callSupport() {
-      wx.makePhoneCall({
-        phoneNumber: this.data.supportPhone,
-        success() {
-          // console.log("กำลังโทรหา Support...");
-        },
-        fail(err) {
-          // console.error("โทรไม่สำเร็จ", err);
-        }
-      });
-    },
   }
 })

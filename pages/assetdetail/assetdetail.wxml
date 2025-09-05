@@ -109,20 +109,8 @@
         <map id="map" latitude="{{lat}}" longitude="{{long}}" scale="14" style="width: 100%; height: 300px;" markers="{{markers}}" />
       </view>
 
-      <van-popup show="{{show}}" bind:close="onClose" position="bottom" round>
-        <view style="padding: 20px;">
-          <button class="option-item" style="width: 100%;" bindtap="toCustomMessage">
-            <van-icon name="chat-o" /> {{language == "en" ? "Chat With Agent" : "与客服聊天"}}
-          </button>
-          <button class="option-item" style="width: 100%;" bindtap="chattolandlink" open-type="contact">
-            <van-icon name="chat-o" /> {{language == "en" ? "Chat With Landlink" : "与 Landlink 聊天"}}
-          </button>
-          <button class="option-item" style="width: 100%;" bindtap="callSupport">
-            <van-icon name="phone-o" /> {{language == "en" ? "Call With Landlink" : "与 Landlink 通话"}}
-          </button>
-          <button class="option-item" style="width: 100%;" bindtap="onClose">{{language == "en" ? "Cancle" : "取消"}}</button>
-        </view>
-      </van-popup>
+      <contact show="{{show}}" customer="{{customer}}"/>
+
     </view>
   </view>
 </view>

@@ -2,6 +2,7 @@
   "usingComponents": {
     "cardInvestment" : "/component/cardInvestment/index",
     "navigation-bar": "/component/navigation-bar/navigation-bar",
-    "tabBar" : "/component/tabBar/tabBar"
+    "tabBar" : "/component/tabBar/tabBar",
+    "contact" : "/component/contact/index"
   }
 }

@@ -1,1 +1,4 @@
 /* pages/seachasset/searchasset.wxss */
+.page-container {
+  background-color: white;
+}

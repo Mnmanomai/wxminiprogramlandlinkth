@@ -1,0 +1,4 @@
+<!--component/coverindex/index.wxml-->
+<view class="cover">
+  <image src="../../asset/cover.png" style="width: 100%;"/>
+</view>

@@ -7,3 +7,9 @@
   overflow: hidden;
   font-weight: 600;
 }
+
+.cardmain {
+  /* background-color:white; */
+  /* border-radius: 16px; */
+  padding: 10px 0px;
+}

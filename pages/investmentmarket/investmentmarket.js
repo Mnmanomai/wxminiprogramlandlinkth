@@ -7,11 +7,17 @@ Page({
     lenghtQuery: 10,
     language: "zh",
     leghthInvest: 0,
+    show:false
   },
 
   async onLoad(options) {
-
     await this.getData();
+  },
+
+  onReceiveData(e){
+    this.setData({
+      show : e.detail.data
+    })
   },
 
   async getData() {
@@ -26,7 +32,6 @@ Page({
           leghthInvest: lenghtDataInvest,
         })
       }
-      
     }
   },
 

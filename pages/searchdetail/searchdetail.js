@@ -5,11 +5,11 @@ Page({
   data: {
     selltype: 0,
     PropertyType: 1,
-    PropertyTypeName: "Land",
+    PropertyTypeName: "土地",
     IEAT: 0,
-    IEATText: "All",
+    IEATText: "全部",
     Color: 0,
-    ColorText: "All",
+    ColorText: "全部",
     WithBuildingOpen: 1,
     Building: 0,
     show: false,
@@ -56,6 +56,7 @@ Page({
       selltype: options.selltype,
       language : config.language
     })
+    console.log(this.data.language);
   },
   async nextToSearch(e) {
     const selltype = this.data.selltype == 1 ? "buy" : "rent"

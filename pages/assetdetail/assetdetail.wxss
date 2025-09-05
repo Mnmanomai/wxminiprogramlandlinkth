@@ -1,4 +1,8 @@
 /* pages/assetdetail/assetdetail.wxss */
+
+.page-container {
+  background-color: white;
+}
 .HeaderContent {
   padding-inline: 20rpx;
   padding-block: 20rpx;
@@ -133,7 +137,6 @@
 .font-w-600{
   font-weight: 600;  
 }
-
 
 .option-item {
   padding: 12px 0;

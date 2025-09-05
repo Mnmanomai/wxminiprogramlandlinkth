@@ -39,6 +39,7 @@
     ]
   },
   "window": {
+    "backgroundColor": "#EFEFEF",
     "navigationStyle": "custom",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Weixin",

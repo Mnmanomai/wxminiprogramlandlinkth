@@ -1,7 +1,7 @@
 <!--component/contentall/index.wxml-->
 <view class="">
   <block wx:for="{{list}}" wx:key="news">
-    <view class="" style="margin: 10px 10px;border: solid 1px rgb(0,0,0,0.2);border-radius: 12px;padding: 0px;overflow: hidden;" data-id="{{item.ID}}" bind:tap="nexttoguide">
+    <view class="card" data-id="{{item.ID}}" bind:tap="nexttoguide">
       <image src="{{item.main_pic}}" mode="cover" style="width: 100%;max-height: 400px;" />
       <view class="" style="padding: 8px 12px;padding-bottom: 16px;">
         <view class="" style="font-weight: 500;font-size: 16px;">{{item.title}}</view>

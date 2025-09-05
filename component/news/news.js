@@ -19,6 +19,12 @@ Component({
       wx.navigateTo({
         url: '/pages/guideall/index',
       })
+    },
+    Goto(e){
+      const DataTarget = e.currentTarget.dataset.url
+      wx.navigateTo({
+        url: DataTarget,
+      })
     }
   },
 

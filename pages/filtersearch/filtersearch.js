@@ -18,11 +18,11 @@ Page({
         icon: 'flag-o',
         name: config.language == "en" ? "Near Location" : "附近位置",
       },
-      {
-        id: 3,
-        icon: 'location-o',
-        name: config.language == "en" ? "Near me" : "距离我 30 公里",
-      },
+      // {
+      //   id: 3,
+      //   icon: 'location-o',
+      //   name: config.language == "en" ? "Near me" : "距离我 30 公里",
+      // },
       {
         id: 4,
         icon: 'guide-o',

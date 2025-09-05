@@ -6,6 +6,9 @@
     "news":"/component/news/news",
     "assetlatest":"/component/AssetLatest/assetlatest",
     "minimenu" : "/component/minimenu/index",
-    "youlike" : "/component/youlikeindex/index"
+    "youlike" : "/component/youlikeindex/index",
+    "announcement" : "/component/announcement/index",
+    "coverindex" : "/component/coverindex/index",
+    "contact" : "/component/contact/index"
   }
 }

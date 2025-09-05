@@ -1,1 +1,4 @@
 /* pages/district/district.wxss */
+.page-container {
+  background-color: white;
+}
