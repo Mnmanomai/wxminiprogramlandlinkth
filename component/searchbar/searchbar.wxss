@@ -1,0 +1,64 @@
+/* component/searchbar/searchbar.wxss */
+.border {
+  display: flex;
+  margin: 8px 0px;
+  gap: 6px;
+}
+
+.searchbox {
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  border-radius: 90px;
+  position: relative;
+  overflow: hidden;
+}
+.searchicon{
+  position: absolute;
+  top: 0px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: #d4d4d4;
+}
+.textdes{
+  position: absolute;
+  top: 0px;
+  padding-left: 50px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: #d4d4d4;
+}
+.searchbutton{
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: linear-gradient(to left,#06304E, #eeeeee);
+  width: 80px;
+  height: 92%;
+  color: white;
+  border-radius: 80px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mapsbox {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 1px;
+}
+
+.imagemap {
+  width: 38px;
+  height: 38px;
+}
+.textmap{
+  font-size: 8px;
+  color: white;
+}

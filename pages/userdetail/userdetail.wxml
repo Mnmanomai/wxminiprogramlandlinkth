@@ -1,0 +1,7 @@
+<!--pages/userdetail/userdetail.wxml-->
+<view class="page-container">
+
+</view>
+
+
+<navigation-bar title="userdetail" back="{{true}}" color="black" background="#FFF" />

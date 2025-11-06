@@ -1,0 +1,25 @@
+
+<!--component/selecttype/index.wxml-->
+<view class="" style="display:flex;gap: 10px;width: 100%;margin:16px 0px;">
+    <view class="bgbadge" bind:tap="nextToSearch" data-type="1">
+        <view class="" style="display: flex;flex-direction: column;align-items: center;justify-content: center;gap:4px">
+            <view class="texttype">土地</view>
+            <view class="seemore">查看更多</view>
+        </view>
+        <image class="imagescus" src="/asset/land.png" mode="aspectFill" />
+    </view>
+    <view class="bgbadge" bind:tap="nextToSearch" data-type="2">
+        <view class="" style="display: flex;flex-direction: column;align-items: center;justify-content: center;gap:4px">
+            <view class="texttype">工厂</view>
+            <view class="seemore">查看更多</view>
+        </view>
+        <image class="imagescus" src="/asset/factory.png" mode="aspectFill" />
+    </view>
+    <view class="bgbadge" bind:tap="nextToSearch" data-type="3">
+        <view class="" style="display: flex;flex-direction: column;align-items: center;justify-content: center;gap:4px">
+            <view class="texttype">仓库</view>
+            <view class="seemore">查看更多</view>
+        </view>
+        <image class="imagescus" src="/asset/warehouse.png" mode="aspectFill" />
+    </view>
+</view>

@@ -1,6 +1,8 @@
 /**index.wxss**/
 .page-container{
-  padding-top: 0px;
+  padding-top: 8px 0px;
+  /* background: linear-gradient(to bottom, #092E48 0%,#0f3c5c 20%, #F9F9F9 60%, #F9F9F9 100%); */
+  background: linear-gradient(to bottom,#06304E, #eeeeee);
 }
 
 .scrollarea {
@@ -11,13 +13,6 @@
 .maingroup {
   margin: 10px 10px;
 }
-
-/* .groupnew {
-  padding: 10px 6px;
-  margin: 0px 2px;
-  border-radius: 20px;
-  background-color: white;
-} */
 
 .userinfo {
   display: flex;

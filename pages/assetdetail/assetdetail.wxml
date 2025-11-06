@@ -1,6 +1,7 @@
 <!--pages/assetdetail/assetdetail.wxml-->
 <view class="page-container">
-  <view scroll-y="true" style="height: calc(100vh - 100px);">
+  <!-- <view scroll-y="true" style="height: calc(100vh - 100px);"> -->
+  <scroll-view scroll-y="true" style="height: 100vh;" scroll-into-view="{{toView}}">
     <view class="carousel-container">
       <swiper class="carousel" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
         <swiper-item wx:for="{{predata.no_images_asset}}" wx:key="index">
@@ -8,7 +9,7 @@
         </swiper-item>
       </swiper>
     </view>
-    <view class="" style="padding: 0 25rpx;padding-bottom: 100px;">
+    <view class="" style="padding: 10px 25rpx;width: 100%;">
       <view class="" style="margin-top: 20rpx;margin-bottom: 20rpx;">
         <view class="" style="display: flex;gap: 4px;margin:4px 0px">
           <view class="tagHeading">{{predata.TypeSell}}</view>
@@ -30,34 +31,36 @@
           </view>
         </view>
       </view>
+    </view>
 
-      <view class="mainGroupFunc" style="display: flex;gap: 1px;">
-        <view class="subGroupFunc">
-          <button style="width: auto;background: none;font-size: 12px;font-weight: 400;" bind:tap="likefunc">
-            <van-icon name="like{{!likeActive ? '-o' : ''}}" size="18" class="icongroupfunc" color="{{likeActive ? 'red' : ''}}" />
-            <view class=""> {{language == "en" ? "Like" : "点赞"}}</view>
-          </button>
-        </view>
-        <view class="subGroupFunc">
-          <button bind:tap="hidefunc" style="width: auto;background: none;font-size: 12px;font-weight: 400;">
-            <van-icon name="closed-eye" size="18" class="icongroupfunc" />
-            <view class=""> {{language == "en" ? "Hide" : "隐藏"}}</view>
-          </button>
-        </view>
-        <view class="subGroupFunc">
-          <button style="width: auto;background: none;font-size: 12px;font-weight: 400;" bind:tap="showPopup">
-            <van-icon name="chat-o" size="18" class="icongroupfunc" />
-            <view class=""> {{language == "en" ? "Massage" : "按摩"}}</view>
-          </button>
-        </view>
-        <view class="subGroupFunc">
-          <button open-type="share" style="width: auto;background: none;font-size: 12px;font-weight: 400;">
-            <van-icon name="share-o" size="18" class="icongroupfunc" />
-            <view class=""> {{language == "en" ? "Share" : "分享"}}</view>
-          </button>
-        </view>
+    <view class="mainGroupFunc">
+      <view class="subGroupFunc">
+        <button class="btnGroupfunc" bind:tap="likefunc">
+          <van-icon name="like{{!likeActive ? '-o' : ''}}" size="18" class="icongroupfunc" color="{{likeActive ? 'red' : ''}}" />
+          <view class=""> {{language == "en" ? "Like" : "点赞"}}</view>
+        </button>
       </view>
+      <view class="subGroupFunc">
+        <button class="btnGroupfunc" bind:tap="scrollToMap">
+          <van-icon name="location" size="18" class="icongroupfunc" />
+          <view class=""> {{language == "en" ? "location" : "地点"}}</view>
+        </button>
+      </view>
+      <view class="subGroupFunc">
+        <button class="btnGroupfunc" bind:tap="showPopup">
+          <van-icon name="chat-o" size="18" class="icongroupfunc" />
+          <view class=""> {{language == "en" ? "Massage" : "会话/聊天"}}</view>
+        </button>
+      </view>
+      <view class="subGroupFunc">
+        <button class="btnGroupfunc" open-type="share">
+          <van-icon name="share-o" size="18" class="icongroupfunc" />
+          <view class=""> {{language == "en" ? "Share" : "分享"}}</view>
+        </button>
+      </view>
+    </view>
 
+    <view style="padding: 0px 25rpx;padding-bottom: 60px;">
       <view class="section" wx:if="{{predata.Description}}">
         <view class="Header">{{language == "en" ? "Description" : "描述"}} </view>
         <view class="text-muted text-md">{{predata.Description}}</view>
@@ -81,7 +84,7 @@
         <view class="divider"></view>
         <view class="SubHeader"> {{language == "en" ? "Building area" : "建筑面积"}}</view>
         <view class="text-xl font-w-400"> {{predata.WHSizeSQM}} m²</view>
-        <view class="text-muted text-md"> {{language == "en" ? "Building Floor" : "地面"}}  : {{predata.LandWidthMeter}} x {{predata.LandLengthMeter}} {{language == "en" ? "m." : "米"}}</view>
+        <view class="text-muted text-md"> {{language == "en" ? "Building Floor" : "地面"}} : {{predata.LandWidthMeter}} x {{predata.LandLengthMeter}} {{language == "en" ? "m." : "米"}}</view>
         <view class="text-muted text-md"> {{language == "en" ? "Building Dimention" : "建筑尺寸"}} : {{predata.BuildingWidth}} x {{predata.BuildingLong}} x {{predata.BuildingHeight}} {{language == "en" ? "m." : "米"}}</view>
         <view class="text-muted text-md"> {{language == "en" ? "Building Load capacity" : "建筑承载能力"}} : {{predata.BuildingLoad}} {{language == "en" ? "tons/m²" : "吨/平方米"}} </view>
         <view class="text-muted text-md"> {{language == "en" ? "Build Year" : "建成年份"}} : {{predata.BuildingYear == '0' ? 'None' : predata.BuildingYear}} </view>
@@ -108,11 +111,10 @@
         <view class="Header"> {{language == "en" ? "Maps": "地图"}}</view>
         <map id="map" latitude="{{lat}}" longitude="{{long}}" scale="14" style="width: 100%; height: 300px;" markers="{{markers}}" />
       </view>
-
-      <contact show="{{show}}" customer="{{customer}}"/>
-
+      <contact show="{{show}}" customer="{{customer}}" />
     </view>
-  </view>
+  </scroll-view>
+  <!-- </view> -->
 </view>
 <!-- asset detail -->
 <navigation-bar title="#{{id}}" back="{{true}}" color="black" background="#FFF" />

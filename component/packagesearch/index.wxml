@@ -1,0 +1,32 @@
+<!--component/packagesearch/index.wxml-->
+<view class="" style="display: flex;justify-content: space-between;padding: 0px 10px;align-items: center;">
+    <text class="textHeader">组合搜索</text>
+</view>
+<view class="" style="display: flex;flex-direction: row;gap: 10px;width: 100%;flex-wrap: wrap;padding: 10px 0px;">
+  <!-- ที่ดินในจังหวัดระยอง -->
+  <view class="badge" bind:tap="nextToSearch" data-province="53">罗勇府土地</view> 
+  <!-- ที่ดินในจังหวัดชลบุรี -->
+  <view class="badge" bind:tap="nextToSearch" data-province="12">春武里府土地</view> 
+  <!-- ที่ดินในจังหวัดฉะเชิงเทรา -->
+  <view class="badge" bind:tap="nextToSearch" data-province="6">北柳府土地</view> 
+  <!-- เช่าโรงงานในเขตอุตสาหกรรมฉะเชิงเทรา -->
+  <view class="badge" bind:tap="nextToSearch" data-province="6" data-selltype="2" data-indus="1">在北柳工业区租一间工厂。</view>
+  <!-- เช่าโรงงานในเขตอุตสาหกรรมจังหวัดชลบุรี -->
+  <view class="badge" bind:tap="nextToSearch" data-province="12" data-selltype="2" data-indus="1">在春武里府的工业区租用一间工厂。</view>
+  <!-- เช่าโรงงานในเขตอุตสาหกรรมจังหวัดระยอง -->
+  <view class="badge" bind:tap="nextToSearch" data-province="53" data-selltype="2" data-indus="1">在罗勇府的一个工业区租一间工厂。</view>
+  <!-- พื้นที่ 20-30 ไร่ -->
+  <view class="badge" bind:tap="nextToSearch" data-landsizestart="20" data-landsizeend="30">土地面积 20-30 莱</view>
+  <!-- ที่ดินนอกเขตอุตสาหกรรม -->
+  <view class="badge" bind:tap="nextToSearch" data-indus="2">工业区以外的土地</view>
+  <!-- ที่ดินในเขตอุตสาหกรรม -->
+  <view class="badge" bind:tap="nextToSearch" data-indus="1">工业区土地</view>
+  <!-- ที่ดินใกล้ท่าเรือแหลมฉบัง ห่าง 30 กม. -->
+  <view class="badge" bind:tap="nextToSearch" data-lat="13.057940254556762" data-long="100.89195129089039" data-distancemode="1">陆地靠近林查班港，30公里。</view>
+  <!-- ที่ดินสีม่วงใกล้ท่าเรือแหลมฉบัง ห่าง 50 กม. -->
+  <view class="badge" bind:tap="nextToSearch" data-lat="13.057940254556762" data-long="100.89195129089039" data-distancemode="1" data-color="1">紫地靠近林查班港，50公里。</view>
+  <!-- ขายที่ดินในเขตสีม่วงจังหวัดระยอง -->
+  <view class="badge" bind:tap="nextToSearch" data-province="53" data-color="1">罗勇府紫色规划土地出售</view>
+  <!-- ที่ดินใกล้เขตอุตสาหกรรมอมตะ -->
+  <view class="badge" bind:tap="nextToSearch" data-lat="13.4396585334766" data-long="101.029869245768" data-distancemode="1">阿马塔市工业区附近的土地</view>
+</view>

@@ -1,0 +1,4 @@
+<!--component/assetlatestv2/index.wxml-->
+<view class="" style="display: flex;flex-direction: row;">
+  <card list="{{list}}"/>
+</view>

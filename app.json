@@ -15,7 +15,11 @@
     "pages/investmentmarket/investmentmarket",
     "pages/guide/index",
     "pages/guideall/index",
-    "component/contentall/index"
+    "component/contentall/index",
+    "pages/users/users",
+    "pages/userssection/userdetail/userdetail",
+    "pages/userdetail/detail/detail",
+    "pages/userdetail/userdetail"
   ],
   "tabBar": {
     "custom": true,
@@ -35,15 +39,19 @@
       {
         "pagePath": "pages/chat/chat",
         "text": "按摩"
+      },
+      {
+        "pagePath": "pages/users/users",
+        "text": "按摩"
       }
     ]
   },
   "window": {
-    "backgroundColor": "#EFEFEF",
+    "backgroundColor": "#1E1E1E",
     "navigationStyle": "custom",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarBackgroundColor": "#000000"
   },
   "style": "v2",
   "componentFramework": "glass-easel",

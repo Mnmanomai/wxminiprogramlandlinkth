@@ -6,7 +6,7 @@
   border: solid 1px rgba(0, 0, 0, 0.116);
   box-shadow: 20px 8px 40px rgba(0, 0, 0, 0.07);
   border-radius: 16px;
-  background-color: white;
+  background-color: rgb(253, 253, 253);
 }
 .text-muted{
   color: rgba(0, 0, 0, 0.7);
@@ -19,6 +19,24 @@
 
 .description{
   margin-top: 7px;
+  padding-left: 10px;
+}
+.description-border{
+  margin: 12px 0px;
+  box-shadow: 3px 1px 9px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+.leftcolor{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 10px;
+  background-color: #080048;
 }
 
 /* .description{
@@ -57,6 +75,7 @@
   color: #1876f2cb;
   font-size: 12px;
   margin-top: 5px;
+  padding-left: 10px;
 }
 
 .option-item {
@@ -68,4 +87,34 @@
   background-color: white;
   width: 100%;
   font-weight: 400;
+}
+
+
+.info-box{
+  display: flex;
+  align-items: center; /* ให้แนวกลางในแนวตั้ง */
+  justify-content: space-between; /* กระจายช่องว่างระหว่างสามส่วน */
+  gap: 10px; /* ระยะห่างระหว่างแต่ละส่วน */
+  padding: 0px 0px;
+  width: 100%;
+}
+.box-ico-img{
+  width: 18px;
+  height: 18px;
+}
+.box-icon{
+
+}
+.box-title{
+  flex: 1; /* กินพื้นที่ยืดหยุ่น */
+  font-weight: 600;
+  width: 100px;
+  color: #080048;
+  /* background-color: rebeccapurple; */
+}
+.box-des{
+  flex: 0 0 auto; /* ไม่ขยาย */
+  text-align: left; /* ชิดขวา */
+  /* background-color: blue; */
+  width: 200px;
 }

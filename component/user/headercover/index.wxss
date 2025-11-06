@@ -1,0 +1,41 @@
+/* component/user/headercover/index.wxss */
+.cover {
+  /* height: 200px; */
+  padding: 0px 14px;
+  
+}
+
+.card {
+  background: radial-gradient(circle at 100% -600%,
+      #7285B9 0%,
+      #6076A8 0%,
+      #4A6394 4%,
+      #395585 24%,
+      #002451 100%);
+  background-blend-mode: overlay;
+  padding: 12px 20px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.typetext {
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  
+}
+
+.positiontext {
+  font-size: 13px;
+  color: white;
+}
+
+.images{
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 100%;
+}

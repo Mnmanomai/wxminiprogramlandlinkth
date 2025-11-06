@@ -1,0 +1,32 @@
+/* component/selecttype/index.wxss */
+
+.seemore {
+  color: white;
+  background-color: rgb(143, 22, 1);
+  border-radius: 20px;
+  padding: 4px 7px;
+  font-size: 8px;
+}
+
+.texttype {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.bgbadge {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  border-radius: 6px;
+  padding: 8px 6px;
+  gap: 4px;
+  justify-content: space-between;
+  /* background-color: blue; */
+  background-image: linear-gradient(to bottom left, #74b1c0, #f6f6ff, #74b1c0);
+}
+
+.imagescus {
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+}

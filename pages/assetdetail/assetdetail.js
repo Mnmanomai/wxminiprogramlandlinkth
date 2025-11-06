@@ -221,56 +221,62 @@ Page({
         });
     },
 
-    hidefunc() {
-        const that = this;
-        wx.showModal({
-            title: '确认隐藏',
-            content: '您想隐藏此资产吗？',
-            confirmText: '是的',
-            cancelText: '不',
-            success(res) {
-                if (res.confirm) {
-                    const idList = that.data.id;
-                    wx.getStorage({
-                        key: 'HiddenList',
-                        success(res) {
-                            let oldData = res.data || [];
-                            const index = oldData.findIndex(item => item.id === idList);
-
-                            if (index !== -1) {
-                                oldData.splice(index, 1);
-                            } else {
-                                oldData.push({
-                                    id: idList
-                                });
-                            }
-                            wx.setStorage({
-                                key: 'HiddenList',
-                                data: oldData
-                            });
-                        },
-                        fail() {
-                            const newData = [{
-                                id: idList
-                            }];
-                            wx.setStorage({
-                                key: 'HiddenList',
-                                data: newData
-                            });
-                        },
-                        complete() {
-                            wx.navigateBack();
-                        }
-                    });
-                }
-            }
-        });
+    scrollToMap() {
+        this.setData({
+            toView: 'section_map'
+        })
     },
 
-    showPopup(){
-      this.setData({
-        show:true
-      })
+    // hidefunc() {
+    //     const that = this;
+    //     wx.showModal({
+    //         title: '确认隐藏',
+    //         content: '您想隐藏此资产吗？',
+    //         confirmText: '是的',
+    //         cancelText: '不',
+    //         success(res) {
+    //             if (res.confirm) {
+    //                 const idList = that.data.id;
+    //                 wx.getStorage({
+    //                     key: 'HiddenList',
+    //                     success(res) {
+    //                         let oldData = res.data || [];
+    //                         const index = oldData.findIndex(item => item.id === idList);
+
+    //                         if (index !== -1) {
+    //                             oldData.splice(index, 1);
+    //                         } else {
+    //                             oldData.push({
+    //                                 id: idList
+    //                             });
+    //                         }
+    //                         wx.setStorage({
+    //                             key: 'HiddenList',
+    //                             data: oldData
+    //                         });
+    //                     },
+    //                     fail() {
+    //                         const newData = [{
+    //                             id: idList
+    //                         }];
+    //                         wx.setStorage({
+    //                             key: 'HiddenList',
+    //                             data: newData
+    //                         });
+    //                     },
+    //                     complete() {
+    //                         wx.navigateBack();
+    //                     }
+    //                 });
+    //             }
+    //         }
+    //     });
+    // },
+
+    showPopup() {
+        this.setData({
+            show: true
+        })
     },
 
 })

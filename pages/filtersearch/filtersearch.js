@@ -6,6 +6,7 @@ Page({
   data: {
     SellType: 1,
     active: 0,
+    activeNames: ['1'],
     RecentDisplay: [],
     BookmarkDisplay: [],
     Search_fun: [{
@@ -55,6 +56,12 @@ Page({
         BookmarkDisplay: dataBookmark.data
       })
     }
+  },
+
+  onChangeHistoryCollapse(event) {
+    this.setData({
+      activeNames: event.detail,
+    });
   },
 
   onActiveChange(e) {

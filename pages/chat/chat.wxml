@@ -1,7 +1,7 @@
 <!--pages/chat/chat.wxml-->
 <view class="page-container">
     <view class="" style="height: 100vh;">
-        
+          <chatlist/>
     </view>
    
 </view>

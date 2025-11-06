@@ -1,15 +1,14 @@
 <!--component/assetlatest/assetlatest.wxml-->
 <view class="MainCardGrid">
-  <view class="" style="display: flex;padding-top: 10px;">
-    <text class="textHeader"> 最新资产</text>
-  </view>
-
-  <view class="grid">
-    <block wx:for="{{list}}" wx:key="id">
-      <view class="gridchild" bind:tap="nexttoasset" data-id="{{item._id}}">
-        <image class="imgchild" style="width: 100%; height: 260rpx;" src="{{item.no_images_asset}}" />
-        <text class="linelimit">{{"#"+item._id}} {{item.NameAsset}}</text>
-      </view>
-    </block>
-  </view>
+    <view class="" style="display: flex;padding-top: 10px;">
+        <text class="textHeader"> 最新资产</text>
+    </view>
+    <view class="grid">
+        <block wx:for="{{list}}" wx:key="id">
+            <view class="gridchild" bind:tap="nexttoasset" data-id="{{item._id}}">
+                <image class="imgchild" style="width: 100%; height: 260rpx;" src="{{item.no_images_asset}}" />
+                <text class="linelimit">{{"#"+item._id}} {{item.NameAsset}}</text>
+            </view>
+        </block>
+    </view>
 </view>

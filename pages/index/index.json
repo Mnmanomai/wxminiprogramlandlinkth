@@ -1,14 +1,10 @@
 {
   "usingComponents": {
-    "navigation-bar": "/component/navigation-bar/navigation-bar",
     "tabBar" : "/component/tabBar/tabBar",
-    "van-search": "@vant/weapp/search/index",
     "news":"/component/news/news",
-    "assetlatest":"/component/AssetLatest/assetlatest",
-    "minimenu" : "/component/minimenu/index",
-    "youlike" : "/component/youlikeindex/index",
-    "announcement" : "/component/announcement/index",
-    "coverindex" : "/component/coverindex/index",
-    "contact" : "/component/contact/index"
+    "searchbar" : "/component/searchbar/searchbar",
+    "cardlistcol" : "/component/cardlistcol/index",
+    "packagesearch" : "/component/packagesearch/index",
+    "selecttype" : "/component/selecttype/index"
   }
 }

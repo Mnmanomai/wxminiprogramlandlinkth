@@ -22,6 +22,11 @@ Component({
         icon: 'chat-o',
         text: 'Massage'
       },
+      {
+        url: '/pages/users/users',
+        icon: 'users-o',
+        text: 'users'
+      },
     ]
   },
 

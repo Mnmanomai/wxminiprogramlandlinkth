@@ -1,0 +1,16 @@
+<!--component/user/headercover/index.wxml-->
+
+<view class="cover">
+  <view class="card">
+    <view class="">
+      <view class="typetext">LANDLINK Agent</view>
+      <view class="positiontext">Spacial agent</view>
+    </view>
+    <view class="">
+      <!-- images -->
+      <!-- <view class="images"></view>   -->
+      <image class="images" src="https://landlinkth-web-images.s3.ap-southeast-7.amazonaws.com/upload/68fb0b5f49d2d" mode="aspectFill" />
+    </view>
+  </view>
+
+</view>

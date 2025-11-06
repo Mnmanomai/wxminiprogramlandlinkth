@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/component/navigation-bar/navigation-bar",
+    "tabBar" : "/component/tabBar/tabBar",
+    "menulist" : "/component/user/menu/index",
+    "headercover" : "/component/user/headercover/index"
+  }
+}

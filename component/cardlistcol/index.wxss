@@ -1,0 +1,93 @@
+/* component/cardlistcol/index.wxss */
+.tagdetail {
+  border: 1px;
+  border-radius: 4px;
+  border-style: solid;
+  width: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 12px;
+}
+
+.limit2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-weight: 600;
+}
+
+.bg-purple {
+  background-color: #800080;
+  color: white;
+}
+
+.bg-lightpurple {
+  background-color: #DDA0DD;
+  color: black;
+}
+
+.bg-green {
+  color: black;
+  background-color: #2E8B57;
+}
+
+.bg-orange {
+  background-color: #FFA500;
+  color: black;
+}
+
+.bg-yellow {
+  background-color: #FFFF00;
+  color: black;
+}
+
+.bg-none {
+  background-color: white;
+  color: black;
+}
+
+.bg-brown {
+  background-color: #8B4513;
+  color: white;
+}
+
+.bg-lightbrown {
+  background-color: #D2B48C;
+  color: black;
+}
+
+.bg-red {
+  background-color: #DC143C;
+  color: white;
+}
+
+.bg-blue {
+  background-color: #0000FF;
+  color: white;
+}
+
+.bg-greendiagonal {
+  background-color: #FFFFFF;
+  background-image: repeating-linear-gradient(45deg,
+      #008000,
+      #008000 5px,
+      #ffffff 5px,
+      #ffffff 10px);
+  color: #000000;
+}
+
+.bg-gray {
+  background-color: #696969;
+  color: white;
+}
+
+.bg-olivegreen {
+  background-color: #808000;
+  color: white;
+}
+
+.bg-pink {
+  background-color: #FFC0CB;
+  color: black;
+}

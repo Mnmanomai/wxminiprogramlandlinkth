@@ -1,0 +1,45 @@
+<!--component/cardlistcol/index.wxml-->
+<view class="" style="display: flex;justify-content: space-between;padding: 0px 10px;align-items: center;">
+    <text class="textHeader">最新资产</text>
+</view>
+<view class="" style="display: flex;gap: 8px;flex-direction: row;overflow-x: auto;">
+    <block wx:for="{{list}}" wx:for-index="i" wx:key="i">
+        <view class="" style=" border-radius: 10px;overflow: hidden;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);background-color: white;margin: 15px 0px;flex: 0 0 auto; width: 340px;position: relative;" data-id="{{item._id}}" bind:tap="goToDetail">
+            <view class="" style="position: absolute;top:5px;left: 5px;">
+                <view class="bg-{{item.OriginalColor}}" style="width: 60px;height: 30px;border-radius: 8px;display: flex;justify-content: center;align-items: center;font-weight: 500;font-size: 14px;">{{item.TypeAsset}}</view>
+            </view>
+            <image src="{{item.no_images_asset}}" style="width: 340px;" lazy-load />
+            <view class="" style="padding: 10px 10px 0px 10px;">
+                <text class="limit2" style="font-style: 18px;">{{item.NameAsset}}</text>
+                <view class="text-md">
+                    <van-icon name="location" /> {{item.Province}}, {{item.District}}
+                </view>
+                <view class="text-md">
+                    <van-icon name="gold-coin" /> {{ item.price }} / {{item.ColorOfLand}}
+                </view>
+                <view class="text-md" style="display: flex;gap: 5px;">
+                    <van-icon name="expand-o" />
+                    {{item.LandSizeRai}} 莱 {{item.LandSizeNgan}} 颜 {{item.LandSizeSQW}} sqw <view class="" wx:if="{{item.typeassetn !== '1'}}"> / 建筑 {{item.WHSizeSQM}} 平方米 </view>
+                </view>
+                <view class="text-md">
+                    <van-icon name="clock-o" /> {{item.timeago}} {{item.farfromlaem}}
+                </view>
+                <view class="" style="display: flex;">
+                    <view class="" style="display: flex;width:100%;gap: 4px;">
+                        <text class="tagdetail">{{item.TypeSell}}</text>
+                        <text class="tagdetail">{{item.TypeAsset}}</text>
+                        <text class="tagdetail">{{item.IndusZone}}</text>
+                    </view>
+                    <view class="" style="width:100%;text-align: end;">
+                        <view class="" wx:if="{{ item.typeselln === '2' }}">
+                            ฿{{ item.RentCostPerMonthBath }} / 月.
+                        </view>
+                        <view wx:else>
+                            ฿ {{ item.SalePriceBath }}
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>

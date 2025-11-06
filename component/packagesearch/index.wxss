@@ -1,0 +1,10 @@
+/* component/packagesearch/index.wxss */
+.badge{
+  background-color: #EBEBEB;
+  color: #1B1F58;
+  padding: 4px 8px;
+  border-radius: 6px;
+  max-width: 100%;
+  font-size: 13px;
+  font-weight: 500;
+}

@@ -3,6 +3,7 @@
 .page-container {
   background-color: white;
 }
+
 .HeaderContent {
   padding-inline: 20rpx;
   padding-block: 20rpx;
@@ -92,14 +93,22 @@
 }
 
 .mainGroupFunc {
-  display: flex;
+  display: flex;width: 100%;
+  /* width: 100px; */
+  /* display: flex; */
+  /* justify-content: start; */
+
 }
 
 .subGroupFunc {
-  width: 100%;
+  display: inline;width: 100%;
+}
+
+.btnGroupfunc {
+  background: #FFFFFF;
   display: inline;
-  justify-content: center;
-  text-align: center;
+  justify-items: center;
+  align-items: center;
 }
 
 .icongroupfunc {
@@ -114,35 +123,35 @@
   margin: 16rpx 0;
 }
 
-.text-xl{
+.text-xl {
   font-size: 16px;
 }
 
-.text-lg{
+.text-lg {
   font-size: 14px;
 }
 
-.text-md{
+.text-md {
   font-size: 14px;
 }
 
-.font-w-400{
-  font-weight: 400;  
+.font-w-400 {
+  font-weight: 400;
 }
 
-.font-w-500{
-  font-weight: 500;  
+.font-w-500 {
+  font-weight: 500;
 }
 
-.font-w-600{
-  font-weight: 600;  
+.font-w-600 {
+  font-weight: 600;
 }
 
 .option-item {
   padding: 12px 0;
   font-size: 16px;
   border-bottom: 1px solid #eee;
-  color: rgb(0, 0, 0,0.5);
+  color: rgb(0, 0, 0, 0.5);
   text-align: center;
   background-color: white;
   width: 100%;

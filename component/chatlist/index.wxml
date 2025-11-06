@@ -1,0 +1,20 @@
+<!--component/chatlist/index.wxml-->
+<view class="" style="display: flex;flex-direction: column;padding: 0px 20px;">
+    <block wx:for="{{countArray}}">
+        <view class="" style="width: 100%;padding: 6px 0px;display: flex;gap:10px;align-items: center;">
+            <!-- image -->
+            <view class="" style="">
+                <view class="" style="background-color: thistle;width: 60px;height: 60px;border-radius: 16px;"></view>
+            </view>
+
+            <!-- content -->
+            <view class="" style="">
+                <view class="limit2">Y春武里府 距离林查班港口 26公里，土地面积5莱2颜50.2哇，租期30年租金13,000泰铢每莱每月</view>
+            </view>
+            
+            <view class="">
+                <view class="" style="background-color: rgb(9, 94, 116);border-radius: 100%;width: 10px;height: 10px;"></view>
+            </view>
+        </view>
+    </block>
+</view>

@@ -1,0 +1,14 @@
+<!--component/searchbar/searchbar.wxml-->
+
+<view class="border">
+  <view class="searchbox" bind:tap="gotofilter">
+    <van-icon class="searchicon" name="search" size="24"/>
+    <view class="textdes">请输入搜索关键词</view>
+    <view class="searchbutton">搜索</view>
+  </view>
+  <!-- Maps -->
+  <!-- <view class="mapsbox">
+    <image class="imagemap" src="/asset/zone.png" mode="aspectFit"/>
+    <view class="textmap">资产地图</view>
+  </view> -->
+</view>

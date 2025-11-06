@@ -1,8 +1,0 @@
-/* component/announcement/index.wxss */
-.list {
-  background-color: rgb(255, 255, 255);
-  width: 100%;
-  padding: 10px 0px;
-  margin: 10px 0px;
-  border-radius: 12px;
-}

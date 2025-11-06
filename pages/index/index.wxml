@@ -1,22 +1,15 @@
 <!--index.wxml-->
-<!-- <navigation-bar title="首页" back="{{false}}" color="black" background="#FFF" /> -->
 <view class="page-container">
-  <coverindex/>
 
   <view class="maingroup">
-    <view class="" style="padding: 2px 2px;background-color: white;border-radius: 16px;margin: 10px 0px;overflow:hidden">
-      <van-search disabled placeholder="请输入搜索关键词" bind:tap="gotofilter" />
-    </view>
-    <minimenu />
-    <announcement bind:sendData="onReceiveData" />
-    <youlike />
-  </view>
-  <view class="groupnew">
+    <searchbar/>
+    <selecttype/>
+    <packagesearch/>
+    <cardlistcol list="{{dataAsset}}"/>
     <news />
-    <assetlatest list="{{dataAsset}}" />
   </view>
 
-  <contact show="{{show}}"/>
+  <!-- <contact show="{{show}}"/> -->
 </view>
 
 <tabBar current="0" />

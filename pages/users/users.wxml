@@ -1,0 +1,8 @@
+<!--pages/users/users.wxml-->
+<view class="page-container">
+
+  <headercover/>
+  <menulist/>
+  <!-- <navigation-bar title="投资市场" back="{{false}}" color="black" background="#FFF" /> -->
+  <tabBar current="0" />
+</view>

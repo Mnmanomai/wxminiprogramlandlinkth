@@ -14,6 +14,7 @@ Component({
       this.setData({
         news : res
       })
+      // console.log(this.data.news);
     },
     nexttoguide(){
       wx.navigateTo({
