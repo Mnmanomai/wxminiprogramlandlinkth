@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText":"地点",
   "usingComponents": {
     "navigation-bar": "/component/navigation-bar/navigation-bar",
     "van-cell": "@vant/weapp/cell/index",

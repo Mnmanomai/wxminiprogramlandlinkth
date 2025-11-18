@@ -69,7 +69,6 @@ Component({
    */
   methods: {
     Goto(e){
-      // console.log(e);
       const dataTargetUrl = e.currentTarget.dataset.url
       wx.navigateTo({
         url: dataTargetUrl,

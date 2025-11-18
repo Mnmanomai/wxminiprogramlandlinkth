@@ -4,8 +4,8 @@
         <text class="textHeader">消息</text>
         <view class="" bind:tap="nexttoguide" style="font-size: 12px;font-weight: 400;">全部</view>
     </view>
-
-    <scroll-view scroll-x="true">
+    <!-- old ui -->
+    <!-- <scroll-view scroll-x="true">
         <view class="sectionnews">
             <block wx:for="{{news}}" wx:key="id" >
                 <view class="cardnews" bind:tap="Goto" data-url="/pages/guide/index?id={{item.ID}}">
@@ -20,17 +20,23 @@
                 </view>
             </block>
         </view>
+    </scroll-view> -->
 
-    </scroll-view>
-
-    <!-- <view class="">Mock</view>
-    <view class="grid">
+    <!-- new ui -->
+    <view class="sectionv2">
         <block wx:for="{{news}}" wx:key="id">
-            <view class="gridchild" bind:tap="Goto" data-url="/pages/guide/index?id={{item.ID}}">
-                <image class="imgchild" style="width: 100%; height: 260rpx;" src="{{item.main_pic}}" />
-                <text class="linelimit">{{item.title}}</text>
+            <view class="newCardv2" bind:tap="Goto" data-url="/pages/guide/index?id={{item.ID}}">
+                <view class="sectionimagesv2">
+                    <image class="imagesv2" src="{{item.main_pic}}" />
+                </view>
+                <view class="sectiondescriptionv2">
+                    <text class="linelimit2 titlev2">{{item.title}}</text>
+                    <text class="linelimit4 descriptiontextv2">{{item.overview}}</text>
+                    <view class="linelimit2 timev2">
+                        <van-icon name="clock-o" size="10px"/>
+                     {{item.datetime_create}}</view>
+                </view>
             </view>
         </block>
-    </view> -->
-
+    </view>
 </view>

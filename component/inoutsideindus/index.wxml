@@ -1,0 +1,21 @@
+<!--component/inoutsideindus/index.wxml-->
+<view class="" style="padding: 0px;">
+    <view class="head">
+        <view class="card" bind:tap="nextToSearch" data-indus="1">
+            <view class="filterfront"></view>
+            <view class="description">
+                <view class="textHeader">IEAT工业区内</view>
+                <view class="textDescription">探索泰国一流工业园区内的土地——这里是建造工厂、仓库和物流设施的理想之选。您将受益于完善的基础设施、公共设施和政府扶持政策。</view>
+            </view>
+            <image src="/asset/industrail.png" style="height: 100%;width: 100%;filter: brightness(0.7);" mode="aspectFill" />
+        </view>
+        <view class="card" bind:tap="nextToSearch" data-indus="2">
+            <view class="filterfront"></view>
+            <view class="description">
+                <view class="textHeader">工业区外 </view>
+                <view class="textDescription">探索工业园区外的土地——非常适合建设独立工厂、物流中心或进行未来开发。用途灵活，成本更低，限制更少。</view>
+            </view>
+            <image src="/asset/nonindustrail.png" style="height: 100%;width: 100%;filter: brightness(0.7);" mode="aspectFill" />
+        </view>
+    </view>
+</view>

@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText":"搜索详情",
   "usingComponents": {
     "navigation-bar": "/component/navigation-bar/navigation-bar",
     "van-divider": "@vant/weapp/divider/index",

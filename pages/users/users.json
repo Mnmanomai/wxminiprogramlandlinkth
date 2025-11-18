@@ -1,7 +1,8 @@
 {
+  "navigationStyle": "custom",
   "usingComponents": {
     "navigation-bar": "/component/navigation-bar/navigation-bar",
-    "tabBar" : "/component/tabBar/tabBar",
+    "tabBar" : "/component/custom-tab-bar/index",
     "menulist" : "/component/user/menu/index",
     "headercover" : "/component/user/headercover/index"
   }

@@ -14,7 +14,6 @@ Page({
    */
   async onLoad(options) {
     const contentall = await app.GetContent(5,'')
-    // console.log(contentall);
     this.setData({
       dataContent : contentall
     })

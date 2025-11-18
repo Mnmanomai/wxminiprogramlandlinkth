@@ -1,7 +1,8 @@
 {
+  
   "usingComponents": {
     "navigation-bar": "/component/navigation-bar/navigation-bar",
-    "tabBar" : "/component/tabBar/tabBar",
+    "tabBar" : "/component/custom-tab-bar/index",
     "chatlist" : "/component/chatlist/index"
   }
 }

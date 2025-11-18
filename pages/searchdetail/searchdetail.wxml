@@ -6,7 +6,7 @@
       <view class="header">{{language == "en" ? "Property Type":"物业类型" }}</view>
       <view class="headselect">
         <block wx:for="{{DataPropType}}" wx:key="propTypeSel">
-          <view class="select {{PropertyType == item.id ? 'active' : ''}}" id="proptype" bind:tap="selectProperty" data-id="{{item.id}}" data-text="{{item.name}}">{{item.name}}</view>
+          <view class="select {{filterdata.PropertyType == item.id ? 'active' : ''}}" id="proptype" bind:tap="selectProperty" data-id="{{item.id}}" data-text="{{item.name}}">{{item.name}}</view>
         </block>
       </view>
     </view>
@@ -15,7 +15,7 @@
       <view class="header">{{language == "en" ? "I-EAT":"I-EAT" }}</view>
       <view class="headselect">
         <block wx:for="{{DataIEAT}}" wx:key="IEATSel">
-          <view class="select {{IEAT == item.id ? 'active' : ''}}" bind:tap="selectIEAT" data-id="{{item.id}}" data-text="{{item.name}}">{{item.name}}</view>
+          <view class="select {{filterdata.IEAT == item.id ? 'active' : ''}}" bind:tap="selectIEAT" data-id="{{item.id}}" data-text="{{item.name}}">{{item.name}}</view>
         </block>
       </view>
     </view>
@@ -25,7 +25,9 @@
       <view class="header">{{language == "en" ? "color of land" : "属性颜色"}}</view>
       <view class="headselect">
         <block wx:for="{{DataColor}}" wx:key="ColorSel">
-          <view class="select {{Color == item.id ? 'active' : ''}}" bind:tap="selectColor" data-id="{{item.id}}" data-text="{{item.name}}">{{item.name}}</view>
+          <view class="select {{item.select == true ? 'active' :''}} " bind:tap="selectColor" data-id="{{item.id}}" data-text="{{item.name}}">
+            {{item.name}}
+          </view>
         </block>
       </view>
     </view>
@@ -33,8 +35,8 @@
     <view class="sector">
       <view class="header">{{language == "en" ? "Price" : "价格"}}</view>
       <view class="splitinput">
-        <input type="number" class="input" value="{{PriceStart}}" maxlength="14" bindinput="onInputStart" placeholder="start" />
-        <input type="number" class="input" value="{{PriceEnd}}" maxlength="14" bindinput="onInputEnd" placeholder="end" />
+        <input type="number" class="input" value="{{filterdata.PriceStart}}" maxlength="14" bindinput="onInputStart" placeholder="开始" />
+        <input type="number" class="input" value="{{filterdata.PriceEnd}}" maxlength="14" bindinput="onInputEnd" placeholder="结尾" />
       </view>
     </view>
 
@@ -42,8 +44,8 @@
     <view class="sector">
       <view class="header">{{language == "en" ? "Land Size (rai)" : "土地面积 (莱)"}}</view>
       <view class="splitinput">
-        <input type="number" class="input" bindinput="onInputLandStart" maxlength="6" value="{{LandSizeStart}}" placeholder="start" />
-        <input type="number" class="input" bindinput="onInputLandEnd" maxlength="6" value="{{LandSizeEnd}}" placeholder="end" />
+        <input type="number" class="input" bindinput="onInputLandStart" maxlength="6" value="{{filterdata.LandSizeStart}}" placeholder="开始" />
+        <input type="number" class="input" bindinput="onInputLandEnd" maxlength="6" value="{{filterdata.LandSizeEnd}}" placeholder="结尾" />
       </view>
 
     </view>
@@ -52,16 +54,16 @@
       <view class="header">{{language == "en" ? "With Buidling" : "建筑"}} </view>
       <view class="headselect">
         <block wx:for="{{DataOpenBuilding}}" wx:key="OpenBuildngsel">
-          <view class="select {{WithBuildingOpen == index ? 'active' : ''}}" data-id="{{index}}" bind:tap="selectBuildingOpen">{{item.name}}</view>
+          <view class="select {{filterdata.WithBuildingOpen == item.id ? 'active' : ''}}" data-id="{{index}}" bind:tap="selectBuildingOpen"> {{item.name}}</view>
         </block>
       </view>
     </view>
     <van-divider />
-    <view class="sector" wx:if="{{WithBuildingOpen == 1 }}">
+    <view class="sector" wx:if="{{filterdata.WithBuildingOpen == 1 }}">
       <view class="header">{{language == "en" ? "Building Size (SQM)" : "建筑面积（​​平方米）" }}</view>
       <view class="splitinput">
-        <input type="text" class="input" bindinput="onInputBuildingStart" maxlength="11" value="{{BuildingStart}}" />
-        <input type="text" class="input" bindinput="onInputBuildingEnd" maxlength="11" value="{{BuildingEnd}}" />
+        <input type="text" class="input" bindinput="onInputBuildingStart" maxlength="11" value="{{filterdata.BuildingStart}}" />
+        <input type="text" class="input" bindinput="onInputBuildingEnd" maxlength="11" value="{{filterdata.BuildingEnd}}" />
       </view>
     </view>
   </view>
@@ -70,14 +72,14 @@
 <view class="panelaction">
   <view class="" style="width: 100%;">
     <button class="button border-blue" bind:tap="Bookmark">
-      <van-icon name="bookmark-o" size="22" /> {{language == "en" ? "Save Search" : "保存搜索"}} 
+      <van-icon name="bookmark-o" size="22" /> {{language == "en" ? "Save Search" : "保存搜索"}}
     </button>
   </view>
   <view class="" style="width: 100%;">
-    <button class="button text-white bg-blue" bind:tap="nextToSearch">
+    <button class="button text-white bg-blue" bind:tap="BacktoSearch">
       <van-icon name="guide-o" size="22" /> {{language == "en" ? "Search" : "搜索"}}
     </button>
   </view>
 </view>
 <!-- search detail -->
-<navigation-bar title="搜索详情" back="{{true}}" color="black" background="#FFF" />
+<!-- <navigation-bar title="搜索详情" back="{{true}}" color="black" background="#FFF" /> -->

@@ -1,8 +1,8 @@
 /**app.wxss**/
 .page-container {
-  padding-top: 100px;
-  min-height: 100vh;
-  height: 100%;
+  /* padding-top: 100px; */
+  /* min-height: 100vh; */
+  
   padding-bottom: 100px;
   /* background: linear-gradient(to bottom, #092E48 0%,#0f3c5c 20%, #F9F9F9 60%, #F9F9F9 100%); */
   

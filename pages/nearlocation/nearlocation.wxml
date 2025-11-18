@@ -1,6 +1,6 @@
 <!--pages/nearlocation/nearlocation.wxml-->
 <view class="page-container">
-  <view class="" style="position: sticky;top:88px;z-index: 99;">
+  <view class="" >
     <van-search value="{{ value }}" placeholder="请输入搜索关键词" id="districtSearch" bind:change="filterDistrict" />
   </view>
   <view class="" wx:if="{{LocationData}}" style="padding-bottom: 80px;">
@@ -17,4 +17,4 @@
   </view>
 </view>
 <!-- Location -->
-<navigation-bar title="地点" back="{{true}}" color="black" background="#FFF" />
+<!-- <navigation-bar title="地点" back="{{true}}" color="black" background="#FFF" /> -->

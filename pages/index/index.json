@@ -1,10 +1,12 @@
 {
+  "navigationStyle": "custom",
   "usingComponents": {
-    "tabBar" : "/component/tabBar/tabBar",
+    "tabBar" : "/component/custom-tab-bar/index",
     "news":"/component/news/news",
     "searchbar" : "/component/searchbar/searchbar",
     "cardlistcol" : "/component/cardlistcol/index",
     "packagesearch" : "/component/packagesearch/index",
-    "selecttype" : "/component/selecttype/index"
+    "selecttype" : "/component/selecttype/index",
+    "insideout" : "/component/inoutsideindus/index"
   }
 }

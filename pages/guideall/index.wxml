@@ -3,4 +3,4 @@
   <contentall list="{{dataContent}}"/>
 </view>
 <!-- Guide / News -->
-<navigation-bar title="指南/新闻" back="{{true}}" color="black" background="#FFF" />
+<!-- <navigation-bar title="指南/新闻" back="{{true}}" color="black" background="#FFF" /> -->

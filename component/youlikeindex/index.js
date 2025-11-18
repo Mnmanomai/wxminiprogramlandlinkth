@@ -23,7 +23,6 @@ Component({
    */
   methods: {
     gotodetail(e) {
-      // console.log(e);
       const id = e.currentTarget.dataset.id
       wx.navigateTo({
         url: `/pages/assetdetail/assetdetail?id=${id}`,
@@ -35,7 +34,6 @@ Component({
       if (data.length > 0) {
         data = data.map(val => val.id).join(',')
         const res = await this.loadData(data);
-        // console.log(res)
         this.setData({
           MainDataFev: res
         })
@@ -45,7 +43,7 @@ Component({
       const that = this;
       return new Promise((resolve, reject) => {
         wx.request({
-          url: `${config.apiBaseUrl}/api/miniprogramapi/search.php?LANGUAGE=zh&MULTILIST=${typeList}`,
+          url: `${config.apiBaseUrl}/api/miniprogramapi/search.php?LANGUAGE=${config.language}&MULTILIST=${typeList}`,
           method: 'GET',
           success(res) {
             const rawData = res.data.response;

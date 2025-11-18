@@ -35,7 +35,8 @@
   position: absolute;
   top: 2px;
   right: 2px;
-  background: linear-gradient(to left,#06304E, #eeeeee);
+  /* background: linear-gradient(to left,#06304E, #eeeeee); */
+  background-color: #06304E;
   width: 80px;
   height: 92%;
   color: white;

@@ -12,7 +12,7 @@ Page({
     Search_fun: [{
         id: 1,
         icon: 'orders-o',
-        name: config.language == "en" ? "Search on Detail" : "按详情搜索",
+        name: config.language == "en" ? "Search all" : "搜索全部",
       },
       {
         id: 2,
@@ -37,7 +37,7 @@ Page({
     ]
   },
   async onLoad() {
-
+    
   },
 
   async onShow() {
@@ -84,7 +84,7 @@ Page({
 
   btnNextToSearchResult(e) {
     let id = e.currentTarget.dataset.id
-    let url = id == 1 ? `/pages/searchdetail/searchdetail?selltype=${this.data.SellType}`
+    let url = id == 1 ? `/pages/search/search?selltype=${this.data.SellType}`
         : id == 2 ? `/pages/nearlocation/nearlocation?selltype=${this.data.SellType}`
         : id == 3 ? `/pages/search/search`
         : id == 4 ? `/pages/province/province?selltype=${this.data.SellType}`

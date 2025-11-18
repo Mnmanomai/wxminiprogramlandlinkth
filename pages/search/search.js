@@ -3,50 +3,58 @@ const app = getApp();
 Page({
     data: {
         fetchData: [], // เก็บผลลัพธ์ทั้งหมด
-        offset: 0, // offset สำหรับ API
-        limit: 10, // จำนวน item ต่อ request
         loading: false, // กำลังโหลดหรือไม่
         hasMore: true, // มีข้อมูลเหลือให้โหลดหรือไม่
-        selltype: 0,
-        province: 0,
-        district: 0,
-        lat: '',
-        long: '',
-        distancemode: 0,
-        PropertyType: '',
-        IEAT: '',
-        Color: '',
-        LandSizeStart: '',
-        LandSizeEnd: '',
-        PriceStart: '',
-        PriceEnd: '',
-        BuildingStart: '',
-        BuildingEnd: '',
-        Building: '',
+        offset: 0,
+        limit: 10,
+        searchvalue: {
+            selltype: 0,
+            assettype: 0,
+            order: 0,
+            province: 0,
+            district: 0,
+            lat: '',
+            long: '',
+            distancemode: 0,
+            PropertyType: '',
+            IEAT: '',
+            Color: '',
+            LandSizeStart: 0,
+            LandSizeEnd: 0,
+            PriceStart: 0,
+            PriceEnd: 0,
+            BuildingStart: 0,
+            BuildingEnd: 0,
+            Building: '',
+        },
+
     },
 
     onLoad(options) {
+        wx.setNavigationBarTitle({
+            title: '搜索',
+        });
         this.setData({
-            selltype: options.selltype,
-            province: options.province,
-            district: options.district,
-            lat: options.lat,
-            long: options.long,
-            distancemode: options.distancemode,
-            PropertyType: options.PropertyType,
-            IEAT: options.IEAT,
-            Color: options.Color,
-            LandSizeStart: options.LandSizeStart,
-            LandSizeEnd: options.LandSizeEnd,
-            PriceStart: options.PriceStart,
-            PriceEnd: options.PriceEnd,
-            BuildingStart: options.BuildingStart,
-            BuildingEnd: options.BuildingEnd,
-            Building: options.Building,
+            'searchvalue.selltype': options.selltype ? options.selltype : '',
+            'searchvalue.assettype': options.assettype ? options.assettype : '',
+            'searchvalue.province': options.province ? options.province : '',
+            'searchvalue.district': options.district ? options.district : '',
+            'searchvalue.lat': options.lat ? options.lat : '',
+            'searchvalue.long': options.long ? options.long : '',
+            'searchvalue.distancemode': options.distancemode ? options.distancemode : '',
+            'searchvalue.PropertyType': options.PropertyType ? options.PropertyType : '',
+            'searchvalue.IEAT': options.IEAT ? options.IEAT : '',
+            'searchvalue.Color': options.Color ? options.Color : '',
+            'searchvalue.LandSizeStart': options.LandSizeStart ? options.LandSizeStart : '',
+            'searchvalue.LandSizeEnd': options.LandSizeEnd ? options.LandSizeEnd : '',
+            'searchvalue.PriceStart': options.PriceStart ? options.PriceStart : '',
+            'searchvalue.PriceEnd': options.PriceEnd ? options.PriceEnd : '',
+            'searchvalue.BuildingStart': options.BuildingStart ? options.BuildingStart : '',
+            'searchvalue.BuildingEnd': options.BuildingEnd ? options.BuildingEnd : '',
+            'searchvalue.Building': options.Building ? options.Building : '',
         })
+
         this.Getsearch();
-
-
     },
 
     async Getsearch() {
@@ -55,58 +63,89 @@ Page({
             loading: true
         });
         let sentobject = {
-            selltype: this.data.selltype || 0,
+            selltype: this.data.searchvalue.selltype || 0,
+            assettype: this.data.searchvalue.assettype || 0,
             limit: this.data.limit || 0,
+            order: this.data.searchvalue.order || 0,
             offset: this.data.offset || 0,
-            province: this.data.province || '',
-            district: this.data.district || '',
-            lat: this.data.lat || '',
-            long: this.data.long || '',
-            distancemode: this.data.distancemode || '',
-            PropertyType: this.data.PropertyType || '',
-            IEAT: this.data.IEAT || '',
-            Color: this.data.Color || '',
-            LandSizeStart: this.data.LandSizeStart || '',
-            LandSizeEnd: this.data.LandSizeEnd || '',
-            PriceStart: this.data.PriceStart || '',
-            PriceEnd: this.data.PriceEnd || '',
-            BuildingStart: this.data.BuildingStart || '',
-            BuildingEnd: this.data.BuildingEnd || '',
-            Building: this.data.Building || '',
+            province: this.data.searchvalue.province || '',
+            district: this.data.searchvalue.district || '',
+            lat: this.data.searchvalue.lat || '',
+            long: this.data.searchvalue.long || '',
+            distancemode: this.data.searchvalue.distancemode || '',
+            PropertyType: this.data.searchvalue.PropertyType || '',
+            IEAT: this.data.searchvalue.IEAT || '',
+            Color: this.data.searchvalue.Color || '',
+            LandSizeStart: this.data.searchvalue.LandSizeStart || '',
+            LandSizeEnd: this.data.searchvalue.LandSizeEnd || '',
+            PriceStart: this.data.searchvalue.PriceStart || '',
+            PriceEnd: this.data.searchvalue.PriceEnd || '',
+            BuildingStart: this.data.searchvalue.BuildingStart || '',
+            BuildingEnd: this.data.searchvalue.BuildingEnd || '',
+            Building: this.data.searchvalue.Building || '',
         }
-
-        // console.log(sentobject);
         let Dataget = await app.GetAsset(sentobject);
-        let DataMain = await this.settinglist(Dataget)
-        console.log(DataMain);
+        // let DataMain = await this.settinglist(Dataget)
         this.setData({
-            fetchData: [...this.data.fetchData, ...DataMain],
+            fetchData: [...this.data.fetchData, ...Dataget],
+            // fetchData: this.data.fetchData,
             offset: this.data.offset + Dataget.length,
             hasMore: Dataget.length > 0,
             loading: false
         });
-      
     },
 
-    async settinglist(Dataget) {
-        const Hiddenlist = await app.GetHidden()
-        // console.log(Dataget);
-        if (Hiddenlist !== "no data search" && !Hiddenlist) {
-            Dataget = Dataget.filter(item => {
-                return !Hiddenlist.includes(Number(item._id));
-            });
-        }
-        return Dataget;
-    },
 
-    onShow() {
-        // let dataFetch = this.settinglist(this.data.fetchData)
-        // this.setData({
-        //   fetchData : dataFetch
-        // })
-    },
 
     onReachBottom() {
         this.Getsearch();
-    }
+    },
+
+    OrderSelect(e) {
+        let Ordervalue = e.detail.order;
+        this.setData({
+            fetchData: [],
+            'searchvalue.order': Ordervalue,
+        })
+        this.Getsearch();
+    },
+
+    async Openfilter() {
+        wx.navigateTo({
+            url: '/pages/searchdetail/searchdetail',
+            success: (res) => {
+
+                this.setData({
+                  'searchvalue.LandSizeStart' : this.data.searchvalue.LandSizeStart ? this.data.searchvalue.LandSizeStart : 0,
+                  'searchvalue.LandSizeEnd' : this.data.searchvalue.LandSizeEnd ? this.data.searchvalue.LandSizeEnd : 0,
+                  'searchvalue.PriceStart' : this.data.searchvalue.PriceStart ? this.data.searchvalue.PriceStart : 0,
+                  'searchvalue.PriceEnd' : this.data.searchvalue.PriceEnd ? this.data.searchvalue.PriceEnd : 0,
+                  'searchvalue.BuildingStart' : this.data.searchvalue.BuildingStart ? this.data.searchvalue.BuildingStart : 0,
+                  'searchvalue.BuildingEnd' : this.data.searchvalue.BuildingEnd ? this.data.searchvalue.BuildingEnd : 0,
+                })
+
+                res.eventChannel.emit('openfilterdata', this.data.searchvalue);
+                res.eventChannel.on('returnfilterdata', (data) => {
+
+
+                    let Colordata = data.success.Color;
+                    let dataTest = ""
+                    if (Array.isArray(Colordata)) {
+                        dataTest = Colordata.join(",");
+                        data.success.Color = dataTest
+                    }
+
+
+
+                    this.setData({
+                        fetchData: [],
+                        offset: 0,
+                        searchvalue: data.success
+                    })
+                    this.Getsearch()
+                })
+
+            },
+        })
+    },
 });

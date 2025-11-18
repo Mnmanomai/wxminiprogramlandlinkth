@@ -10,7 +10,7 @@
 
                 <view class="description {{item.expanded ? 'expanded' : 'collapsed'}}" wx:if="{{item.comment}}">
                     <block wx:for="{{item.comment}}" wx:key="comment">
-                        <view class="text-muted">{{item}}</view>
+                        <view class="text-muted" style="font-size: 14px;">{{item}}</view>
                     </block>
                 </view>
                 <view wx:if="{{item.isOverflow == true}}" class="toggle" bindtap="toggleComment" data-id="{{item.ID}}">
@@ -20,7 +20,7 @@
             </view>
             <!-- Description -->
 
-            <view class="text-muted" style="display: flex; flex-wrap: wrap; gap: 10px;padding: 10px 0px;">
+            <view class="text-muted" style="display: flex; flex-wrap: wrap; gap: 10px;padding: 10px 0px;font-size: 14px;">
                 <!-- Desired Property Type -->
                 <view class="info-box">
                     <!-- <view class="box-icon"><van-icon name="wap-nav" /></view> -->
@@ -122,8 +122,7 @@
                         <van-icon name="hotel-o" /> {{item.factory_sqm_min}} - {{item.factory_sqm_max}} 平方米
                     </view>
                 </view> -->
-
-                <view class="" style="width: 100%;">
+                <view class="" wx:if="{{item.Status == 1}}" style="width: 100%;">
                     <button class="" style="width: 100%;background-color: rgba(0, 0, 66, 0.95);color: white;" bind:tap="opencontact">我有</button>
                 </view>
             </view>

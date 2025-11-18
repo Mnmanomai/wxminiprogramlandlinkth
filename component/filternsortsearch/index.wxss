@@ -1,0 +1,43 @@
+/* component/filternsortsearch/index.wxss */
+.maintab{
+  width: 100%;
+  display: flex;
+  padding: 10px 0px;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background: white;
+}
+
+.bordercircle{
+  border: 1px solid;
+  border-radius: 12px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  border-color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.subtab{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 8px;
+}
+
+.box{
+  border: solid 1px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-color: rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  padding: 0px 16px;
+}

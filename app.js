@@ -108,43 +108,17 @@ App({
 
     },
     async GetAsset(request) {
-        // const query = Object.entries({
-        //   SELLTYPE : request.selltype || '',
-        //   LANGUAGE: 'en',
-        //   LIMIT: request.limit,
-        //   OFFSET: request.offset,
-        //   PROVINCE: request.province || '',
-        //   DISTRICT: request.district || '',
-        //   MULTILIST: request.mulilist || '',
-        //   LAT: request.lat || '',
-        //   LONG : request.long || '',
-        //   DISTANCEMODE : request.distancemode || '',
-        //   PROPTYPE : request.PropertyType || '',
-        //   IEAT : request.IEAT || '',
-        //   COLOR : request.Color || '',
-        //   LANDSTART: request.LandSizeStart || '',
-        //   LANDEND: request.LandSizeEnd || '',
-        //   PRICESTART: request.PriceStart || '',
-        //   PRICEEND: request.PriceEnd || '',
-        //   WHSTART: request.BuildingStart || '',
-        //   WHEND: request.BuildingEnd || '',
-        //   BUILDING : request.Building || '',
-        // })
-        // .map(([key, val]) => `${key}=${encodeURIComponent(val)}`)
-        // .join('&');
-        // const fullUrl = `http://localhost/api/miniprogramapi/search.php?${query}`;
-        // console.log("FULL URL:", fullUrl);  // ✅ ดู url ที่จะยิงจริง
 
         const that = this
-        // console.log(request);
         return new Promise((resolve, reject) => {
             wx.request({
                 url: `${config.apiBaseUrl}/api/miniprogramapi/search.php`,
                 method: 'GET',
                 data: {
                     SELLTYPE: request.selltype || '',
-                    LANGUAGE: 'en',
+                    LANGUAGE: config.language,
                     LIMIT: request.limit,
+                    ORDER : request.order,
                     OFFSET: request.offset,
                     PROVINCE: request.province || '',
                     DISTRICT: request.district || '',
@@ -163,9 +137,7 @@ App({
                     Building: request.Building || '',
                 },
                 success(res) {
-                    // console.log(res);
                     const rawData = res.data.response;
-                    // console.log(rawData);
                     let dataProcess = "";
                     if (rawData != "Data not found please enter agian.") {
                         dataProcess = that.cal_size(rawData)
@@ -173,7 +145,6 @@ App({
                     resolve(dataProcess)
                 },
                 fail(err) {
-                    // console.log("error fetch");
                     resolve("err")
                 },
                 complete() {
@@ -235,22 +206,26 @@ App({
         return textParams;
     },
     MainStackScreen(req) {
-        // console.log(req);
         const textParams = this.ParseParams(req)
-        // console.log(textParams);
         let url = `/pages/search/search?selltype=${req.selltype}${textParams}`
-        console.log(url);
         wx.navigateTo({
             url: url
         })
     },
+
+    GetQuerySearch(req){
+      const textParams = this.ParseParams(req)
+      let url = `/pages/search/search?selltype=${req.selltype}${textParams}`
+      // GetAsset()
+    },
+
     GetLatestAsset() {
         return new Promise((resolve, reject) => {
             wx.request({
                 url: `${config.apiBaseUrl}/api/miniprogramapi/search.php`,
                 method: 'GET',
                 data: {
-                    LANGUAGE: 'zh',
+                    LANGUAGE: config.language,
                     LIMIT: 10,
                     ORDER: 'desc'
                 },
@@ -264,13 +239,14 @@ App({
             });
         })
     },
+
     GetInvestment(offset, lenght) {
         return new Promise((resolve, reject) => {
             wx.request({
                 url: `${config.apiBaseUrl}/api/miniprogramapi/investmentmarket.php`,
                 method: 'GET',
                 data: {
-                    LANGUAGE: "zh",
+                    LANGUAGE: config.language,
                     offset: offset,
                     lenght: lenght,
                 },
@@ -292,7 +268,7 @@ App({
                 method: 'GET',
                 data: {
                     id_doc: id,
-                    LANGUAGE: "zh",
+                    LANGUAGE: config.language,
                 },
                 success(res) {
                     const rawData = res.data.response;
@@ -311,7 +287,7 @@ App({
                 url: `${config.apiBaseUrl}/api/content_document/all_content_api.php`,
                 method: 'GET',
                 data: {
-                    language: "zh",
+                    language: config.language,
                     topic: topic,
                     limit: limit,
                 },
@@ -325,4 +301,6 @@ App({
             });
         })
     },
+
+    
 })

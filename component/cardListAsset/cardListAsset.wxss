@@ -17,7 +17,15 @@
   overflow: hidden;
   font-weight: 600;
 }
-
+.tagcolor {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: white;
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
 .cardProd {
   border-radius: 10px;
   overflow: hidden;
@@ -25,6 +33,7 @@
   background-color: white;
   margin: 15px 0px;
   flex: 0 0 auto; 
+  position: relative;
   
 }
 
@@ -94,4 +103,79 @@
 
 .gap-3 {
   gap: 4px;
+}
+
+.bg-purple {
+  background-color: #800080;
+  color: white;
+}
+
+.bg-lightpurple {
+  background-color: #DDA0DD;
+  color: black;
+}
+
+.bg-green {
+  color: black;
+  background-color: #2E8B57;
+}
+
+.bg-orange {
+  background-color: #FFA500;
+  color: black;
+}
+
+.bg-yellow {
+  background-color: #FFFF00;
+  color: black;
+}
+
+.bg-none {
+  background-color: white;
+  color: black;
+}
+
+.bg-brown {
+  background-color: #8B4513;
+  color: white;
+}
+
+.bg-lightbrown {
+  background-color: #D2B48C;
+  color: black;
+}
+
+.bg-red {
+  background-color: #DC143C;
+  color: white;
+}
+
+.bg-blue {
+  background-color: #0000FF;
+  color: white;
+}
+
+.bg-greendiagonal {
+  background-color: #FFFFFF;
+  background-image: repeating-linear-gradient(45deg,
+      #008000,
+      #008000 5px,
+      #ffffff 5px,
+      #ffffff 10px);
+  color: #000000;
+}
+
+.bg-gray {
+  background-color: #696969;
+  color: white;
+}
+
+.bg-olivegreen {
+  background-color: #808000;
+  color: white;
+}
+
+.bg-pink {
+  background-color: #FFC0CB;
+  color: black;
 }

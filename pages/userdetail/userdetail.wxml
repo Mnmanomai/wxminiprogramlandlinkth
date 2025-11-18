@@ -4,4 +4,4 @@
 </view>
 
 
-<navigation-bar title="userdetail" back="{{true}}" color="black" background="#FFF" />
+<!-- <navigation-bar title="userdetail" back="{{true}}" color="black" background="#FFF" /> -->

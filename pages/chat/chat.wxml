@@ -6,5 +6,5 @@
    
 </view>
 <!-- chat -->
-<navigation-bar title="聊天" back="{{false}}" color="black" background="#FFF" />
+<!-- <navigation-bar title="聊天" back="{{false}}" color="black" background="#FFF" /> -->
 <tabBar current="0" />

@@ -1,15 +1,50 @@
 <!--index.wxml-->
 <view class="page-container">
-
-  <view class="maingroup">
-    <searchbar/>
-    <selecttype/>
-    <packagesearch/>
-    <cardlistcol list="{{dataAsset}}"/>
-    <news />
-  </view>
-
-  <!-- <contact show="{{show}}"/> -->
+    <scroll-view scroll-y="{{true}}" style="height: auto;">
+        <view class="" style="display: flex;flex-direction: column;gap: 10px;">
+            <view class="" style="padding: 0px 8px;">
+                <searchbar />
+            </view>
+            <view class="" style="padding: 10px;">
+                <insideout />
+            </view>
+            <view class="" style="background-color: rgb(238, 237, 237);padding: 30px 8px;margin: 0px;border-top-left-radius: 36px;border-top-right-radius: 36px;">
+                <!-- Asset Latest -->
+                <cardlistcol list="{{dataAsset}}" title="资产最新" />
+                <news />
+                <!-- Chachengsao -->
+                <!-- <view class="" wx:if="{{Array.isArray(datachachengsao)}}">
+                    <cardlistcol provinceno="{{6}}" list="{{datachachengsao}}" title="北柳府" />
+                </view> -->
+                <view class="" wx:if="{{datachachengsao.length > 0}}">
+                    <cardlistcol provinceno="{{6}}" list="{{datachachengsao}}" title="北柳府" />
+                </view>
+                <!-- chonburi -->
+                <view class="" wx:if="{{datachonburi.length > 0}}">
+                    <cardlistcol provinceno="{{12}}" list="{{datachonburi}}" title="春武里府" />
+                </view>
+                <!-- rayong -->
+                <view class="" wx:if="{{datarayong.length > 0}}">
+                    <cardlistcol provinceno="{{53}}" list="{{datarayong}}" title="罗勇府" />
+                </view>
+                <!-- yutya -->
+                <view class="" wx:if="{{datayutya.length > 0}}">
+                    <cardlistcol provinceno="{{46}}" list="{{datayutya}}" title="大城府" />
+                </view>
+                <!-- phathum -->
+                <view class="" wx:if="{{dataphathum.length > 0}}">
+                    <cardlistcol provinceno="{{37}}" list="{{dataphathum}}" title="巴吞他尼府" />
+                </view>
+                <!-- samutprakarn -->
+                <view class="" wx:if="{{datasamutprakarn.length > 0}}">
+                    <cardlistcol provinceno="{{57}}" list="{{datasamutprakarn}}" title="北榄府" />
+                </view>
+                <!-- samutsakorn -->
+                <view class="" wx:if="{{datasamutsakorn.length > 0}}">
+                    <cardlistcol provinceno="{{58}}" list="{{datasamutsakorn}}" title="龙仔厝府" />
+                </view>
+            </view>
+        </view>
+    </scroll-view>
 </view>
-
 <tabBar current="0" />

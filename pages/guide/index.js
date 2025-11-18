@@ -34,12 +34,9 @@ Page({
   },
 
   async onLoad(options) {
-    // console.log(options.id);
-    let res = await app.GetGuide(17);
-    // console.log("res:", res);
+    let res = await app.GetGuide(options.id);
     res['main_pic'] = await this.reurlmain(res['main_pic'])
     res['text_detail'] = await this.checkimages(res);
-    // console.log("datares:", res['text_detail']);
     this.setData({
       contentData: res // เซ็ตค่าที่แก้แล้ว
     });

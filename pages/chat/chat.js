@@ -12,7 +12,9 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad(options) {
-    
+    wx.setNavigationBarTitle({
+      title: '聊天',
+    });
   },
 
   /**

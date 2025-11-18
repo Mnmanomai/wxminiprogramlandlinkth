@@ -13,7 +13,6 @@ Page({
     NextToDistrict(e) {
         const search_detail = e.target.dataset.id
         const search_detail_name = e.target.dataset.name
-        // console.log(search_detail);
         wx.navigateTo({
           url: `/pages/district/district?selltype=${this.data.selltype}&id=${search_detail}&name=${search_detail_name}`
         })

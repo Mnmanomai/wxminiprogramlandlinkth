@@ -28,7 +28,6 @@ Component({
 
     callCustomer() {
       const chatnumber = this.data.customer
-      console.log(chatnumber);
     },
 
     callSupport() {

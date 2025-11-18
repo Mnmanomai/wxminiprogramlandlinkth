@@ -23,7 +23,6 @@ Component({
    */
   methods: {
     nexttoguide(e){
-      // console.log(e);
       let data = e.currentTarget.dataset.id
       wx.navigateTo({
         url: `/pages/guide/index?id=${data}`,

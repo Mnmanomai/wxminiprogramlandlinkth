@@ -1,11 +1,11 @@
 <!--pages/activities/activities.wxml-->
-<navigation-bar title="活动" back="{{false}}" color="black" background="#FFF" />
+<!-- <navigation-bar title="活动" back="{{false}}" color="black" background="#FFF" /> -->
 <tabBar current="1" />
 
 <view class="page-container" style="height: auto;">
-  <van-tabs active="{{ active }}" swipeable sticky offset-top="{{88}}" style="width: 100%;height: auto;">
-    <van-tab title="收藏列表" >
-      <view class="viewInContent">
+  <van-tabs active="{{ active }}" swipeable sticky offset-top="{{0}}" style="width: 100%;height: auto;">
+    <van-tab title="收藏列表">
+      <view class="viewInContent" >
         <view wx:if="{{FlavoriteList .length > 0}}">
           <cardlistasset list="{{FlavoriteList}}" />
         </view>
@@ -14,7 +14,7 @@
         </view>
       </view>
     </van-tab>
-    <van-tab title="隐藏列表">
+    <!-- <van-tab title="推荐商品">
       <view class="viewInContent">
         <view wx:if="{{HiddenList.length > 0}}">
           <cardlistasset list="{{HiddenList}}" />
@@ -23,6 +23,6 @@
           <van-empty image="search" description="没有符合您搜索条件的产品。" />
         </view>
       </view>
-    </van-tab>
+    </van-tab> -->
   </van-tabs>
 </view>

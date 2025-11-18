@@ -1,0 +1,47 @@
+/* component/inoutsideindus/index.wxss */
+
+.card {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.filterfront {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background: linear-gradient(to right,rgba(0, 7, 19, 0.527),rgba(255, 255, 255, 0),rgba(255, 255, 255, 0));
+}
+
+.textHeader{
+  font-size: 20px;
+  font-weight: 700;
+}
+.textDescription{
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.description{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  color: white;
+  z-index: 2;
+  padding: 14px 10px;
+}
+
+.head {
+  height: 400px;
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  flex-direction: column;
+}

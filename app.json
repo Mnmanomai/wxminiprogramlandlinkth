@@ -1,4 +1,5 @@
 {
+  
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
@@ -19,7 +20,8 @@
     "pages/users/users",
     "pages/userssection/userdetail/userdetail",
     "pages/userdetail/detail/detail",
-    "pages/userdetail/userdetail"
+    "pages/userdetail/userdetail",
+    "pages/filtersearchpop/index"
   ],
   "tabBar": {
     "custom": true,
@@ -47,14 +49,15 @@
     ]
   },
   "window": {
-    "backgroundColor": "#1E1E1E",
-    "navigationStyle": "custom",
+    "navigationBarTitleText": "Landlink 泰爱地厂房仓库",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#000000"
+    "backgroundColor": "#f7f7f7",
+    "backgroundTextStyle": "light"
   },
   "style": "v2",
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
+  
 }

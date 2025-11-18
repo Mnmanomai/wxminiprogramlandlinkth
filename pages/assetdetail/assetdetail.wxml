@@ -5,7 +5,7 @@
     <view class="carousel-container">
       <swiper class="carousel" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
         <swiper-item wx:for="{{predata.no_images_asset}}" wx:key="index">
-          <image class="carousel-image" src="{{item}}" mode="aspectFill" lazy-load />
+          <image class="carousel-image" src="{{item}}" data-index="{{index}}" mode="aspectFill" bind:tap="fullscreenpicture" lazy-load />
         </swiper-item>
       </swiper>
     </view>
@@ -117,4 +117,4 @@
   <!-- </view> -->
 </view>
 <!-- asset detail -->
-<navigation-bar title="#{{id}}" back="{{true}}" color="black" background="#FFF" />
+<!-- <navigation-bar title="#{{id}}" back="{{true}}" color="black" background="#FFF" /> -->

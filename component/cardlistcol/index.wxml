@@ -1,6 +1,10 @@
 <!--component/cardlistcol/index.wxml-->
-<view class="" style="display: flex;justify-content: space-between;padding: 0px 10px;align-items: center;">
-    <text class="textHeader">最新资产</text>
+<view class="" style="display: flex;justify-content: space-between;padding: 0px 10px;align-items:flex-end;">
+    <text class="" style="font-weight: 600;">{{title}} </text>
+
+    <view class="" wx:if="{{provinceno != ''}}">
+      <view class="" style="font-size: 10px;" data-province="{{provinceno}}" bind:tap="PackageNonsavednextToSearch">查看全部</view>
+    </view>
 </view>
 <view class="" style="display: flex;gap: 8px;flex-direction: row;overflow-x: auto;">
     <block wx:for="{{list}}" wx:for-index="i" wx:key="i">
@@ -9,8 +13,8 @@
                 <view class="bg-{{item.OriginalColor}}" style="width: 60px;height: 30px;border-radius: 8px;display: flex;justify-content: center;align-items: center;font-weight: 500;font-size: 14px;">{{item.TypeAsset}}</view>
             </view>
             <image src="{{item.no_images_asset}}" style="width: 340px;" lazy-load />
-            <view class="" style="padding: 10px 10px 0px 10px;">
-                <text class="limit2" style="font-style: 18px;">{{item.NameAsset}}</text>
+            <view class="" style="padding: 4px 10px 10px 10px;">
+                <text class="limit2 text-lg" >{{item.NameAsset}}</text>
                 <view class="text-md">
                     <van-icon name="location" /> {{item.Province}}, {{item.District}}
                 </view>

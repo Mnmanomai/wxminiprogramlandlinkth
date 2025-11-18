@@ -34,7 +34,20 @@
 .linelimit {
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  /* จำนวนบรรทัดที่ต้องการ */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.linelimit2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.linelimit4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -61,8 +74,6 @@
   font-weight: 600;
 }
 
-
-
 .parsenews {
   width: 100%;
 }
@@ -86,6 +97,7 @@
   /* margin: 2px; */
   border-radius: 8px;
   width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 .imgchild {
@@ -99,4 +111,54 @@
   width: 100%;
   gap: 8px;
   padding: 10px 0px;
+}
+
+.sectionv2{
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.newCardv2{
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+  height: 120px;
+  width: 100%;
+  overflow: hidden;
+   
+}
+.imagesv2{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 100% 0%;
+}
+
+.sectionimagesv2{
+  width: 270px;
+  overflow: hidden;
+}
+
+.sectiondescriptionv2{
+  width: 100%;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.titlev2{
+  font-size: 12px;
+  font-weight: 500;
+}
+.descriptiontextv2{
+
+  font-size: 10px;
+  color: rgb(78, 78, 78);
+}
+.timev2{
+  font-size: 10px;
 }

@@ -1,7 +1,6 @@
 <!--component/contact/index.wxml-->
 <van-popup show="{{show}}" bind:close="onClose" position="bottom" round>
   <view style="padding: 20px;">
-    
     <button wx:if="{{customer != '' }}" class="option-item" style="width: 100%;" bindtap="callCustomer">
       <van-icon name="chat-o" /> {{language == "en" ? "Chat With Agent" : "与客服聊天"}}
     </button>

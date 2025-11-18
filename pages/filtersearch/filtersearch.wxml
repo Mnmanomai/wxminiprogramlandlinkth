@@ -91,6 +91,4 @@
             </van-tab>
         </van-tabs>
     </view>
-    <!-- Filter Search -->
-    <navigation-bar title="筛选搜索" back="{{true}}" color="black" background="#FFF" />
 </view>

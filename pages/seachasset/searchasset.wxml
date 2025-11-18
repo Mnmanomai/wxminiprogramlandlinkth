@@ -19,4 +19,4 @@
   </view>
 </view>
 <!-- search asset -->
-<navigation-bar title="资产搜索" back="{{true}}" color="black" background="#FFF" />
+<!-- <navigation-bar title="资产搜索" back="{{true}}" color="black" background="#FFF" /> -->

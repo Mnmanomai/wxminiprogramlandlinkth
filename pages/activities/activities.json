@@ -1,7 +1,8 @@
 {
+  
   "usingComponents": {
     "navigation-bar": "/component/navigation-bar/navigation-bar",
-    "tabBar" : "/component/tabBar/tabBar",
+    "tabBar" : "/component/custom-tab-bar/index",
     "cardlistasset" : "/component/cardListAsset/cardListAsset",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",

@@ -9,32 +9,33 @@ Page({
         active: 0,
         ListNoFla: '',
         ListNoHide: '',
-        language : "en",
+        language: "en",
     },
-    
-    onLoad(){
-      this.setData({
-        language : config.language
-      })
+
+    onLoad() {
+        wx.setNavigationBarTitle({
+            title: '活动',
+        });
+        this.setData({
+            language: config.language
+        })
     },
 
     async onShow() {
         const Fladata = await this.getlocalstorate('FlavoriteList')
-        const Hiddata = await this.getlocalstorate('HiddenList')
+        // const Hiddata = await this.getlocalstorate('HiddenList')
         if (Fladata) {
             let process = await this.loadData(Fladata);
             this.setData({
                 FlavoriteList: process,
             });
         }
-
-        if (Hiddata) {
-            let process = await this.loadData(Hiddata);
-            this.setData({
-                HiddenList: process,
-            });
-        }
-
+        // if (Hiddata) {
+        //     let process = await this.loadData(Hiddata);
+        //     this.setData({
+        //         HiddenList: process,
+        //     });
+        // }
     },
 
     getlocalstorate(key) {
@@ -59,7 +60,7 @@ Page({
         const that = this;
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${config.apiBaseUrl}/api/miniprogramapi/search.php?LANGUAGE=zh&MULTILIST=${typeList}`,
+                url: `${config.apiBaseUrl}/api/miniprogramapi/search.php?LANGUAGE=${config.language}&MULTILIST=${typeList}`,
                 method: 'GET',
                 success(res) {
                     const rawData = res.data.response;

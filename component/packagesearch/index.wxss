@@ -7,4 +7,5 @@
   max-width: 100%;
   font-size: 13px;
   font-weight: 500;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.226), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
 }

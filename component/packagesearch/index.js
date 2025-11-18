@@ -22,7 +22,6 @@ Component({
   methods: {
     nextToSearch(e) {
       var province = e.currentTarget.dataset.province ? e.currentTarget.dataset.province : "";
-      // console.log("province : ",province)
       var distric = province == "0000" ? "0000" : "";
       var selltype = e.currentTarget.dataset.selltype ? e.currentTarget.dataset.selltype : "1";
       var indus = e.currentTarget.dataset.indus ? e.currentTarget.dataset.indus : "";
@@ -32,7 +31,6 @@ Component({
       var long = e.currentTarget.dataset.long ? e.currentTarget.dataset.long : "";
       var distancemode = e.currentTarget.dataset.distancemode ? e.currentTarget.dataset.distancemode : "";
       var color = e.currentTarget.dataset.color ? e.currentTarget.dataset.color : "";
-      console.log("testnow")
       const objpushing = {
         selltype:selltype,
         province_id : province,
@@ -45,7 +43,6 @@ Component({
         distancemode : distancemode,
         Color : color,
       }
-      console.log(objpushing)
 
       app.MainStackScreen(objpushing)
     },
