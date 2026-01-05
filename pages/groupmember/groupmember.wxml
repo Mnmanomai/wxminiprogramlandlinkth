@@ -1,0 +1,21 @@
+<!--pages/groupmember/groupmember.wxml-->
+<view class="">
+
+
+  <view class="col">
+    <view class="" wx:for="{{datalist}}" wx:key="list">
+      <view class="row">
+        <image class="images" wx:if="{{item.picture != ''}}" src="{{item.picture}}" mode="aspectFill" />
+        <image class="images" wx:else="{{item.picture != ''}}" src="/asset/landlink.png" mode="aspectFill" />
+        <view class="inrow">
+          <view class="name">{{item.name}}</view>
+          <view class="position">@{{item.role}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+  <!-- <image class="images" src="/asset/landlink.png" mode="aspectFill"/> -->
+</view>

@@ -1,0 +1,31 @@
+<!--component/minicard/index.wxml-->
+<view class="">
+
+
+  <view class="card" data-id="{{AssetId}}" bind:tap="Nexttoasset">
+
+    <view class="bg-{{AssetColor}} tag">{{AssetType}}</view>
+    <image class="images" src="{{Images}}" mode="aspectFill" />
+    <view class="NameAsset">{{AssetName}}</view>
+    <view class="Location">
+      <van-icon name="location" /> {{Province}} , {{District}}
+    </view>
+    <!-- <view class="Price"><van-icon name="gold-coin" /> {{Price}}</view> -->
+    <view class="Area">
+      <view class="">
+        <van-icon name="expand-o" />
+      </view>
+      <view class=""> {{AreaLandRai}} 莱 {{AreaLandNgan}} 颜 {{AreaLandSqw}} sqw </view>
+      <view class="" wx:if="AreaWH">/ 建筑 {{AreaWH}} 平方米 </view>
+    </view>
+    <view class="Time">
+      <van-icon name="clock-o" /> {{Time}}
+    </view>
+    <view class="" wx:if="{{SalePriceBath != 0}}">
+      <view class="Price">฿{{SalePriceBath}}</view>
+    </view>
+    <view class="" wx:else="">
+      <view class="Price">฿{{RentCostPerMonthBath}} / 月.</view>
+    </view>
+  </view>
+</view>

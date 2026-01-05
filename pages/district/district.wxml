@@ -4,7 +4,7 @@
   <view class="" wx:if="{{DisplayDistrict}}" style="padding-bottom: 80px;">
     <van-cell-group>
       <block wx:for="{{DisplayDistrict}}" wx:key="id">
-        <van-cell icon="guide-o" title="{{item.district_name}}" 
+        <van-cell icon="guide-o" title="{{item.district_name}} ({{item.district_name_en}})" 
         data-district="{{item.district_id}}"
         data-province="{{item.province_id}}"
         data-namedistric="{{item.district_name}}"

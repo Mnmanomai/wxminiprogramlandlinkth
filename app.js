@@ -1,25 +1,55 @@
 const config = require("./config");
 App({
-    onLaunch() {
-        // 展示本地存储能力
-        const logs = wx.getStorageSync('logs') || []
-        logs.unshift(Date.now())
-        wx.setStorageSync('logs', logs)
-
-        // 登录
-        wx.login({
-            success: res => {
-                // 发送 res.code 到后台换取 openId, sessionKey, unionId
-            }
-        })
-        wx.hideTabBar({
-            animation: true
-        });
+    async onLaunch() {
+        await this.LoginWechat()
     },
     globalData: {
-        userInfo: null
+        userInfo: null,
+        bufferlist: [],
     },
+    async LoginWechat() {
+        wx.login({
+            success: (res) => {
+                if (res.code) {
+                    wx.request({
+                        url: `${config.PublicIPCallApiGoBackend}/auth/wechat/login`,
+                        method: 'POST',
+                        data: JSON.stringify({
+                            code: res.code
+                        }),
+                        header: {
+                            'content-type': 'application/json'
+                        },
+                        success: (result) => {
+                            var datadetail = result.data
+                            var token = datadetail.token;
+                            var username = datadetail.firstname;
+                            var lastname = datadetail.lastname;
+                            var picture = datadetail.picture;
+                            wx.setStorage({
+                                key: "usersdetail",
+                                data: {
+                                    token: token,
+                                    firstname: username,
+                                    lastname: lastname,
+                                    picture: picture,
+                                },
+                                success() {},
+                                fail(err) {}
+                            });
+                        }
+                    })
+                }
+            },
+        })
 
+        // wx.getStorage({
+        //     key: "usersdetail",
+        //     success(res) {},
+        //     fail(res) {
+        // }
+        // })
+    },
     async localStorageGet(key_storage) {
         return new Promise((resolve, reject) => {
             wx.getStorage({
@@ -118,7 +148,7 @@ App({
                     SELLTYPE: request.selltype || '',
                     LANGUAGE: config.language,
                     LIMIT: request.limit,
-                    ORDER : request.order,
+                    ORDER: request.order,
                     OFFSET: request.offset,
                     PROVINCE: request.province || '',
                     DISTRICT: request.district || '',
@@ -154,16 +184,18 @@ App({
         })
     },
     cal_size(rawData) {
-        const process = rawData.map(item => {
-            const price = item.typeassetn === "1" ?
-                (item.LandSizeRai * 400) + (item.LandSizeNgan * 100) + item.LandSizeSQW + " 平方米" :
-                item.WHSizeSQM + " 平方米";
-            return {
-                ...item,
-                price
-            };
-        });
-        return process;
+        if (rawData) {
+            const process = rawData.map(item => {
+                const price = item.typeassetn === "1" ?
+                    (item.LandSizeRai * 400) + (item.LandSizeNgan * 100) + item.LandSizeSQW + " 平方米" :
+                    item.WHSizeSQM + " 平方米";
+                return {
+                    ...item,
+                    price
+                };
+            });
+            return process;
+        }
     },
     ParseParams(req) {
         // province n district
@@ -212,13 +244,11 @@ App({
             url: url
         })
     },
-
-    GetQuerySearch(req){
-      const textParams = this.ParseParams(req)
-      let url = `/pages/search/search?selltype=${req.selltype}${textParams}`
-      // GetAsset()
+    GetQuerySearch(req) {
+        const textParams = this.ParseParams(req)
+        let url = `/pages/search/search?selltype=${req.selltype}${textParams}`
+        // GetAsset()
     },
-
     GetLatestAsset() {
         return new Promise((resolve, reject) => {
             wx.request({
@@ -239,7 +269,6 @@ App({
             });
         })
     },
-
     GetInvestment(offset, lenght) {
         return new Promise((resolve, reject) => {
             wx.request({
@@ -260,7 +289,6 @@ App({
             });
         })
     },
-
     GetGuide(id) {
         return new Promise((resolve, reject) => {
             wx.request({
@@ -280,7 +308,6 @@ App({
             });
         })
     },
-
     GetContent(topic, limit) {
         return new Promise((resolve, reject) => {
             wx.request({
@@ -301,6 +328,4 @@ App({
             });
         })
     },
-
-    
 })

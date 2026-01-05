@@ -4,6 +4,8 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-icon": "@vant/weapp/icon/index",
     "cardlistasset" : "/component/cardListAsset/cardListAsset",
-    "contact" : "/component/contact/index"
+    "contact" : "/component/contact/index",
+    "userprofile" : "/component/userprofile/index",
+    "minimenu" : "/component/minicard/index"
   }
 }

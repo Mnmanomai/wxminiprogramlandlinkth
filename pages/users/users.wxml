@@ -1,8 +1,10 @@
 <!--pages/users/users.wxml-->
 <view class="page-container">
 
-  <headercover/>
-  <menulist/>
+  <headercover firstname="{{firstname}}" lastname="{{lastname}}" picture="{{images}}"/>
+  <menulist bind:triggersupport="popupsupport"/>
   <!-- <navigation-bar title="投资市场" back="{{false}}" color="black" background="#FFF" /> -->
   <tabBar current="0" />
+
+  <contact show="{{showcontact}}"/>
 </view>

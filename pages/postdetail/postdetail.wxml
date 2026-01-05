@@ -1,0 +1,29 @@
+<view class="page">
+
+  <!-- พื้นที่เลื่อน -->
+  
+  <scroll-view scroll-y="true" class="scroll-area" scroll-with-animation="true" scroll-top="{{scrollTop}}">
+    <view class="">
+      <feed donttouch="{{false}}" no="{{post.uid}}" picturepost="{{post.create_by_pic}}" namepost="{{post.create_by_name}}" time="{{post.create_datetime}}" commentcount="{{post.comment_count}}" detail="{{post.textdetail}}"/>  
+    </view>
+    
+    <view style="padding: 4px 4px;padding-bottom: {{paddingbottomcontent}}px;">
+      <block wx:for="{{comment}}" wx:key="comment">
+        <comment comment="{{item.textdetail}}" postimage="{{item.create_by_pic}}" postname="{{item.create_by_name}}" time="{{item.create_datetime}}"/>  
+      </block>
+    </view>
+
+    <view style="height: {{keyboardHeight}}px;"></view>
+  </scroll-view>
+
+  <!-- INPUT BAR -->
+  <view class="input-bar" style="bottom: {{keyboardHeight}}px;padding-bottom: {{paddingbottominput}}px;">
+    <view style="width: 90%;">
+      <textarea class="text-input" bindinput="setTextdetail" value="{{textdetail}}" bindfocus="onFocus" bindblur="onBlur" bindlinechange="onLineChange" />
+    </view>
+    <view style="width:10%;">
+      <van-icon name="guide-o" style="color: rgb(139, 139, 139);" size="22" bind:tap="sentComment"/>
+    </view>
+  </view>
+
+</view>

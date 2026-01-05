@@ -1,5 +1,5 @@
 <!--component/filternsortsearch/index.wxml-->
-<van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" cancel-text="取消" />
+<van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" />
 
 <view class="maintab">
   <view class="subtab" style="width: 100%;" bind:tap="goToFilter">
@@ -13,7 +13,7 @@
     <view class="bordercircle">
       <van-icon name="list-switch" size="22" />
       <!-- sort -->
-      <view class="">种类</view>
+      <view class="">排序</view>
     </view>
   </view>
 </view>

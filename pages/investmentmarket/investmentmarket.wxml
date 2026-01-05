@@ -1,12 +1,6 @@
 <!--pages/investmentmarket/investmentmarket.wxml-->
-<view class="" style="min-height: 100vh;">
-  <view class="page-container">
-    <cardInvestment list="{{dataInvest}}" bind:sendData="onReceiveData"/>
-  </view>
-
-  <contact show="{{show}}"/>
-
-  <!-- Investment market -->
-  <!-- <navigation-bar title="投资市场" back="{{false}}" color="black" background="#FFF" /> -->
-  <tabBar current="0" />
+<view class="page-container">
+  <cardInvestment list="{{dataInvest}}" bind:sendData="onReceiveData" />
 </view>
+<contact show="{{show}}" />
+<tabBar current="0" />

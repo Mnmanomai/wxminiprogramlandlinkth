@@ -1,68 +1,59 @@
 // pages/chat/chat.js
+const app = getApp();
+const config = require("../../config");
 Page({
 
-  /**
-   * Page initial data
-   */
-  data: {
+    /**
+     * Page initial data
+     */
+    data: {
+        chatlist: [],
+    },
 
-  },
+    /**
+     * Lifecycle function--Called when page load
+     */
+    async onLoad() {
+        wx.setNavigationBarTitle({
+            title: '聊天',
+        });
+    },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad(options) {
-    wx.setNavigationBarTitle({
-      title: '聊天',
-    });
-  },
+    async onShow() {
+        let data = await this.getChatList();
+        this.setData({
+            chatlist: data.data
+        })
+        
+    },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady() {
 
-  },
 
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow() {
+    async getChatList() {
+        const tokenrequest = await new Promise((resolve, reject) => {
+            wx.getStorage({
+                key: 'usersdetail',
+                success(res) {
+                    resolve(res.data.token)
+                },
+                fail(err) {
+                    reject(err)
+                }
+            })
+        });
 
-  },
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${config.PublicIPCallApiGoBackend}/community/group/getgroupchat`,
+                method: 'GET',
+                header: {
+                    'Authorization': 'Bearer ' + tokenrequest
+                },
+                success(res) {
+                    resolve(res.data)
+                },
+            })
+        })
+    }
 
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide() {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage() {
-
-  }
 })

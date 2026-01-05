@@ -1,0 +1,63 @@
+/* component/feeds/index.wxss */
+.cardfeed{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgb(255, 255, 255);
+  
+}
+
+.contentheader{
+  padding: 10px 10px 0px 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.imagesperson {
+  width: 50px;
+  height: 50px;
+  background: rgb(255, 255, 255);
+  border-radius: 100%;
+}
+
+.postername{
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.time{
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+
+}
+
+.headerdetail{
+  display: flex;
+  flex-direction: column;
+}
+
+.contentdetail{
+  padding: 0px 10px;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.contentabout{
+  padding: 0px 10px 10px 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+
+.aboutlist{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+}

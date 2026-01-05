@@ -1,3 +1,4 @@
+const config = require("../../../config");
 // component/user/menu/index.js
 Component({
 
@@ -12,7 +13,7 @@ Component({
    * Component initial data
    */
   data: {
-
+    language : config.language
   },
 
   /**
@@ -21,16 +22,24 @@ Component({
   methods: {
     gotoPage(e) {
       const url = e.currentTarget.dataset.url;
+      (url);
       wx.switchTab({
         url: url,
       })
     },
 
-    openTab(e){
+    openTab(e) {
+      
       const url = e.currentTarget.dataset.url;
       wx.navigateTo({
         url: url,
       })
+    },
+
+    supportTrigger(){
+      this.triggerEvent('triggersupport',true)
     }
+
+
   }
 })

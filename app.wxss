@@ -1,5 +1,6 @@
 /**app.wxss**/
 .page-container {
   padding-bottom: 100px;
-  background: white;
+  /* background: linear-gradient(to bottom,rgba(56, 135, 252, 0.719) 0%,rgba(255, 255, 255, 0.6) 5%,rgba(255, 255, 255, 0.4) 8%); */
+  max-height: 100vh;
 }

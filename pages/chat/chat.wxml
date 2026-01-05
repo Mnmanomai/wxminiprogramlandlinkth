@@ -1,10 +1,12 @@
 <!--pages/chat/chat.wxml-->
 <view class="page-container">
-    <view class="" style="height: 100vh;">
-          <chatlist/>
+  <view class="" style="height: 100vh;">
+    <view class="" wx:if="{{chatlist}}">
+      <block wx:for="{{chatlist}}" wx:key="chatno">
+        <chatlist chatno="{{item.group_id}}" picture="{{item.group_images}}" namechat="{{item.group_name}}" notinew="{{item.notinew}}" textnew="{{item.textnew}}" timenew="{{item.timenewtext}}" unreadno="{{item.unreadmsg}}"/>
+      </block>
     </view>
-   
+  </view>
 </view>
 <!-- chat -->
-<!-- <navigation-bar title="聊天" back="{{false}}" color="black" background="#FFF" /> -->
 <tabBar current="0" />

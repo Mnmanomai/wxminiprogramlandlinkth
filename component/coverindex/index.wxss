@@ -2,10 +2,9 @@
 .cover {
   width: auto;
   height: auto;
-  padding: 4px 0px;
-  /* background-color: teal; */
+  padding: 0px 0px;
 }
 .images{
-  border-radius: 16px;
+  /* border-radius: 16px; */
   width: 100%;
 }

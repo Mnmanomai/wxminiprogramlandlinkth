@@ -4,6 +4,7 @@
     "navigation-bar": "/component/navigation-bar/navigation-bar",
     "tabBar" : "/component/custom-tab-bar/index",
     "menulist" : "/component/user/menu/index",
-    "headercover" : "/component/user/headercover/index"
+    "headercover" : "/component/user/headercover/index",
+    "contact" : "/component/contact/index"
   }
 }

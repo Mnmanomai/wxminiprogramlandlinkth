@@ -1,5 +1,5 @@
 {
-  "navigationStyle": "custom",
+  
   "usingComponents": {
     "tabBar" : "/component/custom-tab-bar/index",
     "news":"/component/news/news",
@@ -7,6 +7,7 @@
     "cardlistcol" : "/component/cardlistcol/index",
     "packagesearch" : "/component/packagesearch/index",
     "selecttype" : "/component/selecttype/index",
-    "insideout" : "/component/inoutsideindus/index"
+    "insideout" : "/component/inoutsideindus/index",
+    "cover" : "/component/coverindex/index"
   }
 }

@@ -5,62 +5,47 @@ Page({
    * Page initial data
    */
   data: {
-
+    firstname: '',
+    lastname: '',
+    images: '',
+    position: '',
+    showcontact : false
   },
 
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad(options) {
+  async onLoad(options) {
+    await this.setdatauser()
+
 
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady() {
-
+  async setdatauser() {
+    const datalist = await this.getStorage();
+    (datalist.data); 
+    const detaildata = datalist.data
+    this.setData({
+      firstname : detaildata.firstname,
+      lastname : detaildata.lastname,
+      images : detaildata.picture,
+    })
   },
 
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow() {
-
+  async getStorage(){
+    return new Promise((reslove, reject) => {
+      wx.getStorage({
+        key: 'usersdetail',
+        success(option) {
+          reslove(option)
+        }
+      })
+    })
   },
 
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide() {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage() {
-
+  popupsupport(){
+    this.setData({
+      showcontact : true
+    })
   }
 })

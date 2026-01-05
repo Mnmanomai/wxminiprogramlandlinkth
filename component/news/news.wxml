@@ -26,15 +26,15 @@
     <view class="sectionv2">
         <block wx:for="{{news}}" wx:key="id">
             <view class="newCardv2" bind:tap="Goto" data-url="/pages/guide/index?id={{item.ID}}">
-                <view class="sectionimagesv2">
-                    <image class="imagesv2" src="{{item.main_pic}}" />
-                </view>
                 <view class="sectiondescriptionv2">
                     <text class="linelimit2 titlev2">{{item.title}}</text>
-                    <text class="linelimit4 descriptiontextv2">{{item.overview}}</text>
+                    <!-- <text class="linelimit4 descriptiontextv2">{{item.overview}}</text> -->
                     <view class="linelimit2 timev2">
                         <van-icon name="clock-o" size="10px"/>
                      {{item.datetime_create}}</view>
+                </view>
+                <view class="sectionimagesv2">
+                    <image class="imagesv2" src="{{item.main_pic}}" />
                 </view>
             </view>
         </block>

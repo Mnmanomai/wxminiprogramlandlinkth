@@ -4,9 +4,9 @@
     <button wx:if="{{customer != '' }}" class="option-item" style="width: 100%;" bindtap="callCustomer">
       <van-icon name="chat-o" /> {{language == "en" ? "Chat With Agent" : "与客服聊天"}}
     </button>
-    <button class="option-item" style="width: 100%;" open-type="contact">
+    <!-- <button class="option-item" style="width: 100%;" open-type="contact">
       <van-icon name="chat-o" /> {{language == "en" ? "Chat With Landlink" : "与 Landlink 聊天"}}
-    </button>
+    </button> -->
     <button class="option-item" style="width: 100%;" bindtap="callSupport">
       <van-icon name="phone-o" /> {{language == "en" ? "Call With Landlink" : "与 Landlink 通话"}}
     </button>

@@ -1,10 +1,10 @@
 <!--pages/province/province.wxml-->
 <view class="page-container">
-    <van-search value="{{ value }}" placeholder="请输入搜索关键词" id="provinceSearch" bind:change="filterProvince" />
+  <van-search value="{{ value }}" placeholder="请输入搜索关键词" id="provinceSearch" bind:change="filterProvince" />
   <view class="" wx:if="{{DisplayProvince}}" style="padding-bottom: 80px;">
     <van-cell-group>
       <block wx:for="{{DisplayProvince}}" wx:key="id">
-        <van-cell icon="guide-o" title="{{item.province_name}}" data-id="{{item.province_id}}" data-name="{{item.province_name}}" bind:tap="NextToDistrict" />
+        <van-cell icon="guide-o" title="{{item.province_name}} ({{item.province_name_en}})" data-id="{{item.province_id}}" data-name="{{item.province_name}}" bind:tap="NextToDistrict" />
       </block>
     </van-cell-group>
   </view>

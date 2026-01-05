@@ -1,7 +1,7 @@
 <!--component/inoutsideindus/index.wxml-->
 <view class="" style="padding: 0px;">
     <view class="head">
-        <view class="card" bind:tap="nextToSearch" data-indus="1">
+        <view class="card" bind:tap="nextToSearch" data-indus="2">
             <view class="filterfront"></view>
             <view class="description">
                 <view class="textHeader">IEAT工业区内</view>
@@ -9,7 +9,7 @@
             </view>
             <image src="/asset/industrail.png" style="height: 100%;width: 100%;filter: brightness(0.7);" mode="aspectFill" />
         </view>
-        <view class="card" bind:tap="nextToSearch" data-indus="2">
+        <view class="card" bind:tap="nextToSearch" data-indus="1">
             <view class="filterfront"></view>
             <view class="description">
                 <view class="textHeader">工业区外 </view>

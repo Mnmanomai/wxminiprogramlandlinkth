@@ -1,0 +1,35 @@
+/* pages/groupmember/groupmember.wxss */
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.row {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  /* background: rgb(185, 133, 133); */
+  padding: 4px 10px 4px 10px;
+}
+
+.inrow {}
+
+.name {
+  text-transform: capitalize;
+}
+
+.position {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.7);
+  text-transform: capitalize;
+}
+
+.images {
+  height: 60px;
+  width: 60px;
+  background: white;
+  border-radius: 100%;
+}

@@ -1,5 +1,4 @@
 <!--component/coverindex/index.wxml-->
 <view class="cover">
   <image class="images" src="../../asset/cover.png" mode="widthFix"/>
-  
 </view>

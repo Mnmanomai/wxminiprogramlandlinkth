@@ -1,7 +1,7 @@
 <!--pages/seachasset/searchasset.wxml-->
 <view class="page-container">
   <view class="" style="min-height: 100vh;">
-    <van-search value="{{ value }}" placeholder="#no or asset name" use-action-slot bind:change="onChange">
+    <van-search value="{{ value }}" placeholder="#资产编号 或 资产名称" use-action-slot bind:change="onChange">
       <view slot="action" bind:tap="onclicksearch">搜索</view>
     </van-search>
     <view class="" wx:if="{{loading}}">
@@ -12,7 +12,7 @@
     <view class="" wx:else="">
       <van-cell-group>
         <block wx:for="{{fetchData}}" wx:key="fetch">
-          <van-cell icon="search" title="{{item.assetName}}" is-link link-type="navigateTo" url="/pages/assetdetail/assetdetail?id={{item.assetId}}" />
+          <van-cell icon="search" title="{{item.assetName}} " is-link link-type="navigateTo" url="/pages/assetdetail/assetdetail?id={{item.assetId}}" />
         </block>
       </van-cell-group>
     </view>

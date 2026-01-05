@@ -1,1 +1,4 @@
 /* pages/chat/chat.wxss */
+.page-container{
+  background: rgb(241, 241, 241);
+}

@@ -7,7 +7,7 @@
   <!-- Investment / 急投意向 -->
   <van-tabbar-item icon="bullhorn-o"></van-tabbar-item> 
   <!-- Investment / 急投意向 -->
-  <!-- <van-tabbar-item icon="chat-o"></van-tabbar-item>  -->
-  <!-- <van-tabbar-item icon="user-o"></van-tabbar-item>  -->
+  <van-tabbar-item icon="chat-o"></van-tabbar-item> 
+  <van-tabbar-item icon="user-o"></van-tabbar-item> 
   <!-- Massage / 按摩 -->
 </van-tabbar>

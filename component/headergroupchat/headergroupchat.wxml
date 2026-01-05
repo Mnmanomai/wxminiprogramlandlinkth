@@ -1,0 +1,14 @@
+<!--component/headergroupchat/headergroupchat.wxml-->
+<view class="" style="position: relative;height: 30px;padding-block: 10px;background-color: white;padding-inline: 10px;display: flex;justify-content: space-between;">
+  <view class="limit1" style="font-size: 16px;font-weight: 600;text-transform: capitalize;height: 23px;">{{namegroup}}</view>
+  <van-icon name="ellipsis" size="18" bind:tap="showPopup" />
+
+</view>
+
+<van-popup show="{{ show }}" position="bottom" custom-style="height: 20%" bind:close="onClose" >
+  <view class="" style="display: flex;flex-direction: column;gap:1px;background-color: slategray;">
+    <view class="listPopup" bind:tap="goToAsset">前往资产 <!--Goto Asset--></view>
+    <view class="listPopup" bind:tap="goToGroupProfile">群组简介 <!--Group Profile--></view>
+    <view class="listPopup" bind:tap="goToGroupMember">群组成员 <!--Group Member--></view>
+  </view>
+</van-popup>

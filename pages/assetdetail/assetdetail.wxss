@@ -93,7 +93,9 @@
 }
 
 .mainGroupFunc {
-  display: flex;width: 100%;
+  display: flex;
+  width: 100%;
+  align-items: center;
   /* width: 100px; */
   /* display: flex; */
   /* justify-content: start; */
@@ -101,7 +103,8 @@
 }
 
 .subGroupFunc {
-  display: inline;width: 100%;
+  display: inline;
+  width: 100%;
 }
 
 .btnGroupfunc {
@@ -156,4 +159,50 @@
   background-color: white;
   width: 100%;
   font-weight: 400;
+}
+
+.TagAssetName{
+  width: 100%;word-break: break-word; overflow-wrap: break-word;font-size: 18px;font-weight: 400;
+}
+
+.suggesstionpart{
+  display: flex;
+  /* background-color: rgb(119, 80, 33); */
+  padding: 10px 1px;
+  gap: 6px;
+  overflow-y: scroll;
+}
+.textSuggestion{
+  color: rgb(26, 25, 94);
+  font-weight: 600;
+}
+
+.SectionSuggesstion{
+  padding: 10px 0px;
+}
+
+.movable-area {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* กันไม่ให้บังหน้าจอ */
+  z-index: 999;
+}
+
+.support-btn {
+  width: 56px;
+  height: 56px;
+  background: #fcfcfc;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  line-height: 56px;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  pointer-events: auto;
 }

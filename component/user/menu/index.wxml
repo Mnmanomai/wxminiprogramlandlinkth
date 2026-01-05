@@ -5,37 +5,33 @@
         <view class="">
             <van-icon name="contact-o" class="icon" size="40"/>
         </view>
-        <view class="textmenu">Account</view>
+        <view class="textmenu">{{language == "zh" ? '帐户' : 'Account'}}</view>
     </view>
-
     <view class="menu" bind:tap="gotoPage" data-url="/pages/activities/activities">
         <view class="">
             <van-icon name="like-o" class="icon" size="40"/>
         </view>
-        <view class="textmenu">Like</view>
+        <view class="textmenu">{{language == "zh" ? '收藏夹' : 'Like'}}</view>
     </view>
 
     <view class="menu" bind:tap="gotoPage" data-url="/pages/investmentmarket/investmentmarket">
         <view class="">
             <van-icon name="bullhorn-o" class="icon" size="40"/>
         </view>
-        <view class="textmenu">Investment</view>
+        <view class="textmenu">{{language == "zh" ? '寻找资产' : 'Investment'}}</view>
     </view>
 
     <view class="menu" bind:tap="gotoPage" data-url="/pages/chat/chat">
         <view class="">
             <van-icon name="chat-o" class="icon" size="40"/>
         </view>
-        <view class="textmenu">Chat</view>
+        <view class="textmenu">{{language == "zh" ? '聊天' : 'Chat'}}</view>
     </view>
 
-    <view class="menu" >
+    <view class="menu" bind:tap="supportTrigger">
         <view class="">
             <van-icon name="service-o" class="icon" size="40"/>
         </view>
-        <view class="textmenu">Support</view>
+        <view class="textmenu">{{language == "zh" ? '支持' : 'Support'}}</view>
     </view>
-
-
-
 </view>

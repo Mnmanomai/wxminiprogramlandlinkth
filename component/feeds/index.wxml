@@ -1,0 +1,37 @@
+<!--component/feeds/index.wxml-->
+<view class="cardfeed" bind:tap="Nexttopostdetail" data-idfeed="{{no}}">
+  <view class="contentheader">
+    <!-- images -->
+    <view style="flex: 1;" class="">
+      <view class="" wx:if="{{picturepost != ''}}">
+        <image src="{{picturepost}}" class="imagesperson" mode="scaleToFill" />
+      </view>
+      <view class="" wx:else="">
+        <image src="/asset/landlink.png" class="imagesperson" mode="scaleToFill" />
+      </view>
+    </view>
+    <!-- headerdetail -->
+    <view style="flex: 8;" class="headerdetail">
+      <view class="postername">{{namepost}}</view>
+      <view class="time">{{time}}</view>
+    </view>
+    <view style="flex: 1;" class="">
+      <!-- <van-icon name="arrow-up" size="20"/> -->
+    </view>
+  </view>
+  <view class="contentdetail">
+    {{detail}}
+  </view>
+  <view class="contentabout">
+    <!-- <view class="aboutlist">
+            <van-icon name="good-job-o" size="20" />
+            <text>10</text>
+        </view> -->
+    <view class="aboutlist">
+      <van-icon name="comment-o" size="20" />
+      <text>{{commentcount}}</text>
+      <view class="" wx:if="{{commentlatest}}" style="color: rgb(0,0,0,0.7);font-size: 12px;">({{commentlatest}})</view>
+    </view>
+  </view>
+
+</view>

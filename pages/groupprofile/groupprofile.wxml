@@ -1,0 +1,22 @@
+<!--pages/groupprofile/groupprofile.wxml-->
+<view class="page-container">
+    <view class="sectionaction">
+      <image wx:if="{{images != ''}}" bind:tap="uploadprofile" src="{{images}}" class="images" mode="aspectFill"/>
+      <image wx:else="{{images != ''}}" bind:tap="uploadprofile" src="/asset/landlink.png" class="images" mode="aspectFill"/>
+    </view>
+    <view class="sectionText">
+      <view class="boxtext">
+        <input type="text" value="{{groupname}}" bindinput="setName" class="textbox" placeholder="Group name" maxlength="60"/>
+      </view>
+    </view>
+
+    <view class="sectionText">
+      <view class="buttonsubmit" bind:tap="ChangeName">submit</view>
+    </view>
+    
+</view>
+
+<canvas 
+  canvas-id="compressCanvas" 
+  style="width: 0; height: 0;"
+></canvas>

@@ -1,6 +1,27 @@
 <!--pages/userdetail/userdetail.wxml-->
 <view class="page-container">
 
+  <view class="section-images">
+    
+    <image wx:if="{{images != ''}}" bind:tap="uploadprofile" src="{{images}}" class="images" mode="aspectFill"/>
+    <image wx:else="{{images != ''}}" bind:tap="uploadprofile" src="/asset/landlink.png" class="images" mode="aspectFill"/>
+  </view>
+
+  <van-cell-group>
+    <!-- name -->
+    <van-field label="姓名" required value="{{ name }}" placeholder="请输入用户名" border="{{ false }}" bind:change="onChangeName" />
+    <!-- lastname -->
+    <van-field label="姓" required value="{{ lastname }}" placeholder="请输入用户名" border="{{ false }}" bind:change="onChangeLastname" />
+    <!-- email -->
+    <van-field label="电子邮件" value="{{ email }}" placeholder="abcd@email.com" border="{{ false }}" bind:change="onChangeEmail" />
+    <!-- phonenumber -->
+    <van-field label="电话号码" value="{{ phonenumber }}" placeholder="+86123456789" border="{{ false }}" bind:change="onChangePhone" />
+  </van-cell-group>
+
+  <view class="" style="padding: 10px">
+    <view class="buttonsave" bind:tap="saveInfo">节省<!--Save--></view>
+  </view>
+  
 </view>
 
 

@@ -1,20 +1,20 @@
 <!--component/cardlistcol/index.wxml-->
-<view class="" style="display: flex;justify-content: space-between;padding: 0px 10px;align-items:flex-end;">
-    <text class="" style="font-weight: 600;">{{title}} </text>
-
+<view class="" style="display: flex;justify-content: space-between;padding: 0px 0px;align-items:flex-end;position: relative;">
+    <view class="" style="background-color: rgb(3, 3, 139);position: absolute;top: 0px;left: 0px;height: 100%;width: 4px;"></view>
+    <text class="" style="font-weight: 600;padding: 0px 8px;">{{title}} </text>
     <view class="" wx:if="{{provinceno != ''}}">
-      <view class="" style="font-size: 10px;" data-province="{{provinceno}}" bind:tap="PackageNonsavednextToSearch">查看全部</view>
+        <view class="" style="font-size: 10px;" data-province="{{provinceno}}" bind:tap="PackageNonsavednextToSearch">查看全部</view>
     </view>
 </view>
-<view class="" style="display: flex;gap: 8px;flex-direction: row;overflow-x: auto;">
+<view class="" style="display: flex;gap: 10px;flex-direction: row;overflow-x: auto;">
     <block wx:for="{{list}}" wx:for-index="i" wx:key="i">
-        <view class="" style=" border-radius: 10px;overflow: hidden;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);background-color: white;margin: 15px 0px;flex: 0 0 auto; width: 340px;position: relative;" data-id="{{item._id}}" bind:tap="goToDetail">
+        <view class="" style=" border-radius: 10px;overflow: hidden;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);background-color: white;margin: 10px 0px;flex: 0 0 auto; width: 340px;position: relative;" data-id="{{item._id}}" bind:tap="goToDetail">
             <view class="" style="position: absolute;top:5px;left: 5px;">
                 <view class="bg-{{item.OriginalColor}}" style="width: 60px;height: 30px;border-radius: 8px;display: flex;justify-content: center;align-items: center;font-weight: 500;font-size: 14px;">{{item.TypeAsset}}</view>
             </view>
             <image src="{{item.no_images_asset}}" style="width: 340px;" lazy-load />
             <view class="" style="padding: 4px 10px 10px 10px;">
-                <text class="limit2 text-lg" >{{item.NameAsset}}</text>
+                <text class="limit2 text-lg">{{item.NameAsset}}</text>
                 <view class="text-md">
                     <van-icon name="location" /> {{item.Province}}, {{item.District}}
                 </view>
@@ -32,7 +32,7 @@
                     <view class="" style="display: flex;width:100%;gap: 4px;">
                         <text class="tagdetail">{{item.TypeSell}}</text>
                         <text class="tagdetail">{{item.TypeAsset}}</text>
-                        <text class="tagdetail">{{item.IndusZone}}</text>
+                        <text wx:if="{{item.typeindus == 2}}" class="tagdetail">I-EA-T</text>
                     </view>
                     <view class="" style="width:100%;text-align: end;">
                         <view class="" wx:if="{{ item.typeselln === '2' }}">

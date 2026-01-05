@@ -1,0 +1,23 @@
+<!--component/comment/index.wxml-->
+<view class="" style="padding: 6px 0px;">
+    <view class="" style="display: flex;gap: 6px;align-items: stretch;">
+        <view class="" style="width: 12%;">
+            <view class="" wx:if="{{postimage != ''}}">
+              <image src="{{postimage}}" style="width: 50px;height: 50px;border-radius: 100%;" mode="aspectFit"/>
+            </view>
+            <view class="" wx:else="">
+              <image src="/asset/landlink.png" style="width: 50px;height: 50px;border-radius: 100%;" mode="aspectFit"/>
+            </view>
+            
+        </view>
+        <view class="" style="width: 80%;">
+            <view class="" style="background-color: burlywood;width: 100%;padding: 12px;border-radius: 12px;">
+                <view class="" style="display: flex;flex-direction: column;">
+                    <view class="" style="font-weight: 500;font-size: 14px;text-transform: capitalize;">{{postname}}</view>
+                    <view class="" style="font-size: 13px;">{{comment}}</view>
+                </view>
+            </view>
+            <view class="" style="font-size: 12px;">{{time}}</view>
+        </view>
+    </view>
+</view>

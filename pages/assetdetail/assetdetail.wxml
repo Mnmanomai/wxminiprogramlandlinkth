@@ -1,6 +1,5 @@
 <!--pages/assetdetail/assetdetail.wxml-->
 <view class="page-container">
-  <!-- <view scroll-y="true" style="height: calc(100vh - 100px);"> -->
   <scroll-view scroll-y="true" style="height: 100vh;" scroll-into-view="{{toView}}">
     <view class="carousel-container">
       <swiper class="carousel" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
@@ -9,56 +8,71 @@
         </swiper-item>
       </swiper>
     </view>
-    <view class="" style="padding: 10px 25rpx;width: 100%;">
-      <view class="" style="margin-top: 20rpx;margin-bottom: 20rpx;">
+    <view class="" style="width: 100%;padding-bottom: 0px;">
+      <view class="" style="margin: 20rpx 10px">
         <view class="" style="display: flex;gap: 4px;margin:4px 0px">
           <view class="tagHeading">{{predata.TypeSell}}</view>
           <view class="tagHeading">{{predata.TypeAsset}}</view>
         </view>
-
-        <view class="font-medium text-4xl" style="width: 100%;word-break: break-word; overflow-wrap: break-word;font-size: 18px;font-weight: 400;">#{{predata._id}} {{predata.NameAsset}} </view>
+        <view class="TagAssetName">#{{predata._id}} {{predata.NameAsset}} </view>
         <view class="text-muted">{{predata.District}}, {{predata.Province}} </view>
+
+        <!-- Price Per bath or Rent per Month -->
         <view class="" wx:if="{{predata.RentCostPerMonthBath != '0'}}">
-          <view class="font-medium text-xl flex gap-2">
+          <view class="font-medium text-xl flex gap-2" style="font-size: 18px;font-weight: 400;">
             ฿{{predata.RentCostPerMonthBath}} / mo
             <label class="tagBath">Baht</label>
           </view>
         </view>
         <view class="" wx:if="{{predata.SalePriceBath != '0'}}">
-          <view class="font-medium text-xl flex gap-2" style="align-items: flex-end;">
+          <view class="font-medium text-xl flex gap-2" style="font-size: 18px;font-weight: 400;align-items: flex-end;">
             ฿{{predata.SalePriceBath}}
             <label class="tagBath">Baht</label>
           </view>
         </view>
+
+        <view class="text-muted" style="font-size: 14px;">฿{{predata.BathPerSQM}} {{language == "en" ? "Bath / SQM" :"泰铢/平方米"}} {{language == "en" ? "(Land)" : "(土地)"}}</view>
+        <view class="text-muted" style="font-size: 14px;">฿{{predata.BathPerRai}} {{language == "en" ? "Bath / Rai" :"泰铢/莱"}} {{language == "en" ? "(Land)" : "(土地)"}}</view>
+
       </view>
     </view>
 
-    <view class="mainGroupFunc">
-      <view class="subGroupFunc">
-        <button class="btnGroupfunc" bind:tap="likefunc">
-          <van-icon name="like{{!likeActive ? '-o' : ''}}" size="18" class="icongroupfunc" color="{{likeActive ? 'red' : ''}}" />
-          <view class=""> {{language == "en" ? "Like" : "点赞"}}</view>
-        </button>
+    <view class="" style="display: flex; height: 86px;width: 100%;padding: 0px 0px;">
+      <view class="" style="width: 100%;">
+        <view class="" style="display: flex;justify-content: center;align-items: center;">
+          <view class="" style="display: flex;flex-direction: column;align-items: center;gap: 4px;" bind:tap="likefunc">
+            <van-icon name="like{{!likeActive ? '-o' : ''}}" size="18" class="icongroupfunc" color="{{likeActive ? 'red' : ''}}" />
+            <view class="" style="font-size: 14px;font-weight: 400;">{{language == "en" ? "Like" : "点赞"}}</view>
+          </view>
+        </view>
       </view>
-      <view class="subGroupFunc">
-        <button class="btnGroupfunc" bind:tap="scrollToMap">
-          <van-icon name="location" size="18" class="icongroupfunc" />
-          <view class=""> {{language == "en" ? "location" : "地点"}}</view>
-        </button>
+      <view class="" style="width: 100%;">
+        <view class="" style="display: flex;justify-content: center;align-items: center;">
+          <view class="" style="display: flex;flex-direction: column;align-items: center;gap: 4px;" bind:tap="scrollToMap">
+            <van-icon name="location" size="18" class="icongroupfunc" />
+            <view class="" style="font-size: 14px;font-weight: 400;">{{language == "en" ? "location" : "地点"}}</view>
+          </view>
+        </view>
       </view>
-      <view class="subGroupFunc">
-        <button class="btnGroupfunc" bind:tap="showPopup">
-          <van-icon name="chat-o" size="18" class="icongroupfunc" />
-          <view class=""> {{language == "en" ? "Massage" : "会话/聊天"}}</view>
-        </button>
-      </view>
-      <view class="subGroupFunc">
-        <button class="btnGroupfunc" open-type="share">
-          <van-icon name="share-o" size="18" class="icongroupfunc" />
-          <view class=""> {{language == "en" ? "Share" : "分享"}}</view>
-        </button>
+      <view class="" style="width: 100%;">
+        <view class="" style="display: flex;justify-content: center;align-items: center;">
+          <button class="" open-type="share" style="padding:0px;background-color: white;width: 100%;display: flex;flex-direction: column;align-items: center;gap: 4px">
+            <van-icon name="share-o" size="18" class="icongroupfunc" />
+            <view class="" style="font-size: 14px;font-weight: 400;">{{language == "en" ? "Share" : "分享"}}</view>
+          </button>
+        </view>
       </view>
     </view>
+
+    <view class="" style="background-color: rgb(255, 255, 255);margin: 0px 10px;border-radius: 16px;padding: 10px 0px;border:solid 0.8px rgb(201, 201, 201)">
+      <userprofile nameOwner="{{predata.Owner}}" positionOwner="{{predata.Level}}" images="/asset/landlink.png" />
+      <view class="" style="width: 100%;">
+        <view class="" bind:tap="goToChatGroup" style="border:solid 0.8px rgb(201, 201, 201,0.2);border-radius: 16px;margin: 0px 10px;padding: 16px;display: flex;justify-content: center;font-weight: 600;background-color: rgba(169, 169, 169, 0.192);">
+          {{language == "en" ? "Contact to owner" : "联系卖家"}}
+        </view>
+      </view>
+    </view>
+
 
     <view style="padding: 0px 25rpx;padding-bottom: 60px;">
       <view class="section" wx:if="{{predata.Description}}">
@@ -111,10 +125,27 @@
         <view class="Header"> {{language == "en" ? "Maps": "地图"}}</view>
         <map id="map" latitude="{{lat}}" longitude="{{long}}" scale="14" style="width: 100%; height: 300px;" markers="{{markers}}" />
       </view>
-      <contact show="{{show}}" customer="{{customer}}" />
+      
+
+
+      <view class="SectionSuggesstion" wx:if="{{datasuggesstion.length != 0}}">
+        <view class="textSuggestion">您可能感兴趣</view>
+        <view class="suggesstionpart">
+          <view class="" wx:for="{{datasuggesstion}}" wx:key="suggesstion">
+            <view class="" wx:if="{{id != item._id}}">
+              <minimenu AssetId="{{item._id}}" Images="{{item.no_images_asset}}" AssetType="{{item.TypeAsset}}" AssetColor="{{item.OriginalColor}}" AssetName="{{item.NameAsset}}" Province="{{item.Province}}" District="{{item.District}}" AreaLandRai="{{item.LandSizeRai}}" AreaLandNgan="{{item.LandSizeNgan}}" AreaLandSqw="{{item.LandSizeSQW}}" AreaWH="{{item.WHSizeSQM}}" Time="{{item.timeago}}" SalePriceBath="{{item.SalePriceBath}}" RentCostPerMonthBath="{{item.RentCostPerMonthBath}}" />
+            </view>
+          </view>
+        </view>
+      </view>
+
     </view>
   </scroll-view>
-  <!-- </view> -->
+
+  <movable-area class="movable-area">
+    <movable-view class="support-btn" direction="all" x="{{x}}" y="{{y}}" inertia="true" out-of-bounds="false" bindtap="showPopup">
+      <image src="/asset/landlink.png" mode="aspectFill" style="width:100px;height:100px;margin-bottom: 20px;position: absolute;top:-23px" />
+    </movable-view>
+  </movable-area>
+  <contact show="{{show}}" customer="{{customer}}" />
 </view>
-<!-- asset detail -->
-<!-- <navigation-bar title="#{{id}}" back="{{true}}" color="black" background="#FFF" /> -->

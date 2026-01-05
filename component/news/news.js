@@ -10,7 +10,7 @@ Component({
 
   methods: {
     async GetData(){
-      const res = await app.GetContent(5,4)
+      const res = await app.GetContent(5,5)
       this.setData({
         news : res
       })

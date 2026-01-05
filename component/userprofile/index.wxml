@@ -1,0 +1,15 @@
+<!--component/userprofile/index.wxml-->
+<view class="main">
+  <view class="subpart">
+    <view class="" wx:if="{{images}}">
+      <image src="{{images}}" class="images" mode="aspectFill" />
+    </view>
+    <view class="" wx:else="">
+      <view class="images"></view>
+    </view>
+    <view class="">
+      <view class="name">{{nameOwner}}</view>
+      <view class="position">{{positionOwner}}</view>
+    </view>
+  </view>
+</view>

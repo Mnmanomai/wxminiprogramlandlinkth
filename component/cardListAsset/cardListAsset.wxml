@@ -23,7 +23,7 @@
                     <view class="flex flex-row gap-3" style="width:100%;">
                         <text class="tagdetail">{{item.TypeSell}}</text>
                         <text class="tagdetail">{{item.TypeAsset}}</text>
-                        <text class="tagdetail">{{item.IndusZone}}</text>
+                        <text wx:if="{{item.typeindus == 2}}" class="tagdetail">I-EA-T</text>
                     </view>
                     <view class="" style="width:100%;text-align: end;">
                         <view class="text-xl" wx:if="{{ item.typeselln === '2' }}">

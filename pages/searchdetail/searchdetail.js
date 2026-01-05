@@ -26,6 +26,16 @@ Page({
       Building: '',
     },
     language: 'zh',
+    DataSellnrent : [
+      {
+        id : 1,
+        name: config.language == "en" ? "Buy" : "购买"
+      },
+      {
+        id : 2,
+        name: config.language == "en" ? "Rent" : "租赁"
+      },
+    ],
     DataPropType: [{
         id: 0,
         name: config.language == "en" ? "All" : "全部"
@@ -141,6 +151,7 @@ Page({
     const eventChaneel = this.getOpenerEventChannel();
     let Color_receiver = ''
     eventChaneel.on('openfilterdata', (data) => {
+
       this.setData({
         filterdata: data,
         language: config.language,
@@ -308,6 +319,12 @@ Page({
     const dataId = e.target.dataset.id
     this.setData({
       'filterdata.WithBuildingOpen': dataId
+    })
+  },
+  selectBuynRent(e){
+    const dataID = e.target.dataset.id
+    this.setData({
+      'filterdata.selltype' : dataID,
     })
   },
   selectProperty(e) {

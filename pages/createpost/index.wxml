@@ -1,0 +1,35 @@
+<!--pages/createpost/index.wxml-->
+<view class="page-container">
+  <!-- <createrpostmodal Images="{{Images}}" Name="{{Name}}" Position="{{Position}}" /> -->
+
+  <view class="" style="position: relative;">
+    <view class="overlay" wx:if="{{Loading}}">
+      <view class="bg-arc-load">
+        <view class="arc-loader"></view>
+      </view>
+    </view>
+
+    <view class="cardfeed">
+      <view class="contentheader">
+        <!-- images -->
+        <view style="width: 14%;" class="">
+          <image wx:if="{{Images}}" src="{{Images}}" mode="aspectFill" class="imagesperson" />
+          <image wx:else="{{Images}}" src="/asset/landlink.png" mode="aspectFill" class="imagesperson" />
+        </view>
+        <!-- headerdetail -->
+        <view style="width: 76%;" class="headerdetail">
+          <view class="postername">{{Name}}</view>
+          <view class="time">{{Position}}</view>
+        </view>
+        <view style="width:20%" class="">
+          <view class="buttonpost" bind:tap="PostToServer">Post</view>
+        </view>
+      </view>
+      <view class="" style="padding: 0px 10px;">
+        <textarea placeholder="有关于房地产的问题吗？在这里输入吧…" bindinput="SentBackData" maxlength="500" value="" style="min-height: 80vh;width: 100%;" />
+      </view>
+    </view>
+  </view>
+
+
+</view>

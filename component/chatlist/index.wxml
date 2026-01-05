@@ -1,20 +1,45 @@
 <!--component/chatlist/index.wxml-->
-<view class="" style="display: flex;flex-direction: column;padding: 0px 20px;">
-    <block wx:for="{{countArray}}">
-        <view class="" style="width: 100%;padding: 6px 0px;display: flex;gap:10px;align-items: center;">
-            <!-- image -->
-            <view class="" style="">
-                <view class="" style="background-color: thistle;width: 60px;height: 60px;border-radius: 16px;"></view>
-            </view>
+<view class="mainlist">
+  <view class="list" bind:tap="Nexttofeed" data-idfeed="{{chatno}}" data-namechat="{{namechat}}">
+    <!-- image -->
+    <view class="imagespart">
+      <view class="" wx:if="{{picture}}">
+        <image src="{{picture}}" class="images" mode="" />
+      </view>
+      <view class="" wx:else="">
+        <image src="/asset/landlink.png" class="images" mode="aspectFill" />
+      </view>
+    </view>
 
-            <!-- content -->
-            <view class="" style="">
-                <view class="limit2">Y春武里府 距离林查班港口 26公里，土地面积5莱2颜50.2哇，租期30年租金13,000泰铢每莱每月</view>
-            </view>
-            
-            <view class="">
-                <view class="" style="background-color: rgb(9, 94, 116);border-radius: 100%;width: 10px;height: 10px;"></view>
-            </view>
-        </view>
-    </block>
+    <!-- content -->
+    <view class="namepart">
+      <view class="limit1" style="font-size: 16px;font-weight: 600;text-transform: capitalize;">
+      {{namechat}}
+      
+      
+      </view>
+      <view class="limit1" style="color: rgb(0,0,0,0.7);display: flex;">
+        <view class="textnewmsg">{{textnew}} </view>
+        <view class=""> • {{timenew}}</view>
+      </view>
+    </view>
+
+    <!-- new notification -->
+    <view class="notipart">
+      <view class="notitag" wx:if="{{unreadno > 0}}" >
+        {{unreadno}}
+      </view>
+      
+    </view>
+
+    <!-- <view class="optionpart">
+      <van-icon name="setting-o" size="26"/>
+    </view> -->
+    <!-- <view class="deletepart">
+      <van-icon name="delete-o" size="26"/>
+    </view> -->
+  </view>
 </view>
+
+
+

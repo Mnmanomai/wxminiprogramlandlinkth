@@ -1,0 +1,6 @@
+/* pages/feeds/feeds.wxss */
+.page-container{
+  background: rgba(238, 238, 238, 0.7);
+  min-height: 100vh;
+  max-height: 100%;
+}

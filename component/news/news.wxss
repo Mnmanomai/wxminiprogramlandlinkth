@@ -40,7 +40,7 @@
 
 .linelimit2 {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -114,45 +114,56 @@
 }
 
 .sectionv2{
-  padding: 10px 0px;
+  padding: 10px 2px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* gap: 10px; */
 }
 
 .newCardv2{
   display: flex;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
-  height: 120px;
+  padding: 10px 0px;
+  /* border-radius: 12px; */
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1); */
+  height: 90px;
   width: 100%;
   overflow: hidden;
-   
+  border-bottom: 1px solid #ccc;
 }
+
+.newCardv2:last-child{
+  border: none;
+}
+
 .imagesv2{
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 100% 0%;
+  border-radius: 6px;
 }
 
 .sectionimagesv2{
+  display: flex;
+  justify-content: end;
   width: 270px;
   overflow: hidden;
+
 }
 
 .sectiondescriptionv2{
   width: 100%;
-  padding: 10px 10px;
+  padding: 0px 10px;
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
 .titlev2{
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
+  
 }
 .descriptiontextv2{
 
@@ -160,5 +171,7 @@
   color: rgb(78, 78, 78);
 }
 .timev2{
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 300
+  ;
 }

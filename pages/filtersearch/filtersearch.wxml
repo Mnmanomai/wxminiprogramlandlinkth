@@ -20,7 +20,7 @@
                                     <van-cell icon="guide-o" bind:tap="NextToSearch" data-index="{{index}}">
                                         <view slot="title" wx:if="{{item.type == 'provinceanddistrict'}}">
                                             <view class="van-cell-text">{{item.province_name}}, {{item.distric_name}}</view>
-                                            <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
+                                            <van-tag type="danger" class="tag">{{item.selltype_name == "buy" ? "购买" : "租赁"}}</van-tag>
                                             <van-tag type="danger" class="tag">省、区</van-tag>
                                         </view>
                                         <view slot="title" wx:if="{{item.type == 'seachondetail'}}">
