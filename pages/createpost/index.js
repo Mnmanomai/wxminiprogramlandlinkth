@@ -23,7 +23,6 @@ Page({
                 }
             })
         });
-        (Resdata);
         this.setData({
             Images: Resdata.picture,
             Name: Resdata.firstname + ' ' + Resdata.lastname,
