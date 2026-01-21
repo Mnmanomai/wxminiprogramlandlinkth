@@ -1,0 +1,5 @@
+/* pages/postinvestment/postinvestment.wxss */
+.page-container{
+  background: rgb(240, 240, 240);
+  min-height: 100vh;
+}

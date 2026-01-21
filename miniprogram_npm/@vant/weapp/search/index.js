@@ -55,10 +55,6 @@ var version_1 = require("../common/version");
             type: String,
             value: 'clear',
         },
-        cursorSpacing: {
-            type: Number,
-            value: 0,
-        },
     },
     methods: {
         onChange: function (event) {

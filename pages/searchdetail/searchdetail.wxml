@@ -70,7 +70,7 @@
             </view>
         </view>
         <van-divider />
-        <view class="sector" wx:if="{{filterdata.WithBuildingOpen == 1 }}">
+        <view class="sector" wx:if="{{filterdata.WithBuildingOpen == 1 }}" style="padding-bottom:120px;">
             <view class="header">{{language == "en" ? "Building Size (SQM)" : "建筑面积（​​平方米）" }}</view>
             <view class="splitinput">
                 <input type="text" class="input" bindinput="onInputBuildingStart" maxlength="11" value="{{filterdata.BuildingStart}}" />

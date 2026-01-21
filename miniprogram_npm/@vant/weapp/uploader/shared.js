@@ -34,10 +34,6 @@ exports.videoProps = {
         type: String,
         value: 'back',
     },
-    referrerPolicy: {
-        type: String,
-        value: 'no-referrer',
-    },
 };
 // props for media
 exports.mediaProps = {
@@ -47,7 +43,7 @@ exports.mediaProps = {
     },
     mediaType: {
         type: Array,
-        value: ['image', 'video', 'mix'],
+        value: ['image', 'video'],
     },
     maxDuration: {
         type: Number,
@@ -61,8 +57,4 @@ exports.mediaProps = {
 // props for file
 exports.messageFileProps = {
     extension: null,
-    previewFile: {
-        type: Boolean,
-        value: true,
-    },
 };

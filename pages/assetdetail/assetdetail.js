@@ -25,12 +25,47 @@ Page({
         }]
     },
 
-    async onLoad(options) {
+    async recvRequest(id,refUser){
+        const token = await new Promise((resolve, reject) => {
+            wx.getStorage({
+                key: 'usersdetail',
+                success(res) {
+                    resolve(res.data.token)
+                },
+                fail(err) {
+                    reject(err)
+                }
+            })
+        });
 
+        return new Promise((resolve,reject)=>{
+            wx.request({
+              url: `${config.PublicIPCallApiGoBackend}/user/ref/verify`,
+              method : 'POST',
+              data : JSON.stringify({
+                  ref : refUser,
+                  id : id,
+              }),
+              header : {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+              },
+              success(res) {
+                resolve(res)
+              },
+              fail(res){
+                reject(res)
+              },
+            })
+        })
+    },
+
+    async onLoad(options) {
+        
+        
         const res = wx.getSystemInfoSync()
         const buttonSize = 56 // px
         const margin = 0 // ระยะห่างขอบจอ
-
         this.setData({
             x: res.windowWidth - buttonSize - margin,
             y: res.windowHeight * 0.6
@@ -44,6 +79,10 @@ Page({
         this.storagelist();
         // this.GetMainLocation(this.data.lat, this.data.long)
         this.getsuggesttion();
+
+        // if(options.ref){
+        //     let res = await this.recvRequest(options.id,options.ref)
+        // }
     },
 
     getsuggesttion() {
@@ -100,7 +139,6 @@ Page({
                     resolve(rawData); // ✅ resolve เมื่อ request เสร็จ
                 },
                 fail(err) {
-                    // console.error('Failed:', err);
                     reject(err); // ✅ reject ถ้า error
                 }
             });
@@ -173,7 +211,7 @@ Page({
         return dreturn;
     },
 
-    async onShareAppMessage() {
+    async Getref() {
         const token = await new Promise((resolve, reject) => {
             wx.getStorage({
                 key: 'usersdetail',
@@ -188,7 +226,7 @@ Page({
 
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${config.PublicIPCallApiGoBackend}/community/group/${id}`,
+                url: `${config.PublicIPCallApiGoBackend}/user/ref/generate`,
                 method: 'GET',
                 header: {
                     'Authorization': 'Bearer ' + token
@@ -201,16 +239,16 @@ Page({
                 }
             })
         })
+    },
 
-
-
+    async onShareAppMessage() {
+        let res = await this.Getref()
         const Share = {
             title: this.data.predata.NameAsset,
-            path: "/pages/assetdetail/assetdetail?id=" + this.data.predata._id,
+            path: `/pages/assetdetail/assetdetail?id=${this.data.predata._id}&ref=${res.ref}`,
             imageUrl: this.data.predata.no_images_asset && this.data.predata.no_images_asset.length > 0 ?
                 this.data.predata.no_images_asset[0] : "/asset/landlink.webp"
         }
-
         return Share;
     },
 

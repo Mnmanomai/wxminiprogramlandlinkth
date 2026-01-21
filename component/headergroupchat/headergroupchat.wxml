@@ -2,7 +2,6 @@
 <view class="" style="position: relative;height: 30px;padding-block: 10px;background-color: white;padding-inline: 10px;display: flex;justify-content: space-between;">
   <view class="limit1" style="font-size: 16px;font-weight: 600;text-transform: capitalize;height: 23px;">{{namegroup}}</view>
   <van-icon name="ellipsis" size="18" bind:tap="showPopup" />
-
 </view>
 
 <van-popup show="{{ show }}" position="bottom" custom-style="height: 20%" bind:close="onClose" >

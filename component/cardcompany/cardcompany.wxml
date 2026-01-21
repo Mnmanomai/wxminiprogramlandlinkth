@@ -1,0 +1,55 @@
+<!--component/cardcompany/cardcompany.wxml-->
+<block wx:for="{{test}}" wx:key="cardcompany">
+    <van-swipe-cell right-width="{{ 80 }}">
+        <view slot="right" style="background-color: red;width: 80px;height: 100%;display: flex;justify-content: center;align-items: center;color: white;font-weight: 600;">
+            Delete
+        </view>
+
+        <view class="cell" style="background-color: silver;" bind:tap="Openasset">
+            <view class="card">
+                <view class="" style="display: flex;gap: 6px;padding: 8px 0px 8px 0px;">
+                    <view class="sectionimages">
+                        <image src="https://landlinkth-web-images.s3.ap-southeast-7.amazonaws.com/upload/696734b8a5b10" class="images" mode="aspectFill" />
+                    </view>
+                    <view class="sectiondescription">
+                        <view class="textName">{{item.nameasset}}</view>
+                        <view class="textDescription">
+                            <van-icon name="location" /> {{item.district}}, {{item.province}}
+                        </view>
+                        <view class="textDescription">
+                            <van-icon name="gold-coin" /> ฿{{item.avgsqmperprice}} / sqw
+                        </view>
+                        <view class="textDescription">
+                            <van-icon name="expand-o" /> {{item.land_size_rai}} rai {{item.land_size_ngan}} ngan {{item.land_size_sqw}} sqw
+                        </view>
+                        <view class="textDescription">
+                            <van-icon name="clock-o" /> {{item.posted}}
+                        </view>
+                        <view class="" style="display: flex;gap: 2px;">
+                            <view class="tag">{{item.assettype}}</view>
+                            <view class="tag" wx:if="{{item.ieat}}">I-EAT</view>
+                        </view>
+                        <view class="price">฿{{item.saleprice}}</view>
+                    </view>
+                </view>
+                <view class="divider"></view>
+
+                <view class="" style="display: flex;justify-content: space-between;gap:6px;padding: 8px 0px 8px 0px;">
+                    <view class="" style="display: flex;gap: 6px;">
+                        <view class="agentpic">
+                            <image src="https://landlinkth-web-images.s3.ap-southeast-7.amazonaws.com/upload/68e39cf53eeac" mode="aspectFill" class="imagespost" />
+                        </view>
+                        <view class="agentdetail">
+                            <view class="" style="font-size: 14px;">Manomai Sudkaew</view>
+                            <view class="" style="font-size: 10px;">Super Advisor Landlink Agent</view>
+                            <view class="" style="font-size: 10px;">Offer : Apr 1 12:31</view>
+                        </view>
+                    </view>
+                    <view class="" style="display: flex;align-items: center;">
+                        <view class="" style="background-color: rgb(25, 47, 107);color: white;font-size: 11px;padding: 4px 8px 4px 8px;border-radius: 4px;font-weight: 600;">Ask More</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </van-swipe-cell>
+</block>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "headergroupcompany" : "/component/headergroupcompany/headergroupcompany",
+    "cardlistasset" : "/component/cardListAsset/cardListAsset",
+    "cardcompany" : "/component/cardcompany/cardcompany"
+  }
+}

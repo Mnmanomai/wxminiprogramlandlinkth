@@ -22,7 +22,6 @@ Component({
   methods: {
     gotoPage(e) {
       const url = e.currentTarget.dataset.url;
-      (url);
       wx.switchTab({
         url: url,
       })

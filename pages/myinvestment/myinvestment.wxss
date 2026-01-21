@@ -1,0 +1,4 @@
+/* pages/myinvestment/myinvestment.wxss */
+.page-container{
+  /* padding: 0px 10px; */
+}

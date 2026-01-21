@@ -15,6 +15,7 @@ Page({
       title: '寻找资产',
     });
     await this.getData();
+    console.log(this.data);
   },
 
   onReceiveData(e) {
@@ -41,7 +42,6 @@ Page({
         })
       }
     }
-
   },
 
   async onReachBottom() {

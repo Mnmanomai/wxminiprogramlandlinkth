@@ -25,7 +25,12 @@
     "pages/postdetail/postdetail",
     "pages/createpost/index",
     "pages/groupprofile/groupprofile",
-    "pages/groupmember/groupmember"
+    "pages/groupmember/groupmember",
+    "pages/companygroup/companygroup",
+    "pages/myinvestment/myinvestment",
+    "pages/postinvestment/postinvestment",
+    "pages/createinvestment/createinvestment",
+    "pages/provincemultiselect/provincemultiselect"
   ],
   "tabBar": {
     "custom": true,

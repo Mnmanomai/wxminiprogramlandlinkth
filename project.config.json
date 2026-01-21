@@ -1,6 +1,7 @@
 {
   "compileType": "miniprogram",
   "libVersion": "trial",
+  "miniprogramRoot": "",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -11,18 +12,24 @@
     "postcss": true,
     "minified": true,
     "enhance": true,
+    "packNpmManually": false,
+    "useCompilerPlugins": false,
     "showShadowRootInWxmlPanel": true,
     "packNpmRelationList": [],
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "uglifyFileName": true,
+    "minifyWXML": false,
+    "condition": false
   },
   "condition": {},
   "editorSetting": {
     "tabIndent": "auto",
     "tabSize": 2
   },
-  "appid": "wxe03b7c110136e8a4"
+  "appid": "wxe03b7c110136e8a4",
+  "simulatorPluginLibVersion": {}
 }

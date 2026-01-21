@@ -27,7 +27,15 @@ Page({
         
     },
 
-
+    onSubscribe() {
+      wx.requestSubscribeMessage({
+        tmplIds: ['z0Vf_vizRz4DyYFhpMbuiNaxmWQksVMdb1ILFL1DDik'],
+        success(res) {
+          console.log(res)
+          // res[TEMPLATE_ID] = 'accept' | 'reject' | 'ban'
+        }
+      })
+    },
 
     async getChatList() {
         const tokenrequest = await new Promise((resolve, reject) => {

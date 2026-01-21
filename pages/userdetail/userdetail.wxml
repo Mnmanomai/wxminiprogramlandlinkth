@@ -2,7 +2,6 @@
 <view class="page-container">
 
   <view class="section-images">
-    
     <image wx:if="{{images != ''}}" bind:tap="uploadprofile" src="{{images}}" class="images" mode="aspectFill"/>
     <image wx:else="{{images != ''}}" bind:tap="uploadprofile" src="/asset/landlink.png" class="images" mode="aspectFill"/>
   </view>

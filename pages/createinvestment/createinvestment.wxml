@@ -1,0 +1,104 @@
+<!--pages/createinvestment/createinvestment.wxml-->
+<view class="page-container" style="position: relative;">
+
+  <!-- Topic -->
+  <van-field value="{{ topic }}" required clearable label="Topic" placeholder="话题" maxlength="200" bind:input="inputTopic"/>
+
+  <!-- Description -->
+  <van-field value="{{ description }}" type="{{'textarea'}}" minHeight="{{200}}" maxlength="400" show-word-limit
+    autosize="{{true}}" required clearable label="描述" placeholder="请输入用户名" bind:input="inputDescription"/>
+
+  <!--  Sell Type -->
+  <van-field value="{{ selltype }}" readonly required clickable label="销售类型" placeholder="请输入用户名" right-icon="arrow"
+    bind:tap="openSellType" />
+
+  <!--  Asset Type -->
+  <van-field value="{{ assettype }}" readonly required clickable label="资产类型" placeholder="请输入用户名" right-icon="arrow"
+    bind:tap="openAssetType" />
+
+  <!-- province -->
+  <van-field value="{{ province }}" readonly required clickable label="省" placeholder="请输入用户名" right-icon="arrow"
+    bind:tap="OpenProvince" />
+
+  <!-- Industrial -->
+  <van-field value="{{ industrailtype }}" readonly required clickable label="I-EAT" placeholder="请输入用户名"
+    right-icon="arrow" bind:tap="openIndustrailType" />
+
+  <!-- landsizemin (rai) -->
+  <van-field value="{{ landsizemin }}" required clearable type="digit" label="最小土地面积 (rai)" maxlength="4" placeholder="请输入用户名"  bind:input="inputLandsizemin"/>
+
+  <!-- landsizemax (rai) -->
+  <van-field value="{{ landsizemax }}" required clearable type="digit" label="最大土地尺寸 (rai)" maxlength="4" placeholder="请输入用户名"  bind:input="inputLandsizemax"/>
+
+  <!-- buildingsizemin -->
+  <van-field value="{{ buildingsizemin }}" required clearable type="digit" label="最小建筑尺寸" maxlength="7" placeholder="请输入用户名"  bind:input="inputBuildingmin"/>
+
+  <!-- buildingsizemax -->
+  <van-field value="{{ buildingsizemax }}" required clearable type="digit" label="最大建筑尺寸" maxlength="7" placeholder="请输入用户名"  bind:input="inputBuildingmax"/>
+
+  <!-- Plan visit date -->
+  <van-field value="{{ visitplandateDisplay }}" readonly required clickable label="计划访问日期" placeholder="请输入用户名" right-icon="arrow"
+    bind:tap="OpenVisitplan" />
+
+  <view class="" style="padding: 10px 10px;">
+    <view class="" bind:tap="Savefile"
+      style="width: 100%;background-color: blue;display: flex;justify-content: center;color: white;padding: 10px 0px;border-radius: 10px;">
+      Check res</view>
+  </view>
+
+
+
+  <!-- Sell Type Popup -->
+  <view wx:if="{{ShowPopupSellType}}" class=""
+    style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color: rgb(0, 0, 0,0.4);z-index: 10;"
+    bind:tap="onCloseSellType">
+    <view class="" style="position: relative;width: 100%;height: 100%;">
+      <view class=""
+        style="position: absolute;bottom: 0;left: 0;width: 100%;height: 400px;background-color: white;border-radius: 20px 20px 0px 0px;"
+        catchtap>
+        <van-picker show-toolbar title="标题" columns="{{ selltypeobject }}" bind:cancel="onCloseSellType"
+          bind:confirm="onConfirmSellType" />
+      </view>
+    </view>
+  </view>
+
+  <!-- Asset Type Popup -->
+  <view wx:if="{{ShowPopupAssetType}}" class=""
+    style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color: rgb(0, 0, 0,0.4);z-index: 10;"
+    bind:tap="onCloseAssetType">
+    <view class="" style="position: relative;width: 100%;height: 100%;">
+      <view class=""
+        style="position: absolute;bottom: 0;left: 0;width: 100%;height: 400px;background-color: white;border-radius: 20px 20px 0px 0px;"
+        catchtap>
+        <van-picker show-toolbar title="标题" columns="{{ assettypeobject }}" bind:cancel="onCloseAssetType"
+          bind:confirm="onConfirmAssetType" />
+      </view>
+    </view>
+  </view>
+
+  <!-- Industril Type Popup -->
+  <view wx:if="{{ShowPopupIndustrailType}}" class=""
+    style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color: rgb(0, 0, 0,0.4);z-index: 10;"
+    bind:tap="onCloseIndustrailType">
+    <view class="" style="position: relative;width: 100%;height: 100%;">
+      <view class=""
+        style="position: absolute;bottom: 0;left: 0;width: 100%;height: 400px;background-color: white;border-radius: 20px 20px 0px 0px;"
+        catchtap>
+        <van-picker show-toolbar title="标题" columns="{{ industriltypeobject }}" bind:cancel="onCloseIndustrailType"
+          bind:confirm="onConfirmIndustrailType" />
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{ShowPopupVisitplan}}" class=""
+    style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color: rgb(0, 0, 0,0.4);z-index: 10;"
+    bind:tap="CloseVisitplan">
+    <view class="" style="position: relative;width: 100%;height: 100%;">
+      <view class=""
+        style="position: absolute;bottom: 0;left: 0;width: 100%;height: 400px;background-color: white;border-radius: 20px 20px 0px 0px;"
+        catchtap>
+        <van-datetime-picker type="date" value="{{ visitplandate }}" bind:input="SelectVisitplan" min-date="{{ minDate }}" formatter="{{ formatter }}" bind:cancle="CloseVisitplan" bind:confirm="CloseVisitplan"/>
+      </view>
+    </view>
+  </view>
+</view>

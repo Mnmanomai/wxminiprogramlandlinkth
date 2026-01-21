@@ -4,6 +4,21 @@
         <filterSeach SellType="{{SellType}}" bind:change="onActiveChange" />
         <van-tabs active="{{ active }}" swipeable>
             <!-- search -->
+
+
+            <view class="" style="padding: 10px 20px 10px 20px;">
+              <view class="" style="display: flex;">
+                <view class="" style="width: 80%;">
+                  <input type="text" bindinput="onInputKeyword" value="" placeholder="按关键字搜索" style="padding: 5px 10px 5px 10px;box-shadow: 0.25px 0.5px 4px 0.25px rgb(0,0,0,0.25);border-radius: 8px;"/>
+                </view>
+                <view class="" bind:tap="btnNexttoSearchKeyword" style="width: 20%;display: flex;justify-content: center;align-items: center;font-size: 16px;font-weight: 600;" >
+                  搜索
+                </view>
+              </view>
+            </view>
+
+
+
             <van-tab title="搜索">
                 <view class="tablistFilter">
                     <van-cell-group>

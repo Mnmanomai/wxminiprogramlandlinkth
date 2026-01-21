@@ -51,7 +51,7 @@
                 </view>
 
                 <!-- Desired Industrial Type -->
-                <view class="info-box">
+                <view class="info-box" wx:if="{{item.businessType}}">
                     <!-- <view class="box-icon"><image class="box-ico-img" src="/asset/headphones.png" mode="aspectFit"/></view> -->
                     <view class="box-title">所需的工业类型</view>
                     <view class="box-des">{{item.businessType}}</view>

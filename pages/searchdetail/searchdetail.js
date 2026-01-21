@@ -15,7 +15,8 @@ Page({
       long: '',
       distancemode: 0,
       PropertyType: '',
-      IEAT: '',
+      IEAT: 0,
+      IEATtext: 'All',
       Color: '',
       LandSizeStart: 0,
       LandSizeEnd: 0,
@@ -26,13 +27,12 @@ Page({
       Building: '',
     },
     language: 'zh',
-    DataSellnrent : [
-      {
-        id : 1,
+    DataSellnrent: [{
+        id: 1,
         name: config.language == "en" ? "Buy" : "购买"
       },
       {
-        id : 2,
+        id: 2,
         name: config.language == "en" ? "Rent" : "租赁"
       },
     ],
@@ -152,14 +152,15 @@ Page({
     let Color_receiver = ''
     eventChaneel.on('openfilterdata', (data) => {
 
+
       this.setData({
         filterdata: data,
         language: config.language,
       })
-      this.setData({
-        'filterdata.WithBuildingOpen': '0',
-      })
-      
+
+      // this.setData({
+      //   'filterdata.WithBuildingOpen': '0',
+      // })
 
       Color_receiver = data.Color
       if (Color_receiver != '') {
@@ -179,13 +180,19 @@ Page({
         this.setData({
           DataColor
         });
-      }else{
+      } else {
         this.setData({
-          'filterdata.Color' : "0",
+          'filterdata.Color': "0",
         })
       }
-
+      if (this.data.filterdata.IEAT == "") {
+        this.setData({
+          'filterdata.IEAT': 0,
+          'filterdata.IEATtext': 'All',
+        })
+      }
     })
+
   },
 
   async BacktoSearch() {
@@ -197,22 +204,54 @@ Page({
     let buildingstart = this.data.filterdata.BuildingStart ? this.data.filterdata.BuildingStart : "0";
     let buildingend = this.data.filterdata.BuildingEnd ? this.data.filterdata.BuildingEnd : "0";
 
-    if(this.data.filterdata.DataOpenBuilding == 0){
+    let intlandsizestart = landsizestart ? parseFloat(landsizestart) : 0;
+    let intlandsizeend = landsizeend ? parseFloat(landsizeend) : 0;
+    let intpricestart = pricestart ? parseFloat(pricestart) : 0;
+    let intpriceend = priceend ? parseFloat(priceend) : 0;
+    let intbuildingstart = buildingstart ? parseFloat(buildingstart) : 0;
+    let intbuildingend = buildingend ? parseFloat(buildingend) : 0;
+
+    if (intlandsizestart > intlandsizeend && intlandsizeend != 0) {
+      
+      wx.showToast({
+        title: "价格格式无效",
+        icon: "error",
+        duration: 1200
+      })
+      return;
+    }
+    if (intpricestart > intpriceend && intpriceend != 0) {
+      wx.showToast({
+        title: "土地面积格式无效",
+        icon: "error",
+        duration: 1200
+      })
+      return;
+    }
+    if (intbuildingstart > intbuildingend && intbuildingend != 0) {
+      wx.showToast({
+        title: "建筑面积格式无效",
+        icon: "error",
+        duration: 1200
+      })
+      return;
+    }
+    if (this.data.filterdata.DataOpenBuilding == 0) {
       this.setData({
-        'filterdata.BuildingStart' : 0,
-        'filterdata.BuildingEnd' : 0,
+        'filterdata.BuildingStart': 0,
+        'filterdata.BuildingEnd': 0,
       })
     }
-    
+
     this.setData({
-      'filterdata.LandSizeStart' : landsizestart ? landsizestart : "0",
-      'filterdata.LandSizeEnd' : landsizeend ? landsizeend : "0",
-      'filterdata.PriceStart' : pricestart ? pricestart : "0",
-      'filterdata.PriceEnd' : priceend ? priceend : "0",
-      'filterdata.BuildingStart' : buildingstart ? buildingstart : "0",
-      'filterdata.BuildingEnd' : buildingend ? buildingend : "0",
+      'filterdata.LandSizeStart': landsizestart ? landsizestart : "0",
+      'filterdata.LandSizeEnd': landsizeend ? landsizeend : "0",
+      'filterdata.PriceStart': pricestart ? pricestart : "0",
+      'filterdata.PriceEnd': priceend ? priceend : "0",
+      'filterdata.BuildingStart': buildingstart ? buildingstart : "0",
+      'filterdata.BuildingEnd': buildingend ? buildingend : "0",
     })
-    
+
     const eventChannel = this.getOpenerEventChannel();
     eventChannel.emit('returnfilterdata', {
       success: this.data.filterdata
@@ -317,14 +356,21 @@ Page({
   },
   selectBuildingOpen(e) {
     const dataId = e.target.dataset.id
+    if (dataId == 0) {
+      this.setData({
+        'filterdata.BuildingStart': 0,
+        'filterdata.BuildingEnd': 0,
+      })
+    }
     this.setData({
       'filterdata.WithBuildingOpen': dataId
     })
+
   },
-  selectBuynRent(e){
+  selectBuynRent(e) {
     const dataID = e.target.dataset.id
     this.setData({
-      'filterdata.selltype' : dataID,
+      'filterdata.selltype': dataID,
     })
   },
   selectProperty(e) {

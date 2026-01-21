@@ -34,4 +34,20 @@
         </view>
         <view class="textmenu">{{language == "zh" ? '支持' : 'Support'}}</view>
     </view>
+
+    <!-- <view class="menu" bind:tap="openTab" data-url="/pages/companygroup/companygroup">
+        <view class="">
+            <van-icon name="bag-o" class="icon" size="40"/>
+        </view>
+        <view class="textmenu">{{language == "zh" ? '支持' : 'My Company'}}</view>
+    </view> -->
+
+    <view class="menu" bind:tap="openTab" data-url="/pages/companygroup/companygroup">
+        <view class="">
+            <van-icon name="bag-o" class="icon" size="40"/>
+        </view>
+        <view class="textmenu">{{language == "zh" ? '支持' : 'My Investment'}}</view>
+    </view>
+
+
 </view>

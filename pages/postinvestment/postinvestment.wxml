@@ -1,0 +1,9 @@
+<!--pages/postinvestment/postinvestment.wxml-->
+<view class="page-container">
+
+  <cardInvestment list="{{dataInvest}}" bind:sendData="onReceiveData" />
+
+  <block wx:for="{{8}}">
+    <cardcompany />
+  </block>
+</view>

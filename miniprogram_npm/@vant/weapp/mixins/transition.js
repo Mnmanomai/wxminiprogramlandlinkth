@@ -24,6 +24,7 @@ function transition(showDefaultValue) {
             duration: {
                 type: null,
                 value: 300,
+                observer: 'observeDuration',
             },
             name: {
                 type: String,
@@ -45,26 +46,9 @@ function transition(showDefaultValue) {
                 if (value === old) {
                     return;
                 }
-                value ? this.enureEnter() : this.enureLeave();
+                value ? this.enter() : this.leave();
             },
-            enureEnter: function () {
-                var _this = this;
-                if (this.enterPromise)
-                    return;
-                this.enterPromise = new Promise(function (resolve) { return _this.enter(resolve); });
-            },
-            enureLeave: function () {
-                var _this = this;
-                var enterPromise = this.enterPromise;
-                if (!enterPromise)
-                    return;
-                enterPromise
-                    .then(function () { return new Promise(function (resolve) { return _this.leave(resolve); }); })
-                    .then(function () {
-                    _this.enterPromise = null;
-                });
-            },
-            enter: function (resolve) {
+            enter: function () {
                 var _this = this;
                 var _a = this.data, duration = _a.duration, name = _a.name;
                 var classNames = getClassNames(name);
@@ -91,11 +75,10 @@ function transition(showDefaultValue) {
                         }
                         _this.transitionEnded = false;
                         _this.setData({ classes: classNames['enter-to'] });
-                        resolve();
                     });
                 });
             },
-            leave: function (resolve) {
+            leave: function () {
                 var _this = this;
                 if (!this.data.display) {
                     return;
@@ -119,10 +102,7 @@ function transition(showDefaultValue) {
                             return;
                         }
                         _this.transitionEnded = false;
-                        setTimeout(function () {
-                            _this.onTransitionEnd();
-                            resolve();
-                        }, currentDuration);
+                        setTimeout(function () { return _this.onTransitionEnd(); }, currentDuration);
                         _this.setData({ classes: classNames['leave-to'] });
                     });
                 });

@@ -1,0 +1,14 @@
+<!--pages/companygroup/companygroup.wxml-->
+<view class="page-container" style="position: relative;">
+  <headergroupcompany namegroup="{{'Manomai Co.,ltd'}}" />
+  <view class="">
+    <view class="" style="padding: 0px 6px 0px 6px;font-size: 14px;padding: 8px;color: rgb(117, 117, 117);">Investment offer</view>
+    <view class="" style="display: flex;flex-direction: column;gap: 3px;">
+      <block wx:for="{{8}}">
+        <cardcompany />
+      </block>
+    </view>
+    
+    
+  </view>
+</view>

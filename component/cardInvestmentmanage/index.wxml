@@ -1,0 +1,91 @@
+<!--component/cardInvestment/index.wxml-->
+<view class="">
+    <block wx:for="{{localList}}" wx:key="idInvestment">
+        <view class="card" bind:tap="openPostInvestment">
+            <view class="" style="display: flex;">
+              <view class="headerdiv1"><text class="header">{{item.topic}}</text></view>
+              <view class="headerdiv2">
+                <view class="buttonmenu">
+                  <van-icon catchtap="showPopup" name="ellipsis" size="20" style="color: grey;font-weight: 900;" />
+                  <!-- <van-icon bind:tap="DeleteInvestment" name="cross" size="20" style="color: grey;font-weight: 900;" /> -->
+                </view>
+              </view>
+            </view>
+            
+            <view class="description-border" catchtap="doSomething">
+                <!-- leftcolor -->
+                <view class="leftcolor"></view>
+                <view class="description {{item.expanded ? 'expanded' : 'collapsed'}}" wx:if="{{item.description}}">
+                    {{item.description}}
+                    <!-- <block wx:for="{{item.comment}}" wx:key="comment">
+                        <view class="text-muted" style="font-size: 14px;">{{item}}</view>
+                    </block> -->
+                </view>
+                <view wx:if="{{item.isOverflow == true}}" class="toggle" bindtap="toggleComment" data-id="{{item.ID}}">
+                    {{item.expanded ? '收起' : '查看更多'}}
+                </view>
+            </view>
+            <!-- Description -->
+            
+            <view class="text-muted" style="display: flex; flex-wrap: wrap; gap: 6px;padding: 10px 0px;font-size: 13px;">
+                <!-- Desired Property Type -->
+                <view class="info-box">
+                    <view class="box-title">所需的房产类型</view>
+                    <view class="box-des">{{item.assettype}}</view>
+                </view>
+
+                <!-- Desired Area -->
+                <view class="info-box">
+                    <view class="box-title">所需面积</view>
+                    <view class="box-des">{{item.province}}</view>
+                </view>
+
+
+                <!-- Planning to visit on -->
+                <view class="info-box">
+                    <view class="box-title">计划参观</view>
+                    <view class="box-des">{{item.visitdate}}</view>
+                </view>
+
+                <!-- Color Of Land -->
+                <view class="info-box">
+                    <view class="box-title">大地的颜色</view>
+                    <view class="box-des">{{item.color}}</view>
+                </view>
+
+                <!-- Desired Industrial Type -->
+                <view class="info-box">
+                    <view class="box-title">所需的工业类型</view>
+                    <view class="box-des">{{item.buinesstype}}</view>
+                </view>
+
+                <!-- Desired Zone -->
+                <view class="info-box">
+                    <view class="box-title">所需区域</view>
+                    <view class="box-des">{{item.industrailtype}}</view>
+                </view>
+
+                <!-- Desired Land Size -->
+                <view class="info-box">
+                    <view class="box-title">所需土地面积</view>
+                    <view class="box-des">{{item.landsizemin}} - {{item.landsizemax}} 拉伊</view>
+                </view>
+
+                <!-- Desired Building Size -->
+                <view class="info-box">
+                    <view class="box-title">所需建筑尺寸</view>
+                    <view class="box-des">{{item.buildingsizemin}} - {{item.buildingsizemax}} 平方米</view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+
+<van-popup show="{{ showpopup }}" position="bottom" custom-style="height: auto;" bind:close="onClose" >
+  <view class="" style="display: flex;flex-direction: column;gap:1px;background-color: slategray;">
+    <view class="listPopup" bind:tap=""><van-icon name="eye" /> {{language == "zh" ? "隐藏帖子": "Hide Post"}}</view>
+    <view class="listPopup" bind:tap=""><van-icon name="share" /> {{language == "zh" ? "分享帖子": "Share Post"}}</view>
+    <view class="listPopup" bind:tap=""><van-icon name="records" /> {{language == "zh" ? "编辑帖子": "Edit Post"}}</view>
+    <view class="listPopup" bind:tap=""><van-icon name="delete" /> {{language == "zh" ? "移至回收站": "Move to Trash"}}</view>
+  </view>
+</van-popup>
