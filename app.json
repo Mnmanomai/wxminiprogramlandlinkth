@@ -32,7 +32,8 @@
     "pages/createinvestment/createinvestment",
     "pages/provincemultiselect/provincemultiselect",
     "pages/colormultiselect/colormultiselect",
-    "pages/investmentpost/investmentpost"
+    "pages/investmentpost/investmentpost",
+    "pages/ai/ai"
   ],
   "tabBar": {
     "custom": true,
