@@ -3,7 +3,7 @@
   <!-- Home / 首页 -->
   <van-tabbar-item icon="home-o"></van-tabbar-item> 
   <!-- Activities / 活动 -->
-  <van-tabbar-item icon="list-switching"></van-tabbar-item> 
+  <van-tabbar-item icon="apps-o"></van-tabbar-item> 
   <!-- Investment / 急投意向 -->
   <van-tabbar-item icon="bullhorn-o"></van-tabbar-item> 
   <!-- Investment / 急投意向 -->

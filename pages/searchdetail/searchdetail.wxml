@@ -50,7 +50,6 @@
                 <input type="number" class="input" value="{{filterdata.PriceEnd}}" maxlength="14" bindinput="onInputEnd" placeholder="结尾" />
             </view>
         </view>
-
         <van-divider />
         <view class="sector">
             <view class="header">{{language == "en" ? "Land Size (rai)" : "土地面积 (莱)"}}</view>
@@ -58,7 +57,6 @@
                 <input type="number" class="input" bindinput="onInputLandStart" maxlength="6" value="{{filterdata.LandSizeStart}}" placeholder="开始" />
                 <input type="number" class="input" bindinput="onInputLandEnd" maxlength="6" value="{{filterdata.LandSizeEnd}}" placeholder="结尾" />
             </view>
-
         </view>
         <van-divider />
         <view class="sector">

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "cardcompany" : "/component/cardcompany/cardcompany",
-    "cardInvestment" : "/component/cardInvestment/index"
+    "cardInvestmentpost" : "/component/cardInvestmentpost/index",
+    "cardassetpostinvest" : "/component/cardassetpostinvest/cardcompany"
   }
 }

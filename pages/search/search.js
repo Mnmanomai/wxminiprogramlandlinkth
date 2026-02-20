@@ -55,7 +55,6 @@ Page({
             'searchvalue.keyword': options.keyword ? options.keyword : '',
             // 'offset': options.keyword ? options.keyword : '0',
         })
-
         this.Getsearch();
     },
 
@@ -88,9 +87,10 @@ Page({
             Building: this.data.searchvalue.Building || '',
             keyword: this.data.searchvalue.keyword || '',
         }
+
         let Dataget = ""
         if (sentobject.keyword != "") {
-            try {
+            // try {
                 let recdata = await app.Getkeyword(sentobject);
                 Dataget = recdata.map(v => ({
                     ...v,
@@ -99,9 +99,9 @@ Page({
                     SalePriceBath: Number(v.SalePriceBath).toLocaleString('th-TH'),
                 }));
 
-            } catch (err) {
-                Dataget = await app.GetAsset(sentobject);
-            }
+            // } catch (err) {
+                // Dataget = await app.GetAsset(sentobject);
+            // }
         } else {
             Dataget = await app.GetAsset(sentobject);
         }
@@ -114,11 +114,8 @@ Page({
             loading: false
         });
 
-
-
         // (this.data.fetchData)
     },
-
 
     setsuggesttion(objdata) {
         wx.setStorage({
@@ -131,13 +128,16 @@ Page({
         this.Getsearch();
     },
 
-    OrderSelect(e) {
+    async OrderSelect(e) {
         let Ordervalue = e.detail.order;
         this.setData({
             fetchData: [],
+            offset : 0,
+            hasMore: true,
+            loading: false,
             'searchvalue.order': Ordervalue,
         })
-        this.Getsearch();
+        await this.Getsearch();
     },
 
     async Openfilter() {
@@ -153,7 +153,6 @@ Page({
                     'searchvalue.BuildingStart': this.data.searchvalue.BuildingStart ? this.data.searchvalue.BuildingStart : 0,
                     'searchvalue.BuildingEnd': this.data.searchvalue.BuildingEnd ? this.data.searchvalue.BuildingEnd : 0,
                 })
-
                 res.eventChannel.emit('openfilterdata', this.data.searchvalue);
                 res.eventChannel.on('returnfilterdata', (data) => {
                     let Colordata = data.success.Color;
@@ -165,6 +164,8 @@ Page({
                     this.setData({
                         fetchData: [],
                         offset: 0,
+                        hasMore: true,
+                        loading: false,
                         searchvalue: data.success
                     })
                     this.Getsearch()

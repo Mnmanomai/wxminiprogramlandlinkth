@@ -1,9 +1,13 @@
 <!--pages/postinvestment/postinvestment.wxml-->
 <view class="page-container">
 
-  <cardInvestment list="{{dataInvest}}" bind:sendData="onReceiveData" />
+  <cardInvestmentpost list="{{dataInvest}}" bind:sendData="onReceiveData" />
 
-  <block wx:for="{{8}}">
-    <cardcompany />
+  <view class="" style="margin: 10px 10px;">全部 {{datalist.length ? datalist.length : 0}} 列表</view>
+
+  <block wx:for="{{datalist}}" wx:key="datalist">
+    <cardassetpostinvest data="{{item}}" />
   </block>
+
+  <!-- <cardcompany /> -->
 </view>

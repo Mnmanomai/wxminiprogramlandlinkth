@@ -30,7 +30,9 @@
     "pages/myinvestment/myinvestment",
     "pages/postinvestment/postinvestment",
     "pages/createinvestment/createinvestment",
-    "pages/provincemultiselect/provincemultiselect"
+    "pages/provincemultiselect/provincemultiselect",
+    "pages/colormultiselect/colormultiselect",
+    "pages/investmentpost/investmentpost"
   ],
   "tabBar": {
     "custom": true,

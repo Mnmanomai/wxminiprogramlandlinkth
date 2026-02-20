@@ -25,6 +25,15 @@ Component({
 
 
   methods: {
+    goToPost(e){
+      wx.navigateTo({
+        url : `/pages/investmentpost/investmentpost?id=${e.currentTarget.dataset.id}`
+      })
+    },
+
+    catchdatadesciption(){
+      
+    },
 
     opencontact() {
       this.triggerEvent('sendData', {
@@ -61,6 +70,7 @@ Component({
         })
       }).exec()
     },
+  },
 
-  }
+  
 })

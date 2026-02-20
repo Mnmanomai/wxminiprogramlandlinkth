@@ -1,0 +1,132 @@
+<!--component/cardInvestment/index.wxml-->
+<view class="">
+    <block wx:for="{{localList}}" wx:key="idInvestment">
+        <view class="card">
+            <text class="header">{{item.topic}}</text>
+
+            <view class="description-border">
+                <!-- leftcolor -->
+                <view class="leftcolor"></view>
+
+                <view class="description {{item.expanded ? 'expanded' : 'collapsed'}}" wx:if="{{item.description}}">
+                    <!-- <block wx:for="{{item.comment}}" wx:key="comment">
+                        <view class="text-muted" style="font-size: 14px;">{{item}}</view>
+                    </block> -->
+                    {{item.description}}
+                </view>
+                <view wx:if="{{item.isOverflow == true}}" class="toggle" bindtap="toggleComment" data-id="{{item.ID}}">
+                    {{item.expanded ? '收起' : '查看更多'}}
+                </view>
+
+            </view>
+            <!-- Description -->
+
+            <view class="text-muted" style="display: flex; flex-wrap: wrap; gap: 10px;padding: 10px 0px;font-size: 14px;">
+                <!-- Desired Property Type -->
+                <view class="info-box">
+                    <!-- <view class="box-icon"><van-icon name="wap-nav" /></view> -->
+                    <view class="box-title">所需的房产类型</view>
+                    <view class="box-des">{{item.assettype}}</view>
+                </view>
+
+                <!-- Desired Area -->
+                <view class="info-box">
+                    <!-- <view class="box-icon"><van-icon name="location" /></view> -->
+                    <view class="box-title">所需面积</view>
+                    <view class="box-des">{{item.province}}</view>
+                </view>
+
+                
+                <!-- Planning to visit on -->
+                <view class="info-box">
+                    <!-- <view class="box-icon"><van-icon name="clock" /></view> -->
+                    <view class="box-title">计划参观</view>
+                    <view class="box-des">{{item.visitdate}}</view>
+                </view>
+
+                <!-- Color Of Land -->
+                <view class="info-box">
+                    <!-- <view class="box-icon"><van-icon name="color" /></view> -->
+                    <view class="box-title">大地的颜色</view>
+                    <view class="box-des">{{item.color}}</view>
+                </view>
+
+                <!-- Desired Industrial Type -->
+                <view class="info-box" wx:if="{{item.businesstype}}">
+                    <!-- <view class="box-icon"><image class="box-ico-img" src="/asset/headphones.png" mode="aspectFit"/></view> -->
+                    <view class="box-title">所需的工业类型</view>
+                    <view class="box-des">{{item.businessType}}</view>
+                </view>
+
+                <!-- Desired Zone -->
+                <view class="info-box">
+                    <!-- <view class="box-icon"><image class="box-ico-img" src="/asset/headphones.png" mode="aspectFit"/></view> -->
+                    <view class="box-title">所需区域</view>
+                    <view class="box-des">{{item.industrailtype}}</view>
+                </view>
+
+                <!-- Desired Land Size -->
+                <view class="info-box">
+                    <!-- <view class="box-icon"><van-icon name="enlarge" /></view> -->
+                    <view class="box-title">所需土地面积</view>
+                    <view class="box-des">{{item.landsizemin}} - {{item.landsizemax}} 拉伊</view>
+                </view>
+
+                <!-- Desired Building Size -->
+                <view class="info-box">
+                    <!-- <view class="box-icon"><van-icon name="wap-home" /></view> -->
+                    <view class="box-title">所需建筑尺寸</view>
+                    <view class="box-des">{{item.buildingsizemin}} - {{item.buildingsizemax}} 平方米</view>
+                </view>
+            </view>
+
+
+
+            <view class="text-muted" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <!-- <view style="width: 48%;">
+                    <view class="">
+                        <van-icon name="wap-home-o" /> {{item.typeAsset}}
+                    </view>
+                </view>
+                <view style="width: 48%;">
+                    <view class="">
+                        <van-icon name="paid" /> {{item.typeSell}}
+                    </view>
+                </view>
+                <view style="width: 48%;">
+                    <view class="">
+                        <van-icon name="shrink" /> {{item.ref_industrial}}
+                    </view>
+                </view>
+                <view style="width: 48%;">
+                    <view class="">
+                        <van-icon name="logistics" /> {{item.ref_free_zone}}
+                    </view>
+                </view>
+                <view style="width: 48%;">
+                    <view class="">
+                        <van-icon name="brush-o" /> {{item.type_color}}
+                    </view>
+                </view>
+                <view wx:if="{{item.scope_price_max != 0 &&item.scope_price_min !=0 }}" style="width: 48%;">
+                    <view class="">
+                        <van-icon name="gold-coin-o" /> {{item.scope_price_min}} - {{item.scope_price_max}} 泰铢
+                    </view>
+                </view>
+                <view wx:if="{{item.land_rai_max != 0 &&item.land_rai_min !=0 }}" style="width: 48%;">
+                    <view class="">
+                        <van-icon name="expand-o" /> {{item.land_rai_min}} - {{item.land_rai_max}} 拉伊
+                    </view>
+                </view>
+                <view wx:if="{{item.factory_sqm_max != 0 &&item.factory_sqm_min !=0 }}" style="width: 48%;">
+                    <view class="">
+                        <van-icon name="hotel-o" /> {{item.factory_sqm_min}} - {{item.factory_sqm_max}} 平方米
+                    </view>
+                </view> -->
+                <view class="" wx:if="{{item.Status == 1}}" style="width: 100%;">
+                    <button class="" style="width: 100%;background-color: rgba(0, 0, 66, 0.95);color: white;" bind:tap="opencontact">我有</button>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>

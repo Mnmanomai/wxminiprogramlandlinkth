@@ -1,0 +1,66 @@
+<!--pages/investmentpost/investmentpost.wxml-->
+<view class="">
+  <view class="card">
+    <text class="header">{{datacore.topic}}</text>
+
+    <view class="description-border">
+      <!-- leftcolor -->
+      <view class="leftcolor"></view>
+      <view class="" style="padding: 10px;">
+        {{datacore.description}}
+      </view>
+    </view>
+    <!-- Description -->
+    <view class="text-muted" style="display: flex; flex-wrap: wrap; gap: 10px;padding: 10px 0px;font-size: 14px;">
+      <!-- Desired Property Type -->
+      <view class="info-box">
+        <view class="box-title">所需的房产类型</view>
+        <view class="box-des">{{datacore.assettype}}</view>
+      </view>
+
+      <!-- Desired Area -->
+      <view class="info-box">
+        <view class="box-title">所需面积</view>
+        <view class="box-des">{{datacore.province}}</view>
+      </view>
+
+      <!-- Planning to visit on -->
+      <view class="info-box">
+        <view class="box-title">计划参观</view>
+        <view class="box-des">{{datacore.visitdate}}</view>
+      </view>
+
+      <!-- Color Of Land -->
+      <view class="info-box">
+        <view class="box-title">大地的颜色</view>
+        <view class="box-des">{{datacore.color}}</view>
+      </view>
+
+      <!-- Desired Industrial Type -->
+      <view class="info-box" wx:if="{{datacore.businessType}}">
+        <view class="box-title">所需的工业类型</view>
+        <view class="box-des">{{datacore.buinesstype}}</view>
+      </view>
+
+      <!-- Desired Zone -->
+      <view class="info-box">
+        <view class="box-title">所需区域</view>
+        <view class="box-des">{{datacore.industrailtype}}</view>
+      </view>
+
+      <!-- Desired Land Size -->
+      <view class="info-box">
+        <view class="box-title">所需土地面积</view>
+        <view class="box-des">{{datacore.landsizemin}} - {{datacore.landsizemax}} 拉伊</view>
+      </view>
+
+      <!-- Desired Building Size -->
+      <view class="info-box">
+        <view class="box-title">所需建筑尺寸</view>
+        <view class="box-des">{{datacore.buildingsizemin}} - {{datacore.buildingsizemax}} 平方米</view>
+      </view>
+    </view>
+    <view class="text-muted" style="display: flex; flex-wrap: wrap; gap: 10px;">
+    </view>
+  </view>
+</view>

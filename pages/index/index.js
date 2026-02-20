@@ -5,18 +5,6 @@ Page({
         dataAsset: [],
         show: false,
     },
-    Gotocompany(){
-      wx.navigateTo({
-        url: '/pages/createinvestment/createinvestment',
-      })
-    },
-
-    Gotoinvestment(){
-      wx.navigateTo({
-        url: '/pages/myinvestment/myinvestment',
-      })
-    },
-
 
     onReceiveData(e) {
         this.setData({

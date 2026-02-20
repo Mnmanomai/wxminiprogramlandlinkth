@@ -1,109 +1,172 @@
 <!--pages/filtersearch/filtersearch.wxml-->
 <view class="mainbody">
-    <view class="page-container">
-        <filterSeach SellType="{{SellType}}" bind:change="onActiveChange" />
-        <van-tabs active="{{ active }}" swipeable>
-            <!-- search -->
+  <view class="page-container">
+    <filterSeach SellType="{{SellType}}" bind:change="onActiveChange" />
+    <van-tabs active="{{ active }}" swipeable>
+      <!-- search -->
+      <view class="" style="padding: 10px 20px 10px 20px;">
+        <view class="" style="display: flex;">
+          <view class="" style="width: 80%;">
+            <input type="text" bindinput="onInputKeyword" value="" placeholder="按关键字搜索"
+              style="padding: 5px 10px 5px 10px;box-shadow: 0.25px 0.5px 4px 0.25px rgb(0,0,0,0.25);border-radius: 8px;" />
+          </view>
+          <view class="" bind:tap="btnNexttoSearchKeyword"
+            style="width: 20%;display: flex;justify-content: center;align-items: center;font-size: 16px;font-weight: 600;">
+            搜索
+          </view>
+        </view>
+      </view>
 
+      <van-tab title="搜索">
+        <van-collapse value="{{ ShowColapseSearchDetail }}" bind:change="onChangeSearchDetailCollapse">
+          <van-collapse-item title=" {{language == 'zh' ? '搜索详情' : 'Search Detail'}}" name="1">
 
-            <view class="" style="padding: 10px 20px 10px 20px;">
-              <view class="" style="display: flex;">
-                <view class="" style="width: 80%;">
-                  <input type="text" bindinput="onInputKeyword" value="" placeholder="按关键字搜索" style="padding: 5px 10px 5px 10px;box-shadow: 0.25px 0.5px 4px 0.25px rgb(0,0,0,0.25);border-radius: 8px;"/>
-                </view>
-                <view class="" bind:tap="btnNexttoSearchKeyword" style="width: 20%;display: flex;justify-content: center;align-items: center;font-size: 16px;font-weight: 600;" >
-                  搜索
-                </view>
+            <!-- Property Type All / Land / Warehouse / Factory -->
+            <view class="sector">
+              <view class="header">{{language == "en" ? "Property Type":"物业类型" }}</view>
+              <view class="headselect">
+                <block wx:for="{{DataPropType}}" wx:key="propTypeSel">
+                  <view class="select {{filterdata.PropertyType == item.id ? 'active' : ''}}" id="proptype"
+                    bind:tap="selectProperty" data-id="{{item.id}}" data-text="{{item.name}}">{{item.name}}</view>
+                </block>
               </view>
             </view>
+            <van-divider />
+
+            <!-- Land Building Size (Sqm) -->
+            <view class="sector" wx:if="{{ShowBuildingPrice}}">
+              <view class="header">{{language == "en" ? "Building Size (SQM)" : "建筑面积（​​平方米）" }}</view>
+              <view class="splitinput">
+                <input type="text" class="input" bindinput="onInputBuildingStart" maxlength="11"
+                  value="{{filterdata.BuildingStart}}" placeholder="开始" />
+                <input type="text" class="input" bindinput="onInputBuildingEnd" maxlength="11"
+                  value="{{filterdata.BuildingEnd}}" placeholder="结尾" />
+              </view>
+            </view>
+            <van-divider />
+
+            <!-- Land Size (rai) Min Max -->
+            <view class="sector">
+              <view class="header">{{language == "en" ? "Land Size (rai)" : "土地面积 (莱)"}}</view>
+              <view class="splitinput">
+                <input type="number" class="input" bindinput="onInputLandStart" maxlength="6"
+                  value="{{filterdata.LandSizeStart}}" placeholder="开始" />
+                <input type="number" class="input" bindinput="onInputLandEnd" maxlength="6"
+                  value="{{filterdata.LandSizeEnd}}" placeholder="结尾" />
+              </view>
+            </view>
+            <van-divider />
+
+            <!-- Price Min Max -->
+            <view class="sector">
+              <view class="header">{{language == "en" ? "Price" : "价格"}}</view>
+              <view class="splitinput">
+                <input type="number" class="input" value="{{filterdata.PriceStart}}" maxlength="14"
+                  bindinput="onInputStart" placeholder="开始" />
+                <input type="number" class="input" value="{{filterdata.PriceEnd}}" maxlength="14" bindinput="onInputEnd"
+                  placeholder="结尾" />
+              </view>
+            </view>
+            <van-divider />
+
+            <!-- I-EAT All / IEAT / Non IEAT -->
+            <view class="sector">
+              <view class="header">{{language == "en" ? "I-EAT":"I-EAT" }}</view>
+              <view class="headselect">
+                <block wx:for="{{DataIEAT}}" wx:key="IEATSel">
+                  <view class="select {{filterdata.IEAT == item.id ? 'active' : ''}}" bind:tap="selectIEAT"
+                    data-id="{{item.id}}" data-text="{{item.name}}">{{item.name}}</view>
+                </block>
+              </view>
+            </view>
+            <van-divider />
+
+            <!-- Color Of Land All -->
+            <view class="sector">
+              <!-- color of land -->
+              <view class="header">{{language == "en" ? "Color of land" : "属性颜色"}}</view>
+              <view class="headselect">
+                <block wx:for="{{DataColor}}" wx:key="ColorSel">
+                  <view class="select {{item.select == true ? 'active' :''}} " bind:tap="selectColor"
+                    data-id="{{item.id}}" data-text="{{item.name}}">
+                    {{item.name}}
+                  </view>
+                </block>
+              </view>
+            </view>
+            <van-divider />
+
+            <view class="" bind:tap="btnNextToSearchDetail">
+              <view class="" style="background-color: rgb(16, 16, 79);color: white;width: 100%;display: flex;justify-content: center;padding: 10px 0px;border-radius: 10px;font-weight: 600;font-size: 16px;">
+                {{language == "zh" ? "搜索" : "Go Search"}}
+              </view>
+            </view>
+          </van-collapse-item>
+        </van-collapse>
+
+        <!-- Near Location / Province and District / Seach #no Asset Name-->
+        <view class="tablistFilter">
+          <van-cell-group>
+            <block wx:for="{{Search_fun}}" wx:key="search_func">
+              <van-cell icon="{{item.icon}}" title="{{item.name}}" data-id="{{item.id}}" is-link
+                bind:tap="btnNextToSearchResult" />
+            </block>
+          </van-cell-group>
+        </view>
+
+        <van-collapse value="{{ activeNames }}" bind:change="onChangeHistoryCollapse">
+          <view class="" wx:if="{{RecentDisplay.length > 0}}">
+            <van-collapse-item title="最近搜索" name="1">
+              <view class="tablistFilter">
+                <block class="" wx:for="{{RecentDisplay}}" wx:key="Recent">
+                  <van-cell icon="guide-o" bind:tap="NextToSearch" data-index="{{index}}">
+                    <view slot="title" wx:if="{{item.type == 'provinceanddistrict'}}">
+                      <view class="van-cell-text">{{item.province_name}}, {{item.distric_name}}</view>
+                      <van-tag type="danger" class="tag">{{item.selltype_name == "buy" ? "购买" : "租赁"}}</van-tag>
+                      <van-tag type="danger" class="tag">省、区</van-tag>
+                    </view>
+                    <view slot="title" wx:if="{{item.type == 'seachondetail'}}">
+                      <view class="van-cell-text">{{item.PropertyTypeName}}, {{"IEAT "+item.IEATText}},
+                        {{"属性颜色 "+item.ColorText}}
+                      </view>
+                      <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
+                      <van-tag type="danger" class="tag">按信息搜索</van-tag>
+                    </view>
+                    <view slot="title" wx:if="{{item.type == 'nearlocation'}}">
+                      <view class="van-cell-text">{{item.selecttext}}</view>
+                      <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
+                      <van-tag type="danger" class="tag">附近地区</van-tag>
+                    </view>
+                  </van-cell>
+                </block>
+              </view>
+            </van-collapse-item>
+          </view>
+        </van-collapse>
+      </van-tab>
 
 
 
-            <van-tab title="搜索">
-                <view class="tablistFilter">
-                    <van-cell-group>
-                        <block wx:for="{{Search_fun}}" wx:key="search_func">
-                            <van-cell icon="{{item.icon}}" title="{{item.name}}" data-id="{{item.id}}" is-link bind:tap="btnNextToSearchResult" />
-                        </block>
-                    </van-cell-group>
+      <!-- Bookmark -->
+      <van-tab title="书签">
+        <view class="tablistFilter">
+          <view class="" wx:if="{{BookmarkDisplay.length > 0}}">
+            <block class="" wx:for="{{BookmarkDisplay}}" wx:key="Bookmark">
+              <van-cell icon="guide-o" bind:tap="NextToSearchBookmark" data-index="{{index}}">
+                <view slot="title">
+                  <view class="van-cell-text">{{item.PropertyTypeName}}, IEAT {{item.IEATText}}, 属性颜色 {{item.ColorText}}
+                  </view>
+                  <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
+                  <van-tag type="danger" class="tag">按信息搜索</van-tag>
                 </view>
-                <van-collapse value="{{ activeNames }}" bind:change="onChangeHistoryCollapse">
-                    <view class="" wx:if="{{RecentDisplay.length > 0}}">
-                        <van-collapse-item title="最近搜索" name="1">
-                            <view class="tablistFilter">
-                                <block class="" wx:for="{{RecentDisplay}}" wx:key="Recent">
-                                    <van-cell icon="guide-o" bind:tap="NextToSearch" data-index="{{index}}">
-                                        <view slot="title" wx:if="{{item.type == 'provinceanddistrict'}}">
-                                            <view class="van-cell-text">{{item.province_name}}, {{item.distric_name}}</view>
-                                            <van-tag type="danger" class="tag">{{item.selltype_name == "buy" ? "购买" : "租赁"}}</van-tag>
-                                            <van-tag type="danger" class="tag">省、区</van-tag>
-                                        </view>
-                                        <view slot="title" wx:if="{{item.type == 'seachondetail'}}">
-                                            <view class="van-cell-text">{{item.PropertyTypeName}}, {{"IEAT "+item.IEATText}}, {{"属性颜色 "+item.ColorText}}</view>
-                                            <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
-                                            <van-tag type="danger" class="tag">按信息搜索</van-tag>
-                                        </view>
-                                        <view slot="title" wx:if="{{item.type == 'nearlocation'}}">
-                                            <view class="van-cell-text">{{item.selecttext}}</view>
-                                            <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
-                                            <van-tag type="danger" class="tag">附近地区</van-tag>
-                                        </view>
-                                    </van-cell>
-                                </block>
-                            </view>
-                        </van-collapse-item>
-                    </view>
-                </van-collapse>
-            </van-tab>
-
-            <!-- Recent Search -->
-            <!-- <van-tab title="最近搜索">
-                <view class="tablistFilter">
-                    <view class="" wx:if="{{RecentDisplay.length > 0}}">
-                        <block class="" wx:for="{{RecentDisplay}}" wx:key="Recent">
-                            <van-cell icon="guide-o" bind:tap="NextToSearch" data-index="{{index}}">
-                                <view slot="title" wx:if="{{item.type == 'provinceanddistrict'}}">
-                                    <view class="van-cell-text">{{item.province_name}}, {{item.distric_name}}</view>
-                                    <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
-                                    <van-tag type="danger" class="tag">省、区</van-tag>
-                                </view>
-                                <view slot="title" wx:if="{{item.type == 'seachondetail'}}">
-                                    <view class="van-cell-text">{{item.PropertyTypeName}}, {{"IEAT "+item.IEATText}}, {{"属性颜色 "+item.ColorText}}</view>
-                                    <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
-                                    <van-tag type="danger" class="tag">按信息搜索</van-tag>
-                                </view>
-                                <view slot="title" wx:if="{{item.type == 'nearlocation'}}">
-                                    <view class="van-cell-text">{{item.selecttext}}</view>
-                                    <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
-                                    <van-tag type="danger" class="tag">附近地区</van-tag>
-                                </view>
-                            </van-cell>
-                        </block>
-                    </view>
-                    <view class="" wx:else="">
-                        <van-empty description="暂无信息" />
-                    </view>
-                </view>
-            </van-tab> -->
-            <!-- Bookmark -->
-            <van-tab title="书签">
-                <view class="tablistFilter">
-                    <view class="" wx:if="{{BookmarkDisplay.length > 0}}">
-                        <block class="" wx:for="{{BookmarkDisplay}}" wx:key="Bookmark">
-                            <van-cell icon="guide-o" bind:tap="NextToSearchBookmark" data-index="{{index}}">
-                                <view slot="title">
-                                    <view class="van-cell-text">{{item.PropertyTypeName}}, IEAT {{item.IEATText}}, 属性颜色 {{item.ColorText}}</view>
-                                    <van-tag type="danger" class="tag">{{item.selltype_name}}</van-tag>
-                                    <van-tag type="danger" class="tag">按信息搜索</van-tag>
-                                </view>
-                            </van-cell>
-                        </block>
-                    </view>
-                    <view class="" wx:else="">
-                        <van-empty description="暂无信息" />
-                    </view>
-                </view>
-            </van-tab>
-        </van-tabs>
-    </view>
+              </van-cell>
+            </block>
+          </view>
+          <view class="" wx:else="">
+            <van-empty description="暂无信息" />
+          </view>
+        </view>
+      </van-tab>
+    </van-tabs>
+  </view>
 </view>

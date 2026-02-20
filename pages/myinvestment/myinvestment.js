@@ -14,7 +14,7 @@ Page({
         language: "zh",
         leghthInvest: 0,
         show: false,
-        lengthinvest :0,
+        lengthinvest: 0,
     },
 
     /**
@@ -23,13 +23,28 @@ Page({
     async onLoad(options) {
         const textMyinvestment = config.language == "zh" ? "我的投资" : "My Investment"
         this.setData({
-            language : config.language
+            language: config.language
         })
         wx.setNavigationBarTitle({
             title: textMyinvestment,
         });
         await this.getMyInvestmet()
         // await this.getData();
+    },
+
+    openTab(e) {
+        const url = e.currentTarget.dataset.url;
+        wx.navigateTo({
+            url: url,
+        })
+    },
+
+    onShareAppMessage(e) {
+      
+      return {
+        title: e.target.dataset.name,
+        path: `/pages/investmentpost/investmentpost?id=${e.target.dataset.id}`,
+      }
     },
 
     async getData() {
@@ -55,19 +70,13 @@ Page({
 
     async getMyInvestmet() {
         try {
-            let data = await this. reqMyInvestment()
-            console.log(data);
+            let data = await this.reqMyInvestment()
             let lengthinvest = data.data.length
-            console.log(lengthinvest);
             this.setData({
-                dataInvest : [...this.data.dataInvest,...data.data],
-                lengthinvest : lengthinvest,
+                dataInvest: [...this.data.dataInvest, ...data.data],
+                lengthinvest: lengthinvest,
             })
-        } catch {
-            console.log("error")
-        }
-
-        console.log(this.data.dataInvest);
+        } catch {}
     },
 
     async reqMyInvestment() {
@@ -99,59 +108,6 @@ Page({
                 },
             })
         })
-    },
-
-    // async onReachBottom() {
-    //     await this.getData();
-    // },
-
-    /**
-     * Lifecycle function--Called when page is initially rendered
-     */
-    onReady() {
-
-    },
-
-    /**
-     * Lifecycle function--Called when page show
-     */
-    onShow() {
-
-    },
-
-    /**
-     * Lifecycle function--Called when page hide
-     */
-    onHide() {
-
-    },
-
-    /**
-     * Lifecycle function--Called when page unload
-     */
-    onUnload() {
-
-    },
-
-    /**
-     * Page event handler function--Called when user drop down
-     */
-    onPullDownRefresh() {
-
-    },
-
-    /**
-     * Called when page reach bottom
-     */
-    onReachBottom() {
-
-    },
-
-    /**
-     * Called when user click on the top right corner to share
-     */
-    onShareAppMessage() {
-
     },
 
 

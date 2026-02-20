@@ -1,0 +1,76 @@
+/* component/cardcompany/cardcompany.wxss */
+.card {
+  /* display: flex; */
+  background: rgb(255, 255, 255);
+  /* margin: 6px; */
+  /* border-radius: 12px; */
+  overflow: hidden;
+  /* gap: 4px; */
+  padding: 6px 10px 6px 10px;
+  position: relative;
+}
+
+.images {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+
+.sectionimages {
+  width: 270px;
+}
+
+.sectiondescription {
+  /* padding: 4px; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* background: rgb(85, 58, 58); */
+}
+
+.textName {
+  font-size: 14px;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.textDescription {
+  font-size: 12px;
+}
+
+.price {
+  text-align: end;
+}
+
+.tag {
+  color: rgb(14, 54, 129);
+  border: solid 1px rgb(14, 54, 129);
+  padding: 1px 4px 1px 4px;
+  font-size: 9px;
+  font-weight: 500;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+.imagespost{
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.agentdetail{
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.divider {
+  height: 1rpx;
+  background-color: #ededed;
+  transform: scaleY(0.5);
+}

@@ -1,0 +1,21 @@
+<!--pages/colormultiselect/colormultiselect.wxml-->
+<view class="page-container" style="position: relative;">
+  <view class="" style="position: sticky;top: 0px;z-index: 1;width: 100%;background-color: white;padding: 10px 0px;">
+    <view class="" style="display: flex;justify-content: space-between;">
+      <view class="" style="font-weight: 600;padding: 0px 10px;">Back</view>
+      <view class="" style="font-weight: 600;padding: 0px 10px;color: rgb(41, 80, 185);" bind:tap="confirmSelect">Done
+      </view>
+    </view>
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" bind:change="searchlist" />
+  </view>
+
+
+  <view class="" style="overflow: scroll;max-height:760px;padding: 0px 10px;">
+    <block wx:for="{{listcolor}}" wx:key="color">
+      <view class="" style="padding: 10px 0px;" bind:tap="selectlist" data-text="{{item.text}}"
+        data-value="{{item.value}}">
+        <van-icon wx:if="{{item.mark}}" name="success" style="color: rgb(0, 140, 255);" size="22" /> {{item.text}}
+      </view>
+    </block>
+  </view>
+</view>

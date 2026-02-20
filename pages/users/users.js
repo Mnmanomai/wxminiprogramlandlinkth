@@ -47,5 +47,19 @@ Page({
     this.setData({
       showcontact : true
     })
-  }
+  },
+
+  gotoPage(e) {
+    const url = e.currentTarget.dataset.url;
+    wx.switchTab({
+      url: url,
+    })
+  },
+
+  openTab(e) {
+    const url = e.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: url,
+    })
+  },
 })
