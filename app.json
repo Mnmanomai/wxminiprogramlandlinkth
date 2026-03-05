@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/ai/ai",
     "pages/index/index",
     "pages/logs/logs",
     "pages/filtersearch/filtersearch",
@@ -32,9 +33,8 @@
     "pages/createinvestment/createinvestment",
     "pages/provincemultiselect/provincemultiselect",
     "pages/colormultiselect/colormultiselect",
-    "pages/investmentpost/investmentpost",
-    "pages/ai/ai"
-  ],
+    "pages/investmentpost/investmentpost"
+    ],
   "tabBar": {
     "custom": true,
     "list": [
@@ -48,6 +48,10 @@
       },
       {
         "pagePath": "pages/investmentmarket/investmentmarket",
+        "text": "按摩"
+      },
+      {
+        "pagePath": "pages/ai/ai",
         "text": "按摩"
       },
       {

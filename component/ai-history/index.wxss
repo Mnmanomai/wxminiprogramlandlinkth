@@ -1,0 +1,29 @@
+.history-item { 
+  padding: 30rpx 25rpx; 
+  border-bottom: 1rpx solid #23d300; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  transition: 0.2s;
+}
+
+.chat-name {
+  font-size: 28rpx;
+  color: #bdc3c7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 350rpx;
+}
+
+/* ตอนที่ถูกเลือก (Active) ให้เป็นสีน้ำเงินแบบในเว็บ */
+.history-item.active { 
+  background: #34495e; 
+  border-left: 8rpx solid #3498db; 
+}
+
+.history-item.active .chat-name {
+  color: #ffffff;
+  font-weight: bold;
+}

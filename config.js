@@ -6,7 +6,8 @@ module.exports = {
   apiBaseUrl: "https://landlinkth.com",
   PublicIPCallApiGoBackend : "https://api.landlinkth.com",
   env: "development",
-  language:"zh"
+  language:"zh",
+  apitestAI:"http://127.0.0.1:8000"
 }
 
 // module.exports = config; 

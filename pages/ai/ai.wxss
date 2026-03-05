@@ -1,1 +1,399 @@
-/* pages/ai/ai.wxss */
+/* ===== GLASSMORPHISM COMPLETE - เหมือนเว็บทุกอย่าง ===== */
+
+page {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #e0f2fe 100%);
+  min-height: 100vh;
+}
+
+/* ===== APP CONTAINER ===== */
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #e0f2fe 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 600rpx;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(40rpx);
+  -webkit-backdrop-filter: blur(40rpx);
+  border-right: 2rpx solid rgba(255, 255, 255, 0.5);
+  box-shadow: 8rpx 0 64rpx rgba(59, 130, 246, 0.15);
+  position: fixed;
+  left: -600rpx;
+  top: 0;
+  z-index: 2000;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  padding: 50rpx 40rpx 40rpx 40rpx;
+  border-bottom: 2rpx solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-header .title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.close-btn {
+  width: 70rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+  color: #64748b;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.2s;
+}
+
+.close-btn:active {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(0.95);
+}
+
+/* New Chat Button ใน Sidebar */
+.new-chat-sidebar {
+  margin: 30rpx 30rpx 40rpx 30rpx;
+  padding: 32rpx 40rpx;
+  background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20rpx;
+  box-shadow: 0 16rpx 48rpx rgba(59, 130, 246, 0.4);
+  transition: all 0.3s;
+}
+
+.new-chat-sidebar:active {
+  transform: scale(0.98);
+  box-shadow: 0 8rpx 32rpx rgba(59, 130, 246, 0.4);
+}
+
+.new-chat-icon {
+  font-size: 52rpx;
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.new-chat-text {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* History List */
+.history-list {
+  flex: 1;
+  padding: 0;
+  overflow-y: scroll;
+}
+
+.empty-history {
+  padding: 100rpx 50rpx;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 30rpx;
+  line-height: 1.6;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+/* Header */
+.header {
+  padding: 40rpx 40rpx 30rpx 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(40rpx);
+  -webkit-backdrop-filter: blur(40rpx);
+  border-bottom: 2rpx solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4rpx 24rpx rgba(59, 130, 246, 0.1);
+}
+
+.menu-icon {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  color: #1e293b;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  box-shadow: 0 4rpx 16rpx rgba(59, 130, 246, 0.1);
+  transition: all 0.2s;
+}
+
+.menu-icon:active {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(0.95);
+}
+
+.brand {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1e293b;
+  flex: 1;
+  text-align: center;
+}
+
+.header-spacer {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+/* Chat Window */
+.chat-window {
+  flex: 1;
+  width: 100%;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: transparent;
+}
+
+/* Message Rows */
+.msg-row {
+  display: flex;
+  margin-bottom: 40rpx;
+  animation: slideIn 0.4s ease;
+  padding: 0 20rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.row-user {
+  justify-content: flex-end;
+  padding-left: 60rpx;
+}
+
+.row-ai {
+  justify-content: flex-start;
+  padding-right: 60rpx;
+}
+
+/* Message Bubbles - เหมือนเว็บ */
+.bubble {
+  max-width: 85%;
+  padding: 24rpx 32rpx;
+  word-wrap: break-word;
+  max-width: 100%;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  border-radius: 20px 20px 4px 20px;
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.row-user .bubble {
+  background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+  color: #ffffff;
+  border-radius: 40rpx 40rpx 4rpx 40rpx; /* มุมแหลมชี้ไปทางขวา */
+  margin-left: 80rpx; /* เว้นที่ว่างฝั่งซ้ายไว้ เผื่อข้อความยาวจะได้ไม่เต็มจอ */
+  box-shadow: 0 8rpx 24rpx rgba(59, 130, 246, 0.2);
+}
+
+.row-ai .bubble {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(40rpx);
+  -webkit-backdrop-filter: blur(40rpx);
+  color: #1e293b;
+  border-radius: 40rpx 40rpx 40rpx 4rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.5);
+  margin-right: 80rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+.bubble text {
+  font-size: 32rpx;
+  line-height: 1.7;
+}
+
+/* Empty Chat State */
+.empty-chat {
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.welcome-title {
+  font-size: 64rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 30rpx;
+  display: block;
+}
+
+.welcome-subtitle {
+  font-size: 24rpx;
+  color: #64748b;
+  display: block;
+  opacity:50;
+  text-align: center;
+}
+
+/* Input Container */
+.input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20rpx;  
+  /* --- ส่วนที่ทำให้มัน "ขึ้นมา" แบบอันเก่า --- */
+  padding: 25rpx 30rpx;
+  /* เพิ่มระยะด้านล่างให้สูงขึ้น (ลองปรับจาก 60rpx เป็นตัวเลขที่คุณชอบ) */
+  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));   
+  /* --- ส่วน UI ใหม่ที่สวยๆ (Glassmorphism) --- */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(40rpx);
+  -webkit-backdrop-filter: blur(40rpx);
+  border-top: 2rpx solid rgba(255, 255, 255, 0.5);  
+  /* ถ้าอยากให้ดูพรีเมียมขึ้น ลองใส่เงาจางๆ ด้านบนด้วย */
+  box-shadow: 0 -10rpx 40rpx rgba(0, 0, 0, 0.05);
+}
+
+.chat-input {
+  flex: 1;
+  height: 90rpx; /* กำหนดความสูงให้ชัดเจนเหมือนอันเก่า */
+  padding: 0 40rpx;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(40rpx);
+  border-radius: 45rpx;
+  border: 3rpx solid rgba(255, 255, 255, 0.5);
+  font-size: 28rpx;
+  color: #1e293b;
+  box-shadow: 0 4rpx 24rpx rgba(59, 130, 246, 0.1);
+  box-sizing: border-box;
+}
+
+.chat-input-focus,
+.chat-input:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #60a5fa;
+  box-shadow: 0 8rpx 32rpx rgba(59, 130, 246, 0.25);
+}
+
+.send-icon {
+  width: 90rpx;
+  height: 90rpx;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* เปลี่ยนเป็นวงกลมจะดูพรีเมียมกว่า */
+  background: rgba(203, 213, 225, 0.6);
+  transition: all 0.3s;
+}
+
+.send-icon.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+  box-shadow: 0 8rpx 24rpx rgba(59, 130, 246, 0.3);}
+
+.send-icon:active {
+  transform: scale(0.95);
+}
+
+.send-icon van-icon {
+  font-size: 44rpx;
+  color: #ffffff;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Bottom Anchor */
+#bottom-anchor {
+  height: 40rpx;
+}
+
+/* สไตล์สำหรับกล่อง Loading */
+.dot-typing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 0;
+  min-width: 60rpx;
+}
+
+.dot {
+  width: 10rpx;
+  height: 10rpx;
+  margin: 0 4rpx;
+  background-color: #64748b; /* สีเทาเข้มเพื่อให้ตัดกับ Bubble สีขาวใส */
+  border-radius: 50%;
+  animation: dot-blink 1.4s infinite ease-in-out both;
+}
+.row-user .dot { background-color: #ffffff; }
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dot-blink {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1.2); }
+}

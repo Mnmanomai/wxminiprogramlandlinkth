@@ -1,0 +1,6 @@
+<view class="history-item {{active ? 'active' : ''}}" bindtap="onTap">
+  <view class="item-info">
+    <text class="chat-name">{{title}}</text>
+  </view>
+  <icon type="cancel" size="15" color="{{active ? '#fff' : '#999'}}" catchtap="onDelete"/>
+</view>

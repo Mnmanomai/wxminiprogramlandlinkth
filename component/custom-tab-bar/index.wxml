@@ -5,7 +5,8 @@
   <!-- Activities / 活动 -->
   <van-tabbar-item icon="apps-o"></van-tabbar-item> 
   <!-- Investment / 急投意向 -->
-  <van-tabbar-item icon="bullhorn-o"></van-tabbar-item> 
+  <van-tabbar-item icon="bullhorn-o"></van-tabbar-item>
+  <van-tabbar-item icon="friends-o"></van-tabbar-item>
   <!-- Investment / 急投意向 -->
   <van-tabbar-item icon="chat-o"></van-tabbar-item> 
   <van-tabbar-item icon="user-o"></van-tabbar-item> 

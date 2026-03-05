@@ -1,2 +1,70 @@
-<!--pages/ai/ai.wxml-->
-<text>pages/ai/ai.wxml</text>
+<view class="app-container">
+  <!-- Sidebar -->
+  <view class="sidebar {{isSidebarOpen ? 'open' : ''}}">
+    <view class="sidebar-header">
+      <text class="title">💬 聊天记录</text>
+      <view class="close-btn" bindtap="toggleSidebar">×</view>
+    </view>
+
+    <!-- New Chat Button ใน Sidebar -->
+    <view class="new-chat-sidebar" bindtap="startNewChat">
+      <text class="new-chat-icon">+</text>
+      <text class="new-chat-text">创建新聊天</text>
+    </view>
+
+    <scroll-view class="history-list" scroll-y>
+      <block wx:for="{{chatHistory}}" wx:key="session_id">
+        <ai-history title="{{item.title}}" active="{{currentChatId === item.session_id}}" chatid="{{item.session_id}}" bind:select="switchChat" bind:delete="deleteChat" />
+      </block>
+
+      <view wx:if="{{chatHistory.length === 0}}" class="empty-history">
+        <text>📝 暂无聊天记录\n请开始新的对话！</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- Main Content -->
+  <view class="main-content">
+    <!-- Header (ไม่มีปุ่ม New Chat แล้ว) -->
+    <view class="header">
+      <view class="menu-icon" bindtap="toggleSidebar">☰</view>
+      <text class="brand">LandLink AI</text>
+      <view class="header-spacer"></view> <!-- เว้นที่ให้สมมาตร -->
+    </view>
+
+    <!-- Chat Window -->
+    <scroll-view class="chat-window" scroll-y scroll-into-view="{{lastId}}" scroll-with-animation enable-back-to-top>
+  <view wx:for="{{messages}}" wx:key="index" id="msg-{{index}}" class="msg-row {{item.role === 'user' ? 'row-user' : 'row-ai'}}">
+    <view class="bubble">
+      <block wx:if="{{!item.isLoading}}">
+        <text user-select>{{item.content}}</text>
+      </block>
+      
+      <view wx:else class="dot-typing">
+        <view class="dot"></view>
+        <view class="dot"></view>
+        <view class="dot"></view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{messages.length === 0}}" class="empty-chat">
+    <text class="welcome-subtitle">开始新聊天</text>
+  </view>
+
+  <view id="bottom-anchor"></view>
+</scroll-view>
+
+    <!-- Input Container -->
+    <view class="input-container">
+      <input class="chat-input" placeholder="Type your question..." value="{{inputVal}}" bindinput="onInput" bindconfirm="handleSend" confirm-type="send" adjust-position="{{true}}" />
+      <view class="send-icon {{inputVal ? 'active' : ''}}" bindtap="handleSend">
+        <van-icon name="guide-o" />
+      </view>
+    </view>
+  </view>
+
+  <!-- Overlay -->
+  <view class="overlay" wx:if="{{isSidebarOpen}}" bindtap="toggleSidebar"></view>
+</view>
+<tabBar current="0" />โโ

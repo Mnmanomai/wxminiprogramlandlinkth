@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "tabBar" : "/component/custom-tab-bar/index",
+    "ai-history":"/component/ai-history/index",
+    "van-icon": "@vant/weapp/icon/index"
+
+  }
 }
