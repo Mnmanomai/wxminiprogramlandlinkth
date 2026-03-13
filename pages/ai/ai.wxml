@@ -34,28 +34,76 @@
 
     <!-- Chat Window -->
     <scroll-view class="chat-window" scroll-y scroll-into-view="{{lastId}}" scroll-with-animation enable-back-to-top>
-  <view wx:for="{{messages}}" wx:key="index" id="msg-{{index}}" class="msg-row {{item.role === 'user' ? 'row-user' : 'row-ai'}}">
-    <view class="bubble">
-      <block wx:if="{{!item.isLoading}}">
-        <text user-select>{{item.content}}</text>
-      </block>
-      
-      <view wx:else class="dot-typing">
-        <view class="dot"></view>
-        <view class="dot"></view>
-        <view class="dot"></view>
+      <view wx:for="{{messages}}" wx:key="index" id="msg-{{index}}" class="msg-row {{item.role === 'user' ? 'row-user' : 'row-ai'}}">
+        <view class="bubble">
+          <block wx:if="{{!item.isLoading}}">
+            <text user-select>{{item.content}}</text>
+
+
+            <view class="assets-container" wx:if="{{item.assets.length > 0}}">
+              <view class="asset-group-item" wx:for="{{item.assets}}" wx:for-item="asset" wx:key="id">
+
+                <view class="asset-pitch-box" wx:if="{{asset.pitch}}">
+                  <text>💡 {{asset.pitch}}</text>
+                </view>
+
+                <view class="asset-card">
+                  <!-- <image class="asset-image" src="/images/property-placeholder.jpg" mode="aspectFill"></image> -->
+                  <view class="asset-info">
+                    <view class="asset-name">{{asset.name}}</view>
+                    <view class="asset-location">📍 {{asset.province}}</view>
+                    <view class="asset-price">฿ {{asset.price}}</view>
+                    <button class="detail-btn" bindtap="goToDetail" data-id="{{asset.id}}">查看详情</button>
+                  </view>
+                </view>
+
+              </view>
+            </view>
+
+
+            <view class="options-container" wx:if="{{item.options && item.options.length > 0}}">
+              <view class="opt-btn" wx:for="{{item.options}}" wx:for-item="opt" wx:key="*this" bindtap="handleOptionClick" data-val="{{opt}}" data-msg-idx="{{index}}">
+                {{opt}}
+              </view>
+            </view>
+
+          </block>
+
+          <view wx:else class="dot-typing">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+          </view>
+        </view>
       </view>
+
+      <view wx:if="{{messages.length === 0}}" class="empty-chat">
+        <text class="welcome-subtitle">开始新聊天</text>
+      </view>
+
+      <view id="bottom-anchor"></view>
+    </scroll-view>
+
+
+    <view class="quick-actions-bar" wx:if="{{messages.length < 10}}">
+      <scroll-view scroll-x="true" class="actions-scroll">
+        <view class="action-item" bindtap="startLandSearch">
+          <text class="icon">🔍</text> 查找土地 / 仓库
+        </view>
+        <!-- <view class="action-item" bindtap="sendQuickInquiry" data-msg="ฝากขาย">
+          <text class="icon">💡</text> ส่งข้อมูลเพื่อฝากขาย
+        </view>
+        <view class="action-item" bindtap="sendQuickInquiry" data-msg="ติดต่อเจ้าหน้าที่">
+          <text class="icon">📞</text> ติดต่อเจ้าหน้าที่
+        </view> -->
+
+      </scroll-view>
     </view>
-  </view>
 
-  <view wx:if="{{messages.length === 0}}" class="empty-chat">
-    <text class="welcome-subtitle">开始新聊天</text>
-  </view>
-
-  <view id="bottom-anchor"></view>
-</scroll-view>
 
     <!-- Input Container -->
+
+
     <view class="input-container">
       <input class="chat-input" placeholder="Type your question..." value="{{inputVal}}" bindinput="onInput" bindconfirm="handleSend" confirm-type="send" adjust-position="{{true}}" />
       <view class="send-icon {{inputVal ? 'active' : ''}}" bindtap="handleSend">
@@ -67,4 +115,4 @@
   <!-- Overlay -->
   <view class="overlay" wx:if="{{isSidebarOpen}}" bindtap="toggleSidebar"></view>
 </view>
-<tabBar current="0" />โโ
+<tabBar current="0" />
