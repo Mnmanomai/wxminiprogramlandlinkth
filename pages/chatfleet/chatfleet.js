@@ -27,7 +27,7 @@ Page({
         // await this.getDataPicture();
 
         this.socketTask = wx.connectSocket({
-            url: `ws://${config.PublicIPCallApiGoBackendnonhttp}/ws/${gropuid}`,
+            url: `${config.PublicIPCallApiGoBackendnonhttp}/ws/${gropuid}`,
             header: {
                 'Content-type': 'application/json',
                 'Authorization': `Bearer ${token.token}`
