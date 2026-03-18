@@ -240,7 +240,8 @@ Page({
   startNewChat: function () {
     this.createNewChatLogic();
     wx.showToast({
-        title: 'เริ่มแชทใหม่',
+                  //เริ่มแชทใหม่
+        title: '开始新的聊天',
         icon: 'none'
     });
   },
@@ -465,7 +466,8 @@ Page({
                                 
                                 // โชว์แค่ Toast เดียวคือลบสำเร็จ
                                 wx.showToast({
-                                    title: 'ลบเรียบร้อย',
+                                  // ลบเรียบร้อยแล้ว
+                                    title: '已删除完成',
                                     icon: 'success'
                                 });
                             });

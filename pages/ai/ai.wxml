@@ -12,9 +12,10 @@
       <text class="new-chat-text">创建新聊天</text>
     </view>
 
-    <scroll-view class="history-list" scroll-y>
+    <scroll-view class="history-list" scroll-y="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
       <block wx:for="{{chatHistory}}" wx:key="session_id">
         <ai-history title="{{item.title}}" active="{{currentChatId === item.session_id}}" chatid="{{item.session_id}}" bind:select="switchChat" bind:delete="deleteChat" />
+        
       </block>
 
       <view wx:if="{{chatHistory.length === 0}}" class="empty-history">
@@ -78,7 +79,29 @@
       </view>
 
       <view wx:if="{{messages.length === 0}}" class="empty-chat">
-        <text class="welcome-subtitle">开始新聊天</text>
+        <text class="welcome-subtitle">您好，我是 LANDLINK AI
+
+          为您提供泰国相关业务咨询与服务，包括：
+
+          🏢 投资与政府机构
+          BOI、IEAT、EEC、DBD、DIW、地方政府、土地局、工业部
+
+          📄 法规与许可
+          EIA、FBL、FBC、PDPA、FDA、TISI、DIP、DFT
+
+          💼 税务与金融
+          税务局、海关、泰国央行（BOT）
+
+          👷 劳工与签证
+          移民局、就业厅、社保（SSO）、劳工保护
+
+          ⚡ 基础设施
+          电力（PEA / MEA）、地下水资源
+
+          🏭 工业地产服务
+          土地 / 厂房 / 仓库 查询
+
+          👉 或点击下方按钮，开始查找土地 / 厂房 / 仓库</text>
       </view>
 
       <view id="bottom-anchor"></view>
@@ -105,7 +128,7 @@
 
 
     <view class="input-container">
-      <input class="chat-input" placeholder="Type your question..." value="{{inputVal}}" bindinput="onInput" bindconfirm="handleSend" confirm-type="send" adjust-position="{{true}}" />
+      <input class="chat-input" placeholder="请输入您的问题..." value="{{inputVal}}" bindinput="onInput" bindconfirm="handleSend" confirm-type="send" adjust-position="{{true}}" />
       <view class="send-icon {{inputVal ? 'active' : ''}}" bindtap="handleSend">
         <van-icon name="guide-o" />
       </view>
