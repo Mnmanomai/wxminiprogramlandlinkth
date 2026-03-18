@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "headergroupchat" : "/component/headergroupchat/headergroupchat",
+    "van-icon": "@vant/weapp/icon/index"
+  }
+}

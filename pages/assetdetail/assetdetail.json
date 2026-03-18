@@ -6,6 +6,8 @@
     "cardlistasset" : "/component/cardListAsset/cardListAsset",
     "contact" : "/component/contact/index",
     "userprofile" : "/component/userprofile/index",
-    "minimenu" : "/component/minicard/index"
+    "minimenu" : "/component/minicard/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
   }
 }

@@ -9,9 +9,51 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
+          "name": "pages/chatfleet/chatfleet",
+          "pathName": "pages/chatfleet/chatfleet",
+          "query": "id=f434c830e9fc11f0915452511a3b8435",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "pages/feeds/feeds",
+          "pathName": "pages/feeds/feeds",
+          "query": "id=f434c830e9fc11f0915452511a3b8435",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/assetdetail/assetdetail",
+          "pathName": "pages/assetdetail/assetdetail",
+          "query": "id=1466",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/users/users",
+          "pathName": "pages/users/users",
           "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/chat/chat",
+          "pathName": "pages/chat/chat",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "/pages/groupinvite/groupinvite",
+          "pathName": "pages/groupinvite/groupinvite",
+          "query": "invitegroup=eyJ1IjoiMTMxIiwiZyI6ImY0MzRjODMwZTlmYzExZjA5MTU0NTI1MTFhM2I4NDM1IiwidCI6MTc3MzEzMDc3Mn0.vG7jDrdDkQbuD92KLfOce4-tVUjGnhEyeYf21_zqn5A",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "/pages/groupinviteqr/groupinviteqr",
+          "pathName": "pages/groupinviteqr/groupinviteqr",
+          "query": "id=f434c830e9fc11f0915452511a3b8435&groupname=📣 仓库出租 + 空地出租｜春武里 By-pass 区 地段优越，价格实惠，适合多种商业用途&image=",
           "launchMode": "default",
           "scene": null
         }

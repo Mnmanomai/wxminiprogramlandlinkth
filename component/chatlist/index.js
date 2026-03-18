@@ -50,9 +50,8 @@ Component({
     methods: {
         Nexttofeed(e) {
             let idfeed = e.currentTarget.dataset.idfeed
-            let namechat = e.currentTarget.dataset.namechat
             wx.navigateTo({
-                url: `/pages/feeds/feeds?id=${idfeed}&groupname=${namechat}`,
+                url: `/pages/chatfleet/chatfleet?id=${idfeed}`,
             });
         }
     },

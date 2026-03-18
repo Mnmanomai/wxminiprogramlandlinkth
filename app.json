@@ -33,7 +33,15 @@
     "pages/provincemultiselect/provincemultiselect",
     "pages/colormultiselect/colormultiselect",
     "pages/investmentpost/investmentpost",
-    "pages/ai/ai"
+    "pages/ai/ai",
+    "pages/groupmanagement/groupmanagement",
+    "pages/taskpreview/taskpreview",
+    "pages/grouplist/grouplist",
+    "pages/mapstask/maptask",
+    "pages/groupinvite/groupinvite",
+    "pages/groupinviteqr/groupinviteqr",
+    "utils/utils.wxs",
+    "pages/chatfleet/chatfleet"
   ],
   "tabBar": {
     "custom": true,

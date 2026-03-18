@@ -1,60 +1,69 @@
 <!--pages/users/users.wxml-->
 <view class="page-container">
-  <headercover firstname="{{firstname}}" lastname="{{lastname}}" picture="{{images}}" />
-  <view class="" style="margin: 14px;">
-    <view class="" style="margin: 10px 0px;font-size: 18px;font-weight: 700;">General</view>
-    <view class="gridmain">
-      <view class="background"></view>
-      <view class="menu" bind:tap="openTab" data-url="/pages/userdetail/userdetail">
-        <view class="">
-          <van-icon name="user-circle-o" class="icon" size="40" />
+    <headercover firstname="{{firstname}}" lastname="{{lastname}}" picture="{{images}}" />
+    <view class="maincard" >
+        <view class="headercard">General</view>
+        <view class="mainlist">
+            <view class="list" bind:tap="openTab" data-url="/pages/userdetail/userdetail">
+                <van-icon name="user-circle-o" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '帐户' : 'Account'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view>
+            <view class="list" bind:tap="gotoPage" data-url="/pages/activities/activities">
+                <van-icon name="like-o" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '收藏夹' : 'Like'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view>
+            <view class="list" bind:tap="gotoPage" data-url="/pages/investmentmarket/investmentmarket">
+                <van-icon name="bullhorn-o" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '寻找资产' : 'Investment'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view>
+            <view class="list" bind:tap="gotoPage" data-url="/pages/chat/chat">
+                <van-icon name="chat-o" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '聊天' : 'Chat'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view>
+            <view class="list" bind:tap="popupsupport">
+                <van-icon name="service-o" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '支持' : 'Support'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view>
         </view>
-        <view class="textmenu">{{language == "zh" ? '帐户' : 'Account'}}</view>
-      </view>
-      <view class="menu" bind:tap="gotoPage" data-url="/pages/activities/activities">
-        <view class="">
-          <van-icon name="like-o" class="icon" size="40" />
-        </view>
-        <view class="textmenu">{{language == "zh" ? '收藏夹' : 'Like'}}</view>
-      </view>
-      <view class="menu" bind:tap="gotoPage" data-url="/pages/investmentmarket/investmentmarket">
-        <view class="">
-          <van-icon name="bullhorn-o" class="icon" size="40" />
-        </view>
-        <view class="textmenu">{{language == "zh" ? '寻找资产' : 'Investment'}}</view>
-      </view>
-      <view class="menu" bind:tap="gotoPage" data-url="/pages/chat/chat">
-        <view class="">
-          <van-icon name="chat-o" class="icon" size="40" />
-        </view>
-        <view class="textmenu">{{language == "zh" ? '聊天' : 'Chat'}}</view>
-      </view>
-      <view class="menu" bind:tap="popupsupport">
-        <view class="">
-          <van-icon name="service-o" class="icon" size="40" />
-        </view>
-        <view class="textmenu">{{language == "zh" ? '支持' : 'Support'}}</view>
-      </view>
     </view>
-    <view class="" style="margin: 10px 0px;font-size: 18px;font-weight: 700;">Investment</view>
-    <view class="gridmain">
-      <view class="background"></view>
 
-      <view class="menu" bind:tap="openTab" data-url="/pages/myinvestment/myinvestment">
-        <view class="">
-          <van-icon name="orders-o" class="icon" size="40"/>
+    <view class="maincard" >
+        <view class="headercard">Investment</view>
+        <view class="mainlist">
+            <view class="list" bind:tap="openTab" data-url="/pages/myinvestment/myinvestment">
+                <van-icon name="orders-o" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '我的投资' : 'My investment'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view>
+            <view class="list" bind:tap="openTab" data-url="/pages/createinvestment/createinvestment">
+                <van-icon name="plus" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '创建投资' : 'Create Investment'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view>
         </view>
-        <view class="textmenu">{{language == "zh" ? '我的投资' : 'My investment'}}</view>
-      </view>
-      <view class="menu" bind:tap="openTab" data-url="/pages/createinvestment/createinvestment">
-        <view class="">
-          <van-icon name="plus" class="icon" size="40" />
-        </view>
-        <view class="textmenu">{{language == "zh" ? '创建投资' : 'Create Investment'}}</view>
-      </view>
     </view>
-  </view>
 
-  <tabBar current="0" />
-  <contact show="{{showcontact}}" />
+    <view class="maincard" >
+        <view class="headercard">Management</view>
+        <view class="mainlist">
+            <view class="list" bind:tap="openTab" data-url="/pages/grouplist/grouplist">
+                <van-icon name="orders-o" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '我的投资' : 'Company Group'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view>
+            <!-- <view class="list" bind:tap="openTab" data-url="/pages/groupprofile/groupprofile">
+                <van-icon name="plus" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '我的投资' : 'Create Group'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view> -->
+        </view>
+    </view>
+
+    <tabBar current="0" />
+    <contact show="{{showcontact}}" />
 </view>

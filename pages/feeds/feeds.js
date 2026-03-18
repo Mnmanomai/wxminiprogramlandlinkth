@@ -12,7 +12,6 @@ Page({
         this.setData({
             groupId: options.id
         })
-
         await this.getDataPicture();
     },
 
@@ -49,7 +48,6 @@ Page({
         this.setData({
             Images: picture
         })
-
     },
 
     async getDataFeed(id) {

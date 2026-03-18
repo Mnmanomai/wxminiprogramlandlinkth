@@ -13,14 +13,14 @@
 
     <!-- content -->
     <view class="namepart">
-      <view class="limit1" style="font-size: 16px;font-weight: 600;text-transform: capitalize;">
+      <view class="limit1" style="font-size: 14px;font-weight: 400;text-transform: capitalize;">
       {{namechat}}
       
       
       </view>
       <view class="limit1" style="color: rgb(0,0,0,0.7);display: flex;">
         <view class="textnewmsg">{{textnew}} </view>
-        <view class=""> • {{timenew}}</view>
+        <view class="text-description"> • {{timenew}}</view>
       </view>
     </view>
 

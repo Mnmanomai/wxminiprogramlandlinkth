@@ -1,0 +1,8 @@
+<!--pages/groupmanagement/groupmanagement.wxml-->
+<view class="grid">
+  <view class="griditem">Management</view>
+  <view class="griditem">Asset</view>
+  <view class="griditem">Route Trip</view>
+  <view class="griditem">Report</view>
+  <view class="griditem">Feedback</view>
+</view>

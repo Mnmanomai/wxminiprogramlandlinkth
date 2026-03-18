@@ -1,0 +1,40 @@
+<view class="container">
+    <view class="header-fixed">
+        <headergroupchat namegroup="{{groupName}}" groupid="{{groupId}}" assetid="{{assetNo}}" images="{{Images}}" />
+    </view>
+
+    <scroll-view 
+        scroll-y="true" 
+        class="mainchat" 
+        scroll-into-view="{{lastMessageId}}" 
+        scroll-with-animation
+        refresher-enabled="{{true}}"
+        refresher-threshold="{{80}}"
+        refresher-triggered="{{triggered}}"
+        bindrefresherrefresh="onRefresh"
+        >
+        <block wx:for="{{chatList}}" wx:key="id">
+            <view wx:if="{{item.isMe === false}}" class="message-row other" id="msg-{{item.id}}">
+                <image class="avatar" wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="aspectFill" />
+                <image class="avatar" wx:else="{{item.avatar}}" src="/asset/landlink.png" mode="aspectFill" />
+                <view class="content-wrapper">
+                    <view class="username">{{item.userName}}</view>
+                    <view class="bubble bg-other">{{item.text}}</view>
+                </view>
+            </view>
+
+            <view wx:else class="message-row me" id="msg-{{item.id}}" bind:longtap="bindmetap">
+                <view class="content-wrapper">
+                    <view class="bubble bg-me">{{item.text}}</view>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+
+    <view class="footer-fixed">
+        <!-- <van-icon name="photograph" size="24" style="color: rgba(0, 0, 0, 0.8);" /> -->
+        <!-- <van-icon name="photo-o" size="24" style="color: rgba(0, 0, 0, 0.8);" /> -->
+        <input class="chat-input" bindinput="setTextdetail" placeholder="พิมพ์ข้อความ..." value="{{textdetail}}" />
+        <van-icon name="guide-o" size="24" style="color: rgba(0, 0, 0, 0.8);" bind:tap="sendChat" />
+    </view>
+</view>

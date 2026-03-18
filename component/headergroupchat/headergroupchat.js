@@ -1,53 +1,109 @@
 // component/headergroupchat/headergroupchat.js
+const config = require("../../config");
+const app = getApp()
 Component({
 
-  /**
-   * Component properties
-   */
-  properties: {
-    namegroup:'',
-    groupid:'',
-    assetid:'',
-  },
-
-  /**
-   * Component initial data
-   */
-  data: {
-    show: false,
-  },
-
-  /**
-   * Component methods
-   */
-  methods: {
-    showPopup() {
-      this.setData({ show: true });
-    },
-  
-    onClose() {
-      this.setData({ show: false });
+    /**
+     * Component properties
+     */
+    properties: {
+        namegroup: {
+            type: String,
+            value: '',
+        },
+        groupid: {
+            type: String,
+            value: '',
+        },
+        assetid: {
+            type: Number,
+            value: '',
+        },
+        images : {
+          type: String,
+            value: '',
+        }
     },
 
-    goToGroupProfile(){
-      const groupid = this.data.groupid
-      wx.navigateTo({
-        url: `/pages/groupprofile/groupprofile?groupid=${groupid}`,
-      })
+    /**
+     * Component initial data
+     */
+    data: {
+        // show: false,
+        language: config.language
     },
 
-    goToGroupMember(){
-      const groupid = this.data.groupid
-      wx.navigateTo({
-        url: `/pages/groupmember/groupmember?groupid=${groupid}`,
-      })
-    },
+    /**
+     * Component methods
+     */
+    methods: {
+        showPopup() {
+            // this.setData({
+            //     show: true
+            // });
+            const that= this
+            wx.showActionSheet({
+              itemList: [
+                config.language == "zh" ? "群组简介" : "Goto Profile",
+                config.language == "zh" ? "群组成员" : "Goto Member",
+                config.language == "zh" ? "预览任务" : "Preview Task",
+                config.language == "zh" ? "邀请入群" : "Invite to group",
+                config.language == "zh" ? "邀请入群" : "Asset Flavorite",
+              ],
+              success (res) {
+                if(res.tapIndex == 0){
+                  that.goToGroupProfile();
+                } 
+                if(res.tapIndex == 1){
+                  that.goToGroupMember();
+                } 
+                if(res.tapIndex == 2){
+                  that.goToPreviewTask();
+                } 
+                if(res.tapIndex == 3){
+                  that.goToinviteqr();
+                } 
+              },
+              fail (res) {
+                console.log(res.errMsg)
+              }
+            })
+        },
 
-    goToAsset(){
-      const assetid = this.data.assetid
-      wx.navigateTo({
-        url: `/pages/assetdetail/assetdetail?id=${assetid}`,
-      })
+        onClose() {
+            this.setData({
+                show: false
+            });
+        },
+
+        goToGroupProfile() {
+            wx.navigateTo({
+                url: `/pages/groupprofile/groupprofile?groupid=${this.data.groupid}`,
+            })
+        },
+
+        goToGroupMember() {
+            wx.navigateTo({
+                url: `/pages/groupmember/groupmember?groupid=${this.data.groupid}`,
+            })
+        },
+
+        goToAsset() {
+            wx.navigateTo({
+                url: `/pages/assetdetail/assetdetail?id=${this.data.assetid}`,
+            })
+        },
+
+        goToPreviewTask() {
+            wx.navigateTo({
+                url: `/pages/taskpreview/taskpreview?id=${this.data.assetid}`,
+            })
+        },
+
+        goToinviteqr() {
+            wx.navigateTo({
+                url: `/pages/groupinviteqr/groupinviteqr?id=${this.data.groupid}&groupname=${this.data.namegroup}&image=${this.data.images}`,
+            })
+        },
     }
-  }
 })
