@@ -475,7 +475,7 @@ Page({
             response.data.forEach(element => {
                 listname.push(element.group_name);
                 listfetch.push({
-                    groupimages : element.group_images,
+                    groupimages: element.group_images,
                     groupid: element.group_id,
                     groupname: element.group_name
                 });
@@ -489,43 +489,26 @@ Page({
             });
             return;
         }
-
-        // listfetch = [
-        //     {groupid : "1",groupimages:"",groupname:"Y 龙仔厝府距离曼谷港 58.4公里，土地面积40-2-42莱,售价400万泰铢每莱,可分割25莱出售"},
-        //     {groupid : "1",groupimages:"",groupname:"Y 龙仔厝府距离曼谷港 58.4公里，土地面积40-2-42莱,售价400万泰铢每莱,可分割25莱出售"},
-        //     {groupid : "1",groupimages:"",groupname:"🔥ขายโกดัง–โรงงานลำลูกกา พื้นที่สีม่วงพร้อมที่ดินและออฟฟิศ"},
-        //     {groupid : "1",groupimages:"",groupname:" Y 春武里府I-EA-T 工业园内保税区厂房出售，土地面积12莱厂房面积11,998.72平方米，售价3.6亿泰铢"},
-        //     {groupid : "1",groupimages:"",groupname:"📣 仓库出租 + 空地出租｜春武里 By-pass 区 地段优越，价格实惠，适合多种商业用途"},
-        //     {groupid : "1",groupimages:"",groupname:" Y 春武里府I-EA-T 工业园内保税区厂房出售，土地面积12莱厂房面积11,998.72平方米，售价3.6亿泰铢"},
-        //     {groupid : "1",groupimages:"",groupname:"Y 北揽府素万那普机场38公里，紫色工业用地土地已平整，土地面积7莱，售价600万泰铢每莱"},
-        //     {groupid : "1",groupimages:"",groupname:"FS04082614218822B Y 北揽府IEAT工业园内，距离素万那普机场26公里，占地面积3莱多，厂房面积约4,500平方米，变压器500kva"},
-        //     {groupid : "1",groupimages:"",groupname:"空地出租，共 96莱，靠近罗查纳工业园（Laem Chabang），临近深海港口，位置优越，适合建仓库、物流中心或各类项"},
-        //     {groupid : "1",groupimages:"",groupname:"📣 仓库出租 + 空地出租｜春武里 By-pass 区 地段优越，价格实惠，适合多种商业用途"},
-        //     {groupid : "1",groupimages:"",groupname:"位於阿瑪塔工業區附近的三層商業建築，適合用作家庭辦公室。อาคารพาณิชย์3ชั้นใกล้อมตะ "},
-        // ]
-        
         this.setData({
-            listfetch : listfetch
+            listfetch: listfetch
         })
-
-
     },
 
     async selectsend(e) {
         this.setData({
             showGroupSheet: false
         })
-    
+
         // 1. ดึงข้อมูลจาก dataset ให้ชัวร์ (ระวังเรื่องสะกดตัวเล็กตัวใหญ่)
         let idgroup = e.currentTarget.dataset.groupid
         let textDetail = this.data.id
-    
+
         // 2. แสดง Loading
         wx.showLoading({
             title: 'กำลังบันทึก...', // เปลี่ยนเป็นภาษาไทยหรือจีนตาม config ก็ได้ครับ
             mask: true // ป้องกัน User กดซ้อนระหว่างโหลด
         })
-    
+
         try {
             let obj = {
                 ugroupid: idgroup,
@@ -547,6 +530,17 @@ Page({
                 showCancel: false
             })
         }
-    }
+    },
+
+    addTogroupManagement(){
+        wx.showActionSheet({
+          itemList: [
+            'Share Project To Customer'
+        ],
+          success(res){
+            config.log(res)
+          }
+        })
+    },
 
 })

@@ -49,6 +49,7 @@ Component({
      */
     methods: {
         Nexttofeed(e) {
+
             let idfeed = e.currentTarget.dataset.idfeed
             wx.navigateTo({
                 url: `/pages/chatfleet/chatfleet?id=${idfeed}`,

@@ -46,9 +46,9 @@ Component({
               itemList: [
                 config.language == "zh" ? "群组简介" : "Goto Profile",
                 config.language == "zh" ? "群组成员" : "Goto Member",
-                config.language == "zh" ? "预览任务" : "Preview Task",
-                config.language == "zh" ? "邀请入群" : "Invite to group",
-                config.language == "zh" ? "邀请入群" : "Asset Flavorite",
+                // config.language == "zh" ? "邀请入群" : "Invite to group",
+                // config.language == "zh" ? "预览任务" : "Preview Task",
+                // config.language == "zh" ? "最喜欢的资产" : "Favorite assets",
               ],
               success (res) {
                 if(res.tapIndex == 0){
@@ -57,12 +57,15 @@ Component({
                 if(res.tapIndex == 1){
                   that.goToGroupMember();
                 } 
-                if(res.tapIndex == 2){
-                  that.goToPreviewTask();
-                } 
-                if(res.tapIndex == 3){
-                  that.goToinviteqr();
-                } 
+                // if(res.tapIndex == 2){
+                //   that.goToinviteqr();
+                // } 
+                // if(res.tapIndex == 2){
+                //   that.goToPreviewTask();
+                // } 
+                // if(res.tapIndex == 3){
+                //   that.goToinviteqr();
+                // } 
               },
               fail (res) {
                 console.log(res.errMsg)
@@ -105,5 +108,11 @@ Component({
                 url: `/pages/groupinviteqr/groupinviteqr?id=${this.data.groupid}&groupname=${this.data.namegroup}&image=${this.data.images}`,
             })
         },
+
+        goToFlavoriteAsset(){
+          wx.navigateTo({
+            url : `/pages/`
+          })
+        }
     }
 })

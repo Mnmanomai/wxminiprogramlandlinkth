@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/ai/ai",
     "pages/index/index",
+    "pages/ai/ai",
     "pages/logs/logs",
     "pages/filtersearch/filtersearch",
     "pages/activities/activities",
@@ -33,7 +33,10 @@
     "pages/createinvestment/createinvestment",
     "pages/provincemultiselect/provincemultiselect",
     "pages/colormultiselect/colormultiselect",
-    "pages/investmentpost/investmentpost"
+    "pages/chatfleet/chatfleet",
+    "pages/investmentpost/investmentpost",
+    "pages/taskpreview/taskpreview",
+    "pages/groupinviteqr/groupinviteqr"
     ],
   "tabBar": {
     "custom": true,

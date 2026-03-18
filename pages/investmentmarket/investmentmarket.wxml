@@ -1,6 +1,11 @@
 <!--pages/investmentmarket/investmentmarket.wxml-->
 <view class="page-container">
-  <cardInvestment list="{{dataInvest}}" bind:sendData="onReceiveData" />
+  <view class="" wx:if="{{dataInvest.length != 0}}">
+    <cardInvestment list="{{dataInvest}}" bind:sendData="onReceiveData" />
+  </view>
+  <view class="" wx:else="{{dataInvest.length != 0}}">
+    <van-empty description="目前没有正在进行的投资项目。" />
+  </view>
 </view>
 <contact show="{{show}}" />
 <tabBar current="0" />

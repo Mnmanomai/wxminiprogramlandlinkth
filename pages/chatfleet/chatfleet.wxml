@@ -32,9 +32,14 @@
     </scroll-view>
 
     <view class="footer-fixed">
+        <!-- <van-icon name="plus" size="24" bind:tap="menubar" style="color: rgba(0, 0, 0, 0.8);" /> -->
         <!-- <van-icon name="photograph" size="24" style="color: rgba(0, 0, 0, 0.8);" /> -->
         <!-- <van-icon name="photo-o" size="24" style="color: rgba(0, 0, 0, 0.8);" /> -->
-        <input class="chat-input" bindinput="setTextdetail" placeholder="พิมพ์ข้อความ..." value="{{textdetail}}" />
+        <input class="chat-input" bindinput="setTextdetail" placeholder="输入消息..." value="{{textdetail}}" />
         <van-icon name="guide-o" size="24" style="color: rgba(0, 0, 0, 0.8);" bind:tap="sendChat" />
     </view>
+
+    <page-container show="{{FlavoriteAssetModal}}">
+
+    </page-container>
 </view>

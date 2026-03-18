@@ -1,4 +1,5 @@
 // pages/chatfleet/chatfleet.js
+
 const config = require("../../config");
 Page({
 
@@ -10,10 +11,11 @@ Page({
         textdetail: "",
         chatList: [],
         lastMessageId: "",
-        firstMessageId : "",
+        firstMessageId: "",
         messages: [],
         triggered: false,
-        page: 1
+        page: 1,
+        language : config.language
     },
 
     async onLoad(options) {
@@ -80,35 +82,35 @@ Page({
         }
 
         let lastmsg = this.data.firstMessageId
-        let gropuid =  this.data.groupId
+        let gropuid = this.data.groupId
         // 2. เรียก API โหลดข้อมูลเก่า (ตัวอย่าง)
         try {
-            const response = await this.ReqgetChatDetail(gropuid,lastmsg)
-            if (response.data){
+            const response = await this.ReqgetChatDetail(gropuid, lastmsg)
+            if (response.data) {
                 let newList = [...this.data.chatList]
-                newList = [...response.data,...this.data.chatList]
+                newList = [...response.data, ...this.data.chatList]
                 this.setData({
                     chatList: newList,
                     firstMessageId: response.data[0].id,
-                    
+
                 })
             }
             this.setData({
-                triggered: false 
-            }) 
+                triggered: false
+            })
             this._freshing = false;
-            
+
         } catch (e) {
             this.setData({
-                triggered: false 
-            }) 
+                triggered: false
+            })
             this._freshing = false;
         }
     },
 
     async FetchListChatFirst(groupid) {
         try {
-            const response = await this.ReqgetChatDetail(groupid,0)
+            const response = await this.ReqgetChatDetail(groupid, 0)
             let newList = [...this.data.chatList]
             newList = [...this.data.chatList, ...response.data]
             this.setData({
@@ -137,7 +139,7 @@ Page({
     },
 
     async onShow() {
-        // await this.reloadData()
+        await this.reloadData()
     },
 
     onHide() {
@@ -155,9 +157,9 @@ Page({
     },
 
     // Get Chat Group First
-    async ReqgetChatDetail(groupid,lastid) {
+    async ReqgetChatDetail(groupid, lastid) {
         const token = wx.getStorageSync("usersdetail")
-        let lastidpath = lastid != 0 ? `?lastid=${lastid}`: ""
+        let lastidpath = lastid != 0 ? `?lastid=${lastid}` : ""
         return new Promise((resolve, reject) => {
             wx.request({
                 url: `${config.PublicIPCallApiGoBackend}/community/chat/${groupid}${lastidpath}`,
@@ -213,18 +215,18 @@ Page({
 
     // Tap For Self Message 
     bindmetap() {
-        wx.showActionSheet({
-            itemList: [
-                'unsentchat'
-            ],
-            success(res) {
-                if (res.tapIndex == 0) {
-                    console.log(res.tapIndex)
-                }
-            }
-        })
+        // wx.showActionSheet({
+        //     itemList: [
+        //         'unsentchat'
+        //     ],
+        //     success(res) {
+        //         if (res.tapIndex == 0) {
+        //             console.log(res.tapIndex)
+        //         }
+        //     }
+        // })
     },
-
+    // loadname for header 
     // async reloadData() {
     //     if (!this.data.groupId) return;
     //     try {
@@ -239,6 +241,7 @@ Page({
     //         console.error("Reload error:", err)
     //     }
     // },
+
     // async getDataFeed(id) {
     //     const token = await new Promise((resolve, reject) => {
     //         wx.getStorage({
@@ -269,20 +272,22 @@ Page({
     //     })
     // },
 
-    // async getDataPicture() {
-    //     const picture = await new Promise((resolve, reject) => {
-    //         wx.getStorage({
-    //             key: 'usersdetail',
-    //             success(res) {
-    //                 resolve(res.data.picture)
-    //             },
-    //             fail(err) {
-    //                 reject(err)
+    // menubar() {
+    //     wx.showActionSheet({
+    //         itemList: [
+    //             config.language == "zh" ? "群组简介" : "Flvorite Asset"
+    //         ],
+    //         success(res) {
+    //             if (res.tapIndex == 0) {
+    //                 that.goToGroupProfile();
     //             }
-    //         })
-    //     });
-    //     this.setData({
-    //         Images: picture
+    //         },
+    //         fail(res) {
+    //             console.log(res.errMsg)
+    //         }
     //     })
     // },
+
+
+    
 })
