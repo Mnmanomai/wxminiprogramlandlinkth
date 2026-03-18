@@ -1,0 +1,46 @@
+<wxs src="../../utils/utils.wxs" module="utils" />
+<!--component/cardinpost/cardinpost.wxml-->
+<view class="">
+
+
+    <view class="carousel-container">
+        <swiper class="carousel" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
+            <swiper-item wx:for="{{obj.pictures}}" wx:key="index">
+                <image class="carousel-image" src="{{item.filepath}}" data-index="{{index}}" mode="aspectFill"
+                    bind:tap="fullscreenpicture" lazy-load />
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="description">
+        <view class="nameasset">{{obj.nameasset}}</view>
+        <view class="descriptiondeatil">
+            <van-icon name="location" />
+            <view class="">{{obj.district}} , {{obj.province}}</view>
+        </view>
+        <view class="descriptiondeatil">
+            <van-icon name="gold-coin" />
+            <view class=""> {{obj.cityplan.text}}</view>
+        </view>
+        <view class="descriptiondeatil">
+            <van-icon name="expand-o" />
+            <view class="">{{utils.numberFormat(obj.land_sizerai)}} 莱 {{obj.land_sizengan}} 颜 {{obj.land_sizesqw}} sqw ({{utils.numberFormat(obj.land_sizesqm)}}
+                m²)
+            </view>
+        </view>
+        <view class="tagnprice">
+            <view class="tagmain">
+                <text class="tagdetail">{{obj.transactiontype}}</text>
+                <text class="tagdetail">{{obj.propertytype}}</text>
+                <!-- <text wx:if="{{obj.industrailtype != "-"}}" class="tagdetail">I-EA-T</text> -->
+            </view>
+            <view class="">
+                <view class="text-xl" wx:if="{{ item.transactiontype === '2' }}">
+                    ฿{{ utils.numberFormat(obj.rentcost) }} / 月.
+                </view>
+                <view wx:else>
+                    ฿{{ utils.numberFormat(obj.saleprice) }}
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

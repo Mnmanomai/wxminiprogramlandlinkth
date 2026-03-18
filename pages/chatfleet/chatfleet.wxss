@@ -1,0 +1,117 @@
+/* pages/chatfleet/chatfleet.wxss */
+page {
+  background-color: #8bb4eaf4;
+  height: 100%;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* ป้องกันจอหลักสั่น */
+}
+
+.header-fixed {
+  /* ถอด position: fixed ออก */
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* พื้นที่แชท */
+.mainchat {
+  flex: 1;
+  height: 0; 
+  width: 100%;
+}
+
+.footer-fixed {
+  /* ถ้า footer ยังอยากให้ลอยทับ ก็คงไว้ หรือจะทำเป็น flex-shrink: 0 เหมือน header ก็ได้ */
+  flex-shrink: 0;
+  background: #f7f7f7;
+  display: flex;
+  padding-inline: 20rpx;
+  padding-block: 10px;
+  padding-bottom: 50px;
+  gap: 14px;
+  align-items: center;
+
+}
+
+.message-row {
+  display: flex;
+  padding-inline: 20rpx;
+  padding-block: 10rpx;
+  margin-bottom: 0rpx;
+}
+
+/* จัดชิดซ้าย (คนอื่น) */
+.other {
+  flex-direction: row;
+}
+
+/* จัดชิดขวา (ตัวเรา) */
+.me {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 100%;
+  background: #ffffff;
+}
+
+.content-wrapper {
+  margin: 0 20rpx;
+  max-width: 65%; /* คุมไม่ให้ลูกโป่งกว้างเกินไป */
+}
+
+.username {
+  font-size: 24rpx;
+  color: #888;
+  margin-bottom: 5rpx;
+}
+
+/* ลูกโป่งข้อความ */
+.bubble {
+  padding: 18rpx 24rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  line-height: 1.4;
+  word-break: break-all; /* ตัดคำเมื่อขึ้นบรรทัดใหม่ */
+  position: relative;
+}
+
+.bg-other {
+  background-color: #ffffff;
+  color: #333;
+}
+
+.bg-me {
+  background-color: #95ec69; /* สีเขียวสไตล์ WeChat */
+  color: #333;
+}
+
+
+
+.chat-input {
+  flex: 1;
+  background: #ffffff;
+  height: 70rpx;
+  border-radius: 60rpx;
+  padding: 0 20rpx;
+}
+
+.send-btn {
+  width: 120rpx !important;
+  height: 70rpx;
+  padding: 0;
+  margin-left: 20rpx;
+  background: #07C160;
+  color: white;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

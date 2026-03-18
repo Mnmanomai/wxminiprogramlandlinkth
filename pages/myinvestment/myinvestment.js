@@ -40,7 +40,6 @@ Page({
     },
 
     onShareAppMessage(e) {
-      
       return {
         title: e.target.dataset.name,
         path: `/pages/investmentpost/investmentpost?id=${e.target.dataset.id}`,

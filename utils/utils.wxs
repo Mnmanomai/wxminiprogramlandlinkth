@@ -1,0 +1,11 @@
+// utils.wxs
+var numberFormat = function (num) {
+  if (!num) return '0';
+  var str = num.toString();
+  var reg = getRegExp('(\d)(?=(\d{3})+(?!\d))', 'g');
+  return str.replace(reg, '$1,');
+}
+
+module.exports = {
+  numberFormat: numberFormat
+};

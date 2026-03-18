@@ -16,3 +16,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.listbutton{
+  width: 100% !important;
+  background: #ffffff;
+  border-radius: 0px;
+  display: flex;
+  justify-content: start;
+  padding-left: 20px;
+}

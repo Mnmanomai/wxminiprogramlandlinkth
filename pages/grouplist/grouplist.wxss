@@ -1,0 +1,40 @@
+/* pages/grouplist/grouplist.wxss */
+/* .headbar{
+  text-align: end;
+  padding-inline: 20rpx;
+  font-size: 25px;
+} */
+/* Container หลักของกลุ่มปุ่ม */
+.swipe-buttons-container {
+  display: flex;
+  height: 100%;
+  align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+}
+
+.btn-action {
+  /* บังคับขนาดให้เท่ากันทุกลูก */
+  width: 65px !important; 
+  height: 100% !important;
+  
+  /* จัดข้อความให้อยู่กึ่งกลาง */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 14px;
+  color: #fff;
+  border-radius: 0;
+  padding: 0 !important; /* ลบ padding ของ button ออก */
+  margin: 0 !important;  /* ลบ margin ของ button ออก */
+  font-weight: normal;   /* button ชอบมาพร้อมตัวหนา ต้องแก้คืน */
+}
+
+/* ลบเส้นขอบเทียมที่ WeChat ชอบใส่มาให้ button */
+.btn-action::after {
+  border: none !important;
+}
+
+/* สีแต่ละปุ่ม */
+.share-btn { background-color: #07c160; }
+.edit { background-color: #ff976a; }
+.delete { background-color: #ee0a24; }

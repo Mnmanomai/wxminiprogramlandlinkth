@@ -1,0 +1,2 @@
+<!--component/celllist/celllist.wxml-->
+<van-cell is-link title="{{NameCompany}}" link-type="navigateTo" url="/pages/taskpreview/taskpreview" />

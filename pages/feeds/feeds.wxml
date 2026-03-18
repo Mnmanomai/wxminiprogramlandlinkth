@@ -1,13 +1,13 @@
 <!--pages/feeds/feeds.wxml-->
 <view class="page-container" style="position: relative;">
-    <headergroupchat namegroup="{{groupName}}" groupid="{{groupId}}" assetid="{{assetNo}}" />
+    <headergroupchat namegroup="{{groupName}}" groupid="{{groupId}}" assetid="{{assetNo}}" images="{{Images}}"/>
     <view class="" style="padding-block: 2px;">
         <createpost PictureOwenrID="{{Images}}" ugroup="{{groupId}}" />
     </view>
     <view class="" wx:if="{{datapost}}">
         <view class="" style="display: flex;gap: 2px;flex-direction: column;">
             <block class="" wx:for="{{datapost}}" wx:key="post">
-                <feed no="{{item.uid}}" picturepost="{{item.create_by_pic}}" namepost="{{item.create_by_name}}" time="{{item.create_datetime}}" commentcount="{{item.comment_count}}" detail="{{item.textdetail}}" ugroupid="{{groupId}}" commentlatest="{{item.comment_latest}}" />
+                <feed no="{{item.uid}}" picturepost="{{item.create_by_pic}}" namepost="{{item.create_by_name}}" time="{{item.create_datetime}}" commentcount="{{item.comment_count}}" detail="{{item.textdetail}}" ugroupid="{{groupId}}" commentlatest="{{item.comment_latest}}" asset="{{item.asset}}" />
             </block>
         </view>
     </view>

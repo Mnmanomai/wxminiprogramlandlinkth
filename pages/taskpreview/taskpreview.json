@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "taskpreviewcard" : "/component/taskpreviewcard/taskpreviewcard"
+  }
+}

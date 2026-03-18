@@ -1,0 +1,5 @@
+<!--pages/groupinviteqr/groupinviteqr.wxml-->
+
+<view class="" style="height: 100vh;display: flex;justify-content: center;align-items: center;background-color: beige;">
+    <button open-type="share"  style="border:solid 1px">share</button>
+</view>

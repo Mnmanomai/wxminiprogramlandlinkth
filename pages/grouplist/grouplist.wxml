@@ -1,0 +1,27 @@
+<!--pages/grouplist/grouplist.wxml-->
+<!-- <view class="headbar">
+  <view class="">+</view>
+</view> -->
+
+<!-- <celllist NameCompany="CCC Co.,ltd" NoCompany="23" /> -->
+<block wx:for="{10}" wx:key="cellcompany">
+  <van-swipe-cell right-width="{{ 195 }}" bind:close="onClose">
+  <van-cell-group>
+    <van-cell title="Steal Metal Co.,ltd" label="industrail steal logistic" bind:tap="NavigateTo"/>
+  </van-cell-group>
+
+  <view slot="right" class="swipe-buttons-container">
+    <button 
+      open-type="share" 
+      class="btn-action share-btn"
+      data-title="ดูหน้านี้สิ น่าสนใจมาก!"
+      data-path="/pages/target-page/index?id=99"
+    >
+      share
+    </button>
+
+    <view class="btn-action edit">profile</view>
+    <view class="btn-action delete">delete</view>
+  </view>
+</van-swipe-cell>
+</block>

@@ -24,7 +24,6 @@ App({
                     },
                     success: (result) => {
                         const d = result.data || {}
-                        // console.log(d);
                         wx.setStorage({
                             key: "usersdetail",
                             data: {
@@ -348,6 +347,103 @@ App({
                     resolve("err")
                 },
             });
+        })
+    },
+    async Getinvitegroup(groupid) {
+        const token = await new Promise((resolve, reject) => {
+            wx.getStorage({
+                key: 'usersdetail',
+                success(res) {
+                    resolve(res.data.token)
+                },
+                fail(err) {
+                    reject(err)
+                }
+            })
+        });
+        
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${config.PublicIPCallApiGoBackend}/community/group/invite`,
+                method: 'POST',
+                data: {
+                    groupinvite: groupid,
+                },
+                header: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                success(res) {
+                    const rawdata = res.data.invite
+                    resolve(rawdata)
+                },
+            })
+        })
+    },
+
+
+    async SendAssettoGroup(groupid,asset) {
+      const token = await new Promise((resolve, reject) => {
+          wx.getStorage({
+              key: 'usersdetail',
+              success(res) {
+                  resolve(res.data.token)
+              },
+              fail(err) {
+                  reject(err)
+              }
+          })
+      });
+      
+      return new Promise((resolve, reject) => {
+          wx.request({
+              url: `${config.PublicIPCallApiGoBackend}/community/group/invite`,
+              method: 'POST',
+              data: {
+                  group: groupid,
+                  asset : asset,
+              },
+              header: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + token
+              },
+              success(res) {
+                  const rawdata = res.data.invite
+                  resolve(rawdata)
+              },
+          })
+      })
+  },
+
+
+  async wxSentRequest(data) {
+        const tokenrequest = await new Promise((resolve, reject) => {
+            wx.getStorage({
+                key: 'usersdetail',
+                success(res) {
+                    resolve(res.data.token)
+                },
+                fail(err) {
+                    reject(err)
+                }
+            })
+        });
+
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${config.PublicIPCallApiGoBackend}/community/post/create`,
+                method: 'POST',
+                data : JSON.stringify(data),
+                header: {
+                    'Authorization': 'Bearer ' + tokenrequest
+                },
+                success(res) {
+                    resolve(res.data)
+                },
+                fail(err) {
+                    reject(err)
+                }
+            })
         })
     },
 })
