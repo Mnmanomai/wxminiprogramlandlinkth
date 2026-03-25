@@ -4,7 +4,7 @@
     <!-- image -->
     <view class="imagespart">
       <view class="" wx:if="{{picture}}">
-        <image src="{{picture}}" class="images" mode="" />
+        <image src="{{picture}}" class="images" mode="aspectFill" />
       </view>
       <view class="" wx:else="">
         <image src="/asset/landlink.png" class="images" mode="aspectFill" />

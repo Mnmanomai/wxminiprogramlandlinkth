@@ -46,7 +46,7 @@ Component({
               itemList: [
                 config.language == "zh" ? "群组简介" : "Goto Profile",
                 config.language == "zh" ? "群组成员" : "Goto Member",
-                // config.language == "zh" ? "邀请入群" : "Invite to group",
+                config.language == "zh" ? "邀请入群" : "Invite to group",
                 // config.language == "zh" ? "预览任务" : "Preview Task",
                 // config.language == "zh" ? "最喜欢的资产" : "Favorite assets",
               ],
@@ -57,9 +57,9 @@ Component({
                 if(res.tapIndex == 1){
                   that.goToGroupMember();
                 } 
-                // if(res.tapIndex == 2){
-                //   that.goToinviteqr();
-                // } 
+                if(res.tapIndex == 2){
+                  that.goToinviteqr();
+                } 
                 // if(res.tapIndex == 2){
                 //   that.goToPreviewTask();
                 // } 

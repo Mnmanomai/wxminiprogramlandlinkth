@@ -1,0 +1,19 @@
+<!--component/creategroup/creategroup.wxml-->
+  <page-container show="{{opencreategroup}}" >
+  <view class="" style="height: 85vh;background-color: bisque;overflow:hidden;padding: 20px;">
+    <view class="" style="display: flex;justify-content: center;margin: 20px 0px;">
+      <view class="" style="width: 300px;height: 300px;border-radius: 100%;background: white;overflow:hidden">
+        <image wx:if="{{images == ''}}" src="/asset/landlink.png" mode="aspectFill" style="width: 100%;height: 100%;" bind:tap="uploadprofile"/>
+        <image wx:if="{{images !== ''}}" src="{{images}}" mode="aspectFill" style="width: 100%;height: 100%;" bind:tap="uploadprofile"/>
+      </view>
+    </view>
+
+
+    <input type="text" bind:input="setTextinputName" placeholder="Group name" value="{{Name}}"
+      style="width: auto;background-color: white;border-radius: 10px;padding: 14px 10px;" />
+
+    <view class="" bind:tap="create"
+      style="display: flex;padding: 14px 0px;width: auto;background-color: rgb(16, 82, 120);color: white;justify-content: center;margin: 20px 0px;border-radius: 10px;">
+      Create group</view>
+  </view>
+</page-container>

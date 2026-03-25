@@ -14,8 +14,10 @@ Page({
         firstMessageId: "",
         messages: [],
         triggered: false,
+        groupPicture : "",
+        groupName : "",
         page: 1,
-        language : config.language
+        language: config.language
     },
 
     async onLoad(options) {
@@ -46,17 +48,33 @@ Page({
 
             try {
                 // 1. แปลง string ให้เป็น Object
+
                 const dataObj = JSON.parse(res.data);
                 console.log("Parsed Object:", dataObj);
-
-                // 2. นำ Object ที่ได้ไปใส่ใน chatList (หรือ messages ของคุณ)
-                // แนะนำให้ใช้ชื่อตัวแปรที่ตรงกับใน WXML เช่น chatList
-                this.setData({
-                    chatList: [...this.data.chatList, dataObj]
-                }, () => {
-                    // 3. เลื่อนหน้าจอลงล่างสุดเมื่อข้อความใหม่มา
-                    this.scrollToBottom();
-                });
+                let newlist = this.data.chatList
+                if (dataObj.status == 1) {
+                    // console.log(dataObj.unsentid)
+                    // const resdata = newlist.filter((value,index)=>{
+                    //     return value.id != dataObj.unsentid
+                    // })
+                    newlist.map((value, index) => {
+                        if (dataObj.unsentid == value.id) {
+                            newlist[index].status = 1
+                            newlist[index].text = ""
+                            newlist[index].userName = ""
+                        }
+                    })
+                    this.setData({
+                        chatList: newlist,
+                    })
+                } else {
+                    this.setData({
+                        chatList: [...this.data.chatList, dataObj]
+                    }, () => {
+                        // 3. เลื่อนหน้าจอลงล่างสุดเมื่อข้อความใหม่มา
+                        this.scrollToBottom();
+                    });
+                }
 
             } catch (e) {
                 console.error("Parse JSON error:", e);
@@ -92,7 +110,6 @@ Page({
                 this.setData({
                     chatList: newList,
                     firstMessageId: response.data[0].id,
-
                 })
             }
             this.setData({
@@ -113,6 +130,7 @@ Page({
             const response = await this.ReqgetChatDetail(groupid, 0)
             let newList = [...this.data.chatList]
             newList = [...this.data.chatList, ...response.data]
+            console.log(newList)
             this.setData({
                 chatList: newList,
                 firstMessageId: newList[0].id,
@@ -214,80 +232,99 @@ Page({
     },
 
     // Tap For Self Message 
-    bindmetap() {
-        // wx.showActionSheet({
-        //     itemList: [
-        //         'unsentchat'
-        //     ],
-        //     success(res) {
-        //         if (res.tapIndex == 0) {
-        //             console.log(res.tapIndex)
-        //         }
-        //     }
-        // })
+    bindlongmetap(e) {
+        const that = this
+        let id = e.currentTarget.id
+        wx.showActionSheet({
+            itemList: [
+                'unsentchat'
+            ],
+            success(res) {
+                if (res.tapIndex == 0) {
+                    that.unsendMsg(id)
+                }
+            }
+        })
     },
+
+    unsendMsg(id) {
+        // let id = e.currentTarget.id
+        let result = parseInt(id.replace("msg-", ""));
+        if (result == 0) return;
+        const payloadsent = {
+            unsentmsg: result
+        }
+        if (this.socketTask && this.socketTask.readyState === 1) {
+            this.socketTask.send({
+                data: JSON.stringify(payloadsent),
+                success: () => {
+                    console.log("unsent message")
+                },
+                fail: (err) => {
+                    console.error("Send failed:", err);
+                }
+            });
+        } else {
+            wx.showToast({
+                title: 'การเชื่อมต่อหลุด',
+                icon: 'none'
+            });
+        }
+    },
+
+
+
     // loadname for header 
-    // async reloadData() {
-    //     if (!this.data.groupId) return;
-    //     try {
-    //         const data = await this.getDataFeed(this.data.groupId)
-    //         console.log(data)
-    //         this.setData({
-    //             datapost: data.posts,
-    //             groupName: data.group_name,
-    //             assetNo: data.asset_no,
-    //         })
-    //     } catch (err) {
-    //         console.error("Reload error:", err)
-    //     }
-    // },
+    async reloadData() {
+        if (!this.data.groupId) return;
+        try {
+            const data = await this.getHeaderChat(this.data.groupId)
+            this.setData({
+                groupPicture: data.data.grouppicture,
+                groupName: data.data.groupname,
+            })
 
-    // async getDataFeed(id) {
-    //     const token = await new Promise((resolve, reject) => {
-    //         wx.getStorage({
-    //             key: 'usersdetail',
-    //             success(res) {
-    //                 resolve(res.data.token)
-    //             },
-    //             fail(err) {
-    //                 reject(err)
-    //             }
-    //         })
-    //     });
+            console.log(this.data)
+        } catch (err) {
+            console.error("Reload error:", err)
+        }
+    },
 
-    //     return new Promise((resolve, reject) => {
-    //         wx.request({
-    //             url: `${config.PublicIPCallApiGoBackend}/community/post/group/${id}`,
-    //             method: 'GET',
-    //             header: {
-    //                 'Authorization': 'Bearer ' + token
-    //             },
-    //             success(res) {
-    //                 resolve(res.data)
-    //             },
-    //             fail(err) {
-    //                 reject(err)
-    //             }
-    //         })
-    //     })
-    // },
+    async getHeaderChat(ugroupid) {
+        const token = await wx.getStorageSync("usersdetail")
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${config.PublicIPCallApiGoBackend}/chat/header/${ugroupid}`,
+                method: 'GET',
+                header: {
+                    'Authorization': 'Bearer ' + token.token
+                },
+                success(res) {
+                    resolve(res.data)
+                },
+                fail(err) {
+                    reject(err)
+                }
+            })
+        })
+    },
 
-    // menubar() {
-    //     wx.showActionSheet({
-    //         itemList: [
-    //             config.language == "zh" ? "群组简介" : "Flvorite Asset"
-    //         ],
-    //         success(res) {
-    //             if (res.tapIndex == 0) {
-    //                 that.goToGroupProfile();
-    //             }
-    //         },
-    //         fail(res) {
-    //             console.log(res.errMsg)
-    //         }
-    //     })
-    // },
+    menubar() {
+        wx.showActionSheet({
+            itemList: [
+                config.language == "zh" ? "群组简介" : "Flvorite Asset"
+            ],
+            success(res) {
+                if (res.tapIndex == 0) {
+                    that.goToGroupProfile();
+                }
+            },
+            fail(res) {
+                console.log(res.errMsg)
+            }
+        })
+    },
 
 
-    
+
 })

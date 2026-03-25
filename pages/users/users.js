@@ -9,7 +9,9 @@ Page({
     lastname: '',
     images: '',
     position: '',
-    showcontact : false
+    showcontact : false,
+    opencreategroup : false,
+    level : 0,
   },
 
   /**
@@ -17,8 +19,17 @@ Page({
    */
   async onLoad(options) {
     await this.setdatauser()
+    
+    let data = wx.getStorageSync('usersdetail')
+    this.setData({
+      level : data.level
+    })
+  },
 
-
+  openpopCrateUser(){
+    this.setData({
+      opencreategroup : true
+    })
   },
 
   async setdatauser() {

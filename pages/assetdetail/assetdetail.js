@@ -501,27 +501,25 @@ Page({
 
         // 1. ดึงข้อมูลจาก dataset ให้ชัวร์ (ระวังเรื่องสะกดตัวเล็กตัวใหญ่)
         let idgroup = e.currentTarget.dataset.groupid
-        let textDetail = this.data.id
+        let asset = this.data.id
 
         // 2. แสดง Loading
         wx.showLoading({
-            title: 'กำลังบันทึก...', // เปลี่ยนเป็นภาษาไทยหรือจีนตาม config ก็ได้ครับ
-            mask: true // ป้องกัน User กดซ้อนระหว่างโหลด
+            title: 'กำลังบันทึก...',
+            mask: true
         })
 
         try {
             let obj = {
-                ugroupid: idgroup,
-                textdetail: "",
-                assetpost: textDetail,
+                chatroom : idgroup,
+                asset : asset
             }
-            await app.wxSentRequest(obj)
+            await app.sendassettoChat(obj)
             wx.showToast({
                 title: 'บันทึกสำเร็จ',
                 icon: 'success'
             })
         } catch (err) {
-            console.error(err)
             // 5. ถ้าพัง ให้ปิด Loading เอง
             wx.hideLoading()
             wx.showModal({
@@ -532,14 +530,14 @@ Page({
         }
     },
 
-    addTogroupManagement(){
+    addTogroupManagement() {
         wx.showActionSheet({
-          itemList: [
-            'Share Project To Customer'
-        ],
-          success(res){
-            config.log(res)
-          }
+            itemList: [
+                'Share Project To Customer'
+            ],
+            success(res) {
+                config.log(res)
+            }
         })
     },
 

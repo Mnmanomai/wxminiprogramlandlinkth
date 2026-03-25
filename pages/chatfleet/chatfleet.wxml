@@ -1,20 +1,13 @@
 <view class="container">
     <view class="header-fixed">
-        <headergroupchat namegroup="{{groupName}}" groupid="{{groupId}}" assetid="{{assetNo}}" images="{{Images}}" />
+        <headergroupchat namegroup="{{groupName}}" groupid="{{groupId}}" assetid="{{assetNo}}" images="{{groupPicture}}" />
     </view>
 
-    <scroll-view 
-        scroll-y="true" 
-        class="mainchat" 
-        scroll-into-view="{{lastMessageId}}" 
-        scroll-with-animation
-        refresher-enabled="{{true}}"
-        refresher-threshold="{{80}}"
-        refresher-triggered="{{triggered}}"
-        bindrefresherrefresh="onRefresh"
-        >
+    <scroll-view scroll-y="true" class="mainchat" scroll-into-view="{{lastMessageId}}" scroll-with-animation
+        refresher-enabled="{{true}}" refresher-threshold="{{80}}" refresher-triggered="{{triggered}}"
+        bindrefresherrefresh="onRefresh">
         <block wx:for="{{chatList}}" wx:key="id">
-            <view wx:if="{{item.isMe === false}}" class="message-row other" id="msg-{{item.id}}">
+            <view wx:if="{{item.isMe === false && item.status == 0 && !item.assetDetail.id}}" class="message-row other" id="msg-{{item.id}}">
                 <image class="avatar" wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="aspectFill" />
                 <image class="avatar" wx:else="{{item.avatar}}" src="/asset/landlink.png" mode="aspectFill" />
                 <view class="content-wrapper">
@@ -23,9 +16,32 @@
                 </view>
             </view>
 
-            <view wx:else class="message-row me" id="msg-{{item.id}}" bind:longtap="bindmetap">
+            <view wx:if="{{item.isMe === true && item.status == 0 && !item.assetDetail.id}}" class="message-row me" id="msg-{{item.id}}" bind:longtap="bindlongmetap">
                 <view class="content-wrapper">
-                    <view class="bubble bg-me">{{item.text}}</view>
+                    <view class="bubble bg-me">{{item.text}} </view>
+                </view>
+            </view>
+
+            <view class="msg-unsend" wx:if="{{item.status == 1}}" id="msg-{{item.id}}">
+                <view class="unsend ">Unsend Message</view>
+            </view>
+
+            <view class="message-row me" wx:if="{{item.assetDetail.id && item.isMe === true && item.status == 0}}" id="msg-{{item.id}}"  bind:longpress="bindlongmetap">
+                <view class="content-wrapper">
+                    <view class="bubble bg-me">
+                        <assetcard assetDetail="{{item.assetDetail}}" />
+                    </view>
+                </view>
+            </view>
+
+            <view class="message-row other" wx:if="{{item.assetDetail.id && item.isMe === false && item.status == 0}}" id="msg-{{item.id}}" >
+                <image class="avatar" wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="aspectFill" />
+                <image class="avatar" wx:else="{{item.avatar}}" src="/asset/landlink.png" mode="aspectFill" />
+                <view class="content-wrapper">
+                    <view class="username">{{item.userName}}</view>
+                    <view class="bubble bg-other">
+                        <assetcard assetDetail="{{item.assetDetail}}" />
+                    </view>
                 </view>
             </view>
         </block>

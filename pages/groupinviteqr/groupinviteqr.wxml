@@ -1,5 +1,13 @@
 <!--pages/groupinviteqr/groupinviteqr.wxml-->
 
-<view class="" style="height: 100vh;display: flex;justify-content: center;align-items: center;background-color: beige;">
-    <button open-type="share"  style="border:solid 1px">share</button>
+<view class="" style="height: 100vh;background-color: rgba(168, 219, 255, 0.299);">
+    <view class="" style="height: 10vh;"></view>
+    <view class="" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+        <image class="picture" wx:if="{{grouppicture}}" src="{{grouppicture}}" mode="aspectFill" />
+        <image class="picture" wx:else="{{grouppicture}}" src="/asset/landlink.png" mode="aspectFill" />
+
+        <view class="" style="width: 80%;font-weight: 600;margin:30px 0px;text-align: center;">{{groupname}}</view>
+        <button open-type="share" style="border:solid 1px;background-color: white;">share</button>
+    </view>
+
 </view>

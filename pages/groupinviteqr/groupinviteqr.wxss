@@ -1,1 +1,8 @@
 /* pages/groupinviteqr/groupinviteqr.wxss */
+
+.picture{
+  width: 200px;
+  height: 200px;
+  background: white;
+  border-radius: 30px;
+}

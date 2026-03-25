@@ -48,22 +48,24 @@
         </view>
     </view>
 
-    <view class="maincard" >
-        <view class="headercard">Management</view>
+    <view class="maincard" wx:if="{{level == 3}}">
+        <view class="headercard">Chat</view>
         <view class="mainlist">
             <view class="list" bind:tap="openTab" data-url="/pages/grouplist/grouplist">
                 <van-icon name="orders-o" class="icon" size="24" />
-                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '我的投资' : 'Company Group'}}</view>
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '聊天' : 'Chat'}}</view>
                 <van-icon name="arrow" class="end-list"/>
             </view>
-            <!-- <view class="list" bind:tap="openTab" data-url="/pages/groupprofile/groupprofile">
-                <van-icon name="plus" class="icon" size="24" />
-                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '我的投资' : 'Create Group'}}</view>
+
+            <view class="list" bind:tap="openpopCrateUser">
+                <van-icon name="orders-o" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '创建群聊' : 'Create group chat'}}</view>
                 <van-icon name="arrow" class="end-list"/>
-            </view> -->
+            </view>
         </view>
     </view>
 
     <tabBar current="0" />
     <contact show="{{showcontact}}" />
+    <creategroup opencreategroup="{{opencreategroup}}"/>
 </view>

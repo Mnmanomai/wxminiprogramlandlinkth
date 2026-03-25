@@ -1,5 +1,6 @@
 <!--component/headergroupchat/headergroupchat.wxml-->
 <view class="" style="position: relative;height: 30px;padding-block: 10px;background-color:#8bb4eaf4;padding-inline: 10px;display: flex;justify-content: space-between;">
+
   <view class="limit1" style="font-size: 16px;font-weight: 600;text-transform: capitalize;height: 23px;padding-right: 30px;">{{namegroup}}</view>
   <van-icon name="wap-nav" size="18" bind:tap="showPopup"/>
 </view>

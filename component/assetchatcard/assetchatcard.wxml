@@ -1,0 +1,35 @@
+<wxs src="../../utils/utils.wxs" module="utils" />
+<!--component/assetchatcard/assetchatcard.wxml-->
+<view class="" data-id="{{assetDetail.id}}" bind:tap="nexttoasset" style="background-color: white;padding: 10px;border-radius: 12px;font-size: 12px;box-shadow: 0 8rpx 32rpx rgba(59, 130, 246, 0.3);">
+  <image src="{{assetDetail.Picture}}" style="width: 100%;height: 200px;border-radius: 8px;" mode="aspectFill" />
+  <view class="limitline" style="font-weight: 500;">{{assetDetail.nameasset}}</view>
+  <view class="listline">
+    <van-icon name="location" />
+    <view class="">{{assetDetail.districtname}}, {{assetDetail.provincename}}</view>
+  </view>
+  <view class="listline">
+    <van-icon name="enlarge" />
+    <view class="">{{assetDetail.land_sizerai}} 莱 {{assetDetail.land_sizengan}} 颜 {{assetDetail.land_sizesqw}} m²
+    </view>
+  </view>
+  <view class="listline" wx:if="{{assetDetail.wh_sizesqm > 0 }}">
+    <van-icon name="wap-home" />
+    <view class="">{{assetDetail.wh_sizesqm}} m²</view>
+  </view>
+
+  <view class="" style="display: flex; gap: 5px; flex-wrap: wrap;">
+    <view class="tag" wx:if="{{assetDetail.cityplan !== '-'}}">{{assetDetail.cityplan}}</view>
+    <view class="tag" wx:if="{{assetDetail.selltypetag !== '-'}}">{{assetDetail.selltypetag}}</view>
+    <view class="tag" wx:if="{{assetDetail.freezonetag !== '-'}}">{{assetDetail.freezonetag}}</view>
+    <view class="tag" wx:if="{{assetDetail.industrailtag !== '-'}}">{{assetDetail.industrailtag}}</view>
+  </view>
+
+  <view class="textprice" wx:if="{{assetDetail.saleprice > 0}}">
+    <view class="text-sale">฿{{utils.numberFormat(assetDetail.saleprice)}}</view>
+  </view>
+  <view class="textprice" wx:if="{{assetDetail.rentcost > 0}}">
+    <view class="text-rent">฿{{utils.numberFormat(assetDetail.rentcost)}} / 月.</view>
+  </view>
+
+
+</view>
