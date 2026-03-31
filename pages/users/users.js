@@ -1,76 +1,75 @@
 // pages/users/users.js
 Page({
 
-  /**
-   * Page initial data
-   */
-  data: {
-    firstname: '',
-    lastname: '',
-    images: '',
-    position: '',
-    showcontact : false,
-    opencreategroup : false,
-    level : 0,
-  },
+    /**
+     * Page initial data
+     */
+    data: {
+        firstname: '',
+        lastname: '',
+        images: '',
+        position: '',
+        showcontact: false,
+        opencreategroup: false,
+        level: 0,
+    },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  async onLoad(options) {
-    await this.setdatauser()
-    
-    let data = wx.getStorageSync('usersdetail')
-    this.setData({
-      level : data.level
-    })
-  },
+    /**
+     * Lifecycle function--Called when page load
+     */
+    async onLoad(options) {
+        await this.setdatauser()
 
-  openpopCrateUser(){
-    this.setData({
-      opencreategroup : true
-    })
-  },
+        let data = wx.getStorageSync('usersdetail')
+        this.setData({
+            level: data.level
+        })
+    },
 
-  async setdatauser() {
-    const datalist = await this.getStorage();
-    (datalist.data); 
-    const detaildata = datalist.data
-    this.setData({
-      firstname : detaildata.firstname,
-      lastname : detaildata.lastname,
-      images : detaildata.picture,
-    })
-  },
+    openpopCrateUser() {
+        this.setData({
+            opencreategroup: true
+        })
+    },
 
-  async getStorage(){
-    return new Promise((reslove, reject) => {
-      wx.getStorage({
-        key: 'usersdetail',
-        success(option) {
-          reslove(option)
-        }
-      })
-    })
-  },
+    async setdatauser() {
+        const datalist = await this.getStorage();
+        const detaildata = datalist.data
+        this.setData({
+            firstname: detaildata.firstname,
+            lastname: detaildata.lastname,
+            images: detaildata.picture,
+        })
+    },
 
-  popupsupport(){
-    this.setData({
-      showcontact : true
-    })
-  },
+    async getStorage() {
+        return new Promise((reslove, reject) => {
+            wx.getStorage({
+                key: 'usersdetail',
+                success(option) {
+                    reslove(option)
+                }
+            })
+        })
+    },
 
-  gotoPage(e) {
-    const url = e.currentTarget.dataset.url;
-    wx.switchTab({
-      url: url,
-    })
-  },
+    popupsupport() {
+        this.setData({
+            showcontact: true
+        })
+    },
 
-  openTab(e) {
-    const url = e.currentTarget.dataset.url;
-    wx.navigateTo({
-      url: url,
-    })
-  },
+    gotoPage(e) {
+        const url = e.currentTarget.dataset.url;
+        wx.switchTab({
+            url: url,
+        })
+    },
+
+    openTab(e) {
+        const url = e.currentTarget.dataset.url;
+        wx.navigateTo({
+            url: url,
+        })
+    },
 })

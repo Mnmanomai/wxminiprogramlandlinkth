@@ -53,9 +53,8 @@
         <!-- <van-icon name="photo-o" size="24" style="color: rgba(0, 0, 0, 0.8);" /> -->
         <input class="chat-input" bindinput="setTextdetail" placeholder="输入消息..." value="{{textdetail}}" />
         <van-icon name="guide-o" size="24" style="color: rgba(0, 0, 0, 0.8);" bind:tap="sendChat" />
+        <van-icon name="add-o" size="24" style="color: rgba(0, 0, 0, 0.8);" bind:tap="openFindasset"/>
     </view>
 
-    <page-container show="{{FlavoriteAssetModal}}">
-
-    </page-container>
+    <assetfind FindAssetPageContainer="{{FindAssetPageContainer}}" />
 </view>

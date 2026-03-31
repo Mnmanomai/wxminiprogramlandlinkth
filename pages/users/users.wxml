@@ -48,7 +48,7 @@
         </view>
     </view>
 
-    <view class="maincard" wx:if="{{level == 3}}">
+    <view class="maincard" >
         <view class="headercard">Chat</view>
         <view class="mainlist">
             <view class="list" bind:tap="openTab" data-url="/pages/grouplist/grouplist">

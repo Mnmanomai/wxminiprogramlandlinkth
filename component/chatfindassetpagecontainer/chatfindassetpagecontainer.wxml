@@ -1,0 +1,16 @@
+<!--component/chatfindassetpagecontainer/chatfindassetpagecontainer.wxml-->
+<page-container show="{{FindAssetPageContainer}}">
+  <view class="" style="height: 90vh;">
+    <van-tabs active="a">
+      <van-tab title="Filter" name="a">
+        <block wx:for="{{flavoritelist}}" wx:key="assetlist">
+          <assetlistchat dataobj="{{item}}" />
+        </block>
+
+      </van-tab>
+      <van-tab title="Flavorite" name="b">
+        内容 2
+      </van-tab>
+    </van-tabs>
+  </view>
+</page-container>

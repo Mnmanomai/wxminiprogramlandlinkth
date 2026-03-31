@@ -17,7 +17,8 @@ Page({
         groupPicture : "",
         groupName : "",
         page: 1,
-        language: config.language
+        language: config.language,
+        FindAssetPageContainer : false
     },
 
     async onLoad(options) {
@@ -198,6 +199,12 @@ Page({
         this.setData({
             textdetail: e.detail.value
         });
+    },
+
+    openFindasset(){
+      this.setData({
+        FindAssetPageContainer : true
+      })
     },
 
     // Send Chat To Server

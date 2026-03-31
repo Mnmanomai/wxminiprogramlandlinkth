@@ -29,6 +29,14 @@ Component({
         type:String,
         value:''
       },
+      month:{
+        type:String,
+        value:''
+      },
+      date:{
+        type:String,
+        value:''
+      },
       unreadno:{
         type:Number,
         value:0

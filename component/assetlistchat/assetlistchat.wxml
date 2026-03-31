@@ -1,0 +1,20 @@
+<!--component/assetlistchat/assetlistchat.wxml-->
+<view class="" style="display: flex;">
+    <view class="">
+        <image src="{{dataobj.pictures[0].filepath}}" mode="aspectFill" style="width: 130px;height: 130px;" />
+    </view>
+    <view class="" style="padding: 4px;display: flex;gap: 3px;flex-direction: column;">
+        <view class="" style="font-weight: 600;">{{dataobj.nameasset}}</view>
+        <view class="">{{dataobj.district}} , {{dataobj.province}}</view>
+        <view class="">{{dataobj.land_sizerai}}莱 {{dataobj.land_sizengan}}颜 {{dataobj.land_sizesqw}}sqw /
+            {{dataobj.land_sizesqm}}平方米
+        </view>
+        <view class="" style="display: flex;gap: 8px;">
+            <view class="tag">{{dataobj.transactiontype}}</view>
+            <view class="tag">{{dataobj.propertytype}}</view>
+            <view class="tag">{{dataobj.industrailtype}}</view>
+            <view class="tag">{{dataobj.freezonetype}}</view>
+        </view>
+    </view>
+
+</view>

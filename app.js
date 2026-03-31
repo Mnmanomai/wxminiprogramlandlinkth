@@ -439,6 +439,21 @@ App({
         })
     },
 
+    async Getlist(data){
+      return new Promise((resolve, reject) => {
+        wx.request({
+            url: `${config.PublicIPCallApiGoBackend}/product/list?listid=${data}`,
+            method: 'GET',
+            success(res) {
+                resolve(res.data)
+            },
+            fail(err) {
+                reject(err)
+            }
+        })
+    })
+    },
+
     async wxSentRequest(data) {
         const tokenrequest = await new Promise((resolve, reject) => {
             wx.getStorage({
