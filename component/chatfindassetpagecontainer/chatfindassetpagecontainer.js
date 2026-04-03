@@ -18,6 +18,8 @@ Component({
     data: {
         active: 1,
         flavoritelist: [],
+        activeflavorite : false,
+        selectedIds: []
     },
 
     observers: {
@@ -30,15 +32,18 @@ Component({
                 });
                 let arrayflav = []
                 let flavoritelist = ""
-                data.map((value, index) => {
-                    arrayflav.push(value.id)
-                })
-                flavoritelist = arrayflav.join(",")
-                let datafla = await app.Getlist(flavoritelist)
-                console.log(datafla)
-                this.setData({
-                    flavoritelist: datafla
-                })
+                if (data.length != 0) {
+                    data.map((value, index) => {
+                        arrayflav.push(value.id)
+                    })
+                    flavoritelist = arrayflav.join(",")
+                    let datafla = await app.Getlist(flavoritelist)
+                    console.log(datafla)
+                    this.setData({
+                        flavoritelist: datafla
+                    })
+                }
+
             }
         }
     },
@@ -50,6 +55,39 @@ Component({
         getflavoritelist() {
             const Flavorite = wx.getStorageSync('FlavoriteList')
             console.log(Flavorite)
+        },
+        changemode(){
+          
+          this.setData({
+            activeflavorite : !this.data.activeflavorite
+          })
+        },
+
+        handleAssetSelect(e) {
+          const clickedId = e.detail.id;
+          let selectedIds = this.data.selectedIds;
+        
+          // ตรวจสอบว่ามี ID นี้อยู่ใน list หรือยัง
+          const index = selectedIds.indexOf(clickedId);
+        
+          if (index > -1) {
+            // ถ้า "มีอยู่แล้ว" -> เอาออก (ลบตามตำแหน่ง index)
+            selectedIds.splice(index, 1);
+          } else {
+            // ถ้า "ยังไม่มี" -> เพิ่มเข้าไป
+            selectedIds.push(clickedId);
+          }
+        
+          this.setData({
+            selectedIds: selectedIds
+          });
+        },
+        
+        sendtochat(){
+          console.log("sendtochat")
+            this.triggerEvent('sendattachment',{
+              selectedIds: this.data.selectedIds
+            })
         },
     }
 })

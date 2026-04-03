@@ -1,1 +1,21 @@
 /* component/chatfindassetpagecontainer/chatfindassetpagecontainer.wxss */
+.headercontainer {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.mode {
+  border: solid 1px black;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 2px 12px;
+}
+
+.mode.active {
+  border-color: green;
+  color: green;
+}

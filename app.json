@@ -36,8 +36,10 @@
     "pages/chatfleet/chatfleet",
     "pages/investmentpost/investmentpost",
     "pages/taskpreview/taskpreview",
-    "pages/groupinviteqr/groupinviteqr"
-    ],
+    "pages/groupinviteqr/groupinviteqr",
+    "pages/assetinchat/assetinchat",
+    "component/assetinchatcard/assetinchatcard"
+  ],
   "tabBar": {
     "custom": true,
     "list": [

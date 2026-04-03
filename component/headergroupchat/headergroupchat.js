@@ -47,7 +47,7 @@ Component({
                 config.language == "zh" ? "群组简介" : "Goto Profile",
                 config.language == "zh" ? "群组成员" : "Goto Member",
                 config.language == "zh" ? "邀请入群" : "Invite to group",
-                // config.language == "zh" ? "预览任务" : "Preview Task",
+                config.language == "zh" ? "聊天中的资产" : "Asset In Chat",
                 // config.language == "zh" ? "最喜欢的资产" : "Favorite assets",
               ],
               success (res) {
@@ -60,9 +60,9 @@ Component({
                 if(res.tapIndex == 2){
                   that.goToinviteqr();
                 } 
-                // if(res.tapIndex == 2){
-                //   that.goToPreviewTask();
-                // } 
+                if(res.tapIndex == 3){
+                  that.goToAssetInchat()
+                } 
                 // if(res.tapIndex == 3){
                 //   that.goToinviteqr();
                 // } 
@@ -102,6 +102,12 @@ Component({
                 url: `/pages/taskpreview/taskpreview?id=${this.data.assetid}`,
             })
         },
+
+        goToAssetInchat() {
+          wx.navigateTo({
+              url: `/pages/assetinchat/assetinchat?id=${this.data.groupid}`,
+          })
+      },
 
         goToinviteqr() {
             wx.navigateTo({

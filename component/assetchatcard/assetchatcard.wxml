@@ -1,7 +1,7 @@
 <wxs src="../../utils/utils.wxs" module="utils" />
 <!--component/assetchatcard/assetchatcard.wxml-->
 <view class="" data-id="{{assetDetail.id}}" bind:tap="nexttoasset" style="background-color: white;padding: 10px;border-radius: 12px;font-size: 12px;box-shadow: 0 8rpx 32rpx rgba(59, 130, 246, 0.3);">
-  <image src="{{assetDetail.Picture}}" style="width: 100%;height: 200px;border-radius: 8px;" mode="aspectFill" />
+  <image src="{{assetDetail.Picture}}" style="width: 218px;height: 200px;border-radius: 8px;" mode="aspectFill" />
   <view class="limitline" style="font-weight: 500;">{{assetDetail.nameasset}}</view>
   <view class="listline">
     <van-icon name="location" />

@@ -56,5 +56,6 @@
         <van-icon name="add-o" size="24" style="color: rgba(0, 0, 0, 0.8);" bind:tap="openFindasset"/>
     </view>
 
-    <assetfind FindAssetPageContainer="{{FindAssetPageContainer}}" />
+    <assetfind FindAssetPageContainer="{{FindAssetPageContainer}}" bind:sendattachment="sendasset" />
+    <!-- <assetinchat AssetInChatPageContainer="{{AssetInChatPageContainer}}" /> -->
 </view>

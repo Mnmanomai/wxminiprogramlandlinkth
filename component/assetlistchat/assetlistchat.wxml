@@ -1,20 +1,27 @@
 <!--component/assetlistchat/assetlistchat.wxml-->
-<view class="" style="display: flex;">
-    <view class="">
-        <image src="{{dataobj.pictures[0].filepath}}" mode="aspectFill" style="width: 130px;height: 130px;" />
-    </view>
-    <view class="" style="padding: 4px;display: flex;gap: 3px;flex-direction: column;">
-        <view class="" style="font-weight: 600;">{{dataobj.nameasset}}</view>
-        <view class="">{{dataobj.district}} , {{dataobj.province}}</view>
-        <view class="">{{dataobj.land_sizerai}}莱 {{dataobj.land_sizengan}}颜 {{dataobj.land_sizesqw}}sqw /
-            {{dataobj.land_sizesqm}}平方米
-        </view>
-        <view class="" style="display: flex;gap: 8px;">
-            <view class="tag">{{dataobj.transactiontype}}</view>
-            <view class="tag">{{dataobj.propertytype}}</view>
-            <view class="tag">{{dataobj.industrailtype}}</view>
-            <view class="tag">{{dataobj.freezonetype}}</view>
-        </view>
+<block wx:for="{{dataarraylist}}" wx:key="assetlist">
+  <view class="" style="display: flex;position: relative;" bind:tap="selectSend" data-id="{{item.id}}">
+    
+    <view class="" style="position: absolute;top: 5px;left: 5px;z-index: 1px;">
+        <van-icon wx:if="{{item.selected}}" name="checked" size="24" style="color: rgb(0, 145, 255);"/>
+        <van-icon wx:else="{{item.selected}}" name="circle" size="24" />
     </view>
 
-</view>
+    <view class="">
+      <image src="{{item.pictures[0].filepath}}" mode="aspectFill" style="width: 130px;height: 130px;" />
+    </view>
+    <view class="" style="padding: 4px;display: flex;gap: 3px;flex-direction: column;">
+      <view class="line-clamp-2" style="font-weight: 600;">{{item.nameasset}}</view>
+      <view class="line-clamp-1">{{item.district}} , {{item.province}}</view>
+      <view class="line-clamp-1">{{item.land_sizerai}}莱 {{item.land_sizengan}}颜 {{item.land_sizesqw}}sqw /
+        {{item.land_sizesqm}}平方米
+      </view>
+      <view class="" style="display: flex;gap: 8px;">
+        <view class="tag">{{item.transactiontype}}</view>
+        <view class="tag">{{item.propertytype}}</view>
+        <view class="tag">{{item.industrailtype}}</view>
+        <view class="tag">{{item.freezonetype}}</view>
+      </view>
+    </view>
+  </view>
+</block>

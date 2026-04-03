@@ -442,7 +442,7 @@ App({
     async Getlist(data){
       return new Promise((resolve, reject) => {
         wx.request({
-            url: `${config.PublicIPCallApiGoBackend}/product/list?listid=${data}`,
+            url: `${config.PublicIPCallApiGoBackend}/product/list?listid=${data}&language=zh`,
             method: 'GET',
             success(res) {
                 resolve(res.data)

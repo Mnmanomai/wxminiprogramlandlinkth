@@ -14,11 +14,12 @@ Page({
         firstMessageId: "",
         messages: [],
         triggered: false,
-        groupPicture : "",
-        groupName : "",
+        groupPicture: "",
+        groupName: "",
         page: 1,
         language: config.language,
-        FindAssetPageContainer : false
+        FindAssetPageContainer: false,
+        AssetInChatPageContainer : false,
     },
 
     async onLoad(options) {
@@ -45,19 +46,11 @@ Page({
         });
 
         this.socketTask.onMessage((res) => {
-            console.log("Raw data from server:", res.data); // จะเห็นเป็น string
 
             try {
-                // 1. แปลง string ให้เป็น Object
-
                 const dataObj = JSON.parse(res.data);
-                console.log("Parsed Object:", dataObj);
                 let newlist = this.data.chatList
                 if (dataObj.status == 1) {
-                    // console.log(dataObj.unsentid)
-                    // const resdata = newlist.filter((value,index)=>{
-                    //     return value.id != dataObj.unsentid
-                    // })
                     newlist.map((value, index) => {
                         if (dataObj.unsentid == value.id) {
                             newlist[index].status = 1
@@ -72,7 +65,6 @@ Page({
                     this.setData({
                         chatList: [...this.data.chatList, dataObj]
                     }, () => {
-                        // 3. เลื่อนหน้าจอลงล่างสุดเมื่อข้อความใหม่มา
                         this.scrollToBottom();
                     });
                 }
@@ -131,7 +123,7 @@ Page({
             const response = await this.ReqgetChatDetail(groupid, 0)
             let newList = [...this.data.chatList]
             newList = [...this.data.chatList, ...response.data]
-            console.log(newList)
+            // console.log(newList)
             this.setData({
                 chatList: newList,
                 firstMessageId: newList[0].id,
@@ -201,10 +193,41 @@ Page({
         });
     },
 
-    openFindasset(){
-      this.setData({
-        FindAssetPageContainer : true
-      })
+    openFindasset() {
+        this.setData({
+            FindAssetPageContainer: true
+        })
+    },
+
+
+    async sendasset(e) {
+        const idasset = e.detail.selectedIds
+        let dataid = idasset.join(",")
+        // console.log(dataid)
+        // if (idasset) return;
+        const messagePayload = {
+            asset: dataid,
+            time: new Date().toLocaleTimeString(),
+        };
+
+        if (this.socketTask && this.socketTask.readyState === 1) { // 1 คือสถานะ OPEN
+            this.socketTask.send({
+                data: JSON.stringify(messagePayload),
+                success: () => {
+                    this.setData({
+                        FindAssetPageContainer: false
+                    });
+                },
+                fail: (err) => {
+                    console.error("Send failed:", err);
+                }
+            });
+        } else {
+            wx.showToast({
+                title: 'การเชื่อมต่อหลุด',
+                icon: 'none'
+            });
+        }
     },
 
     // Send Chat To Server
@@ -216,6 +239,7 @@ Page({
             time: new Date().toLocaleTimeString(),
             // คุณสามารถใส่ข้อมูลเพิ่มได้ เช่น avatar หรือ userName
         };
+
 
         // ส่งผ่าน WebSocket
         if (this.socketTask && this.socketTask.readyState === 1) { // 1 คือสถานะ OPEN
@@ -279,8 +303,6 @@ Page({
         }
     },
 
-
-
     // loadname for header 
     async reloadData() {
         if (!this.data.groupId) return;
@@ -291,7 +313,7 @@ Page({
                 groupName: data.data.groupname,
             })
 
-            console.log(this.data)
+            // console.log(this.data)
         } catch (err) {
             console.error("Reload error:", err)
         }
@@ -332,6 +354,13 @@ Page({
         })
     },
 
-
-
+    // openAssetInChatPageContainer(){
+    //   console.log("openAssetInChatPageContainer")
+      
+    //   this.setData({
+    //     AssetInChatPageContainer : true
+    //     // FindAssetPageContainer : true
+    //   })
+    //   console.log(this.data.AssetInChatPageContainer) 
+    // },
 })

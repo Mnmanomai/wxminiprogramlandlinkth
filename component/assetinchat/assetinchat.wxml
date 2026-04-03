@@ -1,0 +1,6 @@
+<!--component/assetinchat/assetinchat.wxml-->
+<page-container show="{{AssetInChatPageContainer}}">
+  <view class="" style="height: 90vh;">
+    
+  </view>
+</page-container>

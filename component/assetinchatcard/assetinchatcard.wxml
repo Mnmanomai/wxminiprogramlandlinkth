@@ -1,0 +1,23 @@
+<!--component/assetinchatcard/assetinchatcard.wxml-->
+<view class="">
+    <block wx:for="{{datalist}}" wx:key="card">
+        <view class="" style="display: flex;" data-id="{{item.id}}" bind:tap="goAsset">
+            <view class="">
+                <image src="{{item.pictures[0].filepath}}" mode="aspectFill" style="width: 130px;height: 130px;" />
+            </view>
+            <view class="" style="padding: 4px;display: flex;gap: 3px;flex-direction: column;">
+                <view class="line-clamp-2" style="font-weight: 600;">{{item.nameasset}}</view>
+                <view class="line-clamp-1">{{item.district}} , {{item.province}}</view>
+                <view class="line-clamp-1">{{item.land_sizerai}}莱 {{item.land_sizengan}}颜 {{item.land_sizesqw}}sqw /
+                    {{item.land_sizesqm}}平方米
+                </view>
+                <view class="" style="display: flex;gap: 4px;">
+                    <view class="tag" wx:if="{{item.transactiontype != '-'}}">{{item.transactiontype}}</view>
+                    <view class="tag" wx:if="{{item.propertytype != '-'}}">{{item.propertytype}}</view>
+                    <view class="tag" wx:if="{{item.industrailtype != '-'}}">{{item.industrailtype}}</view>
+                    <view class="tag" wx:if="{{item.freezonetype != '-'}}">{{item.freezonetype}}</view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>

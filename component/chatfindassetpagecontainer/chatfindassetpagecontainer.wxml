@@ -1,16 +1,20 @@
 <!--component/chatfindassetpagecontainer/chatfindassetpagecontainer.wxml-->
 <page-container show="{{FindAssetPageContainer}}">
   <view class="" style="height: 90vh;">
-    <van-tabs active="a">
-      <van-tab title="Filter" name="a">
-        <block wx:for="{{flavoritelist}}" wx:key="assetlist">
-          <assetlistchat dataobj="{{item}}" />
-        </block>
-
-      </van-tab>
-      <van-tab title="Flavorite" name="b">
-        内容 2
-      </van-tab>
-    </van-tabs>
+    <view class="headercontainer">
+      <view class="mode {{activeflavorite ? 'active' : ''}}" bind:tap="changemode">
+        Flavorite
+      </view>
+      <view class=""></view>
+      <view class="">
+        <van-icon name="share" size="24" style="color: rgb(0, 128, 255);" bind:tap="sendtochat"/>
+      </view>
+    </view>
+    <view class="" wx:if="{{activeflavorite}}">
+      <assetlistchat dataarraylist="{{flavoritelist}}" bind:select="handleAssetSelect"/>
+    </view>
+    <view class="" wx:else="{{activeflavorite}}">
+      testassetlistchat
+    </view>
   </view>
 </page-container>

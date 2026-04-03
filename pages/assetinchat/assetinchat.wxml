@@ -1,0 +1,9 @@
+<!--pages/assetinchat/assetinchat.wxml-->
+
+<view class="" >
+  <assetinchatcard datalist="{{fetchlist}}"/>
+  <!-- <block wx:for="{{fetchlist}}" wx:key="card">
+    <view class="">{{item.id}}</view>
+    
+  </block> -->
+</view>
