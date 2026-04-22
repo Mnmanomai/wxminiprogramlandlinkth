@@ -19,7 +19,8 @@ Component({
         active: 1,
         flavoritelist: [],
         activeflavorite : false,
-        selectedIds: []
+        selectedIds: [],
+        datasend : []
     },
 
     observers: {
@@ -38,7 +39,6 @@ Component({
                     })
                     flavoritelist = arrayflav.join(",")
                     let datafla = await app.Getlist(flavoritelist)
-                    console.log(datafla)
                     this.setData({
                         flavoritelist: datafla
                     })
@@ -54,7 +54,7 @@ Component({
     methods: {
         getflavoritelist() {
             const Flavorite = wx.getStorageSync('FlavoriteList')
-            console.log(Flavorite)
+            // console.log(Flavorite)
         },
         changemode(){
           
@@ -71,10 +71,8 @@ Component({
           const index = selectedIds.indexOf(clickedId);
         
           if (index > -1) {
-            // ถ้า "มีอยู่แล้ว" -> เอาออก (ลบตามตำแหน่ง index)
             selectedIds.splice(index, 1);
           } else {
-            // ถ้า "ยังไม่มี" -> เพิ่มเข้าไป
             selectedIds.push(clickedId);
           }
         
@@ -84,7 +82,7 @@ Component({
         },
         
         sendtochat(){
-          console.log("sendtochat")
+          // console.log("sendtochat")
             this.triggerEvent('sendattachment',{
               selectedIds: this.data.selectedIds
             })

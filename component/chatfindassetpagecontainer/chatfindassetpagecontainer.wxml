@@ -1,20 +1,27 @@
 <!--component/chatfindassetpagecontainer/chatfindassetpagecontainer.wxml-->
 <page-container show="{{FindAssetPageContainer}}">
-  <view class="" style="height: 90vh;">
-    <view class="headercontainer">
-      <view class="mode {{activeflavorite ? 'active' : ''}}" bind:tap="changemode">
-        Flavorite
-      </view>
-      <view class=""></view>
-      <view class="">
-        <van-icon name="share" size="24" style="color: rgb(0, 128, 255);" bind:tap="sendtochat"/>
-      </view>
+    <view class="" style="height: 90vh;">
+        <view class="headercontainer">
+            <view class="mode {{activeflavorite ? 'active' : ''}}" bind:tap="changemode">
+                Flavorite
+            </view>
+            <view class=""></view>
+            <view class="" wx:if="{{activeflavorite}}">
+                <van-icon name="share" size="24" style="color: rgb(0, 128, 255);" bind:tap="sendtochat" />
+            </view>
+        </view>
+
+
+        <view class="" wx:if="{{activeflavorite}}">
+            <view class="" wx:if="{{flavoritelist}}">
+                <assetlistchat dataarraylist="{{flavoritelist}}" bind:select="handleAssetSelect" />
+            </view>
+            <view class="" wx:else="{{flavoritelist.length != 0}}">
+                <van-empty image="error" description="没有风味数据" />
+            </view>
+        </view>
+        <view class="" wx:else="{{activeflavorite}}">
+            <filtermodal />
+        </view>
     </view>
-    <view class="" wx:if="{{activeflavorite}}">
-      <assetlistchat dataarraylist="{{flavoritelist}}" bind:select="handleAssetSelect"/>
-    </view>
-    <view class="" wx:else="{{activeflavorite}}">
-      testassetlistchat
-    </view>
-  </view>
 </page-container>

@@ -31,9 +31,14 @@ Page({
     },
 
     onLoad(options) {
+        // console.log(options)
         wx.setNavigationBarTitle({
             title: '搜索',
         });
+        // this.setData({
+        //   selectmode : options.selltype
+        // })
+
         this.setData({
             'searchvalue.selltype': options.selltype ? options.selltype : '',
             'searchvalue.assettype': options.assettype ? options.assettype : '',
@@ -90,7 +95,6 @@ Page({
 
         let Dataget = ""
         if (sentobject.keyword != "") {
-            // try {
                 let recdata = await app.Getkeyword(sentobject);
                 Dataget = recdata.map(v => ({
                     ...v,
@@ -98,10 +102,6 @@ Page({
                     RentCostPerMonthBath: Number(v.RentCostPerMonthBath).toLocaleString('th-TH'),
                     SalePriceBath: Number(v.SalePriceBath).toLocaleString('th-TH'),
                 }));
-
-            // } catch (err) {
-                // Dataget = await app.GetAsset(sentobject);
-            // }
         } else {
             Dataget = await app.GetAsset(sentobject);
         }
@@ -113,8 +113,6 @@ Page({
             hasMore: Dataget.length > 0,
             loading: false
         });
-
-        // (this.data.fetchData)
     },
 
     setsuggesttion(objdata) {

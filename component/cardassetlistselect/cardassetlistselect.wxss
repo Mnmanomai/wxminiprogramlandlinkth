@@ -1,0 +1,22 @@
+/* component/cardassetlistselect/cardassetlistselect.wxss */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tag{
+  font-size: 12px;
+  border: solid 1px black;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-weight: 500;
+}
+

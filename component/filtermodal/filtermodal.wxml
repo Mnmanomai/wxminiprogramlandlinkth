@@ -1,0 +1,22 @@
+<van-cell-group >
+  <van-cell title="Transaction type" data-type="transaction" value="{{ transactionText || 'เลือกประเภท' }}" is-link bind:tap="showActionSheet" />
+  <van-cell title="Property type" data-type="property" value="{{ propertyText || 'เลือกประเภททรัพย์' }}" is-link bind:tap="showActionSheet" />
+  <van-cell title="City plan" data-type="cityplan" value="{{ cityPlanText || 'เลือกผังเมือง' }}" is-link bind:tap="showActionSheet" />
+</van-cell-group>
+
+<van-action-sheet
+  show="{{ showAction }}"
+  actions="{{ actiondata }}"
+  bind:close="onClose"
+  bind:select="onSelectTransaction"
+/>
+
+<van-popup show="{{ showCascader }}" round position="bottom">
+  <van-cascader
+    wx:if="{{ showCascader }}"
+    title="เลือกพื้นที่"
+    options="{{ areaOptions }}"
+    bind:close="onClose"
+    bind:finish="onFinishLocation"
+  />
+</van-popup>

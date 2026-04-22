@@ -63,8 +63,38 @@ Page({
         })
     },
 
-    async onLoad(options) {
+    sendbacktochat() {
 
+      
+      const idasset = this.data.id
+      const pages = getCurrentPages();
+      const prevPage = pages.filter((item,index)=>{
+        return item.__route__ == "pages/chatfleet/chatfleet" && item
+      })
+      if (prevPage[0]) {
+        if (typeof prevPage[0].sendasset === 'function') {
+          prevPage[0].sendasset([idasset]); // ส่งค่า 1231 ไปเป็น argument
+        }
+      }
+      
+      let datacountpageback =0
+      if (pages.length == 4) {
+        datacountpageback = 2
+      }else if(pages.length == 5){
+        datacountpageback = 3
+      }else if(pages.length == 6){
+        datacountpageback = 4
+      }
+
+      wx.navigateBack({
+        delta: datacountpageback
+      });
+    },
+
+    async onLoad(options) {
+        this.setData({
+          mode : options.selectmode
+        })
 
         const res = wx.getSystemInfoSync()
         const buttonSize = 56 // px
@@ -117,7 +147,6 @@ Page({
                     const Rai = res.data.respond.LandSizeRai
                     const Ngan = res.data.respond.LandSizeNgan
                     const SQW = res.data.respond.LandSizeSQW
-
                     const AreaSizeSqw = that.cal_area(Rai, Ngan, SQW);
                     rawData.AreaSizeSqw = AreaSizeSqw;
 

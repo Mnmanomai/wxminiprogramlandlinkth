@@ -13,8 +13,9 @@ Page({
     NextToDistrict(e) {
         const search_detail = e.target.dataset.id
         const search_detail_name = e.target.dataset.name
+        const selectmode = this.data.selectmode
         wx.navigateTo({
-            url: `/pages/district/district?selltype=${this.data.selltype}&id=${search_detail}&name=${search_detail_name}`
+            url: `/pages/district/district?selltype=${this.data.selltype}&id=${search_detail}&name=${search_detail_name}&selectmode=${selectmode}`
         })
     },
 
@@ -44,11 +45,13 @@ Page({
 
     async onLoad(options) {
         // const Province = await this.loadDataProvince()
+        
         this.setData({
             selltype: options.selltype,
             dataProvince: ResProvinceData,
             DisplayProvince: ResProvinceData,
             language: config.language,
+            selectmode : options.selectmode,
         })
     },
 

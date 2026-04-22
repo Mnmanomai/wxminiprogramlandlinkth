@@ -1,0 +1,12 @@
+<!--pages/searchselect/searchselect.wxml-->
+<view class="" style="position: relative;">
+  <view class="" style="position: sticky;top: 0px;left: 0;width: 100%;background: white;z-index: 1;">
+    <view class="" style="background-color: rgb(255, 255, 255);display: flex;justify-content:flex-end;padding: 6px 10px;" bind:tap="returntochat">
+      <van-icon name="share" size="24" style="color: rgb(0, 128, 255);"/>
+    </view>
+  </view>
+  <cardassetlistselect dataarraylist="{{fetchData}}" bind:select="handleAssetSend" />
+
+  <!-- <block wx:for="{{fetchData}}" wx:key="card">
+  </block> -->
+</view>

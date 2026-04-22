@@ -16,11 +16,13 @@ Page({
     },
 
     async onLoad(options) {
+        // console.log(options)
         this.setData({
             selltype: options.selltype,
             ProvinceID: options.id || null,
             ProvinceName: options.name || "",
             language: config.language,
+            selectmode : options.selectmode,
         })
         // const District = await this.loadDataDistrict()
         this.setData({
@@ -56,6 +58,7 @@ Page({
     },
 
     async nextToSearch(e) {
+        const selectmode = this.data.selectmode
         const distric_id = e.target.dataset.district
         const province_id = e.target.dataset.province
         const namedistrict = e.target.dataset.namedistric
@@ -70,8 +73,12 @@ Page({
             province_name: this.data.ProvinceName,
             type: "provinceanddistrict"
         }
-        app.localStorageSetup('recentsearch', objpushing, 10)
-        app.MainStackScreen(objpushing)
+        if (selectmode !== "1"){
+          app.localStorageSetup('recentsearch', objpushing, 10)
+          app.MainStackScreen(objpushing)
+        }else{
+          app.NextToSelectMode(objpushing)
+        }
     },
 
     // filterDistrict(e) {

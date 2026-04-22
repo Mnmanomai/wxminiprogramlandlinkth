@@ -26,7 +26,7 @@ Page({
         const gropuid = options.id
         const token = wx.getStorageSync('usersdetail')
         this.setData({
-            groupId: gropuid
+            groupId: gropuid,
         })
         // await this.getDataPicture();
 
@@ -37,12 +37,12 @@ Page({
                 'Authorization': `Bearer ${token.token}`
             },
             success: () => {
-                console.log('Socket connecting...');
+                // console.log('Socket connecting...');
             }
         })
 
         this.socketTask.onOpen((res) => {
-            console.log('WebSocket Connected!');
+            // console.log('WebSocket Connected!');
         });
 
         this.socketTask.onMessage((res) => {
@@ -199,10 +199,18 @@ Page({
         })
     },
 
+    async getAsset(e){
+      const idasset = e.detail.selectedIds
+      await this.sendasset(idasset)
+    },
 
     async sendasset(e) {
-        const idasset = e.detail.selectedIds
-        let dataid = idasset.join(",")
+        // console.log(e)
+        // console.log('sendasset')
+
+        // const idasset = e.detail.selectedIds != undefined ? e.detail.selectedIds : e
+        // console.log(idasset)
+        let dataid = e.join(",")
         // console.log(dataid)
         // if (idasset) return;
         const messagePayload = {
@@ -289,10 +297,10 @@ Page({
             this.socketTask.send({
                 data: JSON.stringify(payloadsent),
                 success: () => {
-                    console.log("unsent message")
+                    // console.log("unsent message")
                 },
                 fail: (err) => {
-                    console.error("Send failed:", err);
+                    // console.error("Send failed:", err);
                 }
             });
         } else {
@@ -349,7 +357,7 @@ Page({
                 }
             },
             fail(res) {
-                console.log(res.errMsg)
+                // console.log(res.errMsg)
             }
         })
     },

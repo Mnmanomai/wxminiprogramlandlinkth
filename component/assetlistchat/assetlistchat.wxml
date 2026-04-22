@@ -1,16 +1,17 @@
 <!--component/assetlistchat/assetlistchat.wxml-->
 <block wx:for="{{dataarraylist}}" wx:key="assetlist">
-  <view class="" style="display: flex;position: relative;" bind:tap="selectSend" data-id="{{item.id}}">
-    
+  <view class="" style="display: flex;position: relative;" >
     <view class="" style="position: absolute;top: 5px;left: 5px;z-index: 1px;">
-        <van-icon wx:if="{{item.selected}}" name="checked" size="24" style="color: rgb(0, 145, 255);"/>
-        <van-icon wx:else="{{item.selected}}" name="circle" size="24" />
+      <van-icon wx:if="{{item.selected}}" name="checked" size="24"
+        style="color: rgb(0, 255, 179);background-color: black;border-radius: 100%;" bind:tap="selectSend"
+        data-id="{{item.id}}" />
+      <van-icon wx:else="{{item.selected}}" name="circle" size="24" bind:tap="selectSend" data-id="{{item.id}}" />
     </view>
 
-    <view class="">
+    <view class="" bind:tap="nextToAssetDetail" data-id="{{item._id}}">
       <image src="{{item.pictures[0].filepath}}" mode="aspectFill" style="width: 130px;height: 130px;" />
     </view>
-    <view class="" style="padding: 4px;display: flex;gap: 3px;flex-direction: column;">
+    <view class="" style="padding: 4px;display: flex;gap: 3px;flex-direction: column;" bind:tap="nextToAssetDetail" data-id="{{item.id}}">
       <view class="line-clamp-2" style="font-weight: 600;">{{item.nameasset}}</view>
       <view class="line-clamp-1">{{item.district}} , {{item.province}}</view>
       <view class="line-clamp-1">{{item.land_sizerai}}莱 {{item.land_sizengan}}颜 {{item.land_sizesqw}}sqw /

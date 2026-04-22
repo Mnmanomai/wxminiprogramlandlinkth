@@ -1,0 +1,32 @@
+<!--component/cardassetlistselect/cardassetlistselect.wxml-->
+<block wx:for="{{dataarraylist}}" wx:key="card">
+  <view class="" style="display: flex;position: relative;width: 100%;">
+    <view class="" style="position: absolute;top: 5px;left: 5px;z-index: 1px;">
+      <van-icon wx:if="{{item.selected}}" name="checked" size="24"
+        style="color: rgb(0, 255, 179);background-color: black;border-radius: 100%;" bind:tap="selectSend"
+        data-id="{{item._id}}" />
+      <van-icon wx:else="{{item.selected}}" name="circle" size="24" bind:tap="selectSend" data-id="{{item._id}}" />
+    </view>
+
+    <view class="" bind:tap="nextToAssetDetail" data-id="{{item._id}}">
+      <image src="{{item.no_images_asset}}" style="width: 130px;height: 150px;" />
+    </view>
+    <view class="" style="padding: 0px 4px;width: 100%;" bind:tap="nextToAssetDetail" data-id="{{item._id}}">
+      <view class="line-clamp-2" style="font-weight: 600;">{{item.NameAsset}}</view>
+      <view class="">{{item.Province}} ,{{item.District}}</view>
+      <view class="">{{item.LandSizeRai}}莱 {{item.LandSizeNgan}}颜 {{item.LandSizeSQW}}sqw /
+        {{item.WHSizeSQM}}平方米
+      </view>
+      <view class="" style="display: flex;gap:3px">
+        <view class="tag">{{item.TypeSell}}</view>
+        <view class="tag">{{item.ColorOfLand}}</view>
+        <view class="tag" wx:if="{{item.FreeZone != '不是Free zone'}}">{{item.FreeZone}}</view>
+        <view class="tag" wx:if="{{item.IndusZone != '不在工业区'}}">{{item.IndusZone}}</view>
+      </view>
+      <view class="" style="text-align: end;">
+        <view class="" wx:if="{{item.SalePriceBath != 0}}" style="font-weight: 600;color: green;">฿{{item.SalePriceBath}}</view>
+        <view class="" wx:if="{{item.RentCostPerMonthBath != 0}}" style="font-weight: 600;color: orange;">฿{{item.RentCostPerMonthBath}}/ 月.</view>
+      </view>
+    </view>
+  </view>
+</block>

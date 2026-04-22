@@ -38,7 +38,8 @@
     "pages/taskpreview/taskpreview",
     "pages/groupinviteqr/groupinviteqr",
     "pages/assetinchat/assetinchat",
-    "component/assetinchatcard/assetinchatcard"
+    "component/assetinchatcard/assetinchatcard",
+    "pages/searchselect/searchselect"
   ],
   "tabBar": {
     "custom": true,

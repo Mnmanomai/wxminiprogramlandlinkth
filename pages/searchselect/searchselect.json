@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cardassetlistselect" : "/component/cardassetlistselect/cardassetlistselect",
+    "van-icon": "@vant/weapp/icon/index"
+  }
+}

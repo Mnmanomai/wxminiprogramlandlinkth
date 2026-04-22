@@ -260,6 +260,15 @@ App({
         let textParams = arrayParams.join("")
         return textParams;
     },
+
+    NextToSelectMode(req){
+      const textParams = this.ParseParams(req)
+        let url = `/pages/searchselect/searchselect?selltype=${req.selltype}${textParams}`
+        wx.navigateTo({
+            url: url
+        })
+    },
+    
     MainStackScreen(req) {
         const textParams = this.ParseParams(req)
         let url = `/pages/search/search?selltype=${req.selltype}${textParams}`

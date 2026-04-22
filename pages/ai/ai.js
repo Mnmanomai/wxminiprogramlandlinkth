@@ -517,7 +517,7 @@ Page({
 
     const currentTask = currentFlow[searchStep];
     if (currentTask.condition && !currentTask.condition(tempRequiment)) {
-      console.log(`ข้ามข้อ ${currentTask.field} ไม่ตรงเงื่อนไข`);
+      // console.log(`ข้ามข้อ ${currentTask.field} ไม่ตรงเงื่อนไข`);
       this.setData({
         searchStep: searchStep + 1
       }, () => {
@@ -589,7 +589,7 @@ Page({
       messages: newMessages,
       lastId: `msg-${newMessages.length -1}`
     }, () => {
-      console.log("Current Step after click:", this.data.searchStep);
+      // console.log("Current Step after click:", this.data.searchStep);
       this.nextSearchStep(); // ไปเริ่มข้อ 1 ของภาษานั้นๆ
     });
   },
@@ -672,10 +672,10 @@ Page({
       wx.navigateTo({
         url: `../assetdetail/assetdetail?id=${id}`,
         success: () => {
-          console.log('Navigated to property:', id);
+          // console.log('Navigated to property:', id);
         },
         fail: (err) => {
-          console.error('Navigation failed:', err);
+          // console.error('Navigation failed:', err);
           wx.showToast({
             title: 'Cannot open page',
             icon: 'none'

@@ -26,10 +26,15 @@ Component({
      * Component methods
      */
     methods: {
+        nextToAssetDetail(e){
+          const id = e.currentTarget.dataset.id;
+          wx.navigateTo({
+            url : `/pages/assetdetail/assetdetail?id=${id}`
+          })
+        },
+
         selectSend(e) {
-            const {
-                id
-            } = e.currentTarget.dataset;
+            const id = e.currentTarget.dataset.id;
             const dataarraylist = this.data.dataarraylist.map(item => {
                 if (item.id == id) {
                     return {
@@ -49,6 +54,7 @@ Component({
                 });
             });
         }
+    },
 
-    }
+
 })

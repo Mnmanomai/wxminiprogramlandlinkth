@@ -1,4 +1,5 @@
 // pages/users/users.js
+const config = require("../../config")
 Page({
 
     /**
@@ -11,6 +12,7 @@ Page({
         position: '',
         showcontact: false,
         opencreategroup: false,
+        language : config.language,
         level: 0,
     },
 

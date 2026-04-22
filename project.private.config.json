@@ -9,11 +9,18 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/filtersearch/filtersearch",
+          "pathName": "pages/filtersearch/filtersearch",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
           "name": "pages/assetinchat/assetinchat",
           "pathName": "pages/assetinchat/assetinchat",
           "query": "id=f434c830e9fc11f0915452511a3b8435",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "pages/chatfleet/chatfleet",

@@ -68,7 +68,7 @@ Component({
                 // } 
               },
               fail (res) {
-                console.log(res.errMsg)
+                // console.log(res.errMsg)
               }
             })
         },
