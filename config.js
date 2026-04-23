@@ -14,6 +14,9 @@ module.exports = {
   PublicIPCallApiGoBackend : "https://api.landlinkth.com",
   PublicIPCallApiGoBackendnonhttp : "wss://api.landlinkth.com",
   apitestAI:"https://api.landlinkth.com/ai",
+  PublicIPCallApiGoBackendnonhttp : "api.landlinkth.com",
+  // apitestAI:"https://api.landlinkth.com/ai",
+  apitestAI:"http://127.0.0.1:8000",
   env: "development",
   language:"zh",
 }

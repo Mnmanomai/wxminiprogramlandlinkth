@@ -12,8 +12,8 @@
           "name": "pages/filtersearch/filtersearch",
           "pathName": "pages/filtersearch/filtersearch",
           "query": "",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "pages/assetinchat/assetinchat",

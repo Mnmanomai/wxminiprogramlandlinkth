@@ -29,7 +29,7 @@
     <!-- Header (ไม่มีปุ่ม New Chat แล้ว) -->
     <view class="header">
       <view class="menu-icon" bindtap="toggleSidebar">☰</view>
-      <text class="brand">LandLink AI</text>
+      <text class="brand">LandLink Counsel</text>
       <view class="header-spacer"></view> <!-- เว้นที่ให้สมมาตร -->
     </view>
 
@@ -79,7 +79,7 @@
       </view>
 
       <view wx:if="{{messages.length === 0}}" class="empty-chat">
-        <text class="welcome-subtitle">您好，我是 LANDLINK AI
+        <text class="welcome-subtitle">您好，我是 LANDLINK COUNSEL
 
           为您提供泰国相关业务咨询与服务，包括：
 
