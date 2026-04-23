@@ -28,11 +28,7 @@ Component({
         icon: '',
         name: config.language == "en" ? "Search By province and district" : "按省份和地区搜索"
       },
-      {
-        id: 5,
-        icon: '',
-        name: config.language == "en" ? "Search #no or Asset Name" : "搜索编号或资产名称"
-      },
+      
     ],
     filterdata: {
       selltype: '1',

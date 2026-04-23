@@ -21,7 +21,7 @@ Page({
 
     async onShow() {
         let data = await this.getChatList();
-        // console.log(data)
+        console.log(data)
 
         data.data.map((value,index)=>{
           let datamonth = value.createdate.substring(0,3)

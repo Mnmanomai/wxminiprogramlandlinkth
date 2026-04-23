@@ -3,7 +3,7 @@
     <view class="" style="height: 90vh;">
         <view class="headercontainer">
             <view class="mode {{activeflavorite ? 'active' : ''}}" bind:tap="changemode">
-                Flavorite
+              调味剂
             </view>
             <view class=""></view>
             <view class="" wx:if="{{activeflavorite}}">

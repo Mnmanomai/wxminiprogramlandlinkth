@@ -69,7 +69,7 @@ Page({
   onLoad(options) {
     // console.log(options)
     wx.setNavigationBarTitle({
-      title: 'searchselect',
+      title: "搜索",
     });
     this.setData({
       'searchvalue.selltype': options.selltype ? options.selltype : '',
