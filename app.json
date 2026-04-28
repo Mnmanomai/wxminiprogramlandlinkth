@@ -57,10 +57,6 @@
         "text": "按摩"
       },
       {
-        "pagePath": "pages/ai/ai",
-        "text": "按摩"
-      },
-      {
         "pagePath": "pages/chat/chat",
         "text": "按摩"
       },

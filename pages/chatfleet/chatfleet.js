@@ -242,9 +242,6 @@ Page({
     async sendChat() {
         if (!this.data.textdetail.trim()) return; // ป้องกันส่งข้อความว่าง
 
-        wx.requestSubscribeMessage({
-          tmplIds: ['z0Vf_vizRz4DyYFhpMbuiNaxmWQksVMdb1ILFL1DDik'],
-        })
 
         const messagePayload = {
             text: this.data.textdetail,
