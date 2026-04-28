@@ -17,11 +17,11 @@ Component({
                 icon: 'chat-o',
                 text: 'Massage'
             }, 
-            // {
-            //     url: '/pages/ai/ai',
-            //     icon: 'friends-o',
-            //     text: 'ai'
-            // },
+            {
+                url: '/pages/ai/ai',
+                icon: 'friends-o',
+                text: 'ai'
+            },
             {
                 url: '/pages/chat/chat',
                 icon: 'chat-o',
