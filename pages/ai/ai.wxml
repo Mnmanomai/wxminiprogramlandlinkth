@@ -78,8 +78,8 @@
         </view>
       </view>
 
-      <view wx:if="{{messages.length === 0}}" class="empty-chat">
-        <!-- <text class="welcome-subtitle">您好，我是 LANDLINK COUNSEL
+      <!-- <view wx:if="{{messages.length === 0}}" class="empty-chat">
+        <text class="welcome-subtitle">您好，我是 LANDLINK COUNSEL
 
           为您提供泰国相关业务咨询与服务，包括：
 
