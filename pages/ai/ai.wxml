@@ -79,7 +79,7 @@
       </view>
 
       <view wx:if="{{messages.length === 0}}" class="empty-chat">
-        <text class="welcome-subtitle">您好，我是 LANDLINK COUNSEL
+        <!-- <text class="welcome-subtitle">您好，我是 LANDLINK COUNSEL
 
           为您提供泰国相关业务咨询与服务，包括：
 
@@ -102,7 +102,7 @@
           土地 / 厂房 / 仓库 查询
 
           👉 或点击下方按钮，开始查找土地 / 厂房 / 仓库</text>
-      </view>
+      </view> -->
 
       <view id="bottom-anchor"></view>
     </scroll-view>
