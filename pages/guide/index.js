@@ -30,7 +30,7 @@ Page({
   },
   async reurlmain(req) {
 
-    return "https://www.landlinkth.com/images/pic_guide_content/" + req
+    return "https://landlinkth.com/images/pic_guide_content/" + req
   },
 
   async onLoad(options) {

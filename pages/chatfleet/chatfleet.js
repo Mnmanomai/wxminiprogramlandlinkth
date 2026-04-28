@@ -242,12 +242,15 @@ Page({
     async sendChat() {
         if (!this.data.textdetail.trim()) return; // ป้องกันส่งข้อความว่าง
 
+        wx.requestSubscribeMessage({
+          tmplIds: ['z0Vf_vizRz4DyYFhpMbuiNaxmWQksVMdb1ILFL1DDik'],
+        })
+
         const messagePayload = {
             text: this.data.textdetail,
             time: new Date().toLocaleTimeString(),
             // คุณสามารถใส่ข้อมูลเพิ่มได้ เช่น avatar หรือ userName
         };
-
 
         // ส่งผ่าน WebSocket
         if (this.socketTask && this.socketTask.readyState === 1) { // 1 คือสถานะ OPEN
@@ -263,10 +266,9 @@ Page({
                 }
             });
         } else {
-            wx.showToast({
-                title: 'การเชื่อมต่อหลุด',
-                icon: 'none'
-            });
+            wx.navigateBack({
+              delta : 1
+            })
         }
     },
 
@@ -323,7 +325,10 @@ Page({
 
             // console.log(this.data)
         } catch (err) {
-            console.error("Reload error:", err)
+            wx.navigateBack({
+              delta : 1
+            })
+            // console.error("Reload error:", err)
         }
     },
 
@@ -361,14 +366,4 @@ Page({
             }
         })
     },
-
-    // openAssetInChatPageContainer(){
-    //   console.log("openAssetInChatPageContainer")
-      
-    //   this.setData({
-    //     AssetInChatPageContainer : true
-    //     // FindAssetPageContainer : true
-    //   })
-    //   console.log(this.data.AssetInChatPageContainer) 
-    // },
 })

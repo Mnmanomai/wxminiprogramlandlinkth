@@ -4,7 +4,7 @@
     <cardInvestment list="{{dataInvest}}" bind:sendData="onReceiveData" />
   </view>
   <view class="" wx:else="{{dataInvest.length != 0}}">
-    <van-empty description="目前没有正在进行的投资项目。" />
+    <van-empty description="目前没有迫切需要。" />
   </view>
 </view>
 <contact show="{{show}}" />

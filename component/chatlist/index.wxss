@@ -126,3 +126,15 @@
   font-weight: 500;
   font-size: 12px;
 }
+
+.taggroup{
+  display: flex;
+  gap:4px
+}
+
+.tag {
+  font-size: 11px;
+  border : black solid 1px;
+  padding : 2px 4px;
+  border-radius: 4px;
+}

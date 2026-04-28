@@ -21,16 +21,12 @@ Page({
 
     async onShow() {
         let data = await this.getChatList();
-        console.log(data)
-
         data.data.map((value,index)=>{
           let datamonth = value.createdate.substring(0,3)
           let dataday = value.createdate.substring(4,6)
           data.data[index].month = datamonth
           data.data[index].date = dataday
         })
-
-        console.log(data.data)
 
         this.setData({
             chatlist: data.data

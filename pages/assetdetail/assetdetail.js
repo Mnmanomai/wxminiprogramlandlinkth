@@ -14,6 +14,7 @@ Page({
         language: "en",
         x: 0,
         y: 500,
+        supportPhone: '+66641648899',
         showGroupSheet: false,
         listfetch: [],
         // customer : "chatid:101",
@@ -479,9 +480,25 @@ Page({
     },
 
     showPopup() {
-        this.setData({
-            show: true
+        const that = this
+        wx.showActionSheet({
+          itemList: [
+            config.language == "zh" ? `与 Landlink 通话` : `Call With Landlink`,
+          ],
+          success(res){
+            if(res.tapIndex == 0){
+              that.callSupport();
+            } 
+          }
         })
+    },
+
+    callSupport() {
+      wx.makePhoneCall({
+        phoneNumber: this.data.supportPhone,
+        success() {},
+        fail(err) {}
+      });
     },
 
     // async goToChatGroup() {

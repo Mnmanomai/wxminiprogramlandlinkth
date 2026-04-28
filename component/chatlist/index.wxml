@@ -14,6 +14,14 @@
       <view class="limit1" style="font-size: 14px;font-weight: 400;text-transform: capitalize;">
         {{namechat}}
       </view>
+      <view class="taggroup" wx:if="{{userLevel == 4}}">
+          <view class="tag" wx:if="{{assetdetail.transactionname != '-'}}">{{assetdetail.transactionname}}</view>
+          <view class="tag" wx:if="{{assetdetail.propertyname != '-'}}">{{assetdetail.propertyname}}</view>
+          <view class="tag" wx:if="{{assetdetail.provincename != '-'}}">{{assetdetail.provincename}}</view>
+          <view class="tag" wx:if="{{assetdetail.freezonename != '-'}}">{{assetdetail.freezonename}}</view>
+          <view class="tag" wx:if="{{assetdetail.industrialname != '-'}}">{{assetdetail.industrialname}}</view>
+          <view class="tag" wx:if="{{assetdetail.cityplanname != '-'}}">{{assetdetail.cityplanname}}</view>
+      </view>
       <view class="limit1" style="color: rgb(0,0,0,0.7);display: flex;">
         <view class="textnewmsg">{{textnew}} </view>
         <view class="text-description" wx:if="{{timenew}}"> • {{timenew}}</view>

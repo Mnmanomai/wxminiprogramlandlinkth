@@ -24,7 +24,6 @@ App({
                     },
                     success: (result) => {
                         const d = result.data || {}
-                        // console.log(d)
                         wx.setStorage({
                             key: "usersdetail",
                             data: {
@@ -32,6 +31,7 @@ App({
                                 firstname: d.firstname,
                                 lastname: d.lastname,
                                 picture: d.picture,
+                                level : d.level
                             }
                         })
                     },

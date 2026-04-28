@@ -199,6 +199,7 @@
         </view>
     </scroll-view>
 
+    <!-- Contact -->
     <movable-area class="movable-area">
         <movable-view class="support-btn" direction="all" x="{{x}}" y="{{y}}" inertia="true" out-of-bounds="false"
             bindtap="showPopup">
@@ -207,6 +208,7 @@
         </movable-view>
     </movable-area>
 
+    <!-- Send to group (normal) -->
     <page-container show="{{showGroupSheet}}">
         <view class="page-containergroup">
             <view class="" style="font-weight: 700;padding-inline: 10px;padding-bottom: 10px;">Send to group </view>
@@ -229,6 +231,4 @@
         </view>
     </page-container>
 
-
-    <contact show="{{show}}" customer="{{customer}}" />
 </view>
