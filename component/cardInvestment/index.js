@@ -25,14 +25,14 @@ Component({
 
 
   methods: {
-    goToPost(e){
+    goToPost(e) {
       wx.navigateTo({
-        url : `/pages/investmentpost/investmentpost?id=${e.currentTarget.dataset.id}`
+        url: `/pages/investmentpost/investmentpost?id=${e.currentTarget.dataset.id}`
       })
     },
 
-    catchdatadesciption(){
-      
+    catchdatadesciption() {
+
     },
 
     opencontact() {
@@ -70,7 +70,20 @@ Component({
         })
       }).exec()
     },
-  },
 
-  
+    onImageError: function(e) {
+      // 1. ดึง index จาก data-index ที่เราส่งมาจาก wxml
+      const index = e.currentTarget.dataset.index;
+      // 2. สร้าง path สำหรับเข้าถึงข้อมูลใน array โดยตรง (เช่น history[0].picture)
+      const targetPath = `history[${index}].picture`;
+      
+      // 3. อัปเดตข้อมูลให้เป็นรูป Default
+      this.setData({
+        [targetPath]: '/asset/landlink.png'
+      });
+      
+      console.log(`Image at index ${index} failed, replaced with default.`);
+    }
+
+  },
 })

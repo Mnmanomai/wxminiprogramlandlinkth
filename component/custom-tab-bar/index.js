@@ -16,7 +16,12 @@ Component({
                 url: '/pages/investmentmarket/investmentmarket',
                 icon: 'chat-o',
                 text: 'Massage'
-            }, 
+            },
+          //   {
+          //     url: '/pages/ai/ai',
+          //     icon: 'chat-o',
+          //     text: 'Massage'
+          // }, 
             {
               url: '/pages/guideresource/guideresource',
               icon: 'friends-o',

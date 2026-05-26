@@ -7,6 +7,7 @@
     "userprofile" : "/component/userprofile/index",
     "minimenu" : "/component/minicard/index",
     "van-cell": "@vant/weapp/cell/index",
-    "van-cell-group": "@vant/weapp/cell-group/index"
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "minicard" : "/component/minicardfooter/minicardfooter"
   }
 }

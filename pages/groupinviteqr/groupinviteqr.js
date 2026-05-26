@@ -23,9 +23,11 @@ Page({
     async onShareAppMessage() {
         let groupid = this.data.id
         let querygroup = await app.Getinvitegroup(groupid)
+        const pathdata = `/pages/groupinvite/groupinvite?invitegroup=${querygroup}`
+        console.log(pathdata)
         const Share = {
             title: this.data.groupname,
-            path: `/pages/groupinvite/groupinvite?invitegroup=${querygroup}`,
+            path: pathdata,
             imageUrl: this.data.image && this.data.image.length > 0 ?
                 this.data.image : "/asset/landlink.png"
         }

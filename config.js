@@ -1,7 +1,7 @@
 module.exports = {
-  // apiBaseUrl: "http://127.0.0.1",
-  // PublicIPCallApiGoBackend : "http://127.0.0.1:8080",
-  // PublicIPCallApiGoBackendnonhttp : "ws://127.0.0.1:8080",
+  // apiBaseUrl: "http://192.168.100.82",
+  // PublicIPCallApiGoBackend : "http://192.168.100.82:8080",
+  // PublicIPCallApiGoBackendnonhttp : "ws://192.168.100.82:8080",
   // apitestAI:"http://192.168.100.119:8000",
 
   // apiBaseUrl: "http://192.168.100.78",

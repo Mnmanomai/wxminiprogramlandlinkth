@@ -2,6 +2,19 @@
 <view class="">
     <block wx:for="{{localList}}" wx:key="idInvestment">
         <view class="card" bind:tap="goToPost" data-id="{{item.ID}}">
+            <view class="" style="display: flex;justify-content: space-between;align-items: center;">
+              <view class="" style="display: flex;align-items: center;gap: 6px;">
+                <view class="">
+                  <image wx:if="{{item.create_pic != ''}}" src="{{item.create_pic}}" data-id="{{index}}" class="images" binderror="onImageError" mode="aspectFill" alt="" default-source="/asset/landlink.png"/>
+
+                  <image wx:if="{{item.create_pic == ''}}" src="/asset/landlink.png" data-id="{{index}}" class="images" binderror="onImageError" mode="aspectFill" alt="" default-source="/asset/landlink.png"/>
+                </view>
+                <view class="">{{item.create_by}}</view>
+              </view>
+              <view class="">
+                <view class="" style="font-size: 12px;color: rgba(0, 0, 0, 0.8);">{{item.create_at}}</view>
+              </view>
+            </view>
             <text class="header">{{item.topic}}</text>
             <view class="description-border" catchtap="catchdatadesciption">
                 <!-- leftcolor -->
@@ -15,7 +28,7 @@
             </view>
             <!-- Description -->
 
-            <view class="text-muted" style="display: flex; flex-wrap: wrap; gap: 10px;padding: 10px 0px;font-size: 14px;">
+            <view class="text-muted" wx:if="{{item.expanded == true}}" style="display: flex; flex-wrap: wrap; gap: 10px;padding: 10px 0px;font-size: 14px;">
                 <!-- Desired Property Type -->
                 <view class="info-box">
                     <view class="box-title">所需的房产类型</view>

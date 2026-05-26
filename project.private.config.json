@@ -9,6 +9,34 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/groupinvite/groupinvite",
+          "pathName": "pages/groupinvite/groupinvite",
+          "query": "invitegroup=eyJ1IjoiMTMxIiwiZyI6ImY0MzRjODMwZTlmYzExZjA5MTU0NTI1MTFhM2I4NDM1IiwidCI6MTc3MzEzMDc3Mn0.vG7jDrdDkQbuD92KLfOce4-tVUjGnhEyeYf21_zqn5A",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "pages/groupinviteqr/groupinvite",
+          "pathName": "pages/groupinviteqr/groupinvite",
+          "query": "invitegroup=eyJ1IjoiMTMxIiwiZyI6IjUwZTYzM2NlNTRjYTExZjE4OTMxNTI1MTFhM2I4NDM1IiwidCI6MTc3OTMzNzAxOX0.4TfZPmk-M20Pk73Lp4b4vjzu3P4ZKRpZgaE6VZwqffE",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/investmentmarket/investmentmarket",
+          "pathName": "pages/investmentmarket/investmentmarket",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/assetdetail/assetdetail",
+          "pathName": "pages/assetdetail/assetdetail",
+          "query": "id=1466",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/filtersearch/filtersearch",
           "pathName": "pages/filtersearch/filtersearch",
           "query": "",
@@ -37,13 +65,6 @@
           "scene": null
         },
         {
-          "name": "pages/assetdetail/assetdetail",
-          "pathName": "pages/assetdetail/assetdetail",
-          "query": "id=1466",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
           "name": "pages/users/users",
           "pathName": "pages/users/users",
           "query": "",
@@ -54,13 +75,6 @@
           "name": "pages/chat/chat",
           "pathName": "pages/chat/chat",
           "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "/pages/groupinvite/groupinvite",
-          "pathName": "pages/groupinvite/groupinvite",
-          "query": "invitegroup=eyJ1IjoiMTMxIiwiZyI6ImY0MzRjODMwZTlmYzExZjA5MTU0NTI1MTFhM2I4NDM1IiwidCI6MTc3MzEzMDc3Mn0.vG7jDrdDkQbuD92KLfOce4-tVUjGnhEyeYf21_zqn5A",
           "launchMode": "default",
           "scene": null
         },

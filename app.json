@@ -37,6 +37,7 @@
     "pages/chatfleet/chatfleet",
     "pages/investmentpost/investmentpost",
     "pages/taskpreview/taskpreview",
+    "pages/groupinvite/groupinvite",
     "pages/groupinviteqr/groupinviteqr",
     "pages/assetinchat/assetinchat",
     "component/assetinchatcard/assetinchatcard",

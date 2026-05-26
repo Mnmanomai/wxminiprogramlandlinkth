@@ -30,6 +30,10 @@ Component({
    * Component methods
    */
   methods: {
-
+    onImageError(e) {
+      this.setData({
+        images: '/asset/landlink.png'
+      });
+    }
   }
 })

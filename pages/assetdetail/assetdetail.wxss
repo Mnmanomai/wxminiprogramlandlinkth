@@ -254,3 +254,54 @@
 .main-list:active{
   background: #00000006;
 }
+
+.hiddensee{
+  max-height: 100px; 
+  overflow: hidden;
+  position: relative;
+  
+  /* สร้าง Layer การจางหาย */
+  -webkit-mask-image: linear-gradient(to bottom, black 10%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 10%, transparent 100%);
+}
+
+/* ส่วนของ Container ที่หุ้ม block loop เอาไว้ */
+.history-container {
+  display: flex;
+  flex-direction: row;
+  /* ใช้ padding-left นิดหน่อยเพื่อไม่ให้รูปแรกโดนบังหรือชิดซ้ายเกินไป */
+  padding-left: 10px; 
+}
+
+/* ส่วนของแต่ละไอเทมที่ต้องการให้ซ้อนกัน */
+.taginvite {
+  /* กำหนดขนาดที่แน่นอนให้กับตัวหุ้ม (สมมติว่าเป็น 40px) */
+  width: 40px;
+  height: 40px;
+  
+  /* ขยับมาทางซ้ายเพื่อซ้อนกับรูปก่อนหน้า (ปรับตัวเลขตามความเหมาะสม) */
+  margin-left: -12px; 
+  
+  /* ใส่เส้นขอบสีขาวเพื่อให้เห็นการซ้อนกันชัดเจนและสวยงามขึ้น */
+  border: 2px solid #ffffff;
+  border-radius: 50%; /* ทำเป็นวงกลม (ถ้าต้องการ) */
+  overflow: hidden;   /* ตัดส่วนรูปที่เกินจากวงกลม */
+  background-color: #f5f5f5;
+  
+  /* จัดตำแหน่งข้างในให้อยู่ตรงกลาง */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ปรับให้รูปแรกสุดไม่ต้องขยับซ้าย */
+.taginvite:first-child {
+  margin-left: -10px;
+}
+
+/* สไตล์ของรูปภาพข้างใน */
+.images {
+  width: 40px;
+  height: 40px;
+  object-fit: cover; /* หรือ aspectFit ตามที่คุณตั้งไว้ */
+}

@@ -1,0 +1,43 @@
+<!--component/minicard/index.wxml-->
+<wxs src="../../utils/utils.wxs" module="utils" />
+<view class="">
+  <view class="card" data-id="{{AssetId}}" bind:tap="Nexttoasset">
+    <view class="bg-{{AssetColor}} tag">{{AssetType}}</view>
+    <image class="images" src="{{Images}}" mode="aspectFill" />
+    <view class="" style="padding: 10px;">
+      <view class="NameAsset">{{AssetName}}</view>
+      <view class="Location">
+        <van-icon name="location" /> {{Province}} , {{District}}
+      </view>
+      <!-- <view class="Price"><van-icon name="gold-coin" /> {{Price}}</view> -->
+      <view class="Area">
+        <view class="">
+          <van-icon name="expand-o" />
+        </view>
+        <view class="">{{utils.numberFormat(AreaLandRai)}} 莱 {{AreaLandNgan}} 颜 {{AreaLandSqw}} sqw </view>
+      </view>
+      <view class="Area">
+        <view class="">
+          <van-icon name="wap-home-o" />
+        </view>
+        <view class="" wx:if="AreaWH">建筑 {{utils.numberFormat(AreaWH)}} 平方米 </view>
+      </view>
+      <view class="Time">
+        <van-icon name="clock-o" />
+        <view class="">{{Time}}</view>
+      </view>
+      <view class="" style="display: flex;gap: 2px;">
+        <view class="tagDetail" wx:if="{{Transactiontype != '-'}}">{{Transactiontype}}</view>
+        <view class="tagDetail" wx:if="{{Industrailtype != '-'}}">{{Industrailtype}}</view>
+        <view class="tagDetail" wx:if="{{Freezonetype != '-'}}">{{Freezonetype}}</view>
+      </view>
+      <!-- Price Zone -->
+      <view class="" wx:if="{{SalePriceBath != 0}}">
+        <view class="Price">฿{{utils.numberFormat(SalePriceBath)}}</view>
+      </view>
+      <view class="" wx:else="">
+        <view class="Price">฿{{utils.numberFormat(RentCostPerMonthBath)}} / 月.</view>
+      </view>
+    </view>
+  </view>
+</view>

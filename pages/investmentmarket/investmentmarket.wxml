@@ -1,10 +1,20 @@
 <!--pages/investmentmarket/investmentmarket.wxml-->
 <view class="page-container">
+  <view class=""
+    style="top: 0px;left: 0px;width: 100%;position: sticky;display: flex;justify-content: flex-end;background: white;padding: 4px 0px;z-index: 10;">
+    <view class=""
+      style="border: solid 1px rgb(8, 76, 224);color:rgb(8, 76, 224);display: flex;align-items: center;justify-content: center;width: 35px;height: 35px;margin-right: 4px;border-radius: 6px;font-size: 18px;font-weight: 700;" bind:tap="nexttomyinvest">
+      <van-icon name="newspaper-o" /></view>
+    <view class=""
+      style="border: solid 1px rgb(8, 76, 224);color:rgb(8, 76, 224);display: flex;align-items: center;justify-content: center;width: 35px;height: 35px;margin-right: 4px;border-radius: 6px;font-size: 18px;font-weight: 700;" bind:tap="nexttocreate">
+      +</view>
+  </view>
+
   <view class="" wx:if="{{dataInvest.length != 0}}">
     <cardInvestment list="{{dataInvest}}" bind:sendData="onReceiveData" />
   </view>
   <view class="" wx:else="{{dataInvest.length != 0}}">
-    <van-empty description="目前没有迫切需要。" />
+    <van-empty description="迫切需要。" />
   </view>
 </view>
 <contact show="{{show}}" />

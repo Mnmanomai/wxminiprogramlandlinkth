@@ -1,4 +1,5 @@
 <!--component/cardlistcol/index.wxml-->
+<wxs src="../../utils/utils.wxs" module="utils" />
 <view class="" style="display: flex;justify-content: space-between;padding: 0px 0px;align-items:flex-end;position: relative;">
     <view class="" style="background-color: rgb(3, 3, 139);position: absolute;top: 0px;left: 0px;height: 100%;width: 4px;"></view>
     <text class="" style="font-weight: 600;padding: 0px 8px;">{{title}} </text>
@@ -19,11 +20,11 @@
                     <van-icon name="location" /> {{item.Province}}, {{item.District}}
                 </view>
                 <view class="text-md">
-                    <van-icon name="gold-coin" /> {{ item.price }} / {{item.ColorOfLand}}
+                    <van-icon name="gold-coin" /> {{ utils.numberFormat(item.price) }} / {{item.ColorOfLand}}
                 </view>
                 <view class="text-md" style="display: flex;gap: 5px;">
                     <van-icon name="expand-o" />
-                    {{item.LandSizeRai}} 莱 {{item.LandSizeNgan}} 颜 {{item.LandSizeSQW}} sqw <view class="" wx:if="{{item.typeassetn !== '1'}}"> / 建筑 {{item.WHSizeSQM}} 平方米 </view>
+                    {{utils.numberFormat(item.LandSizeRai)}} 莱 {{item.LandSizeNgan}} 颜 {{item.LandSizeSQW}} sqw <view class="" wx:if="{{item.typeassetn !== '1'}}"> / 建筑 {{item.WHSizeSQM}} 平方米 </view>
                 </view>
                 <view class="text-md">
                     <van-icon name="clock-o" /> {{item.timeago}} {{item.farfromlaem}}

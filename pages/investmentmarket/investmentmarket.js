@@ -10,11 +10,16 @@ Page({
         show: false
     },
 
+
     async onLoad(options) {
         wx.setNavigationBarTitle({
             title: '寻找资产',
         });
-        await this.getData();
+        
+    },
+
+    async onShow(){
+      await this.getData();
     },
 
     onReceiveData(e) {
@@ -44,5 +49,16 @@ Page({
 
     async onReachBottom() {
         await this.getData();
+    },
+
+    nexttocreate(){
+      wx.navigateTo({
+        url: '/pages/createinvestment/createinvestment',
+      })
+    },
+    nexttomyinvest(){
+      wx.navigateTo({
+        url: '/pages/myinvestment/myinvestment',
+      })
     },
 })

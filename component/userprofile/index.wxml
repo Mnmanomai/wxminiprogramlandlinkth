@@ -1,11 +1,8 @@
 <!--component/userprofile/index.wxml-->
 <view class="main">
   <view class="subpart">
-    <view class="" wx:if="{{images}}">
-      <image src="{{images}}" class="images" mode="aspectFill" />
-    </view>
-    <view class="" wx:else="">
-      <view class="images"></view>
+    <view class="">
+      <image src="{{images}}" class="images" mode="aspectFill" binderror="onImageError" default-source="/asset/landlink.png"/>
     </view>
     <view class="">
       <view class="name">{{nameOwner}}</view>

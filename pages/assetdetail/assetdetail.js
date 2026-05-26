@@ -18,6 +18,7 @@ Page({
         showGroupSheet: false,
         listfetch: [],
         // customer : "chatid:101",
+        opensee: true,
         markers: [{
             id: 900000001,
             latitude: 13.736717,
@@ -65,36 +66,34 @@ Page({
     },
 
     sendbacktochat() {
-
-      
-      const idasset = this.data.id
-      const pages = getCurrentPages();
-      const prevPage = pages.filter((item,index)=>{
-        return item.__route__ == "pages/chatfleet/chatfleet" && item
-      })
-      if (prevPage[0]) {
-        if (typeof prevPage[0].sendasset === 'function') {
-          prevPage[0].sendasset([idasset]); // ส่งค่า 1231 ไปเป็น argument
+        const idasset = this.data.id
+        const pages = getCurrentPages();
+        const prevPage = pages.filter((item, index) => {
+            return item.__route__ == "pages/chatfleet/chatfleet" && item
+        })
+        if (prevPage[0]) {
+            if (typeof prevPage[0].sendasset === 'function') {
+                prevPage[0].sendasset([idasset]); // ส่งค่า 1231 ไปเป็น argument
+            }
         }
-      }
-      
-      let datacountpageback =0
-      if (pages.length == 4) {
-        datacountpageback = 2
-      }else if(pages.length == 5){
-        datacountpageback = 3
-      }else if(pages.length == 6){
-        datacountpageback = 4
-      }
 
-      wx.navigateBack({
-        delta: datacountpageback
-      });
+        let datacountpageback = 0
+        if (pages.length == 4) {
+            datacountpageback = 2
+        } else if (pages.length == 5) {
+            datacountpageback = 3
+        } else if (pages.length == 6) {
+            datacountpageback = 4
+        }
+
+        wx.navigateBack({
+            delta: datacountpageback
+        });
     },
 
     async onLoad(options) {
         this.setData({
-          mode : options.selectmode
+            mode: options.selectmode
         })
 
         const res = wx.getSystemInfoSync()
@@ -109,7 +108,7 @@ Page({
             language: config.language
         });
         await this.loadData(this.data.newsId)
-
+        // await this.getnearasset(this.data.newsId)
         this.storagelist();
         // this.GetMainLocation(this.data.lat, this.data.long)
         this.getsuggesttion();
@@ -132,44 +131,72 @@ Page({
         })
     },
 
-    async loadData(id) {
-        const that = this;
+    async getnearasset(id) {
+        const tokenrequest = wx.getStorageSync('usersdetail');
+        const token = tokenrequest.token;
+        const that = this
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${config.apiBaseUrl}/api/request_detail_asset.php`,
+                url: `${config.PublicIPCallApiGoBackend}/product/test`,
                 method: 'GET',
-                data: {
-                    API_KEY: "00c484016ad6d5e066aa718c6dd218f91387141fce8187c8ec808a468c70ee6e",
-                    LANGUAGE: config.language,
-                    NO_ASSET: id,
-                },
+                header: {
+                  'Authorization': 'Bearer ' + token
+              },
                 success(res) {
-                    const rawData = res.data.respond;
-                    const Rai = res.data.respond.LandSizeRai
-                    const Ngan = res.data.respond.LandSizeNgan
-                    const SQW = res.data.respond.LandSizeSQW
-                    const AreaSizeSqw = that.cal_area(Rai, Ngan, SQW);
-                    rawData.AreaSizeSqw = AreaSizeSqw;
-
+                    const data = res.data
                     that.setData({
-                        predata: rawData,
-                        lat: rawData.Latitude,
-                        id: rawData._id,
-                        long: rawData.Longtitude,
+                        nearasset: data.data
+                    })
+                    console.log(that.data.nearasset)
+                },
+                fail(err) {
+                    console.log(err)
+                }
+            })
+        })
+    },
+
+
+    async loadData(id) {
+        const that = this;
+        const tokenrequest = wx.getStorageSync('usersdetail');
+        const token = tokenrequest.token;
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: `${config.PublicIPCallApiGoBackend}/product/assetdetailpm/${id}?language=zh`,
+                method: 'GET',
+                header: {
+                  'Authorization': 'Bearer ' + token
+              },
+                success(res) {
+                    var assetdetail = res.data.data.assetdetail
+                    var nearasset = res.data.data.nearasset
+                    var watch = res.data.data.watchhistory
+                    console.log(watch)
+
+                    console.log(res.data)
+                    that.setData({
+                        predata: assetdetail,
+                        lat: assetdetail.address.lat,
+                        id: assetdetail.assetid,
+                        long: assetdetail.address.lng,
+                        history : watch,
                         markers: [{
-                            id: rawData._id,
-                            latitude: rawData.Latitude,
-                            longitude: rawData.Longtitude,
+                            id: assetdetail.assetid,
+                            latitude: assetdetail.address.lat,
+                            longitude: assetdetail.address.lng,
                             width: 30,
                             height: 30
-                        }]
+                        }],
+                        nearasset: nearasset
                     });
+
 
                     wx.setNavigationBarTitle({
-                        title: rawData.NameAsset,
+                        title: assetdetail.assetname,
                     });
 
-                    resolve(rawData); // ✅ resolve เมื่อ request เสร็จ
+                    resolve(assetdetail); // ✅ resolve เมื่อ request เสร็จ
                 },
                 fail(err) {
                     reject(err); // ✅ reject ถ้า error
@@ -482,23 +509,23 @@ Page({
     showPopup() {
         const that = this
         wx.showActionSheet({
-          itemList: [
-            config.language == "zh" ? `与 Landlink 通话` : `Call With Landlink`,
-          ],
-          success(res){
-            if(res.tapIndex == 0){
-              that.callSupport();
-            } 
-          }
+            itemList: [
+                config.language == "zh" ? `与 Landlink 通话` : `Call With Landlink`,
+            ],
+            success(res) {
+                if (res.tapIndex == 0) {
+                    that.callSupport();
+                }
+            }
         })
     },
 
     callSupport() {
-      wx.makePhoneCall({
-        phoneNumber: this.data.supportPhone,
-        success() {},
-        fail(err) {}
-      });
+        wx.makePhoneCall({
+            phoneNumber: this.data.supportPhone,
+            success() {},
+            fail(err) {}
+        });
     },
 
     // async goToChatGroup() {
@@ -557,8 +584,8 @@ Page({
 
         try {
             let obj = {
-                chatroom : idgroup,
-                asset : asset
+                chatroom: idgroup,
+                asset: asset
             }
             await app.sendassettoChat(obj)
             wx.showToast({
@@ -586,5 +613,25 @@ Page({
             }
         })
     },
+
+    toggleopensee() {
+        this.setData({
+            opensee: !this.data.opensee
+        })
+    },
+
+    onImageError: function(e) {
+      // 1. ดึง index จาก data-index ที่เราส่งมาจาก wxml
+      const index = e.currentTarget.dataset.index;
+      // 2. สร้าง path สำหรับเข้าถึงข้อมูลใน array โดยตรง (เช่น history[0].picture)
+      const targetPath = `history[${index}].picture`;
+      
+      // 3. อัปเดตข้อมูลให้เป็นรูป Default
+      this.setData({
+        [targetPath]: '/asset/landlink.png'
+      });
+      
+      console.log(`Image at index ${index} failed, replaced with default.`);
+    }
 
 })
