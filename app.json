@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/ai/ai",
+    "pages/guideresource/guideresource",
+    "pages/guidedetail/guidedetail",
     "pages/logs/logs",
     "pages/filtersearch/filtersearch",
     "pages/activities/activities",
@@ -54,6 +55,10 @@
       },
       {
         "pagePath": "pages/investmentmarket/investmentmarket",
+        "text": "按摩"
+      },
+      {
+        "pagePath": "pages/guideresource/guideresource",
         "text": "按摩"
       },
       {

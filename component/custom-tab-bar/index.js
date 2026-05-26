@@ -18,6 +18,11 @@ Component({
                 text: 'Massage'
             }, 
             {
+              url: '/pages/guideresource/guideresource',
+              icon: 'friends-o',
+              text: 'resource'
+          },
+            {
                 url: '/pages/chat/chat',
                 icon: 'chat-o',
                 text: 'Massage'

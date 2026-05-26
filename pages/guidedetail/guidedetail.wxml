@@ -1,0 +1,146 @@
+<view class="page-container">
+
+<view class="article-loading" wx:if="{{isLoadingArticle}}">
+  <view class="dot-typing">
+    <view class="dot"></view>
+    <view class="dot"></view>
+    <view class="dot"></view>
+  </view>
+  <text class="loading-text">正在加载...</text>
+</view>
+
+<block wx:else>
+
+  <!-- Back Bar -->
+  <view class="back-bar">
+    <view class="back-btn" bindtap="goBack">
+      <text class="back-icon">‹</text>
+      <text class="back-label">返回</text>
+    </view>
+    <text class="back-agency">{{agency}}</text>
+  </view>
+
+  <scroll-view
+    scroll-y="{{true}}"
+    class="main-scroll"
+    scroll-into-view="{{scrollTo}}"
+    show-scrollbar="{{false}}"
+  >
+
+    <!-- Article Header -->
+    <view class="article-header">
+      <view class="agency-badge-row">
+        <text class="agency-badge">{{agency}}</text>
+      </view>
+      <text class="article-title">{{articleTitle}}</text>
+      <text class="article-meta">更新时间: {{updatedAt}} · LandLink 数据库</text>
+    </view>
+
+    <!-- Article Body -->
+    <view class="article-body-wrap">
+      <text class="article-body" user-select>{{articleBody}}</text>
+    </view>
+
+    <!-- Related Topics -->
+    <view class="related-section" wx:if="{{relatedTopics.length > 0}}">
+      <text class="section-title">相关机构</text>
+      <scroll-view scroll-x="{{true}}" show-scrollbar="{{false}}" class="related-scroll">
+        <view class="related-row">
+          <view
+            wx:for="{{relatedTopics}}"
+            wx:key="id"
+            class="related-chip"
+            bindtap="onRelatedTap"
+            data-query="{{item.query}}"
+          >{{item.label}}</view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="divider"></view>
+
+    <!-- Q&A Section -->
+    <view class="qa-section">
+      <text class="section-title">追加问题</text>
+
+      <view wx:for="{{qaList}}" wx:key="id" class="qa-item" id="qa-{{item.id}}">
+        <view class="qa-q-wrap">
+          <text class="qa-q-label">问题</text>
+          <text class="qa-q-text" user-select>{{item.question}}</text>
+        </view>
+        <view class="qa-a-wrap loading" wx:if="{{item.isLoading}}">
+          <view class="dot-typing">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+          </view>
+        </view>
+        <view class="qa-a-wrap" wx:else>
+          <text class="qa-a-text" user-select>{{item.answer}}</text>
+          <text class="qa-source" wx:if="{{item.source}}">📌 {{item.source}}</text>
+        </view>
+      </view>
+
+      <!-- Suggested Questions -->
+      <view class="suggested-wrap" wx:if="{{suggestedQuestions.length > 0 && qaList.length === 0}}">
+        <text class="suggested-label">常见问题</text>
+        <view
+          wx:for="{{suggestedQuestions}}"
+          wx:key="*this"
+          class="suggested-item"
+          bindtap="onSuggestedTap"
+          data-q="{{item}}"
+        >
+          <text class="suggested-icon">💬</text>
+          <text class="suggested-text">{{item}}</text>
+        </view>
+      </view>
+
+      <!-- FAQ from DB -->
+      <view class="faq-section" wx:if="{{faqList.length > 0}}">
+        <text class="section-title">其他用户的问题</text>
+        <view wx:for="{{faqList}}" wx:key="id" class="faq-item">
+          <view class="faq-q-wrap" bindtap="onSuggestedTap" data-q="{{item.question}}">
+            <text class="faq-q-icon">💬</text>
+            <text class="faq-q-text">{{item.question}}</text>
+          </view>
+          <view class="faq-a-wrap">
+            <text class="faq-a-text">{{item.answer}}</text>
+          </view>
+          <view class="faq-vote" bindtap="voteHelpful" data-id="{{item.id}}">
+            <text class="faq-vote-icon">👍</text>
+            <text class="faq-vote-count">{{item.helpful_count || 0}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view style="height: 160rpx;"></view>
+    </view>
+
+  </scroll-view>
+
+  <!-- Input Bar -->
+  <view class="input-bar">
+    <view class="input-context">
+      <text class="input-context-text">向 {{agency}} 专家提问</text>
+    </view>
+    <view class="input-row">
+      <input
+        class="ask-input"
+        placeholder="请输入您的问题..."
+        placeholder-class="ask-placeholder"
+        value="{{inputVal}}"
+        bindinput="onInput"
+        bindconfirm="handleSend"
+        confirm-type="send"
+        adjust-position="{{true}}"
+      />
+      <view class="send-btn {{inputVal && !isLoadingAnswer ? 'active' : ''}}" bindtap="handleSend">
+        <text class="send-icon">↑</text>
+      </view>
+    </view>
+  </view>
+
+</block>
+
+</view>
