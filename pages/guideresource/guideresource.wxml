@@ -24,7 +24,6 @@
   </view>
 
   <scroll-view scroll-y="{{true}}" class="main-scroll" show-scrollbar="{{false}}">
-
     <!-- DEFAULT STATE -->
     <block wx:if="{{!hasSearched}}">
 
@@ -34,9 +33,9 @@
           <text class="section-title">🔥 热门问题</text>
           <text class="section-more" bindtap="showAllFaq">查看全部</text>
         </view>
-        <scroll-view scroll-x="={{true}}" show-scrollbar="{{false}}" class="hot-qa-scroll">
+        <scroll-view scroll-x="{{true}}" show-scrollbar="{{false}}" class="hot-qa-scroll">
           <view class="hot-qa-row">
-            <view wx:for="{{hotQaList}}" wx:key="id" class="hot-aq-card" bindtap="onHotQaTap" data-question="{{item.question}}" data-answer="{{item.answer}}" data-agency="{{item.agency}}">
+            <view wx:for="{{hotQaList}}" wx:key="id" class="hot-qa-card" bindtap="onHotQaTap" data-question="{{item.question}}" data-answer="{{item.answer}}" data-agency="{{item.agency}}">
               <text class="hot-qa-badge">{{item.agency}}</text>
               <text class="hot-qa-q">{{item.question}}</text>
               <text class="hot-qa-preview">{{item.answer}}</text>
@@ -127,7 +126,7 @@
           <text class="result-count">找到 {{results.length}} 条结果 · "{{lastQuery}}"</text>
         </view>
 
-        <view wx:for="{{results}}" wx:key="id" class="result-card" bindtap="onResultTap" data-id="{{item.id}}" data-item="{{item}}">
+        <view wx:for="{{results}}" wx:key="id" class="result-card"bindtap="onResultTap"data-id="{{item.id}}">
           <view class="result-tag-row">
             <text class="result-tag">{{item.agency}}</text>
           </view>

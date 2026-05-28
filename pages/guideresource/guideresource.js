@@ -56,8 +56,18 @@ Page({
   },
 
   onLoad(options) {
+  //   console.log('=== guideresource onLoad ===');
+  // console.log('hasSearched:', this.data.hasSearched);
+  // console.log('agencies count:', this.data.agencies.length);
     this.loadHistory();
     this.loadHotQa();
+    // console.log('queryHistory:', this.data.queryHistory);
+    // setTimeout(() => {
+    //   console.log('after load - hotQaList:', this.data.hotQaList.length);
+    //   console.log('after load - queryHistory:', this.data.queryHistory.length);
+    //   console.log('after load - hasSearched:', this.data.hasSearched);
+    // }, 2000);
+
     if (options && options.autoSearch) {
       const query = decodeURIComponent(options.autoSearch);
       this.setData({ searchVal: query }, () => {
@@ -202,18 +212,27 @@ Page({
     wx.showToast({ title: '搜索失败，请重试', icon: 'none' });
   },
 
-  onResultTap(e) {
-    const item = e.currentTarget.dataset.item;
-    const contentEncoded = encodeURIComponent((item.content || '').substring(0, 500));
-    const pages = getCurrentPages();
-    const url = `../guidedetail/guidedetail?id=${item.id}&query=${encodeURIComponent(this.data.lastQuery)}&title=${encodeURIComponent(item.title)}&agency=${encodeURIComponent(item.agency)}&content=${contentEncoded}`;
-    if (pages.length >= 9) {
-      wx.redirectTo({ url });
-    } else {
-      wx.navigateTo({ url });
-    }
-  },
+onResultTap(e) {
+  const id = e.currentTarget.dataset.id;
+  // console.log('onResultTap id:', id);
+  // console.log('results:', this.data.results.length);
+  const item = this.data.results.find(r => r.id === id);
+  // console.log('item found:', item);
+  if (!item) {
+    console.log('item not found, return');
+    return;
+  }
 
+  const contentEncoded = encodeURIComponent((item.content || '').substring(0, 300));
+  const pages = getCurrentPages();
+  const url = `../guidedetail/guidedetail?id=${item.id}&query=${encodeURIComponent(this.data.lastQuery)}&title=${encodeURIComponent(item.title)}&agency=${encodeURIComponent(item.agency)}&content=${contentEncoded}`;
+  
+  if (pages.length >= 9) {
+    wx.redirectTo({ url });
+  } else {
+    wx.navigateTo({ url });
+  }
+},
   onSearchClear() {
     this.setData({ searchVal: '', hasSearched: false, results: [], lastQuery: '', selectedCategory: 'all' });
   }
