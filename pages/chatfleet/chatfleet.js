@@ -123,7 +123,6 @@ Page({
             const response = await this.ReqgetChatDetail(groupid, 0)
             let newList = [...this.data.chatList]
             newList = [...this.data.chatList, ...response.data]
-            // console.log(newList)
             this.setData({
                 chatList: newList,
                 firstMessageId: newList[0].id,
@@ -205,14 +204,8 @@ Page({
     },
 
     async sendasset(e) {
-        // console.log(e)
-        // console.log('sendasset')
 
-        // const idasset = e.detail.selectedIds != undefined ? e.detail.selectedIds : e
-        // console.log(idasset)
         let dataid = e.join(",")
-        // console.log(dataid)
-        // if (idasset) return;
         const messagePayload = {
             asset: dataid,
             time: new Date().toLocaleTimeString(),
@@ -296,10 +289,8 @@ Page({
             this.socketTask.send({
                 data: JSON.stringify(payloadsent),
                 success: () => {
-                    // console.log("unsent message")
                 },
                 fail: (err) => {
-                    // console.error("Send failed:", err);
                 }
             });
         } else {
@@ -320,12 +311,10 @@ Page({
                 groupName: data.data.groupname,
             })
 
-            // console.log(this.data)
         } catch (err) {
             wx.navigateBack({
               delta : 1
             })
-            // console.error("Reload error:", err)
         }
     },
 
@@ -359,7 +348,6 @@ Page({
                 }
             },
             fail(res) {
-                // console.log(res.errMsg)
             }
         })
     },

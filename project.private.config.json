@@ -11,9 +11,23 @@
         {
           "name": "pages/groupinvite/groupinvite",
           "pathName": "pages/groupinvite/groupinvite",
-          "query": "invitegroup=eyJ1IjoiMTMxIiwiZyI6ImY0MzRjODMwZTlmYzExZjA5MTU0NTI1MTFhM2I4NDM1IiwidCI6MTc3MzEzMDc3Mn0.vG7jDrdDkQbuD92KLfOce4-tVUjGnhEyeYf21_zqn5A",
+          "query": "invitegroup=eyJ1IjoiMTMxIiwiZyI6ImY0MzRjODMwZTlmYzExZjA5MTU0NTI1MTFhM2I4NDM1IiwidCI6MTc4MDAyOTE5MX0.-RZxcYSQvPc5ULm3noDImCtHyLXZUahKcIbhHbtUFLs",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "pages/chatfleet/chatfleet",
+          "pathName": "pages/chatfleet/chatfleet",
+          "query": "id=0ff17ee3186311f195060eaf84adf8e6",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/guideresource/guideresource",
+          "pathName": "pages/guideresource/guideresource",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "pages/groupinviteqr/groupinvite",
@@ -46,13 +60,6 @@
         {
           "name": "pages/assetinchat/assetinchat",
           "pathName": "pages/assetinchat/assetinchat",
-          "query": "id=f434c830e9fc11f0915452511a3b8435",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/chatfleet/chatfleet",
-          "pathName": "pages/chatfleet/chatfleet",
           "query": "id=f434c830e9fc11f0915452511a3b8435",
           "launchMode": "default",
           "scene": null

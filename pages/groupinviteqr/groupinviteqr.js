@@ -24,7 +24,6 @@ Page({
         let groupid = this.data.id
         let querygroup = await app.Getinvitegroup(groupid)
         const pathdata = `/pages/groupinvite/groupinvite?invitegroup=${querygroup}`
-        console.log(pathdata)
         const Share = {
             title: this.data.groupname,
             path: pathdata,

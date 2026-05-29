@@ -147,10 +147,8 @@ Page({
                     that.setData({
                         nearasset: data.data
                     })
-                    console.log(that.data.nearasset)
                 },
                 fail(err) {
-                    console.log(err)
                 }
             })
         })
@@ -172,9 +170,7 @@ Page({
                     var assetdetail = res.data.data.assetdetail
                     var nearasset = res.data.data.nearasset
                     var watch = res.data.data.watchhistory
-                    console.log(watch)
 
-                    console.log(res.data)
                     that.setData({
                         predata: assetdetail,
                         lat: assetdetail.address.lat,
@@ -631,7 +627,6 @@ Page({
         [targetPath]: '/asset/landlink.png'
       });
       
-      console.log(`Image at index ${index} failed, replaced with default.`);
     }
 
 })

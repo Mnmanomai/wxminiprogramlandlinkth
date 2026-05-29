@@ -76,7 +76,6 @@ Page({
     let datafind = mainadata.length != 0 ? mainadata.join(",") : ""
     
     let resdata = await app.Getlist(datafind)
-    console.log(resdata)
     this.setData({
       fetchlist : resdata
     })

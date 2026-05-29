@@ -23,7 +23,6 @@ Page({
   },
 
   returntochat() {
-    // console.log(this.data.selected)
     const pages = getCurrentPages();
     const prevpagereal = pages[pages.length - 2];
     const prevpagepath = prevpagereal.route
@@ -58,8 +57,6 @@ Page({
         console.error("เรียกฟังก์ชันได้แต่รันไม่สำเร็จ:", err);
       }
     } else {
-      // console.log("ฟังก์ชันที่มีในหน้านี้:", Object.keys(prevPage));
-      // console.error("ไม่พบ sendAsset ใน Page นี้จริงๆ");
     }
   },
 
@@ -67,7 +64,6 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad(options) {
-    // console.log(options)
     wx.setNavigationBarTitle({
       title: "搜索",
     });
@@ -144,7 +140,6 @@ Page({
       hasMore: Dataget.length > 0,
       loading: false
     });
-    // console.log(this.data.fetchData)
   },
 
   /**

@@ -154,7 +154,7 @@ Component({
   methods: {
     btnNextToSearchDetail() {
       const data = this.data.filterdata
-      // console.log(data)
+      // data)
       app.NextToSelectMode(data)
     },
     onChangeSearchDetailCollapse(event) {

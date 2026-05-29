@@ -159,7 +159,6 @@ Page({
   },
 
   async onLoad() {
-    // console.log("kao");
     const res = await app.localStorageGet('usersdetail');
     if (res !== "no data search") {
       this.setData({
@@ -185,7 +184,6 @@ Page({
       isNewChat: true,
       messages: []
     })
-    // console.log(newChatId);
     return newChatId
   },
 
@@ -247,7 +245,6 @@ Page({
   },
   //พิมพ์ส่งข้อความ
   onInput: function (e) {
-    // console.log(e);
     this.setData({
       inputVal: e.detail.value
     });
@@ -307,7 +304,6 @@ Page({
     this.askAI(msg)
   },
   askAI: function (userMsg) {
-    // console.log(userMsg);
     const jwtToken = this.data.userToken;
     const newMessage = [
       ...this.data.messages,
@@ -375,7 +371,6 @@ Page({
     });
   },
   loadOldmsg: function (session_id) {
-    // console.log("eiei");
     const url = `${config.apitestAI}/get-history/${session_id}`
     const jwtToken = this.data.userToken;
     if (!jwtToken) return;
@@ -517,7 +512,6 @@ Page({
 
     const currentTask = currentFlow[searchStep];
     if (currentTask.condition && !currentTask.condition(tempRequiment)) {
-      // console.log(`ข้ามข้อ ${currentTask.field} ไม่ตรงเงื่อนไข`);
       this.setData({
         searchStep: searchStep + 1
       }, () => {
@@ -589,7 +583,6 @@ Page({
       messages: newMessages,
       lastId: `msg-${newMessages.length -1}`
     }, () => {
-      // console.log("Current Step after click:", this.data.searchStep);
       this.nextSearchStep(); // ไปเริ่มข้อ 1 ของภาษานั้นๆ
     });
   },
@@ -597,9 +590,6 @@ Page({
   finishSearchAndCallAI: function () {
     const req = this.data.tempRequiment;
     const jwtToken = this.data.userToken;
-
-    // console.log(req);
-
 
     const summaryMsg = {
       role: "ai",
@@ -672,10 +662,8 @@ Page({
       wx.navigateTo({
         url: `../assetdetail/assetdetail?id=${id}`,
         success: () => {
-          // console.log('Navigated to property:', id);
         },
         fail: (err) => {
-          // console.error('Navigation failed:', err);
           wx.showToast({
             title: 'Cannot open page',
             icon: 'none'
