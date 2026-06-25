@@ -12,11 +12,11 @@ Component({
                 icon: 'search',
                 text: 'Activities'
             },
-            {
-                url: '/pages/investmentmarket/investmentmarket',
-                icon: 'chat-o',
-                text: 'Massage'
-            },
+          // { 
+              // url: '/pages/investmentmarket/investmentmarket',
+              // icon: 'chat-o',
+              // text: 'Massage'
+          // },
           //   {
           //     url: '/pages/ai/ai',
           //     icon: 'chat-o',

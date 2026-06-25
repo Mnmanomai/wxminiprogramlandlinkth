@@ -14,11 +14,11 @@
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '收藏夹' : 'Like'}}</view>
                 <van-icon name="arrow" class="end-list"/>
             </view>
-            <view class="list" bind:tap="gotoPage" data-url="/pages/investmentmarket/investmentmarket">
+            <!-- <view class="list" bind:tap="gotoPage" data-url="/pages/investmentmarket/investmentmarket">
                 <van-icon name="bullhorn-o" class="icon" size="24" />
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '寻找资产' : 'Investment'}}</view>
                 <van-icon name="arrow" class="end-list"/>
-            </view>
+            </view> -->
             <view class="list" bind:tap="gotoPage" data-url="/pages/chat/chat">
                 <van-icon name="chat-o" class="icon" size="24" />
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '聊天' : 'Chat'}}</view>
