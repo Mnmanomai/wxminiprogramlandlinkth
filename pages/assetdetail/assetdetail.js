@@ -161,7 +161,7 @@ Page({
         const token = tokenrequest.token;
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${config.PublicIPCallApiGoBackend}/product/assetdetailpm/${id}?language=zh`,
+                url: `${config.PublicIPCallApiGoBackend}/product/assetdetail/${id}?language=zh`,
                 method: 'GET',
                 header: {
                   'Authorization': 'Bearer ' + token

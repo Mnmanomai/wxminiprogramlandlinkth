@@ -31,7 +31,7 @@ Page({
         // await this.getDataPicture();
 
         this.socketTask = wx.connectSocket({
-            url: `${config.PublicIPCallApiGoBackendnonhttp}/ws/${gropuid}`,
+            url: `${config.PublicIPCallApiGoBackendnonhttp}/ws/chatroom/${gropuid}`,
             header: {
                 'Content-type': 'application/json',
                 'Authorization': `Bearer ${token.token}`

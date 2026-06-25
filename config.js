@@ -9,7 +9,6 @@ module.exports = {
   // PublicIPCallApiGoBackendnonhttp : "ws://192.168.100.80:8080",
   // apitestAI:"http://192.168.100.119:8000",
 
-
   apiBaseUrl: "https://landlinkth.com",
   PublicIPCallApiGoBackend : "https://api.landlinkth.com",
   PublicIPCallApiGoBackendnonhttp : "wss://api.landlinkth.com",

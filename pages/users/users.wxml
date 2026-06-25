@@ -32,7 +32,8 @@
         </view>
     </view>
 
-    <view class="maincard" >
+    <!-- Investment market -->
+    <!-- <view class="maincard" >
         <view class="headercard">Investment</view>
         <view class="mainlist">
             <view class="list" bind:tap="openTab" data-url="/pages/myinvestment/myinvestment">
@@ -46,7 +47,7 @@
                 <van-icon name="arrow" class="end-list"/>
             </view>
         </view>
-    </view>
+    </view> -->
 
     <view class="maincard" wx:if="{{level == 4}}">
         <view class="headercard">Chat</view>
