@@ -51,11 +51,7 @@ Page({
         await this.getData();
     },
 
-    nexttocreate(){
-      wx.navigateTo({
-        url: '/pages/createinvestment/createinvestment',
-      })
-    },
+    
     nexttomyinvest(){
       wx.navigateTo({
         url: '/pages/myinvestment/myinvestment',

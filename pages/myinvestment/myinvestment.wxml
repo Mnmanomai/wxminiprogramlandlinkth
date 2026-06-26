@@ -9,12 +9,7 @@
         </view>
 
         <!-- Button Go to Create Investment -->
-        <view class="" style="display: flex;justify-content: center;align-items: center;padding-right: 10px;" bind:tap="openTab" data-url="/pages/createinvestment/createinvestment">
-            <view
-                style="border : solid 1px rgb(19, 33, 158);color: rgb(19, 33, 158);padding: 6px 16px;border-radius: 8px;font-size: 20px;font-weight: 900;background-color: white;">
-                <van-icon name="plus" size="16" />
-            </view>
-        </view>
+        
     </view>
     <view class="" style="padding: 60px 0px;">
         <cardInvestmentmanage list="{{dataInvest}}" />

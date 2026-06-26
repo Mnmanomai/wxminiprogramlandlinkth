@@ -32,23 +32,6 @@
         </view>
     </view>
 
-    <!-- Investment market -->
-    <!-- <view class="maincard" >
-        <view class="headercard">Investment</view>
-        <view class="mainlist">
-            <view class="list" bind:tap="openTab" data-url="/pages/myinvestment/myinvestment">
-                <van-icon name="orders-o" class="icon" size="24" />
-                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '我的投资' : 'My investment'}}</view>
-                <van-icon name="arrow" class="end-list"/>
-            </view>
-            <view class="list" bind:tap="openTab" data-url="/pages/createinvestment/createinvestment">
-                <van-icon name="plus" class="icon" size="24" />
-                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '创建投资' : 'Create Investment'}}</view>
-                <van-icon name="arrow" class="end-list"/>
-            </view>
-        </view>
-    </view> -->
-
     <view class="maincard" wx:if="{{level == 4}}">
         <view class="headercard">Chat</view>
         <view class="mainlist">
