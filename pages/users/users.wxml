@@ -4,11 +4,11 @@
     <view class="maincard" >
         <view class="headercard">General</view>
         <view class="mainlist">
-            <view class="list" bind:tap="openTab" data-url="/pages/userdetail/userdetail">
+            <!-- <view class="list" bind:tap="openTab" data-url="/pages/userdetail/userdetail">
                 <van-icon name="user-circle-o" class="icon" size="24" />
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '帐户' : 'Account'}}</view>
                 <van-icon name="arrow" class="end-list"/>
-            </view>
+            </view> -->
             <view class="list" bind:tap="gotoPage" data-url="/pages/activities/activities">
                 <van-icon name="like-o" class="icon" size="24" />
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '收藏夹' : 'Like'}}</view>
