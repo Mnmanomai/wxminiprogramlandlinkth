@@ -9,11 +9,18 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/assetdetail/assetdetail",
+          "pathName": "pages/assetdetail/assetdetail",
+          "query": "id=865",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
           "name": "pages/groupinvite/groupinvite",
           "pathName": "pages/groupinvite/groupinvite",
           "query": "invitegroup=eyJ1IjoiMTMxIiwiZyI6ImY0MzRjODMwZTlmYzExZjA5MTU0NTI1MTFhM2I4NDM1IiwidCI6MTc4MDAyOTE5MX0.-RZxcYSQvPc5ULm3noDImCtHyLXZUahKcIbhHbtUFLs",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "pages/chatfleet/chatfleet",
@@ -40,13 +47,6 @@
           "name": "pages/investmentmarket/investmentmarket",
           "pathName": "pages/investmentmarket/investmentmarket",
           "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/assetdetail/assetdetail",
-          "pathName": "pages/assetdetail/assetdetail",
-          "query": "id=1466",
           "launchMode": "default",
           "scene": null
         },

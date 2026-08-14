@@ -107,6 +107,9 @@ Page({
             newsId: options.id ? options.id : options.scene, // รับค่า id จาก URL
             language: config.language
         });
+
+        // console.log(this.data.newsId)
+        
         await this.loadData(this.data.newsId)
         // await this.getnearasset(this.data.newsId)
         this.storagelist();
@@ -167,10 +170,11 @@ Page({
                   'Authorization': 'Bearer ' + token
               },
                 success(res) {
+
                     var assetdetail = res.data.data.assetdetail
                     var nearasset = res.data.data.nearasset
                     var watch = res.data.data.watchhistory
-
+                    console.log(assetdetail)
                     that.setData({
                         predata: assetdetail,
                         lat: assetdetail.address.lat,
