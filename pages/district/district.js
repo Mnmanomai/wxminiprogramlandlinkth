@@ -16,7 +16,6 @@ Page({
     },
 
     async onLoad(options) {
-        // console.log(options)
         this.setData({
             selltype: options.selltype,
             ProvinceID: options.id || null,

@@ -31,7 +31,6 @@ Component({
     },
     selectSend(e) {
       const id = e.currentTarget.dataset.id;
-      // console.log(id)
       const dataarraylist = this.data.dataarraylist.map(item => {
           if (item._id == id) {
               return {
@@ -41,7 +40,6 @@ Component({
           }
           return item;
       });
-      // console.log(dataarraylist)
 
       this.setData({
           dataarraylist

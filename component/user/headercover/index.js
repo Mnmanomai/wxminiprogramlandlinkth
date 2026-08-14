@@ -22,11 +22,11 @@ Component({
    * Component methods
    */
   methods: {
-    goTodetailUser(){
-      wx.navigateTo({
-        url: '/pages/userdetail/userdetail',
-      })
-    }
+    // goTodetailUser(){
+    //   wx.navigateTo({
+    //     url: '/pages/userdetail/userdetail',
+    //   })
+    // }
 
 
   }

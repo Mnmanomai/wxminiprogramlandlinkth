@@ -54,7 +54,6 @@ Component({
     methods: {
         getflavoritelist() {
             const Flavorite = wx.getStorageSync('FlavoriteList')
-            // console.log(Flavorite)
         },
         changemode(){
           
@@ -82,7 +81,6 @@ Component({
         },
         
         sendtochat(){
-          // console.log("sendtochat")
             this.triggerEvent('sendattachment',{
               selectedIds: this.data.selectedIds
             })

@@ -1,60 +1,52 @@
 // pages/groupinvite/groupinvite.js
 const config = require("../../config")
+const app = getApp()
 Page({
 
-    /**
-     * Page initial data
-     */
-    data: {
+  /**
+   * Page initial data
+   */
+  data: {
 
-    },
+  },
 
-    onLoad(options) {
-        console.log(options)
-        this.setData({
-            invitegroup: options.invitegroup
-        })
+  onLoad(options) {
+    this.setData({
+      invitegroup: options.invitegroup
+    })
 
-        wx.showLoading({
-            title: 'กำลังเข้าสู่ระบบ...'
-        });
-    },
+    wx.showLoading({
+      title: 'กำลังเข้าสู่ระบบ...'
+    });
+  },
 
-    async onReady() {
-        const token = await new Promise((resolve, reject) => {
-            wx.getStorage({
-                key: 'usersdetail',
-                success(res) {
-                    resolve(res.data.token)
-                },
-                fail(err) {
-                    reject(err)
-                }
-            })
-        });
+  async onReady() {
+    let data = wx.getStorageSync("usersdetail")
+    if (!data) {
+      await app.LoginWechat()
+      data = wx.getStorageSync("usersdetail")
+    }
 
-        wx.request({
-            url: `${config.PublicIPCallApiGoBackend}/community/group/join`,
-            method: 'POST',
-            data: {
-                queryurl: this.data.invitegroup
-            },
-            header: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
-            success: (res) => {
-                if(res.data.groupid){
-                  wx.reLaunch({
-                    url : `/pages/chat/chat`
-                  })
-                }
-            },
-            complete: () => {
-                wx.hideLoading();
-            }
-        });
-    },
-
-    
+    wx.request({
+      url: `${config.PublicIPCallApiGoBackend}/community/group/join`,
+      method: 'POST',
+      data: {
+        queryurl: this.data.invitegroup
+      },
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + data.token
+      },
+      success: (res) => {
+        if (res.data.groupid) {
+          wx.reLaunch({
+            url: `/pages/chatfleet/chatfleet?id=${res.data.groupid}`
+          })
+        }
+      },
+      complete: () => {
+        wx.hideLoading();
+      }
+    });
+  },
 })

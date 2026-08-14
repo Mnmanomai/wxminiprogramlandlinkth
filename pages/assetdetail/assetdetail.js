@@ -107,6 +107,9 @@ Page({
             newsId: options.id ? options.id : options.scene, // รับค่า id จาก URL
             language: config.language
         });
+
+        // console.log(this.data.newsId)
+        
         await this.loadData(this.data.newsId)
         // await this.getnearasset(this.data.newsId)
         this.storagelist();
@@ -147,10 +150,8 @@ Page({
                     that.setData({
                         nearasset: data.data
                     })
-                    console.log(that.data.nearasset)
                 },
                 fail(err) {
-                    console.log(err)
                 }
             })
         })
@@ -163,18 +164,17 @@ Page({
         const token = tokenrequest.token;
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${config.PublicIPCallApiGoBackend}/product/assetdetailpm/${id}?language=zh`,
+                url: `${config.PublicIPCallApiGoBackend}/product/assetdetail/${id}?language=zh`,
                 method: 'GET',
                 header: {
                   'Authorization': 'Bearer ' + token
               },
                 success(res) {
+
                     var assetdetail = res.data.data.assetdetail
                     var nearasset = res.data.data.nearasset
                     var watch = res.data.data.watchhistory
-                    console.log(watch)
-
-                    console.log(res.data)
+                    console.log(assetdetail)
                     that.setData({
                         predata: assetdetail,
                         lat: assetdetail.address.lat,
@@ -631,7 +631,6 @@ Page({
         [targetPath]: '/asset/landlink.png'
       });
       
-      console.log(`Image at index ${index} failed, replaced with default.`);
     }
 
 })

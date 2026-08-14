@@ -82,7 +82,6 @@ Component({
         [targetPath]: '/asset/landlink.png'
       });
       
-      console.log(`Image at index ${index} failed, replaced with default.`);
     }
 
   },

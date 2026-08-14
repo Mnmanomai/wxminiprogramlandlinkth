@@ -56,17 +56,8 @@ Page({
   },
 
   onLoad(options) {
-  //   console.log('=== guideresource onLoad ===');
-  // console.log('hasSearched:', this.data.hasSearched);
-  // console.log('agencies count:', this.data.agencies.length);
     this.loadHistory();
     this.loadHotQa();
-    // console.log('queryHistory:', this.data.queryHistory);
-    // setTimeout(() => {
-    //   console.log('after load - hotQaList:', this.data.hotQaList.length);
-    //   console.log('after load - queryHistory:', this.data.queryHistory.length);
-    //   console.log('after load - hasSearched:', this.data.hasSearched);
-    // }, 2000);
 
     if (options && options.autoSearch) {
       const query = decodeURIComponent(options.autoSearch);
@@ -214,12 +205,8 @@ Page({
 
 onResultTap(e) {
   const id = e.currentTarget.dataset.id;
-  // console.log('onResultTap id:', id);
-  // console.log('results:', this.data.results.length);
   const item = this.data.results.find(r => r.id === id);
-  // console.log('item found:', item);
   if (!item) {
-    console.log('item not found, return');
     return;
   }
 

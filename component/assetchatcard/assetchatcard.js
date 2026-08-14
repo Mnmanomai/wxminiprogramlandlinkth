@@ -23,7 +23,6 @@ Component({
      */
     methods: {
         nexttoasset(e) {
-            // console.log(e)
             let data = e.currentTarget.dataset.id
             wx.navigateTo({
                 url : `/pages/assetdetail/assetdetail?id=${data}`

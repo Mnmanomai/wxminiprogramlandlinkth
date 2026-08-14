@@ -4,21 +4,21 @@
     <view class="maincard" >
         <view class="headercard">General</view>
         <view class="mainlist">
-            <view class="list" bind:tap="openTab" data-url="/pages/userdetail/userdetail">
+            <!-- <view class="list" bind:tap="openTab" data-url="/pages/userdetail/userdetail">
                 <van-icon name="user-circle-o" class="icon" size="24" />
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '帐户' : 'Account'}}</view>
                 <van-icon name="arrow" class="end-list"/>
-            </view>
+            </view> -->
             <view class="list" bind:tap="gotoPage" data-url="/pages/activities/activities">
                 <van-icon name="like-o" class="icon" size="24" />
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '收藏夹' : 'Like'}}</view>
                 <van-icon name="arrow" class="end-list"/>
             </view>
-            <view class="list" bind:tap="gotoPage" data-url="/pages/investmentmarket/investmentmarket">
+            <!-- <view class="list" bind:tap="gotoPage" data-url="/pages/investmentmarket/investmentmarket">
                 <van-icon name="bullhorn-o" class="icon" size="24" />
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '寻找资产' : 'Investment'}}</view>
                 <van-icon name="arrow" class="end-list"/>
-            </view>
+            </view> -->
             <view class="list" bind:tap="gotoPage" data-url="/pages/chat/chat">
                 <van-icon name="chat-o" class="icon" size="24" />
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '聊天' : 'Chat'}}</view>
@@ -27,22 +27,6 @@
             <view class="list" bind:tap="popupsupport">
                 <van-icon name="service-o" class="icon" size="24" />
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '支持' : 'Support'}}</view>
-                <van-icon name="arrow" class="end-list"/>
-            </view>
-        </view>
-    </view>
-
-    <view class="maincard" >
-        <view class="headercard">Investment</view>
-        <view class="mainlist">
-            <view class="list" bind:tap="openTab" data-url="/pages/myinvestment/myinvestment">
-                <van-icon name="orders-o" class="icon" size="24" />
-                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '我的投资' : 'My investment'}}</view>
-                <van-icon name="arrow" class="end-list"/>
-            </view>
-            <view class="list" bind:tap="openTab" data-url="/pages/createinvestment/createinvestment">
-                <van-icon name="plus" class="icon" size="24" />
-                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '创建投资' : 'Create Investment'}}</view>
                 <van-icon name="arrow" class="end-list"/>
             </view>
         </view>

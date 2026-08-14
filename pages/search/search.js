@@ -31,7 +31,6 @@ Page({
     },
 
     onLoad(options) {
-        // console.log(options)
         wx.setNavigationBarTitle({
             title: '搜索',
         });
