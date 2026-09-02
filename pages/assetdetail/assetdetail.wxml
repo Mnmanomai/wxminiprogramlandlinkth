@@ -43,7 +43,7 @@
       </view>
     </view>
 
-    
+
 
     <view class="" style="display: flex; height: 86px;width: 100%;padding: 0px 0px;">
       <view class="" style="width: 100%;">
@@ -203,32 +203,31 @@
         </view> -->
       </view>
 
-      <view class="" style="display: flex;justify-content: center;font-weight: 600;" wx:if="{{opensee}}"
-        bind:tap="toggleopensee">收起</view>
+      <view class="" style="display: flex;justify-content: center;font-weight: 600;" wx:if="{{opensee}}" bind:tap="toggleopensee">收起</view>
 
       <!-- UserView -->
-    <view class="" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 0px;">
-      <view class="" style="display: flex;justify-content:space-between;padding-bottom: 6px;">
-        <view class="" style="color: rgb(26, 25, 94);font-weight: 600;">查看历史记录</view>
-      </view>
-      <view class="" style="display: flex;justify-content: space-between;">
-        <view class="history-container">
-          <block wx:for="{{history}}" wx:key="id">
-            <view class="taginvite">
-              <view class="" wx:if="{{item.picture == ''}}">
-                <image src="/asset/landlink.png" class="images" mode="aspectFit" binderror="onImageError"
-                  data-index="{{index}}" default-source="/asset/landlink.png" />
-              </view>
-              <view class="" wx:if="{{item.picture != ''}}">
-                <image src="{{item.picture}}" class="images" mode="aspectFit" binderror="onImageError"
-                  data-index="{{index}}" default-source="/asset/landlink.png" />
-              </view>
-            </view>
-          </block>
+      <!-- <view class="" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 0px;">
+        <view class="" style="display: flex;justify-content:space-between;padding-bottom: 6px;">
+          <view class="" style="color: rgb(26, 25, 94);font-weight: 600;">查看历史记录</view>
         </view>
-        <view class="" style="color: rgb(0, 0, 0,0.7);">{{predata.view_count}}访问</view>
-      </view>
-    </view>
+        <view class="" style="display: flex;justify-content: space-between;">
+          <view class="history-container">
+            <block wx:for="{{history}}" wx:key="id">
+              <view class="taginvite">
+                <view class="" wx:if="{{item.picture == ''}}">
+                  <image src="/asset/landlink.png" class="images" mode="aspectFit" binderror="onImageError"
+                    data-index="{{index}}" default-source="/asset/landlink.png" />
+                </view>
+                <view class="" wx:if="{{item.picture != ''}}">
+                  <image src="{{item.picture}}" class="images" mode="aspectFit" binderror="onImageError"
+                    data-index="{{index}}" default-source="/asset/landlink.png" />
+                </view>
+              </view>
+            </block>
+          </view>
+          <view class="" style="color: rgb(0, 0, 0,0.7);">{{predata.view_count}}访问</view>
+        </view>
+      </view> -->
       <view class="" style="display: flex;gap: 8px;padding: 3px;padding-top: 20px;overflow-x: scroll;">
         <block wx:for="{{nearasset}}" wx:key="nearasset">
           <minicard AssetId="{{item.id}}" AssetType="{{item.propertytype}}" AssetColor="{{item.cityplan.name_default}}"
