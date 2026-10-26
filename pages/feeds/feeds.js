@@ -30,7 +30,7 @@ Page({
                 assetNo : data.asset_no,
             })
         } catch (err) {
-            console.error("Reload error:", err)
+            // console.error("Reload error:", err)
         }
     },
     async getDataPicture() {

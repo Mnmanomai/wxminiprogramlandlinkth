@@ -198,7 +198,6 @@ Page({
           resolve(assetdetail); // ✅ resolve เมื่อ request เสร็จ
         },
         fail(err) {
-          console.log(err)
           reject(err); // ✅ reject ถ้า error
         }
       });
@@ -309,7 +308,6 @@ Page({
       imageUrl: this.data.predata.no_images_asset && this.data.predata.no_images_asset.length > 0 ?
         this.data.predata.no_images_asset[0] : "/asset/landlink.webp"
     }
-    console.log(Share)
     return Share;
   },
 

@@ -43,7 +43,7 @@ Component({
       const that = this;
       return new Promise((resolve, reject) => {
         wx.request({
-          url: `${config.apiBaseUrl}/api/miniprogramapi/search.php?LANGUAGE=${config.language}&MULTILIST=${typeList}`,
+          url: `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/search?LANGUAGE=${config.language}&MULTILIST=${typeList}`,
           method: 'GET',
           success(res) {
             const rawData = res.data.response;

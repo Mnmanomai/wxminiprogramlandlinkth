@@ -30,7 +30,9 @@ Page({
   },
   async reurlmain(req) {
 
-    return "https://landlinkth.com/images/pic_guide_content/" + req
+    // ข่าวใหม่จาก admin ส่งเป็น URL เต็ม (S3) ส่วนข่าวเก่าส่งแค่ชื่อไฟล์ ซึ่งอยู่ใน S3 โฟลเดอร์ guide/
+    if (req.startsWith("http")) return req
+    return "https://landlinkth-web-images.s3.ap-southeast-7.amazonaws.com/guide/" + req
   },
 
   async onLoad(options) {

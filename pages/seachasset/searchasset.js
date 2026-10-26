@@ -22,10 +22,10 @@ Page({
         let url = "";
         if (value.includes('#')) {
             let setdata = parseInt(value.replace('#', ''), 10);
-            url = `${config.apiBaseUrl}/api/miniprogramapi/searchlist.php?find=${setdata}`;
+            url = `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/searchlist?find=${setdata}`;
         } else {
             let setdata = value
-            url = `${config.apiBaseUrl}/api/miniprogramapi/searchlist.php?findname=${setdata}`;
+            url = `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/searchlist?findname=${setdata}`;
         }
         const that = this;
         this.setData({

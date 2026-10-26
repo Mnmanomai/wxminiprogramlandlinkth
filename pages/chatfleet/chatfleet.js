@@ -130,7 +130,7 @@ Page({
                 this.scrollToBottom();
             });
         } catch (e) {
-            console.error("Parse JSON error:", e);
+            // console.error("Parse JSON error:", e);
         }
     },
 
@@ -220,7 +220,7 @@ Page({
                     });
                 },
                 fail: (err) => {
-                    console.error("Send failed:", err);
+                    // console.error("Send failed:", err);
                 }
             });
         } else {
@@ -252,7 +252,7 @@ Page({
                     });
                 },
                 fail: (err) => {
-                    console.error("Send failed:", err);
+                    // console.error("Send failed:", err);
                 }
             });
         } else {

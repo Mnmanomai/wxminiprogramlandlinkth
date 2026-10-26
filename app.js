@@ -186,7 +186,7 @@ App({
     const that = this
     return new Promise((resolve, reject) => {
       wx.request({
-        url: `${config.apiBaseUrl}/api/miniprogramapi/search.php`,
+        url: `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/search`,
         method: 'GET',
         data: {
           SELLTYPE: request.selltype || '',
@@ -305,7 +305,7 @@ App({
   GetLatestAsset() {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: `${config.apiBaseUrl}/api/miniprogramapi/search.php`,
+        url: `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/search`,
         method: 'GET',
         data: {
           LANGUAGE: config.language,
@@ -344,7 +344,7 @@ App({
   GetGuide(id) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: `${config.apiBaseUrl}/api/miniprogramapi/read_docv2.php`,
+        url: `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/news/detail`,
         method: 'GET',
         data: {
           id_doc: id,
@@ -363,7 +363,7 @@ App({
   GetContent(topic, limit) {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: `${config.apiBaseUrl}/api/content_document/all_content_api.php`,
+        url: `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/news`,
         method: 'GET',
         data: {
           language: config.language,
