@@ -11,5 +11,3 @@ module.exports = {
   env: "development",
   language:"zh",
 }
-
-// module.exports = config; test

@@ -30,13 +30,6 @@
           "scene": null
         },
         {
-          "name": "pages/guideresource/guideresource",
-          "pathName": "pages/guideresource/guideresource",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
           "name": "pages/groupinviteqr/groupinvite",
           "pathName": "pages/groupinviteqr/groupinvite",
           "query": "invitegroup=eyJ1IjoiMTMxIiwiZyI6IjUwZTYzM2NlNTRjYTExZjE4OTMxNTI1MTFhM2I4NDM1IiwidCI6MTc3OTMzNzAxOX0.4TfZPmk-M20Pk73Lp4b4vjzu3P4ZKRpZgaE6VZwqffE",
@@ -94,5 +87,6 @@
         }
       ]
     }
-  }
+  },
+  "libVersion": "3.17.4"
 }

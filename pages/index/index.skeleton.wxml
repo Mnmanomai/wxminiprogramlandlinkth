@@ -1,0 +1,91 @@
+<!--
+此文件为开发者工具生成，生成时间: 10/27/2026, 10:33:29 AM
+使用方法：
+在 /Users/manomai/WeChatProjects/miniprogram-8/pages/index/index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 /Users/manomai/WeChatProjects/miniprogram-8/pages/index/index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="page-container">
+      <scroll-view scroll-y="true" style="height: auto;" enable-back-to-top="true">
+        <view style="display: flex;flex-direction: column;gap: 10px;">
+          <view style="position: relative;width: 100%;height: 100%;">
+            <view is="component/coverindex/index">
+              <view class="index--cover">
+                <image class="index--images sk-image" mode="widthFix" style="height: 219.375px;"></image>
+              </view>
+            </view>
+          </view>
+          <view style="transform: translate(0px,-50px);padding: 0px 10px;display: flex;flex-direction: column;gap: 10px;padding-bottom: 50px;">
+            <view style="padding: 0px 14px;">
+              <view is="component/searchbar/searchbar">
+                <view class="searchbar--border">
+                  <view class="searchbar--searchbox">
+                    <view is="miniprogram_npm/@vant/weapp/icon/index" class="searchbar--searchicon">
+                      <view class="van-icon icon-index--van-icon van-icon-search icon-index--van-icon-search sk-pseudo sk-pseudo-circle" style="font-size:24px"></view>
+                    </view>
+                    <view class="searchbar--textdes sk-transparent sk-text-14-2857-867 sk-text">请输入搜索关键词</view>
+                    <view class="searchbar--searchbutton sk-transparent sk-text-14-2857-416 sk-text">搜索</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view is="component/inoutsideindus/index">
+              <view style="padding: 0px;">
+                <view class="inoutsideindus-index--head">
+                  <view class="inoutsideindus-index--card" data-indus="2">
+                    <view class="inoutsideindus-index--filterfront sk-image"></view>
+                    <view class="inoutsideindus-index--description">
+                      <view class="inoutsideindus-index--textHeader sk-transparent sk-text-14-2857-638 sk-text">IEAT工业区内</view>
+                      <view class="inoutsideindus-index--textDescription sk-transparent sk-text-14-2857-982 sk-text">探索泰国一流工业园区内的土地——这里是建造工厂、仓库和物流设施的理想之选。您将受益于完善的基础设施、公共设施和政府扶持政策。</view>
+                    </view>
+                    <image mode="aspectFill" style="height: 100%;width: 100%;filter: brightness(0.7);" class="sk-image"></image>
+                  </view>
+                  <view class="inoutsideindus-index--card" data-indus="1">
+                    <view class="inoutsideindus-index--filterfront sk-image"></view>
+                    <view class="inoutsideindus-index--description">
+                      <view class="inoutsideindus-index--textHeader sk-transparent sk-text-14-2857-186 sk-text">工业区外 </view>
+                      <view class="inoutsideindus-index--textDescription sk-transparent sk-text-14-2857-740 sk-text">探索工业园区外的土地——非常适合建设独立工厂、物流中心或进行未来开发。用途灵活，成本更低，限制更少。</view>
+                    </view>
+                    <image mode="aspectFill" style="height: 100%;width: 100%;filter: brightness(0.7);" class="sk-image"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view is="component/cardlistcol/index">
+              <view style="display: flex;justify-content: space-between;padding: 0px 0px;align-items:flex-end;position: relative;">
+                <view style="background-color: rgb(3, 3, 139);position: absolute;top: 0px;left: 0px;height: 100%;width: 4px;"></view>
+                <text style="font-weight: 600;padding: 0px 8px;" class="sk-transparent sk-text-14-2857-714 sk-text">资产最新 </text>
+              </view>
+              <view style="display: flex;gap: 10px;flex-direction: row;overflow-x: auto;">
+                <view data-id="1668" style=" border-radius: 10px;overflow: hidden;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);background-color: white;margin: 10px 0px;flex: 0 0 auto; width: 340px;position: relative;">
+                  <view style="position: absolute;top:5px;left: 5px;">
+                    <view class="cardlistcol-index--bg-purple sk-transparent sk-text-14-2857-923 sk-text" style="width: 60px;height: 30px;border-radius: 8px;display: flex;justify-content: center;align-items: center;font-weight: 500;font-size: 14px;">土地</view>
+                  </view>
+                  <image lazy-load="true" style="width: 340px;" class="sk-image"></image>
+                </view>
+                <view data-id="1667" style=" border-radius: 10px;overflow: hidden;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);background-color: white;margin: 10px 0px;flex: 0 0 auto; width: 340px;position: relative;">
+                  <view style="position: absolute;top:5px;left: 5px;">
+                    <view class="cardlistcol-index--bg-purple sk-transparent sk-text-14-2857-857 sk-text" style="width: 60px;height: 30px;border-radius: 8px;display: flex;justify-content: center;align-items: center;font-weight: 500;font-size: 14px;">工厂</view>
+                  </view>
+                  <image lazy-load="true" style="width: 340px;" class="sk-image"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</template>
