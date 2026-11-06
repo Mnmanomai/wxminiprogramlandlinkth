@@ -4,6 +4,8 @@ const config = require("../../config");
 Page({
   data: {
     datasuggesstion: [],
+    buildingList: [],
+    circles: [],
     show: false,
     id: 0,
     predata: [],
@@ -175,19 +177,33 @@ Page({
           var nearasset = res.data.data.nearasset
           var watch = res.data.data.watchhistory
           // console.log(assetdetail)
+          // each building's type as text (office / warehouse / factory / other) for the list shown when a listing has several
+          const typeText = { 1: { zh: '办公楼', en: 'Office' }, 2: { zh: '仓库', en: 'Warehouse' }, 3: { zh: '工厂', en: 'Factory' }, 4: { zh: '其他', en: 'Other' } }
+          const lang = that.data.language === 'en' ? 'en' : 'zh'
+          const buildingList = (assetdetail.buildings || []).map(function (b) {
+            return Object.assign({}, b, { typeText: (typeText[b.type] || typeText[4])[lang] })
+          })
+          // the owner may hide the exact spot: then the map shows an area (circle, same 400 m as the website) instead of the pin
+          const exact = !!assetdetail.show_exact_location
           that.setData({
             predata: assetdetail,
+            buildingList: buildingList,
+            circles: exact ? [] : [{
+              latitude: assetdetail.address.lat,
+              longitude: assetdetail.address.lng,
+              radius: 400, color: '#1e3a8a99', fillColor: '#1e3a8a26', strokeWidth: 1
+            }],
             lat: assetdetail.address.lat,
             id: assetdetail.assetid,
             long: assetdetail.address.lng,
             history: watch,
-            markers: [{
+            markers: exact ? [{
               id: assetdetail.assetid,
               latitude: assetdetail.address.lat,
               longitude: assetdetail.address.lng,
               width: 30,
               height: 30
-            }],
+            }] : [],
             nearasset: nearasset
           });
 

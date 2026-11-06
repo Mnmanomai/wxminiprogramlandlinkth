@@ -22,7 +22,7 @@
         <!-- Price Per bath or Rent per Month -->
         <view class="" wx:if="{{predata.price.rentcost != '0'}}">
           <view class="font-medium text-xl flex gap-2" style="font-size: 18px;font-weight: 400;">
-            ฿{{utils.numberFormat(predata.price.rentcost)}} / mo
+            ฿{{utils.numberFormat(predata.price.rentcost)}} {{language == "en" ? "/ month" : "/ 月"}}
             <label class="tagBath">Baht</label>
           </view>
         </view>
@@ -123,27 +123,42 @@
           {{utils.numberFormat(predata.land.width)}}
           x {{utils.numberFormat(predata.land.length)}} {{language == "en" ? "m." : "米"}}
         </view>
-        <view class="text-muted text-md"> {{language == "en" ? "Soil Improvement" : "土壤改良"}} :
-          {{predata.soil_improvement}}
+        <view class="text-muted text-md" wx:if="{{!(predata.building.sizesqm > 0)}}"> {{language == "en" ? "Soil Improvement" : "土壤改良"}} :
+          {{predata.soil_improvement == 0 ? (language == "en" ? "Filled and leveled" : "已填土整平") : (language == "en" ? "Not yet filled" : "尚未填土")}}
         </view>
 
         <view class="divider"></view>
-        <view class="SubHeader"> {{language == "en" ? "Building area" : "建筑面积"}}</view>
-        <view class="text-xl font-w-400"> {{predata.building.sizesqm}} m²</view>
-        <view class="text-muted text-md"> {{language == "en" ? "Building Floor" : "地面"}} :
-          {{predata.building.floor}}
-          <!-- {{predata.LandWidthMeter}} x
-          {{predata.LandLengthMeter}} {{language == "en" ? "m." : "米"}} -->
+        <view class="SubHeader"> {{language == "en" ? (buildingList.length > 1 ? "Total building area" : "Building area") : (buildingList.length > 1 ? "建筑总面积" : "建筑面积")}}</view>
+        <view class="text-xl font-w-400"> {{utils.numberFormat(predata.building.sizesqm)}} m²</view>
+
+        <!-- several buildings (office + warehouse + factory…): one block each -->
+        <view wx:if="{{buildingList.length > 1}}">
+          <view class="buildingcard" wx:for="{{buildingList}}" wx:key="index">
+            <view class="text-md" style="font-weight: 600;">
+              {{language == "en" ? "Building" : "建筑"}} {{index + 1}} · {{item.typeText}}{{item.name ? ' · ' + item.name : ''}}
+              — {{utils.numberFormat(item.sqm)}} m²
+            </view>
+            <view class="text-muted text-md" wx:if="{{item.floor > 0}}">{{language == "en" ? "Number of floors" : "楼层数"}} : {{item.floor}}</view>
+            <view class="text-muted text-md" wx:if="{{item.load > 0}}">{{language == "en" ? "Floor load capacity (tons per m²)" : "地面承重（吨/平方米）"}} : {{item.load}}</view>
+            <view class="text-muted text-md" wx:if="{{item.year > 0}}">{{language == "en" ? "Year built (CE)" : "建造年份（公元）"}} : {{item.year}}</view>
+            <view class="text-muted text-md" wx:if="{{item.width > 0 || item.length > 0 || item.height > 0}}">{{language == "en" ? "Dimensions (W × L × H, m)" : "建筑尺寸（宽 × 长 × 高，米）"}} : {{item.width}} × {{item.length}} × {{item.height}}</view>
+          </view>
         </view>
-        <view class="text-muted text-md"> {{language == "en" ? "Building Dimention" : "建筑尺寸"}} :
-          {{predata.building.width}} x {{predata.building.long}} x {{predata.building.height}}
-          {{language == "en" ? "m." : "米"}}
-        </view>
-        <view class="text-muted text-md"> {{language == "en" ? "Building Load capacity" : "建筑承载能力"}} :
-          {{predata.building.load}} {{language == "en" ? "tons/m²" : "吨/平方米"}}
-        </view>
-        <view class="text-muted text-md"> {{language == "en" ? "Build Year" : "建成年份"}} :
-          {{predata.building.year == '0' ? 'None' : predata.building.year}}
+
+        <!-- a single building -->
+        <view wx:else>
+          <view class="text-muted text-md" wx:if="{{predata.building.floor > 0}}"> {{language == "en" ? "Number of floors" : "楼层数"}} :
+            {{predata.building.floor}}
+          </view>
+          <view class="text-muted text-md" wx:if="{{predata.building.width > 0 || predata.building.long > 0 || predata.building.height > 0}}"> {{language == "en" ? "Dimensions (W × L × H, m)" : "建筑尺寸（宽 × 长 × 高，米）"}} :
+            {{predata.building.width}} × {{predata.building.long}} × {{predata.building.height}}
+          </view>
+          <view class="text-muted text-md" wx:if="{{predata.building.load > 0}}"> {{language == "en" ? "Floor load capacity (tons per m²)" : "地面承重（吨/平方米）"}} :
+            {{predata.building.load}}
+          </view>
+          <view class="text-muted text-md" wx:if="{{predata.building.year != '0' && predata.building.year != ''}}"> {{language == "en" ? "Year built (CE)" : "建造年份（公元）"}} :
+            {{predata.building.year}}
+          </view>
         </view>
 
       </view>
@@ -151,6 +166,7 @@
       <!-- Cut -->
       <view class="{{opensee ? 'hiddensee':''}}">
         <view style="padding-bottom: 60px;">
+          <view wx:if="{{predata.parking.size > 0 || predata.parking.truck > 0 || predata.parking.cars > 0}}">
           <view class="divider"></view>
           <view class="SubHeader"> {{language == "en" ? "Parking area" : "停车场"}} </view>
           <view class="text-xl">{{predata.parking.size}} m²</view>
@@ -162,6 +178,7 @@
           </view>
           <view class="text-muted text-md"> {{language == "en" ? "Cars Parking" : "汽车停车场"}} :
             {{predata.parking.cars}}
+          </view>
           </view>
 
           <view class="divider"></view>
@@ -184,7 +201,7 @@
         <view class="section" id="section_map">
           <view class="Header"> {{language == "en" ? "Maps": "地图"}}</view>
           <map id="map" latitude="{{lat}}" longitude="{{long}}" scale="14" style="width: 100%; height: 300px;"
-            markers="{{markers}}" />
+            markers="{{markers}}" circles="{{circles}}" />
         </view>
 
         <!-- <view class="SectionSuggesstion" wx:if="{{datasuggesstion.length != 0}}">
@@ -203,7 +220,7 @@
         </view> -->
       </view>
 
-      <view class="" style="display: flex;justify-content: center;font-weight: 600;" wx:if="{{opensee}}" bind:tap="toggleopensee">收起</view>
+      <view class="" style="display: flex;justify-content: center;font-weight: 600;" wx:if="{{opensee}}" bind:tap="toggleopensee">{{language == "en" ? "Show more" : "展开更多"}}</view>
 
       <!-- UserView -->
       <!-- <view class="" style="display: flex;flex-direction: column;padding: 8px 10px;gap: 0px;">
