@@ -2,6 +2,8 @@
 <view class="">
 
 
+  <empty wx:if="{{loaded && datalist.length == 0}}" />
+
   <view class="col">
     <view class="" wx:for="{{datalist}}" wx:key="list">
       <view class="row">

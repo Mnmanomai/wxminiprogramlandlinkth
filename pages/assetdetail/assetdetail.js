@@ -5,6 +5,7 @@ Page({
     buildingList: [],
     closedText: '',
     closedDate: '',
+    notfound: false, // the listing does not exist / is not public / the request failed
     circles: [],
     id: 0,
     predata: [],
@@ -57,7 +58,11 @@ Page({
           'Authorization': 'Bearer ' + token
         },
         success(res) {
-
+          if (res.statusCode !== 200 || !res.data || !res.data.data || !res.data.data.assetdetail) {
+            that.setData({ notfound: true })
+            resolve(null)
+            return
+          }
           var assetdetail = res.data.data.assetdetail
           var nearasset = res.data.data.nearasset
           // each building's type as text (office / warehouse / factory / other) for the list shown when a listing has several
@@ -103,8 +108,9 @@ Page({
           });
           resolve(assetdetail); // ✅ resolve เมื่อ request เสร็จ
         },
-        fail(err) {
-          reject(err); // ✅ reject ถ้า error
+        fail() {
+          that.setData({ notfound: true })
+          resolve(null)
         }
       });
     });

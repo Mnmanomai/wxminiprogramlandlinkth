@@ -5,6 +5,7 @@ Page({
         fetchData: [],
         value: "",
         loading: false,
+        searched: false, // a search has been run (no "no data" before that)
     },
 
     onChange(e) {
@@ -38,12 +39,14 @@ Page({
                 let datalist = res.data.response
                 if (status == "ok") {
                     that.setData({
-                        fetchData: datalist,
+                        fetchData: datalist || [],
+                        searched: true,
                         loading: false
                     })
                 } else {
                     that.setData({
-                        fetchData: datalist,
+                        fetchData: [],
+                        searched: true,
                         err: "",
                         loading: false
                     })
@@ -52,7 +55,8 @@ Page({
             },
             fail(e) {
                 that.setData({
-                    fetchData: datalist,
+                    fetchData: [],
+                    searched: true,
                     err: "",
                     loading: false
                 })

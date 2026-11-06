@@ -1,0 +1,4 @@
+<view class="empty">
+  <van-icon name="{{icon}}" size="40px" color="#c0c4cc" />
+  <view class="empty-text">{{message}}</view>
+</view>

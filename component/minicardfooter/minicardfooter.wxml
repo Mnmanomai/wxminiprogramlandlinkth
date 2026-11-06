@@ -16,11 +16,11 @@
         </view>
         <view class="">{{utils.numberFormat(AreaLandRai)}} 莱 {{AreaLandNgan}} 颜 {{AreaLandSqw}} sqw </view>
       </view>
-      <view class="Area">
+      <view class="Area" wx:if="{{AreaWH > 0}}">
         <view class="">
           <van-icon name="wap-home-o" />
         </view>
-        <view class="" wx:if="AreaWH">建筑 {{utils.numberFormat(AreaWH)}} 平方米 </view>
+        <view class="">建筑 {{utils.numberFormat(AreaWH)}} 平方米 </view>
       </view>
       <view class="Time">
         <van-icon name="clock-o" />

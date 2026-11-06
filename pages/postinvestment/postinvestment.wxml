@@ -8,6 +8,7 @@
   <block wx:for="{{datalist}}" wx:key="datalist">
     <cardassetpostinvest data="{{item}}" />
   </block>
+  <empty wx:if="{{loaded && datalist.length == 0}}" />
 
   <!-- <cardcompany /> -->
 </view>

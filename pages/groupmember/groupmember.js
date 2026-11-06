@@ -6,7 +6,8 @@ Page({
      * Page initial data
      */
     data: {
-
+        datalist: [],
+        loaded: false, // the members have been requested (no "no data" before that)
     },
 
     /**
@@ -19,9 +20,16 @@ Page({
 
     },
     async onShow() {
-        let res = await this.AjaxLoadMember()
+        let members = []
+        try {
+            const res = await this.AjaxLoadMember()
+            members = (res && res.data) || []
+        } catch (e) {
+            // a failed request shows the same as "nobody here"
+        }
         this.setData({
-            datalist : res.data
+            datalist : members,
+            loaded: true
         })
     },
 

@@ -14,6 +14,7 @@
         bind:tap="nextToSearch" >{{item.type_search}}</van-cell>
       </block>
     </van-cell-group>
+    <empty wx:if="{{LocationData.length == 0}}" />
   </view>
 </view>
 <!-- Location -->

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "empty": "/component/empty/empty",
     "van-icon": "@vant/weapp/icon/index",
     "minicard": "/component/minicardfooter/minicardfooter"
   }
