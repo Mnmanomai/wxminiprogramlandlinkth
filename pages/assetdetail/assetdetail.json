@@ -1,13 +1,6 @@
 {
   "usingComponents": {
-    "navigation-bar": "/component/navigation-bar/navigation-bar",
-    "van-popup": "@vant/weapp/popup/index",
     "van-icon": "@vant/weapp/icon/index",
-    "cardlistasset" : "/component/cardListAsset/cardListAsset",
-    "userprofile" : "/component/userprofile/index",
-    "minimenu" : "/component/minicard/index",
-    "van-cell": "@vant/weapp/cell/index",
-    "van-cell-group": "@vant/weapp/cell-group/index",
-    "minicard" : "/component/minicardfooter/minicardfooter"
+    "minicard": "/component/minicardfooter/minicardfooter"
   }
 }
