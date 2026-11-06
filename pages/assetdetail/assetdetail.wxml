@@ -11,6 +11,12 @@
       </swiper>
     </view>
 
+    <!-- closed listing: sold / rented / no longer available -->
+    <view class="closedbanner" wx:if="{{predata.closed}}">
+      <view style="font-weight: 600;">{{closedText}}</view>
+      <view style="font-size: 12px;" wx:if="{{closedDate}}">{{language == "en" ? "Closed on" : "结束日期"}} {{closedDate}}</view>
+    </view>
+
     <view class="" style="width: 100%;padding-bottom: 0px;">
       <view class="" style="margin: 20rpx 10px">
         <view class="" style="display: flex;gap: 4px;margin:4px 0px">
@@ -19,6 +25,12 @@
         </view>
         <view class="TagAssetName">#{{predata.assetid}} {{predata.assetname}} </view>
         <view class="text-muted">{{predata.address.district}}, {{predata.address.province}} </view>
+        <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.industrial_estate_name}}">
+          {{language == "en" ? "Industrial estate" : "所在工业区"}} : {{predata.industrial_estate_name}}
+        </view>
+        <view class="text-muted" style="font-size: 12px;" wx:if="{{predata.update_time_ago}}">
+          {{language == "en" ? "Updated" : "更新于"}} {{predata.update_time_ago}}
+        </view>
         <!-- Price Per bath or Rent per Month -->
         <view class="" wx:if="{{predata.price.rentcost != '0'}}">
           <view class="font-medium text-xl flex gap-2" style="font-size: 18px;font-weight: 400;">
@@ -35,6 +47,14 @@
         <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.price.salepricepersqm != 0}}">
           ฿{{utils.numberFormat(predata.price.salepricepersqm)}}
           {{language == "en" ? "Bath / SQM" :"泰铢/平方米"}} {{language == "en" ? "(Land)" : "(土地)"}}
+        </view>
+        <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.price.salepricepersqmbuilding > 0}}">
+          ฿{{utils.numberFormat(predata.price.salepricepersqmbuilding)}}
+          {{language == "en" ? "Baht / SQM" :"泰铢/平方米"}} {{language == "en" ? "(Building)" : "(建筑)"}}
+        </view>
+        <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.price.rentcostpersqmbuilding > 0}}">
+          ฿{{utils.numberFormat(predata.price.rentcostpersqmbuilding)}}
+          {{language == "en" ? "Baht / SQM / month" :"泰铢/平方米/月"}} {{language == "en" ? "(Building)" : "(建筑)"}}
         </view>
         <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.price.salepriceperrai != 0}}">
           ฿{{utils.numberFormat(predata.price.salepriceperrai)}}
@@ -260,7 +280,7 @@
   </scroll-view>
 
   <!-- Contact -->
-  <movable-area class="movable-area">
+  <movable-area class="movable-area" wx:if="{{!predata.closed}}">
     <movable-view class="support-btn" direction="all" x="{{x}}" y="{{y}}" inertia="true" out-of-bounds="false"
       bindtap="showPopup">
       <image src="/asset/landlink.png" mode="aspectFill"

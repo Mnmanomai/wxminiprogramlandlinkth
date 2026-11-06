@@ -5,6 +5,8 @@ Page({
   data: {
     datasuggesstion: [],
     buildingList: [],
+    closedText: '',
+    closedDate: '',
     circles: [],
     show: false,
     id: 0,
@@ -185,9 +187,18 @@ Page({
           })
           // the owner may hide the exact spot: then the map shows an area (circle, same 400 m as the website) instead of the pin
           const exact = !!assetdetail.show_exact_location
+          // a closed listing (sold / rented / other) keeps its page, with a banner instead of the contact button
+          const closed = assetdetail.closed
+          const closedTexts = {
+            sold: { zh: '该房源已售出', en: 'This property has been sold' },
+            rented: { zh: '该房源已出租', en: 'This property has been rented' },
+            other: { zh: '该房源已结束销售', en: 'This property is no longer available' }
+          }
           that.setData({
             predata: assetdetail,
             buildingList: buildingList,
+            closedText: closed ? (closedTexts[closed.reason] || closedTexts.other)[lang] : '',
+            closedDate: closed && closed.at ? String(closed.at).slice(0, 10) : '',
             circles: exact ? [] : [{
               latitude: assetdetail.address.lat,
               longitude: assetdetail.address.lng,
