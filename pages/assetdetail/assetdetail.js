@@ -3,7 +3,6 @@ const app = getApp()
 const config = require("../../config");
 Page({
   data: {
-    datasuggesstion: [],
     buildingList: [],
     closedText: '',
     closedDate: '',
@@ -13,7 +12,6 @@ Page({
     predata: [],
     lat: null,
     long: null,
-    distance: [],
     likeActive: false,
     language: "en",
     x: 0,
@@ -116,49 +114,11 @@ Page({
     console.log(this.data.newsId)
 
     await this.loadData(this.data.newsId)
-    // await this.getnearasset(this.data.newsId)
     this.storagelist();
-    // this.GetMainLocation(this.data.lat, this.data.long)
-    this.getsuggesttion();
 
     // if(options.ref){
     //     let res = await this.recvRequest(options.id,options.ref)
     // }
-  },
-
-  getsuggesttion() {
-    const that = this;
-    wx.getStorage({
-      key: 'suggesttion',
-      success(res) {
-        let datalist = res.data || [];
-        that.setData({
-          datasuggesstion: datalist
-        })
-      }
-    })
-  },
-
-  async getnearasset(id) {
-    const tokenrequest = wx.getStorageSync('usersdetail');
-    const token = tokenrequest.token;
-    const that = this
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: `${config.PublicIPCallApiGoBackend}/product/test`,
-        method: 'GET',
-        header: {
-          'Authorization': 'Bearer ' + token
-        },
-        success(res) {
-          const data = res.data
-          that.setData({
-            nearasset: data.data
-          })
-        },
-        fail(err) {}
-      })
-    })
   },
 
 
@@ -177,7 +137,6 @@ Page({
 
           var assetdetail = res.data.data.assetdetail
           var nearasset = res.data.data.nearasset
-          var watch = res.data.data.watchhistory
           // console.log(assetdetail)
           // each building's type as text (office / warehouse / factory / other) for the list shown when a listing has several
           const typeText = { 1: { zh: '办公楼', en: 'Office' }, 2: { zh: '仓库', en: 'Warehouse' }, 3: { zh: '工厂', en: 'Factory' }, 4: { zh: '其他', en: 'Other' } }
@@ -207,7 +166,6 @@ Page({
             lat: assetdetail.address.lat,
             id: assetdetail.assetid,
             long: assetdetail.address.lng,
-            history: watch,
             markers: exact ? [{
               id: assetdetail.assetid,
               latitude: assetdetail.address.lat,
@@ -230,71 +188,6 @@ Page({
       });
     });
 
-  },
-
-  GetMainLocation(lat, long) {
-    const listMatch = [{
-        nameLocation: config.language == "en" ? "Bangkok Port" : "曼谷港",
-        lat: 13.703725202917552,
-        lon: 100.57545214497117
-      },
-      {
-        nameLocation: config.language == "en" ? "Suvarnabhumi Airport" : "素万那普机场",
-        lat: 13.69228763878031,
-        lon: 100.75073565396958
-      },
-      {
-        nameLocation: config.language == "en" ? "Laem Chabang Port" : "林查班港",
-        lat: 13.057940254556762,
-        lon: 100.89195129089039
-      },
-    ]
-    const assetLocation = {
-      lat: lat,
-      lon: long
-    }
-    let DataAdded = []
-    listMatch.forEach(element => {
-      const locationSet = {
-        lat: element.lat,
-        lon: element.lon
-      }
-      const data = this.haversineDistance(locationSet, assetLocation)
-      DataAdded = [...DataAdded, {
-        name: element.nameLocation,
-        distance: data
-      }]
-    });
-
-    this.setData({
-      distance: DataAdded
-    })
-  },
-
-  haversineDistance(coords1, coords2) {
-    const toRad = (x) => x * Math.PI / 180;
-    const lat1 = coords1.lat;
-    const lon1 = coords1.lon;
-    const lat2 = coords2.lat;
-    const lon2 = coords2.lon;
-    const R = 6371;
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c;
-    let fixdistance = distance.toFixed(0);
-    return fixdistance;
-  },
-
-  cal_area(rai, ngan, sqw) {
-    const drai = rai ? rai * 1200 : 0;
-    const dngan = ngan ? ngan * 400 : 0;
-    const dsqw = sqw ? sqw * 4 : 0;
-    const dreturn = drai + dngan + dsqw
-    return dreturn;
   },
 
   async Getref() {
