@@ -88,17 +88,8 @@ Component({
   methods: {
     Nexttoasset(e){
       const id = e.currentTarget.dataset.id
-      if (!id) return
-      const url = `/pages/assetdetail/assetdetail?id=${id}`
-      // a mini program holds at most 10 pages: browsing from one listing to the next must not fill the stack, so near the limit
-      // (or when navigateTo is refused) the current page is replaced instead
-      if (getCurrentPages().length >= 9) {
-        wx.redirectTo({ url })
-        return
-      }
       wx.navigateTo({
-        url,
-        fail() { wx.redirectTo({ url }) }
+        url: `/pages/assetdetail/assetdetail?id=${id}`,
       })
     }
   }

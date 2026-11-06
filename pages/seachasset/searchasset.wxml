@@ -15,7 +15,6 @@
           <van-cell icon="search" title="{{item.assetName}} " is-link link-type="navigateTo" url="/pages/assetdetail/assetdetail?id={{item.assetId}}" />
         </block>
       </van-cell-group>
-      <empty wx:if="{{searched && fetchData.length == 0}}" />
     </view>
   </view>
 </view>

@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "empty": "/component/empty/empty",
     "cardcompany" : "/component/cardcompany/cardcompany",
     "cardInvestmentpost" : "/component/cardInvestmentpost/index",
     "cardassetpostinvest" : "/component/cardassetpostinvest/cardcompany"

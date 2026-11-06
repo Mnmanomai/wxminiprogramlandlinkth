@@ -1,8 +1,6 @@
 <wxs src="../../utils/utils.wxs" module="utils" />
 <view class="page-container">
   <scroll-view scroll-y="true" style="height: 100vh;" scroll-into-view="{{toView}}">
-    <empty wx:if="{{notfound}}" text="{{language == 'en' ? 'This property is not available' : '该房源不存在或已下架'}}" />
-    <block wx:if="{{!notfound}}">
     <view class="carousel-container">
       <swiper class="carousel" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
         <swiper-item wx:for="{{predata.Images}}" wx:key="index">
@@ -206,19 +204,18 @@
       <view class="" style="display: flex;gap: 8px;padding: 3px;padding-top: 20px;overflow-x: scroll;">
         <block wx:for="{{nearasset}}" wx:key="nearasset">
           <minicard AssetId="{{item.id}}" AssetType="{{item.propertytype}}" AssetColor="{{item.cityplan.name_default}}"
-            AssetName="{{item.nameasset}}" Images="{{item.pictures[0].filepath}}" Province="{{item.province}}"
+            AssetName="{{nameasset}}" Images="{{item.pictures[0].filepath}}" Province="{{item.province}}"
             District="{{item.district}}" SalePriceBath="{{item.saleprice}}" RentCostPerMonthBath="{{item.rentcost}}"
             AreaLandRai="{{item.land_sizerai}}" AreaLandNgan="{{item.land_sizengan}}"
-            AreaLandSqw="{{item.land_sizesqw}}" AreaWH="{{item.wh_sizesqm}}" Time="{{item.create_date}}"
+            AreaLandSqw="{{item.land_sizesqw}}" AreaWH="{{item.land_sizesqm}}" Time="{{item.create_date}}"
             Transactiontype="{{item.transactiontype}}" Industrailtype="{{item.industrailtype}}"
             Freezonetype="{{item.freezonetype}}" />
         </block>
       </view>
     </view>
-    </block>
   </scroll-view>
 
-  <movable-area class="movable-area" wx:if="{{!predata.closed && !notfound}}">
+  <movable-area class="movable-area" wx:if="{{!predata.closed}}">
     <movable-view class="support-btn" direction="all" x="{{x}}" y="{{y}}" inertia="true" out-of-bounds="false"
       bindtap="showPopup">
       <image src="/asset/landlink.png" mode="aspectFill"

@@ -14,7 +14,6 @@ Page({
         lenghtQuery: 10,
         language: config.language,
         leghthInvest: 0,
-        loaded: false, // the offers have been requested (no "no data" before that)
     },
 
     /**
@@ -48,7 +47,6 @@ Page({
       this.setData({
         dataInvest :investment,
         datalist :newdataoffer,
-        loaded: true,
       })
 
     },

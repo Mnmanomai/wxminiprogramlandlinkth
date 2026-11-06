@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "empty": "/component/empty/empty",
     "navigation-bar": "/component/navigation-bar/navigation-bar",
     "cardlistasset" : "/component/cardListAsset/cardListAsset",
     "filternsort" : "/component/filternsortsearch/index"

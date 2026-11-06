@@ -3,7 +3,6 @@ const app = getApp();
 Page({
     data: {
         fetchData: [], // เก็บผลลัพธ์ทั้งหมด
-        loaded: false, // true once a search has come back (so "no data" is not shown while loading)
         loading: false, // กำลังโหลดหรือไม่
         hasMore: true, // มีข้อมูลเหลือให้โหลดหรือไม่
         offset: 0,
@@ -111,8 +110,7 @@ Page({
             fetchData: [...this.data.fetchData, ...Dataget],
             offset: this.data.offset + Dataget.length,
             hasMore: Dataget.length > 0,
-            loading: false,
-            loaded: true
+            loading: false
         });
     },
 
@@ -131,7 +129,6 @@ Page({
         let Ordervalue = e.detail.order;
         this.setData({
             fetchData: [],
-            loaded: false,
             offset : 0,
             hasMore: true,
             loading: false,
@@ -163,7 +160,6 @@ Page({
                     }
                     this.setData({
                         fetchData: [],
-                        loaded: false,
                         offset: 0,
                         hasMore: true,
                         loading: false,
