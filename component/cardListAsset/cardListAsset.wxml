@@ -1,41 +1,45 @@
 <!--components/cardListAsset/cardListAsset.wxml-->
 <block wx:for="{{list}}" wx:key="id">
-    <view class="" style="width: 100%;" data-id="{{item._id}}" bind:tap="goToDetail">
-        <view class="cardProd">
-            <view class="tagcolor bg-{{item.OriginalColor}}" >{{item.TypeAsset}}</view>
-            <image class="cardProdImage" src="{{item.no_images_asset}}" style="width: 100%;" mode="aspectFill" lazy-load />
-            <view class="cardDetail">
-                <text class="font-medium limit2" style="font-style: 18px;">{{"#"+item._id}} {{item.NameAsset}}</text>
-                <view class="text-md">
-                    <van-icon name="location" /> {{item.Province}}, {{item.District}}
-                </view>
-                <view class="text-md">
-                    <van-icon name="gold-coin" /> {{ item.price }} / {{item.ColorOfLand}}
-                </view>
-                <view class="text-md" style="display: flex;gap: 5px;">
-                    <van-icon name="expand-o" />
-                    {{item.LandSizeRai}} 莱 {{item.LandSizeNgan}} 颜 {{item.LandSizeSQW}} sqw <view class="" wx:if="{{item.typeassetn !== '1'}}"> / 建筑 {{item.WHSizeSQM}} 平方米 </view>
-                </view>
-                <view class="text-md">
-                    <van-icon name="clock-o" /> {{item.timeago}} {{item.farfromlaem}}
-                </view>
-                <view class="cardtagandprice">
-                    <view class="" style="width:100%;display: flex; gap: 3px;">
-                        <text class="tagdetail">{{item.TypeSell}}</text>
-                        <text class="tagdetail">{{item.TypeAsset}}</text>
-                        <text wx:if="{{item.typeindus == 2}}" class="tagdetail">I-EA-T</text>
-                    </view>
-                    
-                    <view class="" style="width:100%;text-align: end;">
-                        <view class="text-xl" wx:if="{{ item.typeselln === '2' }}">
-                            ฿{{ item.RentCostPerMonthBath }} / 月.
-                        </view>
-                        <view wx:else>
-                            ฿ {{ item.SalePriceBath }}
-                        </view>
-                    </view>
-                </view>
-            </view>
+  <view class="" style="width: 100%;" data-id="{{item._id}}" bind:tap="goToDetail">
+    <view class="cardProd">
+      <view class="tagcolor bg-{{item.OriginalColor}}">{{item.TypeAsset}}</view>
+      <!-- every photo, swipe left/right; dots (bottom centre) show which one -->
+      <swiper wx:if="{{item.images.length > 1}}" class="cardProdImage" indicator-dots="{{true}}" indicator-color="rgba(255,255,255,0.55)" indicator-active-color="#ffffff">
+        <swiper-item wx:for="{{item.images}}" wx:for-item="img" wx:key="*this">
+          <image class="cardProdImage" src="{{img}}" mode="aspectFill" lazy-load />
+        </swiper-item>
+      </swiper>
+      <image wx:else class="cardProdImage" src="{{item.no_images_asset}}" style="width: 100%;" mode="aspectFill" lazy-load />
+      <view class="cardDetail slate">
+        <view class="cardprice">
+          <block wx:if="{{ item.typeselln === '2' }}">฿{{ item.RentCostPerMonthBath }} / 月.</block>
+          <block wx:else>฿ {{ item.SalePriceBath }}</block>
         </view>
+        <text class="font-medium limit2" style="font-style: 18px;">{{"#"+item._id}} {{item.NameAsset}}</text>
+        <view class="text-md">
+          <van-icon name="location" /> {{item.Province}}, {{item.District}}
+        </view>
+        <view class="text-md">
+          <van-icon name="gold-coin" /> {{ item.price }} / {{item.ColorOfLand}}
+        </view>
+        <view class="text-md" style="display: flex;gap: 5px;">
+          <van-icon name="expand-o" />
+          {{item.LandSizeRai}} 莱 {{item.LandSizeNgan}} 颜 {{item.LandSizeSQW}} sqw <view class="" wx:if="{{item.typeassetn !== '1'}}"> / 建筑 {{item.WHSizeSQM}} 平方米 </view>
+        </view>
+        <view class="text-md">
+          <van-icon name="clock-o" /> {{item.timeago}} {{item.farfromlaem}}
+        </view>
+        <view class="cardtagandprice">
+          <view class="" style="width:100%;display: flex; gap: 3px;">
+            <text class="tagdetail">{{item.TypeSell}}</text>
+            <text class="tagdetail">{{item.TypeAsset}}</text>
+            <text wx:if="{{item.typeindus == 2}}" class="tagdetail">I-EA-T</text>
+          </view>
+        </view>
+      </view>
+      <!-- <view class="" style="padding: 10px 5px;display: flex;justify-content: end;">
+        <view class="" style="border: solid 1px black;border-radius: 16px;width: 20px;height: 20px;">test</view>
+      </view> -->
     </view>
+  </view>
 </block>
