@@ -1,0 +1,28 @@
+<!--pages/chatroom/chatroom.wxml-->
+<view class="page">
+  <!-- the listing this chat is about -->
+  <view class="asset" wx:if="{{room}}" bind:tap="openAsset">
+    <image class="thumb" src="{{room.asset_image ? room.asset_image : '/asset/landlink.png'}}" mode="aspectFill" />
+    <view class="assetinfo">
+      <view class="assetname">#{{room.asset_id}} {{room.asset_name}}</view>
+      <view class="assetsub">{{language == 'en' ? 'View listing' : '查看房源'}}</view>
+    </view>
+    <van-icon name="arrow" color="#999" />
+  </view>
+
+  <scroll-view class="list" scroll-y="true" scroll-into-view="{{scrollInto}}" scroll-with-animation="{{false}}" upper-threshold="60" bindscrolltoupper="loadOlder">
+    <view class="more" wx:if="{{loadingMore}}">…</view>
+    <view wx:for="{{messages}}" wx:key="id" id="m{{item.id}}" class="msg {{item.mine ? 'mine' : 'theirs'}}">
+      <view class="bubble" data-id="{{item.id}}" data-mine="{{item.mine}}" bind:longpress="onLongPress">{{item.message}}</view>
+      <view class="when">{{item.time}}</view>
+    </view>
+    <view style="height: 12px;"></view>
+  </scroll-view>
+
+  <view class="closed" wx:if="{{closedText}}">{{closedText}}</view>
+  <view class="bar" wx:else>
+    <input class="field" value="{{input}}" bindinput="onInput" bindconfirm="send" confirm-type="send" maxlength="1000"
+      placeholder="{{connected ? (language == 'en' ? 'Message' : '输入消息') : (language == 'en' ? 'Connecting…' : '连接中…')}}" />
+    <view class="sendbtn {{input ? 'on' : ''}}" bind:tap="send">{{language == 'en' ? 'Send' : '发送'}}</view>
+  </view>
+</view>

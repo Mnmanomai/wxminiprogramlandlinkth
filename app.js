@@ -1,7 +1,9 @@
 const config = require("./config");
 App({
   async onLaunch() {
-    await this.LoginWechat()
+    // chat pages await this: they may open before the login below has finished
+    this.loginPromise = this.LoginWechat()
+    try { await this.loginPromise } catch (e) { /* pages show their own error state */ }
   },
 
   globalData: {
@@ -38,7 +40,8 @@ App({
                   firstname: d.firstname,
                   lastname: d.lastname,
                   picture: d.picture,
-                  level: d.level
+                  level: d.level,
+                  role: d.role // 'customer' | 'agent' — decides which chat rooms the user sees
                 },
                 success() {
                   resolve(true)
@@ -380,94 +383,6 @@ App({
       });
     })
   },
-  async Getinvitegroup(groupid) {
-    const token = await new Promise((resolve, reject) => {
-      wx.getStorage({
-        key: 'usersdetail',
-        success(res) {
-          resolve(res.data.token)
-        },
-        fail(err) {
-          reject(err)
-        }
-      })
-    });
-
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: `${config.PublicIPCallApiGoBackend}/community/group/invite`,
-        method: 'POST',
-        data: {
-          groupinvite: groupid,
-        },
-        header: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
-        },
-        success(res) {
-          const rawdata = res.data.invite
-          resolve(rawdata)
-        },
-      })
-    })
-  },
-
-
-  async SendAssettoGroup(groupid, asset) {
-    const token = await new Promise((resolve, reject) => {
-      wx.getStorage({
-        key: 'usersdetail',
-        success(res) {
-          resolve(res.data.token)
-        },
-        fail(err) {
-          reject(err)
-        }
-      })
-    });
-
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: `${config.PublicIPCallApiGoBackend}/community/group/invite`,
-        method: 'POST',
-        data: {
-          group: groupid,
-          asset: asset,
-        },
-        header: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
-        },
-        success(res) {
-          const rawdata = res.data.invite
-          resolve(rawdata)
-        },
-      })
-    })
-  },
-
-  async sendassettoChat(obj) {
-    const token = wx.getStorageSync('usersdetail')
-
-
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: `${config.PublicIPCallApiGoBackend}/chat/assettogroup`,
-        method: 'POST',
-        data: JSON.stringify(obj),
-        header: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer ' + token.token
-        },
-        success(res) {
-          resolve(res.data)
-        },
-        fail(err) {
-          reject(err)
-        }
-      })
-    })
-  },
 
   async Getlist(data) {
     return new Promise((resolve, reject) => {
@@ -484,34 +399,4 @@ App({
     })
   },
 
-  async wxSentRequest(data) {
-    const tokenrequest = await new Promise((resolve, reject) => {
-      wx.getStorage({
-        key: 'usersdetail',
-        success(res) {
-          resolve(res.data.token)
-        },
-        fail(err) {
-          reject(err)
-        }
-      })
-    });
-
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: `${config.PublicIPCallApiGoBackend}/community/post/create`,
-        method: 'POST',
-        data: JSON.stringify(data),
-        header: {
-          'Authorization': 'Bearer ' + tokenrequest
-        },
-        success(res) {
-          resolve(res.data)
-        },
-        fail(err) {
-          reject(err)
-        }
-      })
-    })
-  },
 })

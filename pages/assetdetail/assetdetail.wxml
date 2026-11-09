@@ -93,6 +93,16 @@
           </view>
         </view>
       </view>
+      <view class="" style="width: 100%;" wx:if="{{!predata.closed}}">
+        <view class="" style="display: flex;justify-content: center;align-items: center;">
+          <view class="" style="display: flex;flex-direction: column;align-items: center;gap: 4px;" bind:tap="startChat">
+            <van-icon name="chat-o" size="18" class="icongroupfunc" />
+            <view class="" style="font-size: 14px;font-weight: 400;">
+              {{language == "en" ? "Chat" : "聊一聊"}}
+            </view>
+          </view>
+        </view>
+      </view>
       <view class="" style="width: 100%;">
         <view class="" style="display: flex;justify-content: center;align-items: center;">
           <button class="" open-type="share"

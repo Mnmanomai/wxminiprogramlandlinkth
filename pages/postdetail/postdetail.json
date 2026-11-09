@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "feed" : "/component/feeds/index",
-    "comment" : "/component/comment/index",
-    "van-icon": "@vant/weapp/icon/index"
-  }
-}

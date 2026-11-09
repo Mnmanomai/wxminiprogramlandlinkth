@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "feed" : "/component/feeds/index",
-    "van-icon": "@vant/weapp/icon/index",
-    "createpost" : "/component/createpost/index",
-    "headergroupchat" : "/component/headergroupchat/headergroupchat"
-  }
-}

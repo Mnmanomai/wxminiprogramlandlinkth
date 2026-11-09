@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "headergroupchat" : "/component/headergroupchat/headergroupchat",
-    "van-icon": "@vant/weapp/icon/index",
-    "assetcard" : "/component/assetchatcard/assetchatcard",
-    "assetfind" : "/component/chatfindassetpagecontainer/chatfindassetpagecontainer",
-    "assetinchat" : "/component/assetinchat/assetinchat"
-  }
-}

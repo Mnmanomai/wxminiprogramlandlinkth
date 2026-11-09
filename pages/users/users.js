@@ -11,7 +11,6 @@ Page({
         images: '',
         position: '',
         showcontact: false,
-        opencreategroup: false,
         language : config.language,
         level: 0,
     },
@@ -25,12 +24,6 @@ Page({
         let data = wx.getStorageSync('usersdetail')
         this.setData({
             level: data.level
-        })
-    },
-
-    openpopCrateUser() {
-        this.setData({
-            opencreategroup: true
         })
     },
 

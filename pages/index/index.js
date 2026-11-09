@@ -36,10 +36,5 @@ Page({
             path: 'pages/index/index',
         }
     },
-    nexttofeed(e) {
-        wx.navigateTo({
-            url: `/pages/feeds/feeds`
-        });
-    },
     
 })

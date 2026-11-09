@@ -1,4 +1,5 @@
 // pages/assetdetail/assetdetail.js
+const chatapi = require('../../utils/chatapi')
 const config = require("../../config");
 Page({
   data: {
@@ -57,7 +58,6 @@ Page({
           'Authorization': 'Bearer ' + token
         },
         success(res) {
-
           var assetdetail = res.data.data.assetdetail
           var nearasset = res.data.data.nearasset
           // each building's type as text (office / warehouse / factory / other) for the list shown when a listing has several
@@ -141,11 +141,26 @@ Page({
     })
   },
 
+  // open (or reuse) my chat with the listing's seller, then go to the room
+  async startChat() {
+    const en = this.data.language === 'en'
+    wx.showLoading({ title: '', mask: true })
+    try {
+      const room = await chatapi.startRoom(Number(this.data.id))
+      wx.hideLoading()
+      wx.navigateTo({ url: '/pages/chatroom/chatroom?id=' + room.id })
+    } catch (e) {
+      wx.hideLoading()
+      wx.showToast({ title: (e && e.message) || (en ? 'Cannot start chat' : '暂时无法发起聊天'), icon: 'none' })
+    }
+  },
+
   async onShareAppMessage() {
-    let res = await this.Getref()
+    // a customer has no referral code: share without it rather than fail
+    let res = await this.Getref().catch(() => ({}))
     const Share = {
       title: `#${this.data.id} ${this.data.predata.assetname}`,
-      path: `/pages/assetdetail/assetdetail?id=${this.data.id}&ref=${res.ref}`,
+      path: `/pages/assetdetail/assetdetail?id=${this.data.id}${res && res.ref ? '&ref=' + res.ref : ''}`,
       imageUrl: this.data.predata.Images && this.data.predata.Images.length > 0 ?
         this.data.predata.Images[0].filepath : "/asset/landlink.webp"
     }

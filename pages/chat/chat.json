@@ -1,8 +1,6 @@
 {
-  
   "usingComponents": {
-    "tabBar" : "/component/custom-tab-bar/index",
-    "chatlist" : "/component/chatlist/index",
-    "van-empty": "@vant/weapp/empty/index"
+    "tabBar": "/component/custom-tab-bar/index",
+    "van-icon": "@vant/weapp/icon/index"
   }
 }
