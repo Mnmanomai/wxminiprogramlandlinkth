@@ -26,7 +26,10 @@
         <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.industrial_estate_name}}">
           {{language == "en" ? "Industrial estate" : "所在工业区"}} : {{predata.industrial_estate_name}}
         </view>
-        <view class="text-muted" style="font-size: 12px;" wx:if="{{predata.update_time_ago}}">
+        <view class="text-muted" style="font-size: 12px;" wx:if="{{predata.timeago}}">
+          {{language == "en" ? "Posted" : "发布于"}} {{predata.timeago}}
+        </view>
+        <view class="text-muted" style="font-size: 12px;" wx:if="{{predata.update_time_ago && predata.update_time_ago != predata.timeago}}">
           {{language == "en" ? "Updated" : "更新于"}} {{predata.update_time_ago}}
         </view>
         <view class="" wx:if="{{predata.price.rentcost != '0'}}">
@@ -44,6 +47,14 @@
         <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.price.salepricepersqm != 0}}">
           ฿{{utils.numberFormat(predata.price.salepricepersqm)}}
           {{language == "en" ? "Bath / SQM" :"泰铢/平方米"}} {{language == "en" ? "(Land)" : "(土地)"}}
+        </view>
+        <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.price.rentcostpersqm > 0}}">
+          ฿{{utils.numberFormat(predata.price.rentcostpersqm)}}
+          {{language == "en" ? "Baht / SQM / month" :"泰铢/平方米/月"}} {{language == "en" ? "(Land)" : "(土地)"}}
+        </view>
+        <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.price.rentcostperrai > 0}}">
+          ฿{{utils.numberFormat(predata.price.rentcostperrai)}}
+          {{language == "en" ? "Baht / Rai / month" :"泰铢/莱/月"}} {{language == "en" ? "(Land)" : "(土地)"}}
         </view>
         <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.price.salepricepersqmbuilding > 0}}">
           ฿{{utils.numberFormat(predata.price.salepricepersqmbuilding)}}
@@ -94,10 +105,18 @@
       </view>
     </view>
 
+    <view class="agentcard" wx:if="{{predata.agent.name}}">
+      <image class="agentpic" src="{{predata.agent.picture ? predata.agent.picture : '/asset/landlink.png'}}" mode="aspectFill" />
+      <view class="agentinfo">
+        <view class="agentname">{{predata.agent.name}}</view>
+        <view class="text-muted" style="font-size: 12px;" wx:if="{{predata.agent.company_name_en || predata.agent.company_name_th}}">{{predata.agent.company_name_en ? predata.agent.company_name_en : predata.agent.company_name_th}}</view>
+      </view>
+    </view>
+
     <view style="padding: 0px 25rpx;padding-bottom: 60px;">
-      <view class="section" wx:if="{{predata.Description}}">
+      <view class="section" wx:if="{{predata.description}}">
         <view class="Header">{{language == "en" ? "Description" : "描述"}} </view>
-        <view class="text-muted text-md">{{predata.Description}}</view>
+        <view class="text-muted text-md">{{predata.description}}</view>
       </view>
 
       <view class="section">
