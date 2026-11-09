@@ -159,7 +159,23 @@
 
       <view class="{{opensee ? 'hiddensee':''}}">
         <view style="padding-bottom: 60px;">
-          <view wx:if="{{predata.parking.size > 0 || predata.parking.truck > 0 || predata.parking.cars > 0}}">
+          <!-- parking lots (each an open area or a parking building) -->
+          <view wx:if="{{predata.parkings.length > 0}}">
+            <view class="divider"></view>
+            <view class="SubHeader"> {{language == "en" ? "Parking" : "停车场"}} </view>
+            <view class="buildingcard" wx:for="{{predata.parkings}}" wx:key="index">
+              <view class="text-md" style="font-weight: 600;">
+                {{language == "en" ? "Parking lot" : "停车场"}} {{index + 1}} ·
+                {{item.type == 1 ? (language == "en" ? "Building" : "停车楼") : (language == "en" ? "Open area" : "空地")}}{{item.name ? ' · ' + item.name : ''}}
+                — {{utils.numberFormat(item.sqm)}} m²
+              </view>
+              <view class="text-muted text-md" wx:if="{{item.type == 1 && item.floor > 0}}">{{language == "en" ? "Number of floors" : "楼层数"}} : {{item.floor}}</view>
+              <view class="text-muted text-md" wx:if="{{item.year > 0}}">{{language == "en" ? "Year built (CE)" : "建造年份（公元）"}} : {{item.year}}</view>
+              <view class="text-muted text-md" wx:if="{{item.width > 0 || item.length > 0 || item.height > 0}}">{{language == "en" ? "Dimensions (W × L × H, m)" : "尺寸（宽 × 长 × 高，米）"}} : {{item.width}} × {{item.length}} × {{item.height}}</view>
+            </view>
+          </view>
+          <!-- the old single parking (car / trailer counts) for listings that have no lots -->
+          <view wx:elif="{{predata.parking.size > 0 || predata.parking.truck > 0 || predata.parking.cars > 0}}">
           <view class="divider"></view>
           <view class="SubHeader"> {{language == "en" ? "Parking area" : "停车场"}} </view>
           <view class="text-xl">{{predata.parking.size}} m²</view>
