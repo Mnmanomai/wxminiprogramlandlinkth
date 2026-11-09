@@ -239,10 +239,10 @@
       <view class="" style="display: flex;gap: 8px;padding: 3px;padding-top: 20px;overflow-x: scroll;">
         <block wx:for="{{nearasset}}" wx:key="nearasset">
           <minicard AssetId="{{item.id}}" AssetType="{{item.propertytype}}" AssetColor="{{item.cityplan.name_default}}"
-            AssetName="{{nameasset}}" Images="{{item.pictures[0].filepath}}" Province="{{item.province}}"
+            AssetName="{{item.nameasset}}" Images="{{item.pictures[0].filepath}}" Province="{{item.province}}"
             District="{{item.district}}" SalePriceBath="{{item.saleprice}}" RentCostPerMonthBath="{{item.rentcost}}"
             AreaLandRai="{{item.land_sizerai}}" AreaLandNgan="{{item.land_sizengan}}"
-            AreaLandSqw="{{item.land_sizesqw}}" AreaWH="{{item.land_sizesqm}}" Time="{{item.create_date}}"
+            AreaLandSqw="{{item.land_sizesqw}}" AreaWH="{{item.wh_sizesqm}}" Time="{{item.create_date}}"
             Transactiontype="{{item.transactiontype}}" Industrailtype="{{item.industrailtype}}"
             Freezonetype="{{item.freezonetype}}" />
         </block>
