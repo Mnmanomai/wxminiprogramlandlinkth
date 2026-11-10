@@ -1,23 +1,23 @@
 // pages/assetdetail/assetdetail.js
-const chatapi = require('../../utils/chatapi')
+// Listing detail page: photos, price, owner, land/building/parking facts, map, nearby listings, plus like / chat / share / call actions.
 const config = require("../../config");
 Page({
   data: {
-    buildingList: [],
-    closedText: '',
-    closedDate: '',
-    circles: [],
-    id: 0,
-    predata: [],
-    lat: null,
-    long: null,
-    likeActive: false,
-    language: "en",
-    x: 0,
+    buildingList: [],      // buildings of the listing, each with a translated type label (typeText)
+    closedText: '',        // banner text when the listing is closed (sold / rented / other); '' = still open
+    closedDate: '',        // closing date (YYYY-MM-DD) shown under the banner
+    circles: [],           // map circle (400 m area) used instead of a pin when the owner hides the exact spot
+    id: 0,                 // asset id (number, from the API's assetid)
+    predata: [],           // the whole assetdetail payload from the API; the wxml reads everything from here
+    lat: null,             // map centre latitude
+    long: null,            // map centre longitude
+    likeActive: false,     // true when this asset is in the local favourites list
+    language: "en",        // UI language, set from config in onLoad
+    x: 0,                  // position of the floating Landlink support button (movable-view)
     y: 500,
-    supportPhone: '+66641648899',
-    opensee: true,
-    markers: [{
+    showcontact: false,    // the contact popup (floating Landlink button)
+    opensee: true,         // true = the lower detail sections are collapsed ("Show more")
+    markers: [{            // map pins; the placeholder below is replaced once the listing has loaded
       id: 900000001,
       latitude: 13.736717,
       longitude: 100.523186,
@@ -28,16 +28,17 @@ Page({
     }]
   },
 
+  // Page start: place the floating support button at the right edge, read the asset id, load the detail and the like state.
   async onLoad(options) {
     const res = wx.getSystemInfoSync()
     const buttonSize = 56 // px
-    const margin = 0 // ระยะห่างขอบจอ
+    const margin = 0 // gap from the screen edge
     this.setData({
       x: res.windowWidth - buttonSize - margin,
       y: res.windowHeight * 0.6
     })
     await this.setData({
-      newsId: options.id ? options.id : options.scene, // รับค่า id จาก URL
+      newsId: options.id ? options.id : options.scene, // asset id from the URL (?id=) or from a scanned QR code (scene)
       language: config.language
     });
 
@@ -46,6 +47,7 @@ Page({
 
   },
 
+  // GET /product/assetdetail/:id → fills predata, buildings, closed banner, map circle/markers and nearby listings.
   async loadData(id) {
     const that = this;
     const tokenrequest = wx.getStorageSync('usersdetail');
@@ -58,8 +60,8 @@ Page({
           'Authorization': 'Bearer ' + token
         },
         success(res) {
-          var assetdetail = res.data.data.assetdetail
-          var nearasset = res.data.data.nearasset
+          var assetdetail = res.data.data.assetdetail // the listing itself
+          var nearasset = res.data.data.nearasset     // nearby listings shown at the bottom
           // each building's type as text (office / warehouse / factory / other) for the list shown when a listing has several
           const typeText = { 1: { zh: '办公楼', en: 'Office' }, 2: { zh: '仓库', en: 'Warehouse' }, 3: { zh: '工厂', en: 'Factory' }, 4: { zh: '其他', en: 'Other' } }
           const lang = that.data.language === 'en' ? 'en' : 'zh'
@@ -75,6 +77,7 @@ Page({
             rented: { zh: '该房源已出租', en: 'This property has been rented' },
             other: { zh: '该房源已结束销售', en: 'This property is no longer available' }
           }
+          // push everything the template needs into page data
           that.setData({
             predata: assetdetail,
             buildingList: buildingList,
@@ -101,16 +104,18 @@ Page({
           wx.setNavigationBarTitle({
             title: assetdetail.assetname,
           });
-          resolve(assetdetail); // ✅ resolve เมื่อ request เสร็จ
+          that.rememberViewed(assetdetail.assetid)
+          resolve(assetdetail); // resolve when the request is done
         },
         fail(err) {
-          reject(err); // ✅ reject ถ้า error
+          reject(err); // reject on network error
         }
       });
     });
 
   },
 
+  // GET /user/ref/generate → this user's referral code (appended to shared links). Fails for users without one (customers).
   async Getref() {
     const token = await new Promise((resolve, reject) => {
       wx.getStorage({
@@ -141,20 +146,6 @@ Page({
     })
   },
 
-  // open (or reuse) my chat with the listing's seller, then go to the room
-  async startChat() {
-    const en = this.data.language === 'en'
-    wx.showLoading({ title: '', mask: true })
-    try {
-      const room = await chatapi.startRoom(Number(this.data.id))
-      wx.hideLoading()
-      wx.navigateTo({ url: '/pages/chatroom/chatroom?id=' + room.id })
-    } catch (e) {
-      wx.hideLoading()
-      wx.showToast({ title: (e && e.message) || (en ? 'Cannot start chat' : '暂时无法发起聊天'), icon: 'none' })
-    }
-  },
-
   async onShareAppMessage() {
     // a customer has no referral code: share without it rather than fail
     let res = await this.Getref().catch(() => ({}))
@@ -162,11 +153,19 @@ Page({
       title: `#${this.data.id} ${this.data.predata.assetname}`,
       path: `/pages/assetdetail/assetdetail?id=${this.data.id}${res && res.ref ? '&ref=' + res.ref : ''}`,
       imageUrl: this.data.predata.Images && this.data.predata.Images.length > 0 ?
-        this.data.predata.Images[0].filepath : "/asset/landlink.webp"
+        this.data.predata.Images[0].filepath : "/asset/landlink.png"
     }
     return Share;
   },
 
+  // Recently viewed: keeps the last 10 distinct asset ids, newest first (storage RecentViewed; the home page shows them).
+  rememberViewed(id) {
+    const ids = (wx.getStorageSync('RecentViewed') || []).filter(function (x) { return x !== Number(id) })
+    ids.unshift(Number(id))
+    wx.setStorageSync('RecentViewed', ids.slice(0, 10))
+  },
+
+  // Reads the local favourites list (storage key FlavoriteList = [{id}]) and sets likeActive for this asset.
   storagelist() {
     const Noid = this.data.id;
     const that = this
@@ -185,6 +184,7 @@ Page({
     });
   },
 
+  // Like button: toggles this asset in the local favourites list (add / remove + toast), then refreshes likeActive.
   likefunc() {
     const id = this.data.id;
     const that = this
@@ -233,12 +233,14 @@ Page({
     });
   },
 
+  // "location" button: scrolls the page down to the map section (#section_map).
   scrollToMap() {
     this.setData({
       toView: 'section_map'
     })
   },
 
+  // Tap on a photo: opens the full-screen preview at that photo, swipeable through all of the listing's photos.
   fullscreenpicture(e) {
     const indexDataPreview = e.currentTarget.dataset.index;
     const urls = this.data.predata.Images.map(function (img) { return img.filepath })
@@ -248,28 +250,16 @@ Page({
     })
   },
 
+  // Floating Landlink button: the contact popup (customer-service chat + the three phone numbers).
   showPopup() {
-    const that = this
-    wx.showActionSheet({
-      itemList: [
-        config.language == "zh" ? `与 Landlink 通话` : `Call With Landlink`,
-      ],
-      success(res) {
-        if (res.tapIndex == 0) {
-          that.callSupport();
-        }
-      }
-    })
+    this.setData({ showcontact: true })
   },
 
-  callSupport() {
-    wx.makePhoneCall({
-      phoneNumber: this.data.supportPhone,
-      success() {},
-      fail(err) {}
-    });
+  closeContact() {
+    this.setData({ showcontact: false })
   },
 
+  // "Show more" / collapse of the lower detail sections.
   toggleopensee() {
     this.setData({
       opensee: !this.data.opensee

@@ -1,7 +1,28 @@
 <!--component/filternsortsearch/index.wxml-->
-<van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" />
+<!-- sort sheet: slides up from the bottom; the current choice is highlighted with a check -->
+<view class="sortmask" wx:if="{{show}}" bind:tap="onClose">
+  <view class="sortsheet" catch:tap="noop">
+    <view class="sorthead">
+      <view class="sorttitle">{{title}}</view>
+      <van-icon name="cross" size="20px" color="#64748b" bind:tap="onClose" />
+    </view>
+    <view class="sortopt {{current == item.value ? 'on' : ''}}" wx:for="{{options}}" wx:key="value" data-value="{{item.value}}" bind:tap="onSelect">
+      <view class="sorticon"><van-icon name="{{item.icon}}" size="20px" /></view>
+      <view class="sorttext">
+        <view class="sortname">{{item.name}}</view>
+        <view class="sortsub">{{item.sub}}</view>
+      </view>
+    </view>
+  </view>
+</view>
 
-<view class="maintab">
+<!-- inline: just the two icon buttons, to sit beside the search input (the page owns the bar) -->
+<view class="inlinebtns" wx:if="{{inline}}">
+  <view class="ibtn" bind:tap="goToFilter"><van-icon name="filter-o" size="22" /></view>
+  <view class="ibtn" bind:tap="onShowActionSheet"><van-icon name="sort" size="22" /></view>
+</view>
+
+<view class="maintab" wx:else>
   <view class="subtab" style="width: 100%;" bind:tap="goToFilter">
     <view class="bordercircle">
       <van-icon name="filter-o" size="22" />
@@ -11,7 +32,7 @@
   </view>
   <view class="subtab" style="width: 100%;" bind:tap="onShowActionSheet">
     <view class="bordercircle">
-      <van-icon name="list-switch" size="22" />
+      <van-icon name="sort" size="22" />
       <!-- sort -->
       <view class="">排序</view>
     </view>

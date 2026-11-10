@@ -1,45 +1,73 @@
 <!--components/cardListAsset/cardListAsset.wxml-->
-<block wx:for="{{list}}" wx:key="id">
-  <view class="" style="width: 100%;" data-id="{{item._id}}" bind:tap="goToDetail">
-    <view class="cardProd">
-      <view class="tagcolor bg-{{item.OriginalColor}}">{{item.TypeAsset}}</view>
-      <!-- every photo, swipe left/right; dots (bottom centre) show which one -->
-      <swiper wx:if="{{item.images.length > 1}}" class="cardProdImage" indicator-dots="{{true}}" indicator-color="rgba(255,255,255,0.55)" indicator-active-color="#ffffff">
-        <swiper-item wx:for="{{item.images}}" wx:for-item="img" wx:key="*this">
-          <image class="cardProdImage" src="{{img}}" mode="aspectFill" lazy-load />
-        </swiper-item>
-      </swiper>
-      <image wx:else class="cardProdImage" src="{{item.no_images_asset}}" style="width: 100%;" mode="aspectFill" lazy-load />
-      <view class="cardDetail slate">
-        <view class="cardprice">
-          <block wx:if="{{ item.typeselln === '2' }}">฿{{ item.RentCostPerMonthBath }} / 月.</block>
-          <block wx:else>฿ {{ item.SalePriceBath }}</block>
+<wxs module="pos" src="./cardListAsset.wxs" />
+<view class="" style="display: flex;gap: 10px;flex-direction: column;margin-top: 15px;">
+  <block wx:for="{{list}}" wx:key="_id">
+    <view class="cardProdMain" data-id="{{item._id}}" bind:tap="goToDetail">
+      <view class="cardProd">
+        <view class="tagcolor bg-{{item.OriginalColor}}">{{item.TypeAsset}}</view>
+        <!-- photo: top/bottom scrims sit under the colour/type tag; with several photos swipe left/right and the pill (bottom centre) shows which one (max 6 dots) -->
+        <view class="imgwrap">
+          <swiper wx:if="{{item.images.length > 1}}" class="cardProdImage" data-id="{{item._id}}" bindchange="onSwipe">
+            <swiper-item wx:for="{{item.images}}" wx:for-item="img" wx:key="*this">
+              <image class="cardProdImage" src="{{img}}" mode="aspectFill" lazy-load />
+            </swiper-item>
+          </swiper>
+          <image wx:else class="cardProdImage" src="{{item.no_images_asset}}" style="width: 100%;" mode="aspectFill" lazy-load />
+          <!-- heart: red when this asset is in the favourites list, outline otherwise (catch: tapping it must not open the detail page) -->
+          <!-- hide icon beside the heart: one tap hides the listing from now on and takes the card off this page. Restore in Favourites › Hidden -->
+        <view class="heart hidebtn" wx:if="{{hideMode}}" data-id="{{item._id}}" catch:tap="toggleHide">
+          <van-icon name="{{hideMode == 'restore' ? 'eye-o' : 'closed-eye'}}" size="22px" color="#ffffff" />
         </view>
-        <text class="font-medium limit2" style="font-style: 18px;">{{"#"+item._id}} {{item.NameAsset}}</text>
-        <view class="text-md">
-          <van-icon name="location" /> {{item.Province}}, {{item.District}}
+        <view class="heart" data-id="{{item._id}}" catch:tap="toggleLike">
+            <van-icon name="{{liked[item._id] ? 'like' : 'like-o'}}" size="22px" color="{{liked[item._id] ? '#ee0a24' : '#ffffff'}}" />
+          </view>
+          <view class="scrim scrim-top"></view>
+          <view class="scrim scrim-bottom"></view>
+          <view class="dots" wx:if="{{item.images.length > 1}}">
+            <view wx:for="{{pos.window(item.images.length, cur[item._id] || 0)}}" wx:for-item="d" wx:key="idx" class="dot {{d.on ? 'on' : ''}} {{d.small ? 'small' : ''}}"></view>
+          </view>
         </view>
-        <view class="text-md">
-          <van-icon name="gold-coin" /> {{ item.price }} / {{item.ColorOfLand}}
+        <view class="cardDetail slate">
+          <view class="cardprice">
+            <block wx:if="{{ item.typeselln === '2' }}">฿{{ item.RentCostPerMonthBath }} / 月.</block>
+            <block wx:else>฿{{ item.SalePriceBath }}</block>
+          <text class="persqm" wx:if="{{item.persqm}}">· ฿{{item.persqm}} / {{language == 'en' ? 'sqm' : '平方米'}}</text>
+          </view>
+          <text class="font-medium limit2" style="font-style: 18px;">{{"#"+item._id}} {{item.NameAsset}}</text>
+          <view class="text-md">
+            <van-icon name="location" /> {{item.Province}}, {{item.District}}
+          </view>
+          <!-- <view class="text-md">
+            <van-icon name="gold-coin" /> {{ item.price }} / {{item.ColorOfLand}}
+          </view> -->
+          <view class="text-md" style="display: flex;gap: 5px;">
+            <van-icon name="expand-o" />
+            {{item.LandSizeRai}} 莱 {{item.LandSizeNgan}} 颜 {{item.LandSizeSQW}} sqw <view class="" wx:if="{{item.typeassetn !== '1'}}"> / 建筑 {{item.WHSizeSQM}} 平方米 </view>
+          </view>
+          <view class="text-md">
+            <van-icon name="clock-o" /> {{item.listed || item.timeago}} {{item.farfromlaem}}
+          </view>
+          <view class="cardtagandprice">
+            <view class="" style="width:100%;display: flex; gap: 3px;">
+              <text class="tagdetail">{{item.TypeSell}}</text>
+              <text class="tagdetail">{{item.TypeAsset}}</text>
+              <text wx:if="{{item.typeindus == 2}}" class="tagdetail">I-EA-T</text>
+            </view>
+          </view>
         </view>
-        <view class="text-md" style="display: flex;gap: 5px;">
-          <van-icon name="expand-o" />
-          {{item.LandSizeRai}} 莱 {{item.LandSizeNgan}} 颜 {{item.LandSizeSQW}} sqw <view class="" wx:if="{{item.typeassetn !== '1'}}"> / 建筑 {{item.WHSizeSQM}} 平方米 </view>
-        </view>
-        <view class="text-md">
-          <van-icon name="clock-o" /> {{item.timeago}} {{item.farfromlaem}}
-        </view>
-        <view class="cardtagandprice">
-          <view class="" style="width:100%;display: flex; gap: 3px;">
-            <text class="tagdetail">{{item.TypeSell}}</text>
-            <text class="tagdetail">{{item.TypeAsset}}</text>
-            <text wx:if="{{item.typeindus == 2}}" class="tagdetail">I-EA-T</text>
+
+        <!-- divider = same colour as the card border; ONE headset button on the right: the contact popup (chat + all Landlink numbers) -->
+        <view class="cardline"></view>
+        <view class="cardactions">
+          <view class="actionbtn" data-id="{{item._id}}" catch:tap="openContact">
+            <van-icon name="service-o" size="20px" />
+            <text class="actiontext">{{language == 'en' ? 'Contact us' : '联系客服'}}</text>
           </view>
         </view>
       </view>
-      <!-- <view class="" style="padding: 10px 5px;display: flex;justify-content: end;">
-        <view class="" style="border: solid 1px black;border-radius: 16px;width: 20px;height: 20px;">test</view>
-      </view> -->
     </view>
-  </view>
-</block>
+  </block>
+</view>
+
+<!-- one contact popup for the whole list: chat + all Landlink phone numbers; the chat button sends the tapped listing as a card -->
+<contact show="{{contactShow}}" bind:close="closeContact" session-from="{{contactCtx.from}}" msg-title="{{contactCtx.title}}" msg-path="{{contactCtx.path}}" msg-img="{{contactCtx.img}}" />

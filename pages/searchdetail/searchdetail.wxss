@@ -29,17 +29,20 @@
   padding: 4px 12px;
   background-color: white;
   color: rgba(0, 0, 0, 0.5);
-  border: solid 1px;
+  border: solid 1px #94a3b8; /* slate-400 whenever not active */
   border-radius: 8px;
   font-weight: 500;
   margin: 4px 4px;
   font-size: 14px;
 }
 
+/* active chip = the same look as a selected property-type card: blue border (a box-shadow ring doubles it to 2px without shifting
+   the layout) and a soft white-to-blue (bottom-right) gradient backdrop */
 .active {
-  /* color: rgb(0, 0, 0); */
-  color : rgb(13, 13, 51);
-  background-color: rgba(0, 0, 0, 0.082);
+  color: #2563eb;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb;
+  background: linear-gradient(to bottom right, #ffffff, rgba(37, 99, 235, 0.13));
   font-weight: 600;
 }
 
@@ -50,7 +53,7 @@
 }
 
 .input {
-  border: solid 1px rgba(0, 0, 0, 0.5);
+  border: solid 1px #94a3b8;
   width: 100%;
   padding: 8px 12px;
   border-radius: 4px;
@@ -86,4 +89,179 @@
 
 .text-white {
   color: white;
+}
+/* collapsible sections: tap the title row to slide the body open / shut */
+.hrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 6px;
+}
+
+.chev {
+  color: rgb(116, 116, 116);
+  transition: transform 0.25s ease;
+}
+
+.chev.rot {
+  transform: rotate(-90deg);
+}
+
+.slide {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.slide.open {
+  max-height: 900px;
+}
+
+/* property type: the same icon cards as the home page, selectable */
+/* property types and city-plan colours: a grid of 4 per row (a short last row stays left-aligned) */
+.typerow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 8px;
+  padding: 6px 4px;
+}
+
+.typecard {
+  flex: none;
+  width: calc((100% - 24px) / 4);
+  min-width: 0;
+}
+
+.typeframe {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  box-sizing: border-box;
+  border: solid 1px #94a3b8; /* slate-400 until selected */
+  border-radius: 14px;
+  background: #fff;
+}
+
+.typeframe {
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+/* selected: the border changes colour and the backdrop fades from white (top left) to a light blue (bottom right) */
+.typeframe.sel {
+  border: solid 2px #2563eb;
+  background: linear-gradient(to bottom right, #ffffff, rgba(37, 99, 235, 0.13));
+}
+
+.typeimg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 82%; /* property-type picture: bigger inside its frame */
+  height: 82%;
+  transform: translate(-50%, -50%);
+}
+
+.typename {
+  margin-top: 4px;
+  text-align: center;
+  font-size: 12px;
+  color: #334155;
+}
+
+.selname {
+  font-weight: 700;
+  color: #2563eb;
+}
+
+/* city-plan colours: 5 per row (4 gaps of 8px) */
+.typerow.five .typecard {
+  width: calc((100% - 32px) / 5);
+}
+
+/* land colour cards: a round swatch inside the same selectable frame as the property types */
+.swatch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 56%;
+  height: 56%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+}
+
+.infoicon {
+  margin-left: 6px;
+  color: #2563eb;
+  vertical-align: middle;
+}
+
+/* info popup */
+.zonemask {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-end;
+}
+
+.zonepanel {
+  width: 100%;
+  max-height: 78vh;
+  background: #fff;
+  border-radius: 18px 18px 0 0;
+  padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+.zonehead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.zonetitle {
+  font-size: 17px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.zonelist {
+  max-height: 62vh;
+}
+
+.zonerow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: solid 1px #f1f5f9;
+}
+
+.zonesw {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+}
+
+.zonename {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.zonemeaning {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.zonenote {
+  padding: 12px 0 4px;
+  font-size: 12px;
+  color: #94a3b8;
 }

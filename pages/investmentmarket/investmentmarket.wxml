@@ -17,5 +17,5 @@
     <van-empty description="迫切需要。" />
   </view>
 </view>
-<contact show="{{show}}" />
+<contact show="{{show}}" bind:close="closeContact" />
 <tabBar current="0" />

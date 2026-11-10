@@ -1,6 +1,9 @@
-<wxs src="../../utils/utils.wxs" module="utils" />
+<!-- Listing detail page. Everything reads from predata (the API's assetdetail payload). -->
+<wxs src="../../utils/utils.wxs" module="utils" /> <!-- utils.numberFormat = thousands separators -->
 <view class="page-container">
+  <!-- scroll-into-view = toView, set by the "location" button to jump to #section_map -->
   <scroll-view scroll-y="true" style="height: 100vh;" scroll-into-view="{{toView}}">
+    <!-- photo carousel (tap a photo = full-screen preview) -->
     <view class="carousel-container">
       <swiper class="carousel" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
         <swiper-item wx:for="{{predata.Images}}" wx:key="index">
@@ -10,40 +13,50 @@
       </swiper>
     </view>
 
+    <!-- banner shown only when the listing is closed (sold / rented / other) with the closing date -->
     <view class="closedbanner" wx:if="{{predata.closed}}">
       <view style="font-weight: 600;">{{closedText}}</view>
       <view style="font-size: 12px;" wx:if="{{closedDate}}">{{language == "en" ? "Closed on" : "结束日期"}} {{closedDate}}</view>
     </view>
 
+    <!-- headline block: tags, name, place, dates and every price line -->
     <view class="" style="width: 100%;padding-bottom: 0px;">
       <view class="" style="margin: 20rpx 10px">
+        <!-- tags: transaction type (sale / rent) and property type (land / warehouse / factory) -->
         <view class="" style="display: flex;gap: 4px;margin:4px 0px">
           <view class="tagHeading">{{predata.transaction}}</view>
           <view class="tagHeading">{{predata.property}}</view>
         </view>
+        <!-- "#id name" -->
         <view class="TagAssetName">#{{predata.assetid}} {{predata.assetname}} </view>
+        <!-- district, province -->
         <view class="text-muted">{{predata.address.district}}, {{predata.address.province}} </view>
+        <!-- industrial estate the listing is in (when it is inside one) -->
         <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.industrial_estate_name}}">
           {{language == "en" ? "Industrial estate" : "所在工业区"}} : {{predata.industrial_estate_name}}
         </view>
+        <!-- when the listing was posted, and when it was last updated (hidden if the same) -->
         <view class="text-muted" style="font-size: 12px;" wx:if="{{predata.timeago}}">
           {{language == "en" ? "Posted" : "发布于"}} {{predata.timeago}}
         </view>
         <view class="text-muted" style="font-size: 12px;" wx:if="{{predata.update_time_ago && predata.update_time_ago != predata.timeago}}">
           {{language == "en" ? "Updated" : "更新于"}} {{predata.update_time_ago}}
         </view>
+        <!-- main price: monthly rent (when for rent) -->
         <view class="" wx:if="{{predata.price.rentcost != '0'}}">
           <view class="font-medium text-xl flex gap-2" style="font-size: 18px;font-weight: 400;">
             ฿{{utils.numberFormat(predata.price.rentcost)}} {{language == "en" ? "/ month" : "/ 月"}}
             <label class="tagBath">Baht</label>
           </view>
         </view>
+        <!-- main price: sale price (when for sale) -->
         <view class="" wx:if="{{predata.price.saleprice != '0'}}">
           <view class="font-medium text-xl flex gap-2" style="font-size: 18px;font-weight: 400;align-items: flex-end;">
             ฿{{utils.numberFormat(predata.price.saleprice)}}
             <label class="tagBath">Baht</label>
           </view>
         </view>
+        <!-- derived prices: per square metre / per rai, for land and for the building, sale and rent -->
         <view class="text-muted" style="font-size: 14px;" wx:if="{{predata.price.salepricepersqm != 0}}">
           ฿{{utils.numberFormat(predata.price.salepricepersqm)}}
           {{language == "en" ? "Bath / SQM" :"泰铢/平方米"}} {{language == "en" ? "(Land)" : "(土地)"}}
@@ -71,6 +84,7 @@
       </view>
     </view>
 
+    <!-- action bar: Like (local favourites) · Location (jump to map) · Chat (hidden when closed) · Share -->
     <view class="" style="display: flex; height: 86px;width: 100%;padding: 0px 0px;">
       <view class="" style="width: 100%;">
         <view class="" style="display: flex;justify-content: center;align-items: center;">
@@ -93,12 +107,13 @@
           </view>
         </view>
       </view>
+      <!-- headset: opens the same contact popup as the floating Landlink button (chat + phone numbers) -->
       <view class="" style="width: 100%;" wx:if="{{!predata.closed}}">
         <view class="" style="display: flex;justify-content: center;align-items: center;">
-          <view class="" style="display: flex;flex-direction: column;align-items: center;gap: 4px;" bind:tap="startChat">
-            <van-icon name="chat-o" size="18" class="icongroupfunc" />
+          <view class="" style="display: flex;flex-direction: column;align-items: center;gap: 4px;" bind:tap="showPopup">
+            <van-icon name="service-o" size="18" class="icongroupfunc" />
             <view class="" style="font-size: 14px;font-weight: 400;">
-              {{language == "en" ? "Chat" : "聊一聊"}}
+              {{language == "en" ? "Service" : "客服"}}
             </view>
           </view>
         </view>
@@ -115,22 +130,18 @@
       </view>
     </view>
 
-    <view class="agentcard" wx:if="{{predata.agent.name}}">
-      <image class="agentpic" src="{{predata.agent.picture ? predata.agent.picture : '/asset/landlink.png'}}" mode="aspectFill" />
-      <view class="agentinfo">
-        <view class="agentname">{{predata.agent.name}}</view>
-        <view class="text-muted" style="font-size: 12px;" wx:if="{{predata.agent.company_name_en || predata.agent.company_name_th}}">{{predata.agent.company_name_en ? predata.agent.company_name_en : predata.agent.company_name_th}}</view>
-      </view>
-    </view>
-
+    <!-- detail sections -->
     <view style="padding: 0px 25rpx;padding-bottom: 60px;">
+      <!-- free-text description written by the owner -->
       <view class="section" wx:if="{{predata.description}}">
         <view class="Header">{{language == "en" ? "Description" : "描述"}} </view>
         <view class="text-muted text-md">{{predata.description}}</view>
       </view>
 
+      <!-- overview: nearby places, land, buildings (always visible) -->
       <view class="section">
         <view class="Header"> {{language == "en" ? "Property Overview" : "物业概况"}} </view>
+        <!-- distances to key places (port, airport, ...) -->
         <view class="SubHeader"> {{language == "en" ? "Main Location" : "主要位置"}}</view>
         <view wx:for="{{predata.placelocations}}" wx:key="distance" class="">
           <view class="flex gap-3 items-center text-muted text-md">
@@ -139,6 +150,7 @@
         </view>
 
         <view class="divider"></view>
+        <!-- land size in rai / ngan / sq.wah and m², dimensions, soil improvement (land-only listings) -->
         <view class="SubHeader">{{language == "en" ? "Land area" : "土地面积"}}</view>
         <view class="text-xl font-w-400">{{utils.numberFormat(predata.land.rai)}} {{language == "en" ? "rai" : "莱"}}
           {{predata.land.ngan}} {{language == "en" ? "ngan" : "颜"}} {{predata.land.sqw}} sqw
@@ -153,9 +165,11 @@
         </view>
 
         <view class="divider"></view>
+        <!-- building area (total when several buildings) -->
         <view class="SubHeader"> {{language == "en" ? (buildingList.length > 1 ? "Total building area" : "Building area") : (buildingList.length > 1 ? "建筑总面积" : "建筑面积")}}</view>
         <view class="text-xl font-w-400"> {{utils.numberFormat(predata.building.sizesqm)}} m²</view>
 
+        <!-- several buildings: one card per building with type, name, area, floors, load, year, dimensions -->
         <view wx:if="{{buildingList.length > 1}}">
           <view class="buildingcard" wx:for="{{buildingList}}" wx:key="index">
             <view class="text-md" style="font-weight: 600;">
@@ -169,6 +183,7 @@
           </view>
         </view>
 
+        <!-- a single building: its facts inline -->
         <view wx:else>
           <view class="text-muted text-md" wx:if="{{predata.building.floor > 0}}"> {{language == "en" ? "Number of floors" : "楼层数"}} :
             {{predata.building.floor}}
@@ -186,6 +201,7 @@
 
       </view>
 
+      <!-- collapsed until "Show more": parking, zoning, property detail, map -->
       <view class="{{opensee ? 'hiddensee':''}}">
         <view style="padding-bottom: 60px;">
           <!-- parking lots (each an open area or a parking building) -->
@@ -203,6 +219,7 @@
               <view class="text-muted text-md" wx:if="{{item.width > 0 || item.length > 0 || item.height > 0}}">{{language == "en" ? "Dimensions (W × L × H, m)" : "尺寸（宽 × 长 × 高，米）"}} : {{item.width}} × {{item.length}} × {{item.height}}</view>
             </view>
           </view>
+          <!-- (old data) -->
           <!-- the old single parking (car / trailer counts) for listings that have no lots -->
           <view wx:elif="{{predata.parking.size > 0 || predata.parking.truck > 0 || predata.parking.cars > 0}}">
           <view class="divider"></view>
@@ -220,6 +237,7 @@
           </view>
 
           <view class="divider"></view>
+          <!-- zoning: industrial estate / free zone flags -->
           <view class="SubHeader"> {{language == "en" ? "Location Area" : "定位区域"}} </view>
           <view class="text-muted text-md">{{language == "en" ? "Industrial Zone" : "工业区"}} :
             {{predata.industrial}}
@@ -228,6 +246,7 @@
           </view>
 
           <view class="divider"></view>
+          <!-- property type and city-plan colour of the land -->
           <view class="SubHeader"> {{language == "en" ? "Property Detail" : "物业详情"}} </view>
           <view class="text-muted text-md">{{language == "en" ? "Property Type" : "物业类型"}} : {{predata.property}}
           </view>
@@ -236,6 +255,7 @@
           </view>
         </view>
 
+        <!-- map: pin when the exact spot is public, otherwise a 400 m circle -->
         <view class="section" id="section_map">
           <view class="Header"> {{language == "en" ? "Maps": "地图"}}</view>
           <map id="map" latitude="{{lat}}" longitude="{{long}}" scale="14" style="width: 100%; height: 300px;"
@@ -244,8 +264,10 @@
 
       </view>
 
+      <!-- expands the collapsed sections -->
       <view class="" style="display: flex;justify-content: center;font-weight: 600;" wx:if="{{opensee}}" bind:tap="toggleopensee">{{language == "en" ? "Show more" : "展开更多"}}</view>
 
+      <!-- nearby listings, horizontal scroll -->
       <view class="" style="display: flex;gap: 8px;padding: 3px;padding-top: 20px;overflow-x: scroll;">
         <block wx:for="{{nearasset}}" wx:key="nearasset">
           <minicard AssetId="{{item.id}}" AssetType="{{item.propertytype}}" AssetColor="{{item.cityplan.name_default}}"
@@ -259,6 +281,11 @@
       </view>
     </view>
   </scroll-view>
+
+  <!-- floating draggable Landlink support button (opens the "Call with Landlink" sheet); hidden when the listing is closed -->
+  <!-- the popup's chat button sends the team a card of this listing -->
+  <contact show="{{showcontact}}" bind:close="closeContact" session-from="asset:{{id}}" msg-title="#{{id}} {{predata.assetname}}"
+    msg-path="/pages/assetdetail/assetdetail?id={{id}}" msg-img="{{predata.Images[0].filepath}}" />
 
   <movable-area class="movable-area" wx:if="{{!predata.closed}}">
     <movable-view class="support-btn" direction="all" x="{{x}}" y="{{y}}" inertia="true" out-of-bounds="false"

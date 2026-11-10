@@ -1,0 +1,25 @@
+// Position dots: at most 6 show. With more photos the window slides with the current one and the dot on a side that
+// still has more photos beyond it is drawn small — the hint that there is more.
+var MAX = 6
+
+function window(total, cur) {
+  var start = 0
+  if (total > MAX) {
+    start = cur - 3
+    if (start < 0) start = 0
+    if (start > total - MAX) start = total - MAX
+  }
+  var n = total < MAX ? total : MAX
+  var out = []
+  for (var k = 0; k < n; k++) {
+    var i = start + k
+    out.push({
+      idx: i, // unique key for wx:key
+      on: i === cur,
+      small: (k === 0 && start > 0) || (k === n - 1 && start + n < total)
+    })
+  }
+  return out
+}
+
+module.exports = { window: window }

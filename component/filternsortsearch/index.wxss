@@ -49,3 +49,107 @@
 .listsort {
   font-size: 4px;
 }
+.inlinebtns {
+  display: flex;
+  gap: 8px;
+}
+
+.ibtn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(189, 190, 190, 0.226);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* sort sheet */
+.sortmask {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-end;
+}
+
+.sortsheet {
+  width: 100%;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 16px 14px calc(16px + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  animation: sortup 0.25s ease-out;
+}
+
+@keyframes sortup {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.sorthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px 10px;
+}
+
+.sorttitle {
+  font-size: 17px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.sortopt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  margin-top: 6px;
+  border: solid 1px #94a3b8;
+  border-radius: 14px;
+  color: #334155;
+  background: #fff;
+}
+
+/* chosen option: the same look as a selected filter chip */
+.sortopt.on {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb;
+  background: linear-gradient(to bottom right, #ffffff, rgba(37, 99, 235, 0.13));
+  color: #2563eb;
+}
+
+.sorticon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  flex-shrink: 0;
+}
+
+.sortopt.on .sorticon {
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.sorttext {
+  flex: 1;
+  min-width: 0;
+}
+
+.sortname {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.sortsub {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+

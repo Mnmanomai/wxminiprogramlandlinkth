@@ -13,6 +13,7 @@ Page({
         showcontact: false,
         language : config.language,
         level: 0,
+        role: 'customer', // 'agent' once an agent account is linked to this WeChat
     },
 
     /**
@@ -23,7 +24,47 @@ Page({
 
         let data = wx.getStorageSync('usersdetail')
         this.setData({
-            level: data.level
+            level: data.level,
+            role: data.role || 'customer'
+        })
+        this.loaded = true
+    },
+
+    // coming back from the account sign-in page (or after unlinking) the session may have changed
+    async onShow() {
+        if (!this.loaded) return // onLoad is still doing the first load
+        await this.setdatauser()
+        const data = wx.getStorageSync('usersdetail') || {}
+        this.setData({ level: data.level, role: data.role || 'customer' })
+    },
+
+    goAccountLogin() {
+        wx.navigateTo({ url: '/pages/agentlogin/agentlogin' })
+    },
+
+    // forget the account linked to this WeChat, then sign in again: this WeChat is a plain user again
+    unlinkWechat() {
+        const zh = config.language !== 'en'
+        wx.showModal({
+            title: zh ? '退出账号登录' : 'Sign out of account',
+            content: zh ? '退出后，此微信将以普通用户身份使用。' : 'This WeChat will be used as a normal user afterwards.',
+            confirmText: zh ? '退出' : 'Sign out',
+            success: (m) => {
+                if (!m.confirm) return
+                const token = (wx.getStorageSync('usersdetail') || {}).token
+                wx.request({
+                    url: config.PublicIPCallApiGoBackend + '/auth/wechat/unbind-agent',
+                    method: 'POST',
+                    header: { Authorization: 'Bearer ' + token },
+                    success: async (res) => {
+                        if (res.statusCode !== 200) return wx.showToast({ title: zh ? '操作失败' : 'Something went wrong', icon: 'none' })
+                        await getApp().LoginWechat() // a new session: customer now
+                        wx.showToast({ title: zh ? '已退出' : 'Signed out', icon: 'success' })
+                        this.onShow()
+                    },
+                    fail: () => wx.showToast({ title: zh ? '操作失败' : 'Something went wrong', icon: 'none' })
+                })
+            }
         })
     },
 
@@ -46,6 +87,10 @@ Page({
                 }
             })
         })
+    },
+
+    closeContact() {
+        this.setData({ showcontact: false })
     },
 
     popupsupport() {

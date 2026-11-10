@@ -94,3 +94,18 @@
 .list:last-child{
   border-bottom: none;
 }
+/* a button that looks like a list row (the customer-service button) */
+.list-btn {
+  width: auto;
+  margin-block: 0;
+  background: transparent;
+  border-radius: 0;
+  line-height: normal;
+  font-size: inherit;
+  text-align: left;
+  color: inherit;
+}
+
+.list-btn::after {
+  border: none;
+}

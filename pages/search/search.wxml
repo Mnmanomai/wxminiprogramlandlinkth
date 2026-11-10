@@ -1,9 +1,72 @@
 <!--pages/search/search.wxml-->
 <view class="page-container" style="padding: 0px 0px;position: relative;">
-  <filternsort bind:senddata="OrderSelect" bind:lunchfilter="Openfilter"/>
-  <scroll-view scroll-y="true" bindscrolltolower="onReachBottom" scroll-top="{{scrollTop}}" lower-threshold="50">
-    <view class="" style="padding: 0px 10px;padding-top: 60px;padding-bottom: 100px;">
-      <cardlistasset list="{{fetchData}}" />
+  <!-- top bar: keyword input (auto-complete like the website) + filter and sort buttons on its right -->
+  <view class="topbar">
+    <view class="inputwrap {{near ? 'off' : ''}}">
+      <van-icon name="search" size="18px" color="#64748b" />
+      <input class="kwinput" disabled="{{near}}" value="{{keywordInput}}" placeholder="{{language == 'en' ? 'Search place, estate or listing' : '搜索地点、园区或房源'}}" confirm-type="search" bindinput="onKeywordInput" bindconfirm="onKeywordConfirm" bindfocus="onKeywordFocus" />
+      <van-icon wx:if="{{keywordInput && !near}}" name="clear" size="18px" color="#94a3b8" bind:tap="clearKeyword" />
+      <!-- place filter: province, then district (blue when one is active) -->
+      <van-icon name="location-o" size="20px" color="{{near ? '#cbd5e1' : ((searchvalue.province || searchvalue.district) ? '#2563eb' : '#64748b')}}" bind:tap="openLocation" />
+    </view>
+    <filternsort inline="{{true}}" bind:senddata="OrderSelect" bind:lunchfilter="Openfilter" />
+    <!-- map of where the listings are -->
+    <view class="mapbtn" bind:tap="openMap"><van-icon name="map-marked" size="22px" /></view>
+  </view>
+
+  <!-- auto-complete: provinces, districts, estates, listings (the website's /autocomplete/suggest) -->
+  <view class="suggest" wx:if="{{showSuggest && suggestions.length > 0}}">
+    <scroll-view scroll-y="true" class="suggestlist">
+      <view class="sitem" wx:for="{{suggestions}}" wx:key="key" data-i="{{index}}" bind:tap="pickSuggestion">
+        <view class="sbadge sb-{{item.type}}">{{item.badge}}</view>
+        <view class="stext">
+          <view class="smain">{{item.text}}</view>
+          <view class="ssub" wx:if="{{item.sub}}">{{item.sub}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <scroll-view scroll-y="true" bindscrolltolower="onReachBottom" scroll-top="{{scrollTop}}" lower-threshold="50" bindtap="hideSuggest">
+    <view class="" style="padding: 0px 10px;padding-top: 70px;padding-bottom: 100px;">
+      <cardlistasset list="{{fetchData}}" hide-mode="hide" bind:hidechange="onHideChange" />
     </view>
   </scroll-view>
+</view>
+
+<!-- place picker: province -> district -->
+<view class="locmask" wx:if="{{showLoc}}" bind:tap="closeLocation">
+  <view class="locsheet" catch:tap="noop">
+    <view class="lochead">
+      <view class="locback" wx:if="{{locStep == 'district'}}" bind:tap="backToProvince"><van-icon name="arrow-left" size="20px" /></view>
+      <view class="loctitle">{{locStep == 'district' ? locProvince.name : (language == 'en' ? 'Choose a province' : '选择府')}}</view>
+      <van-icon name="cross" size="20px" color="#64748b" bind:tap="closeLocation" />
+    </view>
+    <view class="locfilter" wx:if="{{locStep == 'province'}}">
+      <van-icon name="search" size="16px" color="#94a3b8" />
+      <input class="locinput" placeholder="{{language == 'en' ? 'Filter provinces' : '筛选府'}}" bindinput="onLocQuery" value="{{locQuery}}" />
+    </view>
+    <scroll-view scroll-y="true" class="loclist">
+      <view class="locitem all" bind:tap="clearLocation" wx:if="{{locStep == 'province' && (searchvalue.province || searchvalue.district)}}">{{language == 'en' ? 'All places (clear)' : '全部地区（清除）'}}</view>
+      <!-- two static loops: a bind handler name cannot be an expression -->
+      <block wx:if="{{locStep == 'province'}}">
+        <view class="locitem" wx:for="{{locList}}" wx:key="id" data-id="{{item.id}}" data-name="{{item.name}}" bind:tap="pickProvince">
+          <view class="locname">{{item.name}}<text class="hot" wx:if="{{item.hot}}">{{language == 'en' ? 'Popular' : '热门'}}</text></view>
+          <van-icon name="arrow" size="14px" color="#94a3b8" />
+        </view>
+      </block>
+      <block wx:else>
+        <!-- districts: tick any number of them (none / "all" = the whole province) -->
+        <view class="locitem {{locSelCount == 0 ? 'ticked' : ''}}" bind:tap="clearDistricts">
+          <view>{{language == 'en' ? 'All districts' : '全部区'}}</view>
+          <view class="tick {{locSelCount == 0 ? 'on' : ''}}"><van-icon wx:if="{{locSelCount == 0}}" name="success" size="13px" color="#fff" /></view>
+        </view>
+        <view class="locitem {{locSel[item.id] ? 'ticked' : ''}}" wx:for="{{locList}}" wx:key="id" data-id="{{item.id}}" data-name="{{item.name}}" bind:tap="toggleDistrict">
+          <view>{{item.name}}</view>
+          <view class="tick {{locSel[item.id] ? 'on' : ''}}"><van-icon wx:if="{{locSel[item.id]}}" name="success" size="13px" color="#fff" /></view>
+        </view>
+      </block>
+    </scroll-view>
+    <view class="locapply" wx:if="{{locStep == 'district'}}" bind:tap="applyLocation">{{language == 'en' ? 'Apply' : '确定'}}{{locSelCount > 0 ? ' (' + locSelCount + ')' : ''}}</view>
+  </view>
 </view>

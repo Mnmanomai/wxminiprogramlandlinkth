@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
-    "minicard": "/component/minicardfooter/minicardfooter"
+    "minicard": "/component/minicardfooter/minicardfooter",
+    "contact": "/component/contact/index"
   }
 }

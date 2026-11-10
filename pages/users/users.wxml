@@ -19,11 +19,7 @@
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '寻找资产' : 'Investment'}}</view>
                 <van-icon name="arrow" class="end-list"/>
             </view> -->
-            <view class="list" bind:tap="gotoPage" data-url="/pages/chat/chat">
-                <van-icon name="chat-o" class="icon" size="24" />
-                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '聊天' : 'Chat'}}</view>
-                <van-icon name="arrow" class="end-list"/>
-            </view>
+           
             <view class="list" bind:tap="popupsupport">
                 <van-icon name="service-o" class="icon" size="24" />
                 <view class="mid-list" style="flex: 1;">{{language == "zh" ? '支持' : 'Support'}}</view>
@@ -33,6 +29,23 @@
     </view>
 
 
+    <!-- account sign-in: link this WeChat to a Landlink account once (neutral wording on purpose); a linked WeChat can unlink -->
+    <view class="maincard" >
+        <view class="headercard">{{language == "zh" ? '账号' : 'Account'}}</view>
+        <view class="mainlist">
+            <view class="list" wx:if="{{role != 'agent'}}" bind:tap="goAccountLogin">
+                <van-icon name="manager-o" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '账号登录' : 'Sign in with account'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view>
+            <view class="list" wx:else bind:tap="unlinkWechat">
+                <van-icon name="close" class="icon" size="24" />
+                <view class="mid-list" style="flex: 1;">{{language == "zh" ? '退出账号登录' : 'Sign out of account'}}</view>
+                <van-icon name="arrow" class="end-list"/>
+            </view>
+        </view>
+    </view>
+
     <tabBar current="0" />
-    <contact show="{{showcontact}}" />
+    <contact show="{{showcontact}}" bind:close="closeContact" />
 </view>

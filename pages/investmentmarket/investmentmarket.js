@@ -22,6 +22,10 @@ Page({
       await this.getData();
     },
 
+    closeContact() {
+        this.setData({ show: false })
+    },
+
     onReceiveData(e) {
         this.setData({
             show: e.detail.data

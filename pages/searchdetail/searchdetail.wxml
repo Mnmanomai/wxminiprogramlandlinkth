@@ -3,78 +3,141 @@
     <view class="inpage">
 
         <view class="sector">
-            <!-- Sell n Rent Type -->
-            <view class="header">{{language == "en" ? "Property Type":"物业类型" }}</view>
-            <view class="headselect">
-                <block wx:for="{{DataSellnrent}}" wx:key="propTypeSel">
-                    <view class="select {{filterdata.selltype == item.id ? 'active' : ''}}" id="proptype" bind:tap="selectBuynRent" data-id="{{item.id}}" data-text="{{item.name}}">{{item.name}}</view>
-                </block>
+            <view class="hrow" data-k="sell" bind:tap="toggle">
+                <view class="header">{{language == "en" ? "Transaction" : "交易类型"}}</view>
+                <van-icon name="arrow-down" class="chev {{open.sell ? '' : 'rot'}}" />
+            </view>
+            <view class="slide {{open.sell ? 'open' : ''}}">
+                <view class="headselect">
+                    <block wx:for="{{DataSellnrent}}" wx:key="id">
+                        <view class="select {{sellSel[item.id] ? 'active' : ''}}" bind:tap="toggleSell" data-id="{{item.id}}">{{item.name}}</view>
+                    </block>
+                </view>
             </view>
         </view>
         <van-divider />
         <view class="sector">
-            <!-- Property Type -->
-            <view class="header">{{language == "en" ? "Property Type":"物业类型" }}</view>
-            <view class="headselect">
-                <block wx:for="{{DataPropType}}" wx:key="propTypeSel">
-                    <view class="select {{filterdata.PropertyType == item.id ? 'active' : ''}}" id="proptype" bind:tap="selectProperty" data-id="{{item.id}}" data-text="{{item.name}}">{{item.name}}</view>
-                </block>
+            <view class="hrow" data-k="type" bind:tap="toggle">
+                <view class="header">{{language == "en" ? "Property Type" : "物业类型"}}</view>
+                <van-icon name="arrow-down" class="chev {{open.type ? '' : 'rot'}}" />
             </view>
-        </view>
-        <van-divider />
-        <view class="sector">
-            <view class="header">{{language == "en" ? "I-EAT":"I-EAT" }}</view>
-            <view class="headselect">
-                <block wx:for="{{DataIEAT}}" wx:key="IEATSel">
-                    <view class="select {{filterdata.IEAT == item.id ? 'active' : ''}}" bind:tap="selectIEAT" data-id="{{item.id}}" data-text="{{item.name}}">{{item.name}}</view>
-                </block>
-            </view>
-        </view>
-        <van-divider />
-        <view class="sector">
-            <!-- color of land -->
-            <view class="header">{{language == "en" ? "color of land" : "属性颜色"}}</view>
-            <view class="headselect">
-                <block wx:for="{{DataColor}}" wx:key="ColorSel">
-                    <view class="select {{item.select == true ? 'active' :''}} " bind:tap="selectColor" data-id="{{item.id}}" data-text="{{item.name}}">
-                        {{item.name}}
+            <view class="slide {{open.type ? 'open' : ''}}">
+                <!-- same cards as the home page; tap to switch each on / off (several allowed) -->
+                <view class="typerow">
+                    <view class="typecard" wx:for="{{DataPropType}}" wx:key="id" bind:tap="toggleProperty" data-id="{{item.id}}">
+                        <view class="typeframe {{typeSel[item.id] ? 'sel' : ''}}">
+                            <image class="typeimg" src="{{item.image}}" mode="aspectFit" />
+                        </view>
+                        <view class="typename {{typeSel[item.id] ? 'selname' : ''}}">{{item.name}}</view>
                     </view>
-                </block>
+                </view>
             </view>
         </view>
         <van-divider />
         <view class="sector">
-            <view class="header">{{language == "en" ? "Price" : "价格"}}</view>
-            <view class="splitinput">
-                <input type="number" class="input" value="{{filterdata.PriceStart}}" maxlength="14" bindinput="onInputStart" placeholder="开始" />
-                <input type="number" class="input" value="{{filterdata.PriceEnd}}" maxlength="14" bindinput="onInputEnd" placeholder="结尾" />
+            <view class="hrow" data-k="ieat" bind:tap="toggle">
+                <view class="header">{{language == "en" ? "I-EAT" : "I-EAT"}}</view>
+                <van-icon name="arrow-down" class="chev {{open.ieat ? '' : 'rot'}}" />
+            </view>
+            <view class="slide {{open.ieat ? 'open' : ''}}">
+                <view class="headselect">
+                    <block wx:for="{{DataIEAT}}" wx:key="id">
+                        <view class="select {{ieatSel[item.id] ? 'active' : ''}}" bind:tap="toggleIEAT" data-id="{{item.id}}">{{item.name}}</view>
+                    </block>
+                </view>
             </view>
         </view>
         <van-divider />
         <view class="sector">
-            <view class="header">{{language == "en" ? "Land Size (rai)" : "土地面积 (莱)"}}</view>
-            <view class="splitinput">
-                <input type="number" class="input" bindinput="onInputLandStart" maxlength="6" value="{{filterdata.LandSizeStart}}" placeholder="开始" />
-                <input type="number" class="input" bindinput="onInputLandEnd" maxlength="6" value="{{filterdata.LandSizeEnd}}" placeholder="结尾" />
+            <view class="hrow" data-k="color" bind:tap="toggle">
+                <view class="header">{{language == "en" ? "color of land" : "属性颜色"}}<van-icon name="info-o" class="infoicon" catch:tap="openZoneInfo" /></view>
+                <van-icon name="arrow-down" class="chev {{open.color ? '' : 'rot'}}" />
+            </view>
+            <view class="slide {{open.color ? 'open' : ''}}">
+                <!-- same cards as the property types: colour swatch + name; tap to switch on / off (several allowed) -->
+                <view class="typerow five">
+                    <view class="typecard" wx:for="{{DataColor}}" wx:key="id" bind:tap="selectColor" data-id="{{item.id}}">
+                        <view class="typeframe {{item.select ? 'sel' : ''}}">
+                            <view class="swatch" style="background: {{item.bg}};"></view>
+                        </view>
+                        <view class="typename {{item.select ? 'selname' : ''}}">{{item.name}}</view>
+                    </view>
+                </view>
             </view>
         </view>
         <van-divider />
         <view class="sector">
-            <view class="header">{{language == "en" ? "With Buidling" : "建筑"}} </view>
-            <view class="headselect">
-                <block wx:for="{{DataOpenBuilding}}" wx:key="OpenBuildngsel">
-                    <view class="select {{filterdata.WithBuildingOpen == item.id ? 'active' : ''}}" data-id="{{index}}" bind:tap="selectBuildingOpen"> {{item.name}}</view>
-                </block>
+            <view class="hrow" data-k="price" bind:tap="toggle">
+                <view class="header">{{language == "en" ? "Price" : "价格"}}</view>
+                <van-icon name="arrow-down" class="chev {{open.price ? '' : 'rot'}}" />
+            </view>
+            <view class="slide {{open.price ? 'open' : ''}}">
+                <view class="splitinput">
+                    <input type="number" class="input" value="{{filterdata.PriceStart}}" maxlength="14" bindinput="onInputStart" placeholder="开始" />
+                    <input type="number" class="input" value="{{filterdata.PriceEnd}}" maxlength="14" bindinput="onInputEnd" placeholder="结尾" />
+                </view>
             </view>
         </view>
         <van-divider />
-        <view class="sector" wx:if="{{filterdata.WithBuildingOpen == 1 }}" style="padding-bottom:120px;">
-            <view class="header">{{language == "en" ? "Building Size (SQM)" : "建筑面积（​​平方米）" }}</view>
-            <view class="splitinput">
-                <input type="text" class="input" bindinput="onInputBuildingStart" maxlength="11" value="{{filterdata.BuildingStart}}" />
-                <input type="text" class="input" bindinput="onInputBuildingEnd" maxlength="11" value="{{filterdata.BuildingEnd}}" />
+        <view class="sector">
+            <view class="hrow" data-k="land" bind:tap="toggle">
+                <view class="header">{{language == "en" ? "Land Size (rai)" : "土地面积 (莱)"}}</view>
+                <van-icon name="arrow-down" class="chev {{open.land ? '' : 'rot'}}" />
+            </view>
+            <view class="slide {{open.land ? 'open' : ''}}">
+                <view class="splitinput">
+                    <input type="number" class="input" bindinput="onInputLandStart" maxlength="6" value="{{filterdata.LandSizeStart}}" placeholder="开始" />
+                    <input type="number" class="input" bindinput="onInputLandEnd" maxlength="6" value="{{filterdata.LandSizeEnd}}" placeholder="结尾" />
+                </view>
             </view>
         </view>
+        <van-divider />
+        <view class="sector">
+            <view class="hrow" data-k="building" bind:tap="toggle">
+                <view class="header">{{language == "en" ? "With Buidling" : "建筑"}}</view>
+                <van-icon name="arrow-down" class="chev {{open.building ? '' : 'rot'}}" />
+            </view>
+            <view class="slide {{open.building ? 'open' : ''}}">
+                <view class="headselect">
+                    <block wx:for="{{DataOpenBuilding}}" wx:key="id">
+                        <view class="select {{filterdata.WithBuildingOpen == item.id ? 'active' : ''}}" data-id="{{index}}" bind:tap="selectBuildingOpen"> {{item.name}}</view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <van-divider />
+        <view class="sector" wx:if="{{filterdata.WithBuildingOpen == 1}}" style="padding-bottom:120px;">
+            <view class="hrow" data-k="bsize" bind:tap="toggle">
+                <view class="header">{{language == "en" ? "Building Size (SQM)" : "建筑面积（平方米）"}}</view>
+                <van-icon name="arrow-down" class="chev {{open.bsize ? '' : 'rot'}}" />
+            </view>
+            <view class="slide {{open.bsize ? 'open' : ''}}">
+                <view class="splitinput">
+                    <input type="text" class="input" bindinput="onInputBuildingStart" maxlength="11" value="{{filterdata.BuildingStart}}" />
+                    <input type="text" class="input" bindinput="onInputBuildingEnd" maxlength="11" value="{{filterdata.BuildingEnd}}" />
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- what each land colour is for -->
+<view class="zonemask" wx:if="{{showZoneInfo}}" bind:tap="closeZoneInfo">
+    <view class="zonepanel" catch:tap="noop">
+        <view class="zonehead">
+            <view class="zonetitle">{{language == "en" ? "What each colour means" : "土地颜色含义"}}</view>
+            <van-icon name="cross" size="20px" bind:tap="closeZoneInfo" />
+        </view>
+        <scroll-view scroll-y="true" class="zonelist">
+            <view class="zonerow" wx:for="{{DataColor}}" wx:key="id">
+                <view class="zonesw" style="background: {{item.bg}};"></view>
+                <view class="zonetext">
+                    <view class="zonename">{{item.name}}</view>
+                    <view class="zonemeaning">{{item.meaning}}</view>
+                </view>
+            </view>
+            <view class="zonenote">{{language == "en" ? "Based on the city-plan zone colours; always confirm the permitted use with the local authority." : "依据城市规划分区颜色；具体可用途以当地主管部门规定为准。"}}</view>
+        </scroll-view>
     </view>
 </view>
 

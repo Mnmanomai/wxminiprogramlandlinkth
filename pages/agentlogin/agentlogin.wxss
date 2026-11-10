@@ -1,0 +1,57 @@
+/* pages/agentlogin/agentlogin.wxss */
+.page {
+  padding: 28px 20px;
+  color: #334155;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.desc {
+  margin: 8px 0 22px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  margin-bottom: 12px;
+  padding: 0 14px;
+  border: solid 1px #94a3b8;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.input {
+  flex: 1;
+  height: 46px;
+  font-size: 15px;
+}
+
+.error {
+  margin: 4px 2px 12px;
+  font-size: 13px;
+  color: #dc2626;
+  white-space: pre-line;
+}
+
+.btn {
+  height: 46px;
+  line-height: 46px;
+  text-align: center;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  background: rgb(13, 13, 51);
+}
+
+.btn.off {
+  opacity: 0.6;
+}

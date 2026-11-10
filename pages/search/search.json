@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "navigation-bar": "/component/navigation-bar/navigation-bar",
-    "cardlistasset" : "/component/cardListAsset/cardListAsset",
-    "filternsort" : "/component/filternsortsearch/index"
+    "cardlistasset": "/component/cardListAsset/cardListAsset",
+    "filternsort": "/component/filternsortsearch/index",
+    "van-icon": "@vant/weapp/icon/index"
   }
 }

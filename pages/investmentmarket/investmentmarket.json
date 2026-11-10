@@ -2,7 +2,6 @@
   
   "usingComponents": {
     "cardInvestment" : "/component/cardInvestment/index",
-    "navigation-bar": "/component/navigation-bar/navigation-bar",
     "tabBar" : "/component/custom-tab-bar/index",
     "contact" : "/component/contact/index",
     "van-empty": "@vant/weapp/empty/index",

@@ -1,1 +1,231 @@
 /* pages/search/search.wxss */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.inputwrap {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: solid 1px #94a3b8;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.kwinput {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  font-size: 14px;
+  color: #334155;
+}
+
+/* auto-complete dropdown, right under the bar */
+.suggest {
+  position: fixed;
+  top: 60px;
+  left: 12px;
+  right: 12px;
+  z-index: 19;
+  background: #fff;
+  border: solid 1px #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.suggestlist {
+  max-height: 55vh;
+}
+
+.sitem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: solid 1px #f1f5f9;
+}
+
+.sbadge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.sb-province { background: #dbeafe; color: #1d4ed8; }
+.sb-district { background: #dcfce7; color: #15803d; }
+.sb-asset { background: #fef3c7; color: #b45309; }
+.sb-industrial { background: #f3e8ff; color: #7e22ce; }
+
+.stext {
+  min-width: 0;
+}
+
+.smain {
+  font-size: 14px;
+  color: #334155;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ssub {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* place picker sheet (province -> district) */
+.locmask {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-end;
+}
+
+.locsheet {
+  width: 100%;
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 16px 14px calc(14px + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  animation: locup 0.25s ease-out;
+}
+
+@keyframes locup {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.lochead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+}
+
+.loctitle {
+  flex: 1;
+  font-size: 17px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.locfilter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 12px;
+  margin-bottom: 8px;
+  border: solid 1px #94a3b8;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.locinput {
+  flex: 1;
+  font-size: 14px;
+}
+
+.loclist {
+  max-height: 58vh;
+}
+
+.locitem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 6px;
+  border-bottom: solid 1px #f1f5f9;
+  font-size: 15px;
+  color: #334155;
+}
+
+.locitem.all {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+/* "popular" tag on the top provinces */
+.hot {
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #b45309;
+  background: #fef3c7;
+}
+
+/* opened from a "near" search (estate / my location): the input is a flat grey, disabled */
+.inputwrap.off {
+  background: #e5e7eb;
+  border-color: #e5e7eb;
+}
+
+.inputwrap.off .kwinput {
+  color: #94a3b8;
+}
+
+/* district rows: tick boxes + apply button */
+.locitem.ticked {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.tick {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px #94a3b8;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.tick.on {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.locapply {
+  margin-top: 10px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: rgb(13, 13, 51);
+}
+
+/* map button, far right of the bar (same size as the filter / sort buttons) */
+.mapbtn {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(189, 190, 190, 0.226);
+  color: rgba(0, 0, 0, 0.7);
+}

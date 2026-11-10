@@ -1,0 +1,18 @@
+<!--pages/agentlogin/agentlogin.wxml-->
+<view class="page">
+  <view class="title">{{en ? 'Account sign-in' : '账号登录'}}</view>
+  <view class="desc">{{en ? 'Sign in once with your Landlink account (email or phone number) to link this WeChat; next time it signs in automatically.' : '用您的 Landlink 账号（邮箱或手机号）登录一次即可绑定此微信，之后自动登录。'}}</view>
+
+  <view class="field">
+    <van-icon name="user-o" size="18px" color="#64748b" />
+    <input class="input" type="text" value="{{identifier}}" placeholder="{{en ? 'Email or phone number' : '邮箱或手机号'}}" bindinput="onIdentifier" />
+  </view>
+  <view class="field">
+    <van-icon name="lock" size="18px" color="#64748b" />
+    <input class="input" password="{{true}}" value="{{password}}" placeholder="{{en ? 'Password' : '密码'}}" bindinput="onPassword" bindconfirm="submit" confirm-type="done" />
+  </view>
+
+  <view class="error" wx:if="{{error}}">{{error}}</view>
+
+  <view class="btn {{loading ? 'off' : ''}}" bind:tap="submit">{{loading ? '…' : (en ? 'Link this WeChat' : '绑定此微信')}}</view>
+</view>

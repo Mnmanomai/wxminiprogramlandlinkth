@@ -1,4 +1,4 @@
-const { config } = require("../../config");
+const config = require("../../config");
 
 // component/filternsortsearch/index.js
 
@@ -8,7 +8,10 @@ Component({
    * Component properties
    */
   properties: {
-
+    inline: { // true = compact icon buttons without the full-width fixed bar
+      type: Boolean,
+      value: false
+    }
   },
 
   /**
@@ -16,14 +19,17 @@ Component({
    */
   data: {
     show: false,
-    actions: [
-      // {value: '1',name: '推荐'}, //แนะนำ
-      {value: 2,name: '价格',subname : '低到高'}, //ราคา น้อยไปมาก
-      {value: 3,name: '价格',subname : '高到低'}, //ราคา มากไปน้อย
-      {value: 4,name: '每平方英尺价',subname : '高到低'}, //ราคาต่อตารางวา มากไปน้อย
-      {value: 5,name: '每平方英尺价',subname : '低到高'}, //ราคาต่อตารางวา น้อยไปมาก
-      {value: 6,name: '面积',subname : '高到低'}, //ขนาดพื้นที่ มากไปน้อย
-      {value: 7,name: '面积',subname : '低到高'}, //ขนาดพื้นที่ น้อยไปมาก
+    current: 1, // the chosen sort value; 1 = newest first (the search default)
+    title: config.language == "en" ? "Sort by" : "排序方式",
+    // value = the backend's ORDER number (1 newest · 2/3 price · 4/5 price per sq.wah · 6/7 area)
+    options: [
+      { value: 1, icon: "clock-o", name: config.language == "en" ? "Newest" : "最新发布", sub: config.language == "en" ? "Recently listed first" : "最近发布优先" },
+      { value: 2, icon: "gold-coin-o", name: config.language == "en" ? "Price" : "价格", sub: config.language == "en" ? "Low to high" : "低到高" },
+      { value: 3, icon: "gold-coin-o", name: config.language == "en" ? "Price" : "价格", sub: config.language == "en" ? "High to low" : "高到低" },
+      { value: 5, icon: "balance-o", name: config.language == "en" ? "Price per sq.wah" : "每平方哇价", sub: config.language == "en" ? "Low to high" : "低到高" },
+      { value: 4, icon: "balance-o", name: config.language == "en" ? "Price per sq.wah" : "每平方哇价", sub: config.language == "en" ? "High to low" : "高到低" },
+      { value: 7, icon: "expand-o", name: config.language == "en" ? "Area" : "面积", sub: config.language == "en" ? "Small to large" : "小到大" },
+      { value: 6, icon: "expand-o", name: config.language == "en" ? "Area" : "面积", sub: config.language == "en" ? "Large to small" : "大到小" }
     ]
   },
 
@@ -31,38 +37,13 @@ Component({
    * Component methods
    */
   methods: {
+    noop() {}, // swallows taps inside the sheet so they do not reach the backdrop (an empty handler name is not reliable)
+
     onShowActionSheet() {
       this.setData({
         show: true
       });
       // this.setDataAction();
-    },
-
-    setDataAction(){
-      if (config.language == "zh"){
-        this.setData({
-          actions : [
-            {value: 2,name: '价格',subname : '低到高'}, //ราคา น้อยไปมาก
-            {value: 3,name: '价格',subname : '高到低'}, //ราคา มากไปน้อย
-            {value: 4,name: '每平方英尺价',subname : '高到低'}, //ราคาต่อตารางวา มากไปน้อย
-            {value: 5,name: '每平方英尺价',subname : '低到高'}, //ราคาต่อตารางวา น้อยไปมาก
-            {value: 6,name: '面积',subname : '高到低'}, //ขนาดพื้นที่ มากไปน้อย
-            {value: 7,name: '面积',subname : '低到高'}, //ขนาดพื้นที่ น้อยไปมาก
-          ]
-        }) 
-      }else{
-        this.setData({
-          actions : [
-            {value: 2,name: '价格',subname : 'ราคา น้อยไปมาก'},
-            {value: 3,name: '价格',subname : 'ราคา มากไปน้อย'},
-            {value: 4,name: '每平方英尺价',subname : 'ราคาต่อตารางวา มากไปน้อย'},
-            {value: 5,name: '每平方英尺价',subname : 'ราคาต่อตารางวา น้อยไปมาก'},
-            {value: 6,name: '面积',subname : 'ขนาดพื้นที่ มากไปน้อย'},
-            {value: 7,name: '面积',subname : 'ขนาดพื้นที่ น้อยไปมาก'},
-          ]
-        }) 
-      }
-      
     },
 
     onClose() {
@@ -72,7 +53,8 @@ Component({
     },
 
     onSelect(event) {
-      const value = event.detail.value;
+      const value = Number(event.currentTarget.dataset.value)
+      this.setData({ current: value, show: false })
       this.triggerEvent('senddata', {
         order: value
       });
