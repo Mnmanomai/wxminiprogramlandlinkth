@@ -1,0 +1,18 @@
+<!--component/estatesection/index.wxml-->
+<view class="section" wx:if="{{cards.length > 0}}">
+  <view class="head">
+    <view class="title">{{title}}</view>
+    <view class="more" bind:tap="openAll">{{more}} <van-icon name="arrow" /></view>
+  </view>
+  <scroll-view scroll-x="true" enhanced="true" show-scrollbar="{{false}}" class="strip">
+    <view class="row">
+      <view class="card" wx:for="{{cards}}" wx:key="id" data-id="{{item.id}}" bind:tap="openEstate">
+        <view class="imgwrap">
+          <image class="img" src="{{item.image}}" mode="aspectFill" lazy-load />
+          <view class="logo" wx:if="{{item.logo}}"><image class="logoimg" src="{{item.logo}}" mode="aspectFit" /></view>
+        </view>
+        <view class="name">{{item.name}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

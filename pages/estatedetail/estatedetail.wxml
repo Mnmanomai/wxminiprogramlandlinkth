@@ -1,0 +1,46 @@
+<!--pages/estatedetail/estatedetail.wxml-->
+<view class="page" wx:if="{{view}}">
+  <!-- cover photo + logo plate -->
+  <view class="cover">
+    <image class="coverimg" src="{{view.image}}" mode="aspectFill" />
+    <view class="logo" wx:if="{{view.logo}}"><image class="logoimg" src="{{view.logo}}" mode="aspectFit" /></view>
+  </view>
+
+  <view class="body">
+    <!-- name, other-language names, place -->
+    <view class="h1">{{view.name}}</view>
+    <view class="sub" wx:for="{{view.otherNames}}" wx:key="*this">{{item}}</view>
+    <view class="place" wx:if="{{view.place}}"><van-icon name="location-o" /> {{view.place}}</view>
+
+    <!-- detail rows (only those with data) -->
+    <view class="box" wx:if="{{info.length > 0}}">
+      <view class="irow" wx:for="{{info}}" wx:key="label">
+        <view class="ilabel">{{item.label}}</view>
+        <view class="ivalue">{{item.value}}</view>
+      </view>
+    </view>
+
+    <!-- listings within 20 km of the estate (10 shown, "view more" = the full list in the same radius) -->
+    <view class="sec" wx:if="{{nearby.length > 0}}">
+      <view class="sechead">
+        <view class="sectitle">{{en ? 'Listings near this estate' : '园区附近房源'}}</view>
+        <view class="secmore" bind:tap="viewAllNearby">{{en ? 'View more' : '查看更多'}} <van-icon name="arrow" /></view>
+      </view>
+      <!-- horizontal row, swipe sideways -->
+      <cardlistcol hideheader="{{true}}" list="{{nearby}}" />
+    </view>
+
+    <!-- companies operating inside the estate -->
+    <view class="sec">
+      <view class="sectitle">{{en ? 'Companies in this estate' : '园区内企业'}} <text class="count">({{companies.length}})</text></view>
+      <view class="empty" wx:if="{{companies.length == 0}}">{{en ? 'No companies listed' : '暂无企业信息'}}</view>
+      <view class="company" wx:for="{{companies}}" wx:key="id">
+        <view class="cname">{{item.company_name_th}}</view>
+        <view class="csub" wx:if="{{item.company_name_en}}">{{item.company_name_en}}</view>
+        <view class="csub" wx:if="{{item.business_type}}">{{item.business_type}}</view>
+        <view class="caddr" wx:if="{{item.address}}">{{item.address}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="fail" wx:if="{{failed}}">{{en ? 'Could not load this estate' : '加载失败，请稍后重试'}}</view>

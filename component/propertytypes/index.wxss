@@ -1,0 +1,57 @@
+/* component/propertytypes/index.wxss */
+.row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+/* one row of four: rounded photo, name + tagline underneath with no backdrop */
+.tcard {
+  flex: 1;
+  min-width: 0;
+}
+
+/* outer frame: full width of the cell and a perfect square; the picture inside is smaller and centred */
+.cardimg {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%; /* height = width */
+  box-sizing: border-box;
+  border: solid 1px #33415563;
+  border-radius: 14px;
+  box-shadow: 0 8rpx 32rpx rgba(59, 130, 246, 0.2); 
+}
+
+.timg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  
+}
+
+.tcaption {
+  padding: 5px 2px 0;
+  text-align: center;
+}
+
+.ttitle {
+  font-size: 13px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #334155;
+}
+
+.tsub {
+  margin-top: 2px;
+  font-size: 10px;
+  color: #64748b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

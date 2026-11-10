@@ -1,0 +1,74 @@
+/* component/mapsection/index.wxss */
+.head {
+  padding: 0 4px 8px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 96px; /* fixed: the picture offset below is tuned for this height */
+  padding: 18px 16px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(to bottom right, rgb(13, 13, 51), #2563eb);
+}
+
+/* the picture sits on the right; the mask fades its left side to transparent, so the card's own gradient shows through instead of
+   a coloured overlay that has to match it (that left a visible edge) */
+.bgwrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.35) 25%, #000 65%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.35) 25%, #000 65%);
+}
+
+/* the square picture is as tall as it is wide (taller than the card): this offset moves it up about 30% of the card height */
+.bg {
+  position: absolute;
+  left: 0;
+  top: -80%;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.icon,
+.text {
+  position: relative; /* above the picture */
+  z-index: 1;
+}
+
+.icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.main {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sub {
+  margin-top: 4px;
+  font-size: 13px;
+  opacity: 0.85;
+}

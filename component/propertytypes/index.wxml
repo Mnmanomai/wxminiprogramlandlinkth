@@ -1,0 +1,12 @@
+<!--component/propertytypes/index.wxml-->
+<view class="row">
+  <view class="tcard" wx:for="{{types}}" wx:key="id" data-id="{{item.id}}" bind:tap="openType">
+    <view class="cardimg">
+      <image class="timg" src="{{item.image}}" mode="aspectFit" lazy-load />
+    </view>
+    <view class="tcaption">
+      <view class="ttitle">{{item.title}}</view>
+      <view class="tsub">{{item.sub}}</view>
+    </view>
+  </view>
+</view>

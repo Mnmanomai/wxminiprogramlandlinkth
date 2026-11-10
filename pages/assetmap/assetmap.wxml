@@ -1,0 +1,61 @@
+<!--pages/assetmap/assetmap.wxml-->
+<!-- The map is a native component and always draws above normal views, so nothing is laid over it: the top bar, the map and the
+     bottom sheet are stacked. While the auto-complete list is open it takes the map's place (the map is hidden). -->
+<view class="wrap">
+  <!-- top bar like the search page: input with auto-complete + the filter button -->
+  <view class="topbar" style="height: {{topbarHeight}}px;">
+    <view class="inputwrap">
+      <van-icon name="search" size="18px" color="#64748b" />
+      <input class="kwinput" value="{{keywordInput}}" placeholder="{{en ? 'Search a place, estate or listing' : '搜索地点、园区或房源'}}" confirm-type="search" bindinput="onKeywordInput" bindfocus="onKeywordFocus" />
+      <van-icon wx:if="{{keywordInput}}" name="clear" size="18px" color="#94a3b8" bind:tap="clearKeyword" />
+    </view>
+    <view class="fbtn" bind:tap="openFilter"><van-icon name="filter-o" size="22px" /></view>
+  </view>
+
+  <!-- pins of the listings in view (price labels; tap a pin for the listing) -->
+  <map id="map" class="map" hidden="{{showSuggest}}" style="width: 100%; height: {{mapHeight}}px;" latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}" markers="{{markers}}" show-location="{{false}}"
+    bindupdated="onUpdated" bindregionchange="onRegionChange" bindmarkertap="onMarkerTap" bindcallouttap="onMarkerTap" bindtap="onMapTap" />
+
+  <!-- auto-complete: provinces, districts, estates, listings -->
+  <scroll-view class="suggest" wx:if="{{showSuggest}}" scroll-y="true" style="height: {{mapHeight}}px;">
+    <view class="sitem" wx:for="{{suggestions}}" wx:key="key" data-i="{{index}}" bind:tap="pickSuggestion">
+      <view class="sbadge sb-{{item.type}}">{{item.badge}}</view>
+      <view class="stext">
+        <view class="smain">{{item.text}}</view>
+        <view class="ssub" wx:if="{{item.sub}}">{{item.sub}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- bottom sheet: drag its header up / down (up to 70% of the screen; the map shrinks to make room). A vertical list of the tapped pin
+       and its nearest neighbours: tap a card to fly to its pin, its button opens the listing -->
+  <view class="panel" style="height: {{panelHeight}}px;">
+    <view class="phead" bind:touchstart="onDragStart" catch:touchmove="onDragMove" bind:touchend="onDragEnd" bind:touchcancel="onDragEnd">
+      <view class="grip"></view>
+      <view class="count">
+        <van-icon name="location-o" size="14px" /> {{loading ? '…' : count}} {{en ? 'listings in view' : '个房源'}}
+        <text class="pos" wx:if="{{cards.length > 1}}">{{en ? 'nearby' : '附近'}} {{cards.length}}</text>
+      </view>
+    </view>
+
+    <scroll-view class="plist" wx:if="{{cards.length > 0}}" scroll-y="true" scroll-with-animation="true" scroll-into-view="{{scrollInto}}" style="height: {{panelHeight - 56}}px;">
+      <view class="card {{index == current ? 'on' : ''}}" wx:for="{{cards}}" wx:key="id" id="c{{item.id}}" data-id="{{item.id}}" bind:tap="onCardTap">
+        <image class="cimg" src="{{item.image ? item.image : '/asset/landlink.png'}}" mode="aspectFill" />
+        <view class="cinfo">
+          <view class="cname">#{{item.id}} {{item.name}}</view>
+          <view class="cprice">{{item.price}}</view>
+          <view class="ctags">
+            <text class="ctag" wx:if="{{item.type}}">{{item.type}}</text>
+            <view class="ctag zone" wx:if="{{item.colorName}}">
+              <view class="dot" style="background: {{item.swatch}};"></view>{{item.colorName}}
+            </view>
+          </view>
+        </view>
+        <!-- catch: the button must not also count as a tap on the card -->
+        <view class="cgo" data-id="{{item.id}}" catch:tap="openAsset">{{en ? 'View' : '查看'}} <van-icon name="arrow" size="12px" /></view>
+      </view>
+      <view style="height: 12px;"></view>
+    </scroll-view>
+    <view class="hint" wx:else>{{en ? 'Tap a pin to see the listing' : '点击地图上的标记查看房源'}}</view>
+  </view>
+</view>

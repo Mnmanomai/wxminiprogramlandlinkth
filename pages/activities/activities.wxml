@@ -14,15 +14,16 @@
         </view>
       </view>
     </van-tab>
-    <!-- <van-tab title="推荐商品">
+    <!-- listings the user hid from the search page; the eye icon on a card brings it back -->
+    <van-tab title="已隐藏">
       <view class="viewInContent">
         <view wx:if="{{HiddenList.length > 0}}">
-          <cardlistasset list="{{HiddenList}}" />
+          <cardlistasset list="{{HiddenList}}" hide-mode="restore" bind:hidechange="onRestored" />
         </view>
         <view wx:else="">
-          <van-empty image="search" description="没有符合您搜索条件的产品。" />
+          <van-empty image="search" description="{{language == 'en' ? 'No hidden listings' : '没有隐藏的房源'}}" />
         </view>
       </view>
-    </van-tab> -->
+    </van-tab>
   </van-tabs>
 </view>

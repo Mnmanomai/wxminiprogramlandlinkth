@@ -2,7 +2,7 @@
 const app = getApp();
 Page({
     data: {
-        dataAsset: [],
+        datarecent: [], // recently viewed listings (ids kept in storage RecentViewed by the detail page)
         show: false,
     },
 
@@ -11,8 +11,8 @@ Page({
             show: e.detail.data
         })
     },
+
     async onLoad() {
-        const getAsset = await app.GetLatestAsset();
         const chachengsao = await app.GetAsset({selltype: 1,limit: 10,offset: 0,province: 6});
         const chonburi = await app.GetAsset({selltype: 1,limit: 10,offset: 0,province: 12});
         const rayong = await app.GetAsset({selltype: 1,limit: 10,offset: 0,province: 53});
@@ -20,16 +20,26 @@ Page({
         const phathum = await app.GetAsset({selltype: 1,limit: 10,offset: 0,province: 37});
         const samutprakarn = await app.GetAsset({selltype: 1,limit: 10,offset: 0,province: 57});
         const samutsakorn = await app.GetAsset({selltype: 1,limit: 10,offset: 0,province: 58});
+        // a failed request answers "err" (a string): show nothing for that province instead of empty cards
+        const rows = (v) => (Array.isArray(v) ? v : [])
         this.setData({
-            dataAsset: getAsset,
-            datachachengsao: chachengsao,
-            datachonburi: chonburi,
-            datarayong: rayong,
-            datayutya: yutya,
-            dataphathum: phathum,
-            datasamutprakarn: samutprakarn,
-            datasamutsakorn: samutsakorn,
+            datachachengsao: rows(chachengsao),
+            datachonburi: rows(chonburi),
+            datarayong: rows(rayong),
+            datayutya: rows(yutya),
+            dataphathum: rows(phathum),
+            datasamutprakarn: rows(samutprakarn),
+            datasamutsakorn: rows(samutsakorn),
         })
+    },
+    // refreshed every time the page is shown: a listing opened from here moves to the front of the row on return
+    async onShow() {
+        const ids = (wx.getStorageSync('RecentViewed') || []).slice(0, 10)
+        if (ids.length === 0) return this.setData({ datarecent: [] })
+        const rows = await app.GetAsset({ selltype: 0, limit: 10, offset: 0, multilist: ids.join(',') })
+        // the API does not keep the order of MULTILIST: put the most recently viewed first
+        const list = Array.isArray(rows) ? rows.slice().sort((a, b) => ids.indexOf(a._id) - ids.indexOf(b._id)) : []
+        this.setData({ datarecent: list })
     },
     onShareAppMessage() {
         return {

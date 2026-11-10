@@ -23,19 +23,23 @@ Page({
 
     async onShow() {
         const Fladata = await this.getlocalstorate('FlavoriteList')
-        // const Hiddata = await this.getlocalstorate('HiddenList')
         if (Fladata) {
             let process = await this.loadData(Fladata);
             this.setData({
                 FlavoriteList: process,
             });
         }
-        // if (Hiddata) {
-        //     let process = await this.loadData(Hiddata);
-        //     this.setData({
-        //         HiddenList: process,
-        //     });
-        // }
+        const Hiddata = await this.getlocalstorate('HiddenList')
+        if (Hiddata) {
+            this.setData({ HiddenList: await this.loadData(Hiddata) })
+        } else {
+            this.setData({ HiddenList: [] })
+        }
+    },
+
+    // a hidden listing was restored from its card: take it out of this tab
+    onRestored(e) {
+        this.setData({ HiddenList: this.data.HiddenList.filter((r) => Number(r._id) !== Number(e.detail.id)) })
     },
 
     getlocalstorate(key) {
@@ -60,7 +64,7 @@ Page({
         const that = this;
         return new Promise((resolve, reject) => {
             wx.request({
-                url: `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/search?LANGUAGE=${config.language}&MULTILIST=${typeList}`,
+                url: `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/search?LANGUAGE=${config.language}&LIMIT=30&MULTILIST=${typeList}`,
                 method: 'GET',
                 success(res) {
                     const rawData = res.data.response;

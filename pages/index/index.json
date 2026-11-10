@@ -5,9 +5,10 @@
     "news":"/component/news/news",
     "searchbar" : "/component/searchbar/searchbar",
     "cardlistcol" : "/component/cardlistcol/index",
-    "packagesearch" : "/component/packagesearch/index",
-    "selecttype" : "/component/selecttype/index",
     "insideout" : "/component/inoutsideindus/index",
+    "propertytypes" : "/component/propertytypes/index",
+    "estatesection" : "/component/estatesection/index",
+    "mapsection" : "/component/mapsection/index",
     "cover" : "/component/coverindex/index"
   }
 }

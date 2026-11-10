@@ -18,6 +18,10 @@ Component({
       type: String,
       value:''
     },
+    hideheader: { // true = no title row (the page draws its own heading)
+      type: Boolean,
+      value: false
+    },
     
   },
 

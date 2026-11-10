@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index",
+    "cardlistcol": "/component/cardlistcol/index"
+  }
+}

@@ -1,0 +1,16 @@
+<!--pages/estates/estates.wxml-->
+<view class="page">
+  <view class="group" wx:for="{{groups}}" wx:key="province">
+    <view class="gtitle">{{item.province}} <text class="gcount">({{item.rows.length}})</text></view>
+    <view class="grid">
+      <view class="card" wx:for="{{item.rows}}" wx:for-item="e" wx:key="id" data-id="{{e.id}}" bind:tap="openEstate">
+        <view class="imgwrap">
+          <image class="img" src="{{e.image}}" mode="aspectFill" lazy-load />
+          <view class="logo" wx:if="{{e.logo}}"><image class="logoimg" src="{{e.logo}}" mode="aspectFit" /></view>
+        </view>
+        <view class="name">{{e.name}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="empty" wx:if="{{loaded && groups.length == 0}}">{{failed ? (en ? 'Could not load the directory' : '加载失败，请稍后重试') : (en ? 'No estates' : '暂无园区')}}</view>
+</view>

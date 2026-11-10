@@ -1,0 +1,11 @@
+<!--component/mapsection/index.wxml-->
+<view class="head"><view class="title">{{title}}</view></view>
+<view class="card" bind:tap="openMap">
+  <!-- picture on the right; a mask fades its left edge to transparent, so the card's own gradient shows through (no edge) -->
+  <view class="bgwrap"><image class="bg" src="/asset/industrail.jpg" mode="widthFix" /></view>
+  <view class="icon"><van-icon name="map-marked" size="30px" color="#fff" /></view>
+  <view class="text">
+    <view class="main">{{text}}</view>
+    <view class="sub">{{go}} <van-icon name="arrow" size="12px" /></view>
+  </view>
+</view>

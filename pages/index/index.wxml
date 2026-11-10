@@ -5,13 +5,24 @@
             <view class="" style="position: relative;width: 100%;height: 100%;">
                 <cover />
             </view>
+          
             <view class="" style="transform: translate(0px,-50px);padding: 0px 10px;display: flex;flex-direction: column;gap: 10px;padding-bottom: 50px;">
+            
                 <view class="" style="padding: 0px 14px;">
                     <searchbar />
                 </view>
                 <insideout />
-                <!-- Asset Latest -->
-                <cardlistcol list="{{dataAsset}}" title="资产最新" />
+                <!-- Land / Warehouse / Factory entry cards -->
+                <propertytypes />
+                <!-- Industrial estates directory (swipeable cards → estate detail) -->
+                <estatesection />
+                <!-- Map: opens the listing map -->
+                <mapsection />
+                
+                <!-- Recently viewed (local history, newest first) -->
+                <view class="" wx:if="{{datarecent.length > 0}}">
+                    <cardlistcol list="{{datarecent}}" title="最近浏览" />
+                </view>
                 <!-- Chachengsao -->
                 <view class="" wx:if="{{datachachengsao.length > 0}}">
                     <cardlistcol provinceno="{{6}}" list="{{datachachengsao}}" title="北柳府" />
@@ -46,4 +57,6 @@
         </view>
     </scroll-view>
 </view>
+
+
 <tabBar current="0" />
