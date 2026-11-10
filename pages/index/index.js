@@ -12,7 +12,14 @@ Page({
         })
     },
 
+    // TEMP debugging: a toast is visible even if the Console is filtered / looking at the wrong panel
+    // tesclick(){
+    //   console.log("test")
+    //   wx.showToast({ title: 'tap ok', icon: 'none' })
+    // },
+    
     async onLoad() {
+        console.log("index onLoad started") // TEMP debugging
         const chachengsao = await app.GetAsset({selltype: 1,limit: 10,offset: 0,province: 6});
         const chonburi = await app.GetAsset({selltype: 1,limit: 10,offset: 0,province: 12});
         const rayong = await app.GetAsset({selltype: 1,limit: 10,offset: 0,province: 53});

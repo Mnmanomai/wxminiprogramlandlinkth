@@ -58,5 +58,8 @@
     </scroll-view>
 </view>
 
+<!-- TEMP: tap test outside the scroll-view (remove after debugging) -->
+<!-- <view bind:tap="tesclick" style="position:fixed;top:100px;left:0;z-index:9999;background:red;color:#fff;padding:10px">tset2</view>
+<view bindtap="tesclick" style="position:fixed;top:160px;left:0;z-index:9999;background:blue;color:#fff;padding:10px">tset3 (bindtap)</view> -->
 
 <tabBar current="0" />

@@ -28,7 +28,7 @@
           </view>
         </view>
         <view class="cardDetail slate">
-          <view class="cardprice">
+          <view class="cardprice " style="color: black;">
             <block wx:if="{{ item.typeselln === '2' }}">฿{{ item.RentCostPerMonthBath }} / 月.</block>
             <block wx:else>฿{{ item.SalePriceBath }}</block>
           <text class="persqm" wx:if="{{item.persqm}}">· ฿{{item.persqm}} / {{language == 'en' ? 'sqm' : '平方米'}}</text>

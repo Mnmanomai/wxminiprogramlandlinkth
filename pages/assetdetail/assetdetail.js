@@ -60,6 +60,7 @@ Page({
           'Authorization': 'Bearer ' + token
         },
         success(res) {
+          console.log(res)
           var assetdetail = res.data.data.assetdetail // the listing itself
           var nearasset = res.data.data.nearasset     // nearby listings shown at the bottom
           // each building's type as text (office / warehouse / factory / other) for the list shown when a listing has several

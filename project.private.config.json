@@ -9,6 +9,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/searchdetail/searchdetail",
+          "pathName": "pages/searchdetail/searchdetail",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "selltype=1&IEAT=2",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/groupinvite/groupinvite",
           "pathName": "pages/groupinvite/groupinvite",
           "query": "invitegroup=eyJ1IjoiMTMxIiwiZyI6ImY0MzRjODMwZTlmYzExZjA5MTU0NTI1MTFhM2I4NDM1IiwidCI6MTc3MzEzMDc3Mn0.vG7jDrdDkQbuD92KLfOce4-tVUjGnhEyeYf21_zqn5A",
