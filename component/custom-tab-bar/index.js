@@ -28,11 +28,6 @@ Component({
           //     text: 'resource'
           // },
             {
-                url: '/pages/chat/chat',
-                icon: 'chat-o',
-                text: 'Massage'
-            },
-            {
                 url: '/pages/users/users',
                 icon: 'users-o',
                 text: 'users'

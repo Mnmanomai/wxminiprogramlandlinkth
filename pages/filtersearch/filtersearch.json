@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText":"筛选搜索",
   "usingComponents": {
-    "navigation-bar": "/component/navigation-bar/navigation-bar",
     "filterSeach" : "/component/filterSearch/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",

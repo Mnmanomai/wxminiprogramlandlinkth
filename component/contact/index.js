@@ -1,42 +1,34 @@
-// component/contact/index.js
+// component/contact/index.js — the "contact us" popup: the three Landlink phone numbers and the WeChat customer-service chat.
+const support = require('../../utils/support')
+const config = require('../../config')
 
 Component({
-
   properties: {
-    customer: {
-      type: String,
-      value: "",
-    },
     show: {
       type: Boolean,
       value: false
-    }
+    },
+    // optional context for the chat button: which listing the customer is asking about (the team gets a card of it)
+    sessionFrom: { type: String, value: '' },
+    msgTitle: { type: String, value: '' },
+    msgPath: { type: String, value: '' },
+    msgImg: { type: String, value: '' }
   },
 
   data: {
-    show: false,
-    supportPhone: '+66641648899',
-    customer : '',
+    en: config.language === 'en',
+    phones: support.PHONES
   },
 
   methods: {
+    // tell the page to hide it (the page owns `show`; closing only the component's copy would leave the page thinking it is still open)
     onClose() {
-      this.setData({
-        show: false
-      });
+      this.setData({ show: false })
+      this.triggerEvent('close')
     },
 
-    callCustomer() {
-      const chatnumber = this.data.customer
-    },
-
-    callSupport() {
-      wx.makePhoneCall({
-        phoneNumber: this.data.supportPhone,
-        success() {},
-        fail(err) {}
-      });
-    },
-
+    callNumber(e) {
+      support.call(e.currentTarget.dataset.number)
+    }
   }
 })

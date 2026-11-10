@@ -22,7 +22,8 @@
       "outputPath": ""
     },
     "uglifyFileName": true,
-    "minifyWXML": false,
+    "minifyWXML": true,
+    "minifyWXSS": true,
     "condition": false
   },
   "condition": {},

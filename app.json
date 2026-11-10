@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/filtersearch/filtersearch",
     "pages/activities/activities",
     "pages/search/search",
@@ -10,8 +9,6 @@
     "pages/district/district",
     "pages/searchdetail/searchdetail",
     "pages/nearlocation/nearlocation",
-    "pages/chat/chat",
-    "pages/chatroom/chatroom",
     "pages/seachasset/searchasset",
     "pages/investmentmarket/investmentmarket",
     "pages/guide/index",
@@ -20,10 +17,11 @@
     "pages/users/users",
     "pages/myinvestment/myinvestment",
     "pages/postinvestment/postinvestment",
-    "pages/provincemultiselect/provincemultiselect",
-    "pages/colormultiselect/colormultiselect",
     "pages/investmentpost/investmentpost",
-    "pages/taskpreview/taskpreview",
+    "pages/assetmap/assetmap",
+    "pages/agentlogin/agentlogin",
+    "pages/estates/estates",
+    "pages/estatedetail/estatedetail",
     "pages/searchselect/searchselect"
   ],
   "tabBar": {
@@ -39,10 +37,6 @@
       },
       {
         "pagePath": "pages/investmentmarket/investmentmarket",
-        "text": "按摩"
-      },
-      {
-        "pagePath": "pages/chat/chat",
         "text": "按摩"
       },
       {

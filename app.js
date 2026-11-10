@@ -151,6 +151,19 @@ App({
       return "no data search";
     }
   },
+  // website's /autocomplete/suggest: { province, district, industrial, asset } lists for the typed text (null on failure)
+  GetAutocomplete(text) {
+    return new Promise((resolve) => {
+      wx.request({
+        url: `${config.PublicIPCallApiGoBackend}/autocomplete/suggest`,
+        method: 'GET',
+        data: { q: text },
+        success(res) { resolve(res.statusCode === 200 ? res.data.data : null) },
+        fail() { resolve(null) }
+      })
+    })
+  },
+
   async Getkeyword(obj) {
     return new Promise((resolve, reject) => {
       wx.request({
@@ -192,7 +205,7 @@ App({
         url: `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/search`,
         method: 'GET',
         data: {
-          SELLTYPE: request.selltype || '',
+          SELLTYPE: request.selltype || 0, // 0 = every type; an empty value matches nothing on the backend
           LANGUAGE: config.language,
           LIMIT: request.limit,
           ORDER: request.order,
@@ -201,7 +214,9 @@ App({
           DISTRICT: request.district || '',
           LAT: request.lat || '',
           LONG: request.long || '',
+          MULTILIST: request.multilist || '', // comma-separated asset ids (recently viewed)
           DISTANCEMODE: request.distancemode || '',
+          RADIUSKM: request.radius || '', // optional true-circle radius (km) with DISTANCEMODE
           PROPTYPE: request.PropertyType || '',
           IEAT: request.IEAT || '',
           COLOR: request.Color || '',
@@ -218,10 +233,21 @@ App({
           let dataProcess = "";
           if (rawData != "Data not found please enter agian.") {
             dataProcess = that.cal_size(rawData)
+            if (Array.isArray(dataProcess)) {
+              // listings the user hid are not shown again; rawLength = how many the server sent (paging must advance by that, not by what is left)
+              const raw = dataProcess.length
+              if (!request.includeHidden) dataProcess = that.filterHidden(dataProcess)
+              dataProcess.rawLength = raw
+            }
+          }
+          if (!Array.isArray(dataProcess) && rawData != "Data not found please enter agian.") {
+            console.warn('GetAsset: unexpected answer', res.statusCode, JSON.stringify(res.data).slice(0, 200))
           }
           resolve(dataProcess)
         },
         fail(err) {
+          // shows in the debug console of a trial / release build ("request:fail url not in domain list" = the API domain is not whitelisted)
+          console.warn('GetAsset failed:', err && err.errMsg)
           resolve("err")
         },
         complete() {
@@ -230,19 +256,69 @@ App({
       });
     })
   },
+  // ---- hidden listings: ids in storage HiddenList ([{id}], like FlavoriteList); kept on this phone only ----
+  getHiddenIds() {
+    const ids = {}
+    ;(wx.getStorageSync('HiddenList') || []).forEach((v) => { ids[Number(v.id)] = true })
+    return ids
+  },
+
+  // rows without the listings the user hid (a list that is not rows is returned as it is)
+  filterHidden(rows) {
+    if (!Array.isArray(rows)) return rows
+    const hidden = this.getHiddenIds()
+    return rows.filter((r) => !hidden[Number(r._id)])
+  },
+
+  hideAsset(id) {
+    const list = wx.getStorageSync('HiddenList') || []
+    if (!list.some((v) => Number(v.id) === Number(id))) list.push({ id: Number(id) })
+    wx.setStorageSync('HiddenList', list)
+  },
+
+  unhideAsset(id) {
+    wx.setStorageSync('HiddenList', (wx.getStorageSync('HiddenList') || []).filter((v) => Number(v.id) !== Number(id)))
+  },
+
   cal_size(rawData) {
     if (rawData) {
       const process = rawData.map(item => {
         const price = item.typeassetn === "1" ?
           (item.LandSizeRai * 400) + (item.LandSizeNgan * 100) + item.LandSizeSQW + " 平方米" :
           item.WHSizeSQM + " 平方米";
+        // price per square metre: land → land area (Area_all is in sq.wah, 1 sq.wah = 4 m²); otherwise the building area.
+        // Rent listings use the monthly rent. Empty when there is no price or no area.
+        const num = v => Number(String(v == null ? "" : v).replace(/,/g, "")) || 0
+        const cost = item.typeselln === "2" ? num(item.RentCostPerMonthBath) : num(item.SalePriceBath)
+        const sqm = item.typeassetn === "1" ? num(item.Area_all) * 4 : (num(item.WHSizeSQM) || num(item.Area_all) * 4)
+        const per = cost > 0 && sqm > 0 ? cost / sqm : 0
+        const persqm = per > 0 ? (per >= 100 ? String(Math.round(per)).replace(/\B(?=(\d{3})+(?!\d))/g, ",") : per.toFixed(2)) : ""
         return {
           ...item,
-          price
+          price,
+          persqm,
+          listed: this.listedText(item.Create_date)
         };
       });
       return process;
     }
+  },
+  // "Listed on Oct, 2025 (3w ago)" / "发布于 2025年10月（3周前）" from Create_date ("YYYY-MM-DD HH:MM:SS")
+  listedText(createDate) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(createDate || "")
+    if (!m) return ""
+    const en = config.language === "en"
+    const year = Number(m[1]), month = Number(m[2])
+    const days = Math.floor((Date.now() - new Date(year, month - 1, Number(m[3])).getTime()) / 86400000)
+    const unit = (n, enU, zhU) => (en ? n + enU : n + zhU) + (en ? " ago" : "前")
+    let ago
+    if (days < 1) ago = en ? "today" : "今天"
+    else if (days < 7) ago = unit(days, "d", "天")
+    else if (days < 30) ago = unit(Math.floor(days / 7), "w", "周")
+    else if (days < 365) ago = unit(Math.floor(days / 30), "mo", "个月")
+    else ago = unit(Math.floor(days / 365), "y", "年")
+    const monthEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][month - 1]
+    return en ? `Listed on ${monthEn}, ${year} (${ago})` : `发布于 ${year}年${month}月（${ago}）`
   },
   ParseParams(req) {
     // province n district
@@ -304,26 +380,6 @@ App({
     const textParams = this.ParseParams(req)
     let url = `/pages/search/search?selltype=${req.selltype}${textParams}`
     // GetAsset()
-  },
-  GetLatestAsset() {
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: `${config.PublicIPCallApiGoBackend}/legacy/miniprogram/search`,
-        method: 'GET',
-        data: {
-          LANGUAGE: config.language,
-          LIMIT: 10,
-          ORDER: 'desc'
-        },
-        success(res) {
-          const rawData = res.data.response;
-          resolve(rawData)
-        },
-        fail(err) {
-          resolve("err")
-        },
-      });
-    })
   },
   GetInvestment(offset, lenght) {
     return new Promise((resolve, reject) => {
